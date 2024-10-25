@@ -1,4 +1,4 @@
-# Movie Database
+# Media Database
 2024 final project for Application Development 1
 
 ## Scenario 
