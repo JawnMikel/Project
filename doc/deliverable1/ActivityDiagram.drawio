@@ -1844,9 +1844,6 @@
             <mxPoint x="625" y="975" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Gt7SG_tqPe_O46G-OhOc-12" value="" style="rounded=0;whiteSpace=wrap;html=1;fillStyle=solid;fillColor=#000000;" parent="1" vertex="1">
-          <mxGeometry x="790" y="4560" width="120" height="10" as="geometry" />
-        </mxCell>
         <mxCell id="Gt7SG_tqPe_O46G-OhOc-56" value="" style="group" parent="1" connectable="0" vertex="1">
           <mxGeometry x="2012.5" y="9070" width="40" height="40" as="geometry" />
         </mxCell>
