@@ -16,7 +16,7 @@ namespace MovieDatabase
         private string _password;
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime Dob { get; set; }
+        // public Date Dob { get; set; }
         public enum Memberships
         {
             REGULAR,
@@ -24,14 +24,13 @@ namespace MovieDatabase
         }
         public Memberships Membership { get; set; }
 
-        public User(string username, string password, string firstName, string lastName,DateTime dob, Memberships membership)
+        public User(string username, string password, string firstName, string lastName, Memberships membership)
         {
             Id = nextId++;
             _username = username;
             _password = password;
             FirstName = firstName;
             LastName = lastName;
-            Dob = dob;
             Membership = membership;
         }
     }
