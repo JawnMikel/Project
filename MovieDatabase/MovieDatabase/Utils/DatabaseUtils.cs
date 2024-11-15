@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using MovieDatabase.Exceptions;
 
 namespace MovieDatabase.Utils
 {
+    /// <summary>
+    /// DatabaseUtils class is used to keep a connection to
+    /// the movie database, and to fetch/insert data into it.
+    /// </summary>
     public class DatabaseUtils
     {
         // Define the connection string and instance lock.
@@ -83,6 +88,9 @@ namespace MovieDatabase.Utils
             
         }
 
+        /// <summary>
+        /// Connect to the database
+        /// </summary>
         private void Connect()
         {
             // Connect to the database
@@ -98,6 +106,159 @@ namespace MovieDatabase.Utils
         {
             _connection.Close();
             _instance = null;
+        }
+
+        /// <summary>
+        /// Create the user table.
+        /// </summary>
+        private void CreateUserTable()
+        {
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS user (
+                                    UserID INTEGER PRIMARY KEY,
+                                    FirstName TEXT NOT NULL,
+                                    LastName TEXT NOT NULL,
+                                    UserName TEXT UNIQUE NOT NULL,
+                                    Password TEXT NOT NULL
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Create the payment table
+        /// </summary>
+        private void CreatePaymentTable()
+        {
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS payment (
+                                    PaymentID INTEGER PRIMARY KEY,
+                                    CardHolderName TEXT NOT NULL,
+                                    CreditCardNumber TEXT NOT NULL,
+                                    CreditCardCVV TEXT NOT NULL,
+                                    CardExpirationDate TEXT NOT NULL,
+                                    UserID INTEGER NOT NULL,
+                                    CONSTRAINT chk_CardExpirationDate CHECK ()
+                                );
+                                """;
+        }
+
+        private void CreateGenreTable()
+        {
+        
+        }
+
+        private void CreateTVShowTable()
+        {
+        
+        }
+
+        private void CreateEpisodeTable()
+        {
+        
+        }
+
+        private void CreateMovieTable()
+        {
+        
+        }
+
+        private void CreateActorTable()
+        {
+
+        }
+
+        private void CreateDirectorTable()
+        {
+        
+        }
+
+        private void CreateReviewTable()
+        {
+        
+        }
+
+        private void CreateWatchListMovieTable()
+        {
+        
+        }
+
+        private void CreateWatchListTVShowTable()
+        {
+        
+        }
+
+        private void CreateMovieGenreTable()
+        {
+        
+        }
+
+        private void CreateTVShowGenreTable()
+        {
+        
+        }
+
+        private void CreateEpisodeGenreTable()
+        {
+        
+        }
+
+        private void CreateMovieActorTable()
+        {
+        
+        }
+
+        private void CreateTVShowActorTable()
+        {
+        
+        }
+
+        private void CreateEpisodeActorTable()
+        {
+        
+        }
+
+        private void CreateMovieReviewTable()
+        {
+        
+        }
+
+        private void CreateTVShowReviewTable()
+        {
+        
+        }
+
+        private void CreateEpisodeReviewTable()
+        {
+
+        }
+
+        private void CreateMovieDirectorTable()
+        {
+        
+        }
+
+        private void CreateTVShowDirectorTable()
+        {
+        
+        }
+
+        private void CreateEpisodeDirectorTable()
+        {
+
+        }
+
+        private void CreateActorReviewTable()
+        {
+        
+        }
+
+        private void CreateDirectorReviewTable()
+        {
+        
         }
     }
 }
