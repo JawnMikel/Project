@@ -25,5 +25,15 @@ namespace MovieDatabase
             frmCreateAcc.Closed += (s, args) => this.Close();
             frmCreateAcc.ShowDialog();
         }
+
+        private void langBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void payBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

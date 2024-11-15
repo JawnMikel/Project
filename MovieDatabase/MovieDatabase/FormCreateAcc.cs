@@ -15,6 +15,7 @@ namespace MovieDatabase
         public FormCreateAcc()
         {
             InitializeComponent();
+            nextBtn.Enabled = false;
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -27,12 +28,14 @@ namespace MovieDatabase
 
         private void nextBtn_Click(object sender, EventArgs e)
         {
-            CreateUser();
             User user = CreateUser();
+            FormLogin.users.Add(user);
+
             if (membershipCB.SelectedIndex == 0)
             {
+                MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
-                var formMainMenu = new FormMainMenu();
+                var formMainMenu = new FormMainMenu(user);
                 formMainMenu.Closed += (s, args) => this.Close();
                 formMainMenu.ShowDialog();
             }
@@ -44,32 +47,37 @@ namespace MovieDatabase
                 formPayment.ShowDialog();
             }
         }
-
         private void membershipCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (membershipCB.SelectedIndex == 0)
             {
                 nextBtn.Text = "Create Account";
+                nextBtn.Enabled = true;
             }
             else if (membershipCB.SelectedIndex == 1) 
             {
                 nextBtn.Text = "Pay";
+                nextBtn.Enabled = true;
             }
         }
 
+        /// <summary>
+        /// Creates a user from the user class from using the information in the frame
+        /// </summary>
+        /// <returns>a new user</returns>
         private User CreateUser()
         {
             string firstName = firstNameTB.Text;
             string lastName = lastNameTB.Text;
-            
+            DateTime dob = dobPicker.Value;
+
             int selectedIndex = membershipCB.SelectedIndex;
             User.Memberships selectedMembership = (User.Memberships)selectedIndex;
-            //string membership = selectedMembership.ToString();
 
             string username = usernameTB.Text;
             string password = passwordTB.Text;
 
-            User user = new User(username, password, firstName, lastName, selectedMembership);
+            User user = new User(username, password, firstName, lastName, selectedMembership, dob);
             return user;
         }
 

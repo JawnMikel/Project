@@ -2,6 +2,7 @@ namespace MovieDatabase
 {
     public partial class FormLogin : Form
     {
+        public static List<User> users = new List<User>();
         public FormLogin()
         {
             InitializeComponent();
@@ -10,19 +11,20 @@ namespace MovieDatabase
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            if (usernameTB.Text.Equals("Andrew") && passwordTB.Text.Equals("123456"))
+            User user = users.FirstOrDefault(u => u.CheckCredentials(usernameTB.Text, passwordTB.Text));
+
+            if (user != null)
             {
                 this.Hide();
-                var frmCreateAcc = new FormMainMenu();
-                frmCreateAcc.Closed += (s, args) => this.Close();
-                frmCreateAcc.ShowDialog();
+                var frmMainMenu = new FormMainMenu(user);
+                frmMainMenu.Closed += (s, args) => this.Close();
+                frmMainMenu.ShowDialog();
             }
             else
             {
                 errorLbl.Visible = true;
             }
         }
-
         private void createAccBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -30,17 +32,6 @@ namespace MovieDatabase
             frmCreateAcc.Closed += (s, args) => this.Close();
             frmCreateAcc.ShowDialog();
         }
-
-        private void loginTitleLbl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void usernameTB_MouseClick(object sender, MouseEventArgs e)
         {
             errorLbl.Visible = false;

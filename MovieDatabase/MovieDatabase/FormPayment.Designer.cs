@@ -39,88 +39,98 @@
             textBox3 = new TextBox();
             backBtn = new Button();
             payBtn = new Button();
+            langBtn = new Button();
             SuspendLayout();
             // 
             // paymentTitleLbl
             // 
             paymentTitleLbl.AutoSize = true;
             paymentTitleLbl.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            paymentTitleLbl.Location = new Point(264, 9);
+            paymentTitleLbl.Location = new Point(474, 9);
+            paymentTitleLbl.Margin = new Padding(4, 0, 4, 0);
             paymentTitleLbl.Name = "paymentTitleLbl";
-            paymentTitleLbl.Size = new Size(150, 45);
+            paymentTitleLbl.Size = new Size(226, 65);
             paymentTitleLbl.TabIndex = 0;
             paymentTitleLbl.Text = "Payment";
             // 
             // fullnameLbl
             // 
             fullnameLbl.AutoSize = true;
-            fullnameLbl.Location = new Point(87, 87);
+            fullnameLbl.Location = new Point(256, 135);
+            fullnameLbl.Margin = new Padding(4, 0, 4, 0);
             fullnameLbl.Name = "fullnameLbl";
-            fullnameLbl.Size = new Size(106, 15);
+            fullnameLbl.Size = new Size(160, 25);
             fullnameLbl.TabIndex = 1;
             fullnameLbl.Text = "Card Holder Name";
             // 
             // fullNameTB
             // 
-            fullNameTB.Enabled = false;
-            fullNameTB.Location = new Point(200, 84);
+            fullNameTB.Location = new Point(418, 130);
+            fullNameTB.Margin = new Padding(4, 5, 4, 5);
             fullNameTB.Name = "fullNameTB";
-            fullNameTB.Size = new Size(233, 23);
+            fullNameTB.Size = new Size(331, 31);
             fullNameTB.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(114, 137);
+            label1.Location = new Point(295, 218);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(79, 15);
+            label1.Size = new Size(119, 25);
             label1.TabIndex = 3;
             label1.Text = "Card Number";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(347, 194);
+            label2.Location = new Point(628, 313);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(29, 15);
+            label2.Size = new Size(45, 25);
             label2.TabIndex = 4;
             label2.Text = "CVV";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(137, 194);
+            label3.Location = new Point(328, 313);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(66, 15);
+            label3.Size = new Size(101, 25);
             label3.TabIndex = 5;
             label3.Text = "Expiry Date";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(209, 191);
+            textBox1.Location = new Point(431, 308);
+            textBox1.Margin = new Padding(4, 5, 4, 5);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
+            textBox1.Size = new Size(101, 31);
             textBox1.TabIndex = 6;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(382, 189);
+            textBox2.Location = new Point(678, 305);
+            textBox2.Margin = new Padding(4, 5, 4, 5);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(51, 23);
+            textBox2.Size = new Size(71, 31);
             textBox2.TabIndex = 7;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(201, 137);
+            textBox3.Location = new Point(419, 218);
+            textBox3.Margin = new Padding(4, 5, 4, 5);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(232, 23);
+            textBox3.Size = new Size(330, 31);
             textBox3.TabIndex = 8;
             // 
             // backBtn
             // 
-            backBtn.Location = new Point(205, 277);
+            backBtn.Location = new Point(425, 452);
+            backBtn.Margin = new Padding(4, 5, 4, 5);
             backBtn.Name = "backBtn";
-            backBtn.Size = new Size(75, 23);
+            backBtn.Size = new Size(107, 38);
             backBtn.TabIndex = 9;
             backBtn.Text = "Back";
             backBtn.UseVisualStyleBackColor = true;
@@ -128,18 +138,31 @@
             // 
             // payBtn
             // 
-            payBtn.Location = new Point(358, 277);
+            payBtn.Location = new Point(643, 452);
+            payBtn.Margin = new Padding(4, 5, 4, 5);
             payBtn.Name = "payBtn";
-            payBtn.Size = new Size(75, 23);
+            payBtn.Size = new Size(107, 38);
             payBtn.TabIndex = 10;
             payBtn.Text = "Pay";
             payBtn.UseVisualStyleBackColor = true;
+            payBtn.Click += payBtn_Click;
+            // 
+            // langBtn
+            // 
+            langBtn.Location = new Point(803, 36);
+            langBtn.Name = "langBtn";
+            langBtn.Size = new Size(112, 34);
+            langBtn.TabIndex = 11;
+            langBtn.Text = "French";
+            langBtn.UseVisualStyleBackColor = true;
+            langBtn.Click += langBtn_Click;
             // 
             // FormPayment
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1143, 750);
+            Controls.Add(langBtn);
             Controls.Add(payBtn);
             Controls.Add(backBtn);
             Controls.Add(textBox3);
@@ -151,6 +174,7 @@
             Controls.Add(fullNameTB);
             Controls.Add(fullnameLbl);
             Controls.Add(paymentTitleLbl);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "FormPayment";
             Text = "frmPayment";
             ResumeLayout(false);
@@ -170,5 +194,6 @@
         private TextBox textBox3;
         private Button backBtn;
         private Button payBtn;
+        private Button langBtn;
     }
 }

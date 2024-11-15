@@ -12,9 +12,20 @@ namespace MovieDatabase
 {
     public partial class FormMainMenu : Form
     {
-        public FormMainMenu()
+        public FormMainMenu(User user)
         {
             InitializeComponent();
+            profileBtn.Text = user.FirstName + " " + user.LastName;
+            if (user.Membership.Equals("REGULAR"))
+            {
+                recBtn.Enabled = false;
+                top10Btn.Enabled = false;
+            } 
+            else
+            {
+                recBtn.Enabled = true;
+                top10Btn.Enabled = true;
+            }
         }
     }
 }
