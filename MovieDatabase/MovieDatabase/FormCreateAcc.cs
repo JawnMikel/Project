@@ -28,21 +28,31 @@ namespace MovieDatabase
 
         private void nextBtn_Click(object sender, EventArgs e)
         {
-            User user = CreateUser();
-            FormLogin.users.Add(user);
-
             if (membershipCB.SelectedIndex == 0)
             {
+                User user = CreateUser();
+                FormLogin.users.Add(user); 
+
                 MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 this.Hide();
                 var formMainMenu = new FormMainMenu(user);
                 formMainMenu.Closed += (s, args) => this.Close();
                 formMainMenu.ShowDialog();
             }
-            else if (membershipCB.SelectedIndex == 1)
+            else if (membershipCB.SelectedIndex == 1) 
             {
                 this.Hide();
-                var formPayment = new FormPayment(user);
+
+                var formPayment = new FormPayment(
+                    firstNameTB.Text,
+                    lastNameTB.Text,
+                    usernameTB.Text,
+                    passwordTB.Text,
+                    dobPicker.Value,
+                    User.Memberships.PREMIUM
+                );
+
                 formPayment.Closed += (s, args) => this.Close();
                 formPayment.ShowDialog();
             }

@@ -34,9 +34,9 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            expiryDateTB = new TextBox();
+            cvvTB = new TextBox();
+            cardNumberTB = new TextBox();
             backBtn = new Button();
             payBtn = new Button();
             langBtn = new Button();
@@ -101,29 +101,29 @@
             label3.TabIndex = 5;
             label3.Text = "Expiry Date";
             // 
-            // textBox1
+            // expiryDateTB
             // 
-            textBox1.Location = new Point(431, 308);
-            textBox1.Margin = new Padding(4, 5, 4, 5);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(101, 31);
-            textBox1.TabIndex = 6;
+            expiryDateTB.Location = new Point(431, 308);
+            expiryDateTB.Margin = new Padding(4, 5, 4, 5);
+            expiryDateTB.Name = "expiryDateTB";
+            expiryDateTB.Size = new Size(101, 31);
+            expiryDateTB.TabIndex = 6;
             // 
-            // textBox2
+            // cvvTB
             // 
-            textBox2.Location = new Point(678, 305);
-            textBox2.Margin = new Padding(4, 5, 4, 5);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(71, 31);
-            textBox2.TabIndex = 7;
+            cvvTB.Location = new Point(678, 305);
+            cvvTB.Margin = new Padding(4, 5, 4, 5);
+            cvvTB.Name = "cvvTB";
+            cvvTB.Size = new Size(71, 31);
+            cvvTB.TabIndex = 7;
             // 
-            // textBox3
+            // cardNumberTB
             // 
-            textBox3.Location = new Point(419, 218);
-            textBox3.Margin = new Padding(4, 5, 4, 5);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(330, 31);
-            textBox3.TabIndex = 8;
+            cardNumberTB.Location = new Point(419, 218);
+            cardNumberTB.Margin = new Padding(4, 5, 4, 5);
+            cardNumberTB.Name = "cardNumberTB";
+            cardNumberTB.Size = new Size(330, 31);
+            cardNumberTB.TabIndex = 8;
             // 
             // backBtn
             // 
@@ -165,9 +165,9 @@
             Controls.Add(langBtn);
             Controls.Add(payBtn);
             Controls.Add(backBtn);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(cardNumberTB);
+            Controls.Add(cvvTB);
+            Controls.Add(expiryDateTB);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -189,9 +189,9 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox expiryDateTB;
+        private TextBox cvvTB;
+        private TextBox cardNumberTB;
         private Button backBtn;
         private Button payBtn;
         private Button langBtn;

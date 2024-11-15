@@ -86,22 +86,23 @@
             // 
             searchTB.Location = new Point(716, 12);
             searchTB.Name = "searchTB";
-            searchTB.Size = new Size(216, 31);
+            searchTB.Size = new Size(228, 31);
             searchTB.TabIndex = 5;
             // 
             // profileBtn
             // 
-            profileBtn.Location = new Point(950, 12);
+            profileBtn.Location = new Point(960, 12);
             profileBtn.Name = "profileBtn";
-            profileBtn.Size = new Size(112, 34);
+            profileBtn.Size = new Size(191, 34);
             profileBtn.TabIndex = 6;
             profileBtn.UseVisualStyleBackColor = true;
+            profileBtn.Click += profileBtn_Click;
             // 
             // FormMainMenu
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1086, 530);
+            ClientSize = new Size(1176, 593);
             Controls.Add(profileBtn);
             Controls.Add(searchTB);
             Controls.Add(genreBtn);
