@@ -21,12 +21,12 @@ namespace MovieDatabase
             Rating = rating;
         }
 
-        public void EditReviewComment(string comment)
+        public void editReviewComment(string comment)
         {
 
         }
 
-        public void EditReviewRating(double rating)
+        public void editReviewRating(double rating)
         {
 
         }

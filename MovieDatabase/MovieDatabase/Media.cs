@@ -49,12 +49,12 @@ namespace MovieDatabase
             FANTASY
         }
 
-        public void AddReview(Review review)
+        public void addReview(Review review)
         {
 
         }
 
-        public double GetMediaRating()
+        public double getMediaRating()
         {
             return 0;
         }

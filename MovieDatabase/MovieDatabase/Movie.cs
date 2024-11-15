@@ -10,5 +10,11 @@ namespace MovieDatabase
     {
         public int MovieId { get; set; }
         public int Duration { get; set; }
+
+        public Movie(int movieId, int duration)
+        {
+            MovieId = movieId;
+            Duration = duration;
+        }
     }
 }
