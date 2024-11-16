@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MovieDatabase.Exceptions;
 using System.Data.SQLite;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using MovieDatabase.Exceptions;
 
 namespace MovieDatabase.Utils
 {
@@ -18,7 +12,7 @@ namespace MovieDatabase.Utils
         // Define the connection string and instance lock.
         private static readonly object _instanceLockObj = new object();
         private static readonly string _databasePath = @"../../../MovieData.db";
-        private static readonly string _connectionString = $"Data Source={_databasePath};Version3";
+        private static readonly string _connectionString = $"Data Source={_databasePath};Version=3";
         // Define the DatabaseUtils instance and its connection
         private static DatabaseUtils? _instance;
         private SQLiteConnection _connection;
@@ -79,7 +73,38 @@ namespace MovieDatabase.Utils
                 // Create the database file and connect to it
                 File.Create(_databasePath).Close();
                 Connect();
-                // TODO: Create the database tables
+                // Create the main tables
+                CreateUserTable();
+                CreatePaymentTable();
+                CreateMovieTable();
+                CreateTVShowTable();
+                CreateEpisodeTable();
+                CreateGenreTable();
+                CreateActorTable();
+                CreateReviewTable();
+                CreateDirectorTable();
+                // Create the many-to-many tables
+                CreateWatchListMovieTable();
+                CreateWatchListTVShowTable();
+                // Create the media genre tables
+                CreateMovieGenreTable();
+                CreateTVShowGenreTable();
+                CreateEpisodeGenreTable();
+                // Create the media actor tables
+                CreateMovieActorTable();
+                CreateTVShowActorTable();
+                CreateEpisodeActorTable();
+                // Create the media review tables
+                CreateMovieReviewTable();
+                CreateTVShowReviewTable();
+                CreateEpisodeReviewTable();
+                // Create the media director tables
+                CreateMovieDirectorTable();
+                CreateTVShowDirectorTable();
+                CreateEpisodeDirectorTable();
+                // Create the director/actor review tables
+                CreateDirectorReviewTable();
+                CreateActorReviewTable();
             } 
             catch (IOException ex)
             {
@@ -129,7 +154,7 @@ namespace MovieDatabase.Utils
         }
 
         /// <summary>
-        /// Create the payment table
+        /// Create the payment table.
         /// </summary>
         private void CreatePaymentTable()
         {
@@ -141,124 +166,448 @@ namespace MovieDatabase.Utils
                                     CreditCardCVV TEXT NOT NULL,
                                     CardExpirationDate TEXT NOT NULL,
                                     UserID INTEGER NOT NULL,
-                                    CONSTRAINT chk_CardExpirationDate CHECK ()
+                                    CONSTRAINT chk_CardExpirationDateFormat CHECK (CardExpirationDate LIKE '____-__-00'),
+                                    CONSTRAINT chk_CardExpirationDateFuture CHECK (CardExpirationDate > DATE('now')),
+                                    CONSTRAINT fk_UserID FOREIGN KEY (UserID) REFERENCES user(UserID)
                                 );
                                 """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the genre table.
+        /// </summary>
         private void CreateGenreTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS genre (
+                                    GenreID INTEGER PRIMARY KEY,
+                                    GenreName TEXT UNIQUE NOT NULL
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the tv show table.
+        /// </summary>
         private void CreateTVShowTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS tvshow (
+                                    TVShowID INTEGER PRIMARY KEY,
+                                    Title TEXT NOT NULL,
+                                    ReleaseDate TEXT NOT NULL,
+                                    Synopsis TEXT NOT NULL,
+                                    CONSTRAINT chk_ReleaseDateFormat CHECK (ReleaseDate LIKE '____-__-__')
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the episode table.
+        /// </summary>
         private void CreateEpisodeTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS episode (
+                                    EpisodeID INTEGER PRIMARY KEY,
+                                    Title TEXT NOT NULL,
+                                    ReleaseDate TEXT NOT NULL,
+                                    Synopsis TEXT NOT NULL,
+                                    Duration INTEGER NOT NULL,
+                                    SeasonNumber INTEGER NOT NULL,
+                                    EpisodeNumber INTEGER NOT NULL,
+                                    TVShowID INTEGER NOT NULL,
+                                    CONSTRAINT chk_ReleaseDateFormat CHECK (ReleaseDate LIKE '____-__-__'),
+                                    CONSTRAINT chk_DurationPositive CHECK (Duration > 0),
+                                    CONSTRAINT chk_SeasonNumber CHECK (SeasonNumber > 0),
+                                    CONSTRAINT chk_EpisodeNumber CHECK (EpisodeNumber > 0),
+                                    CONSTRAINT fk_TVShowID FOREIGN KEY (TVShowID) REFERENCES tvshow(TVShowID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the movie table.
+        /// </summary>
         private void CreateMovieTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS movie (
+                                    MovieID INTEGER PRIMARY KEY,
+                                    Title TEXT NOT NULL,
+                                    ReleaseDate TEXT NOT NULL,
+                                    Duration INTEGER NOT NULL,
+                                    Synopsis TEXT NOT NULL,
+                                    ImageLink TEXT NOT NULL,
+                                    CONSTRAINT chk_ReleaseDateFormat CHECK (ReleaseDate LIKE '____-__-__'),
+                                    CONSTRAINT chk_DurationPositive CHECK (Duration > 0)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the actor table.
+        /// </summary>
         private void CreateActorTable()
         {
-
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS actor (
+                                    ActorID INTEGER PRIMARY KEY,
+                                    FirstName TEXT NOT NULL,
+                                    LastName TEXT NOT NULL
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the director table.
+        /// </summary>
         private void CreateDirectorTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS director (
+                                    DirectorID INTEGER PRIMARY KEY,
+                                    FirstName TEXT NOT NULL,
+                                    LastName TEXT NOT NULL
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the review table.
+        /// </summary>
         private void CreateReviewTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS review (
+                                    ReviewID INTEGER PRIMARY KEY,
+                                    Comment TEXT NOT NULL,
+                                    Rating REAL NOT NULL,
+                                    UserID INTEGER NOT NULL,
+                                    CONSTRAINT chk_RatingRange CHECK (Rating = ROUND(Rating, 1)),
+                                    CONSTRAINT fk_UserID FOREIGN KEY (UserID) REFERENCES user(UserID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the watch list movie table.
+        /// </summary>
         private void CreateWatchListMovieTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS watchlistmovie (
+                                    MovieID INTEGER,
+                                    UserID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (MovieID, UserID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the watch list tv show table.
+        /// </summary>
         private void CreateWatchListTVShowTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS watchlisttvshow (
+                                    TVShowID INTEGER,
+                                    UserID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (TVShowID, UserID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the movie genre table.
+        /// </summary>
         private void CreateMovieGenreTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS moviegenre (
+                                    MovieID INTEGER,
+                                    GenreID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (MovieID, GenreID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the tv show genre table.
+        /// </summary>
         private void CreateTVShowGenreTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS tvshowgenre (
+                                    TVShowID INTEGER,
+                                    GenreID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (TVShowID, GenreID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the episode genre table.
+        /// </summary>
         private void CreateEpisodeGenreTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS episodegenre (
+                                    EpisodeID INTEGER,
+                                    GenreID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (EpisodeID, GenreID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create movie actor table.
+        /// </summary>
         private void CreateMovieActorTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS movieactor (
+                                    MovieID INTEGER,
+                                    ActorID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (MovieID, ActorID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the tv show actor table.
+        /// </summary>
         private void CreateTVShowActorTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS tvshowactor (
+                                    TVShowID INTEGER,
+                                    ActorID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (TVShowID, ActorID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the episode actor table.
+        /// </summary>
         private void CreateEpisodeActorTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS episodeactor (
+                                    EpisodeID INTEGER,
+                                    ActorID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (EpisodeID, ActorID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the movie review table.
+        /// </summary>
         private void CreateMovieReviewTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS moviereview (
+                                    MovieID INTEGER,
+                                    ReviewID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (MovieID, ReviewID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the tv show review table.
+        /// </summary>
         private void CreateTVShowReviewTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS tvshowreview (
+                                    TVShowID INTEGER,
+                                    ReviewID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (TVShowID, ReviewID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the episode review table.
+        /// </summary>
         private void CreateEpisodeReviewTable()
         {
-
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS episodereview (
+                                    EpisodeID INTEGER,
+                                    ReviewID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (EpisodeID, ReviewID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the movie director table.
+        /// </summary>
         private void CreateMovieDirectorTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS moviedirector (
+                                    MovieID INTEGER,
+                                    DirectorID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (MovieID, DirectorID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the tv show director table
+        /// </summary>
         private void CreateTVShowDirectorTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS tvshowdirector (
+                                    TVShowID INTEGER,
+                                    DirectorID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (TVShowID, DirectorID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the episode director table.
+        /// </summary>
         private void CreateEpisodeDirectorTable()
         {
-
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS episodedirector (
+                                    EpisodeID INTEGER,
+                                    DirectorID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (EpisodeID, DirectorID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the actor review table.
+        /// </summary>
         private void CreateActorReviewTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS actorreview (
+                                    ActorID INTEGER,
+                                    ReviewID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (ActorID, ReviewID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
 
+        /// <summary>
+        /// Create the director review table.
+        /// </summary>
         private void CreateDirectorReviewTable()
         {
-        
+            const string SQL = """
+                                CREATE TABLE IF NOT EXISTS directorreview (
+                                    DirectorID INTEGER,
+                                    ReviewID INTEGER,
+                                    CONSTRAINT pk_Composite PRIMARY KEY (DirectorID, ReviewID)
+                                );
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }
