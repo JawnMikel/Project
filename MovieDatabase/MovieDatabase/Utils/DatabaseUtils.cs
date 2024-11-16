@@ -54,6 +54,35 @@ namespace MovieDatabase.Utils
         }
 
         /// <summary>
+        /// Insert a user into the user table.
+        /// </summary>
+        /// <param name="user">The user to insert.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the user provided is null.</exception>
+        public void InsertUser(User user)
+        {
+            // Validate the parameter
+            if (user == null)
+            {
+                throw new ArgumentNullException("The user argument cannot be null.");
+            }
+            // Define the insert statement
+            const string INSERT_STATEMENT = """
+                                             INSERT INTO user (FirstName, LastName, UserName, Password)
+                                             VALUES (@FirstName, @LastName, @UserName, @Password);
+                                             """;
+            using (SQLiteCommand cmd = new SQLiteCommand(INSERT_STATEMENT, _connection))
+            {
+                // Form the SQL query using data from the user
+                cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", user.LastName);
+                cmd.Parameters.AddWithValue("@UserName", user.UserName);
+                cmd.Parameters.AddWithValue("@Password", user.Password);
+                // Execute the SQL
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
         /// Check whether the database file exists.
         /// </summary>
         /// <returns>A boolean indicating whether the database file exists.</returns>
