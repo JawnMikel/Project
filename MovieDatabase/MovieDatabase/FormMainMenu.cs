@@ -16,7 +16,7 @@ namespace MovieDatabase
         public FormMainMenu(User user)
         {
             InitializeComponent();
-            profileBtn.Text = user.FirstName + " " + user.LastName;
+            profileBtn.Text = user.Username;
             if (user.Membership.Equals("REGULAR"))
             {
                 recBtn.Enabled = false;

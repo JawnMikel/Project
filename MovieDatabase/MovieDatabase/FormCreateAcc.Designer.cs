@@ -44,6 +44,7 @@
             membershipLbl = new Label();
             backBtn = new Button();
             nextBtn = new Button();
+            passwordBox = new CheckBox();
             SuspendLayout();
             // 
             // createAccLbl
@@ -146,6 +147,7 @@
             passwordTB.Name = "passwordTB";
             passwordTB.Size = new Size(175, 31);
             passwordTB.TabIndex = 10;
+            passwordTB.UseSystemPasswordChar = true;
             // 
             // passwordLbl
             // 
@@ -200,11 +202,23 @@
             nextBtn.UseVisualStyleBackColor = true;
             nextBtn.Click += nextBtn_Click;
             // 
+            // passwordBox
+            // 
+            passwordBox.AutoSize = true;
+            passwordBox.Location = new Point(837, 260);
+            passwordBox.Name = "passwordBox";
+            passwordBox.Size = new Size(164, 29);
+            passwordBox.TabIndex = 16;
+            passwordBox.Text = "Show password";
+            passwordBox.UseVisualStyleBackColor = true;
+            passwordBox.CheckedChanged += passwordBox_CheckedChanged;
+            // 
             // FormCreateAcc
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1143, 750);
+            Controls.Add(passwordBox);
             Controls.Add(nextBtn);
             Controls.Add(backBtn);
             Controls.Add(membershipLbl);
@@ -246,5 +260,6 @@
         private Label membershipLbl;
         private Button backBtn;
         private Button nextBtn;
+        private CheckBox passwordBox;
     }
 }

@@ -35,12 +35,12 @@ namespace MovieDatabase
         }
 
         /// <summary>
-        /// passes a username and password and checks if they match with the fields of the user
+        /// Passes a username and password and checks if they match with the fields of the user
         /// </summary>
         /// <param name="username">username</param>
         /// <param name="password">password</param>
-        /// <returns>true if the credentials match or returns false if the credentials do not match</returns>
-        public bool CheckCredentials(string username, string password)
+        /// <returns>True if the credentials match or returns false if the credentials do not match</returns>
+        public bool Login(string username, string password)
         {
             return UserName == username && Password == password;
         }
