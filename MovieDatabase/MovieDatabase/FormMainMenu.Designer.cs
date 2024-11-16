@@ -93,7 +93,7 @@
             // 
             profileBtn.Location = new Point(960, 12);
             profileBtn.Name = "profileBtn";
-            profileBtn.Size = new Size(191, 34);
+            profileBtn.Size = new Size(204, 34);
             profileBtn.TabIndex = 6;
             profileBtn.UseVisualStyleBackColor = true;
             profileBtn.Click += profileBtn_Click;

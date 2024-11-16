@@ -12,9 +12,14 @@ namespace MovieDatabase
         public int Id { get; set; }
         private string _username;
         private string _password;
+        public string Username
+        {
+            get { return _username; }
+            set { _username = value; }
+        }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
+        public DateTime Dob { get; set; }
         public enum Memberships
         {
             REGULAR,
@@ -34,12 +39,12 @@ namespace MovieDatabase
         }
 
         /// <summary>
-        /// passes a username and password and checks if they match with the fields of the user
+        /// Passes a username and password and checks if they match with the fields of the user
         /// </summary>
         /// <param name="username">username</param>
         /// <param name="password">password</param>
-        /// <returns>true if the credentials match or returns false if the credentials do not match</returns>
-        public bool CheckCredentials(string username, string password)
+        /// <returns>True if the credentials match or returns false if the credentials do not match</returns>
+        public bool Login(string username, string password)
         {
             return _username == username && _password == password;
         }

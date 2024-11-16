@@ -6,12 +6,14 @@ namespace MovieDatabase
         public FormLogin()
         {
             InitializeComponent();
+            passwordTB.PasswordChar = '*';
+            passwordBox.CheckedChanged += passwordBox_CheckedChanged;
             errorLbl.Visible = false;
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            User user = users.FirstOrDefault(u => u.CheckCredentials(usernameTB.Text, passwordTB.Text));
+            User user = users.FirstOrDefault(u => u.Login(usernameTB.Text, passwordTB.Text));
 
             if (user != null)
             {
@@ -40,6 +42,18 @@ namespace MovieDatabase
         private void passwordTB_MouseClick(object sender, MouseEventArgs e)
         {
             errorLbl.Visible = false;
+        }
+
+        private void passwordBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (passwordBox.Checked)
+            {
+                passwordTB.PasswordChar = '\0';
+            }
+            else
+            {
+                passwordTB.PasswordChar = '*';
+            }
         }
     }
 }

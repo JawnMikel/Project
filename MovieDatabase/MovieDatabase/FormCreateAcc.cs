@@ -31,7 +31,7 @@ namespace MovieDatabase
             if (membershipCB.SelectedIndex == 0)
             {
                 User user = CreateUser();
-                FormLogin.users.Add(user); 
+                FormLogin.users.Add(user);
 
                 MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -40,7 +40,7 @@ namespace MovieDatabase
                 formMainMenu.Closed += (s, args) => this.Close();
                 formMainMenu.ShowDialog();
             }
-            else if (membershipCB.SelectedIndex == 1) 
+            else if (membershipCB.SelectedIndex == 1)
             {
                 this.Hide();
 
@@ -64,7 +64,7 @@ namespace MovieDatabase
                 nextBtn.Text = "Create Account";
                 nextBtn.Enabled = true;
             }
-            else if (membershipCB.SelectedIndex == 1) 
+            else if (membershipCB.SelectedIndex == 1)
             {
                 nextBtn.Text = "Pay";
                 nextBtn.Enabled = true;
@@ -87,9 +87,13 @@ namespace MovieDatabase
             string username = usernameTB.Text;
             string password = passwordTB.Text;
 
-            User user = new User(username, password, firstName, lastName, selectedMembership, dob);
+            User user = new User(username, password, firstName, lastName, dob, selectedMembership);
             return user;
         }
 
+        private void passwordBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
