@@ -83,6 +83,12 @@ namespace MovieDatabase.Utils
             }
         }
 
+        /// <summary>
+        /// Insert a payment into the database.
+        /// </summary>
+        /// <param name="payment">The payment object.</param>
+        /// <param name="userID">The user ID of the user making the payment.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the payment object is null.</exception>
         public void InsertPayment(Payment payment, int userID)
         {
             // Validate the parameter
