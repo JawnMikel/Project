@@ -1,4 +1,5 @@
-﻿using MovieDatabase.Exceptions;
+using Microsoft.VisualBasic.ApplicationServices;
+using MovieDatabase.Exceptions;
 using System.Data.SQLite;
 
 namespace MovieDatabase.Utils
@@ -51,6 +52,68 @@ namespace MovieDatabase.Utils
                 }
             }
             return _instance;
+        }
+
+        /// <summary>
+        /// Insert a user into the user table.
+        /// </summary>
+        /// <param name="user">The user to insert.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the user provided is null.</exception>
+        public void InsertUser(User user)
+        {
+            // Validate the parameter
+            if (user == null)
+            {
+                throw new ArgumentNullException("The user argument cannot be null.");
+            }
+            // Define the insert statement
+            const string INSERT_STATEMENT = """
+                                             INSERT INTO user (FirstName, LastName, UserName, Password)
+                                             VALUES (@FirstName, @LastName, @UserName, @Password);
+                                             """;
+            using (SQLiteCommand cmd = new SQLiteCommand(INSERT_STATEMENT, _connection))
+            {
+                // Form the SQL query using data from the user
+                cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", user.LastName);
+                cmd.Parameters.AddWithValue("@UserName", user.UserName);
+                cmd.Parameters.AddWithValue("@Password", user.Password);
+                // Execute the SQL
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Insert a payment into the database.
+        /// </summary>
+        /// <param name="payment">The payment object.</param>
+        /// <param name="userID">The user ID of the user making the payment.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the payment object is null.</exception>
+        public void InsertPayment(Payment payment, int userID)
+        {
+            // Validate the parameter
+            if (payment == null)
+            {
+                throw new ArgumentNullException("The payment argument cannot be null.");
+            }
+            // Define the insert statement
+            const string INSERT_STATEMENT = """
+                                            INSERT INTO payment (CardHolderName, CreditCardNumber, CreditCardCVV, 
+                                                CardExpirationDate, PaymentDate, UserID)
+                                            VALUES (@Name, @Number, @CVV, @ExpDate, @PayDate, @UserID);
+                                            """;
+            using (SQLiteCommand cmd = new SQLiteCommand(INSERT_STATEMENT, _connection))
+            {
+                // Form the SQL query using data from the user
+                cmd.Parameters.AddWithValue("@Name", payment.CardHolderName);
+                cmd.Parameters.AddWithValue("@Number", payment.CreditCardNum);
+                cmd.Parameters.AddWithValue("@CVV", payment.CVV);
+                cmd.Parameters.AddWithValue("@ExpDate", payment.ExpiryDate);
+                cmd.Parameters.AddWithValue("@PayDate", DateTime.Now.ToString());
+                cmd.Parameters.AddWithValue("@UserID", userID);
+                // Execute the SQL
+                cmd.ExecuteNonQuery();
+            }
         }
 
         /// <summary>

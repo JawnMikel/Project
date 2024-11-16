@@ -84,7 +84,6 @@
             loginTitleLbl.Size = new Size(104, 45);
             loginTitleLbl.TabIndex = 4;
             loginTitleLbl.Text = "Login";
-            loginTitleLbl.Click += loginTitleLbl_Click;
             // 
             // passwordLbl
             // 
@@ -123,7 +122,6 @@
             errorLbl.Size = new Size(387, 21);
             errorLbl.TabIndex = 8;
             errorLbl.Text = "Username or password do not match! Please try again";
-            errorLbl.Click += label1_Click;
             // 
             // FormLogin
             // 
