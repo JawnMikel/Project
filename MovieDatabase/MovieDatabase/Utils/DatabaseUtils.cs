@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
+using Microsoft.VisualBasic.ApplicationServices;
 using MovieDatabase.Exceptions;
 using System.Data.SQLite;
 
