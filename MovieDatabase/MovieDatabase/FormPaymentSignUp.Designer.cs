@@ -1,6 +1,6 @@
 ﻿namespace MovieDatabase
 {
-    partial class FormPayment
+    partial class FormPaymentSignUp
     {
         /// <summary>
         /// Required designer variable.

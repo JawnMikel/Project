@@ -44,7 +44,7 @@ namespace MovieDatabase
             {
                 this.Hide();
 
-                var formPayment = new FormPayment(
+                var formPayment = new FormPaymentSignUp(
                     firstNameTB.Text,
                     lastNameTB.Text,
                     usernameTB.Text,

@@ -10,30 +10,20 @@ using System.Windows.Forms;
 
 namespace MovieDatabase
 {
-    public partial class FormPayment : Form
+    public partial class FormPaymentUpgrade : Form
     {
-        private string _firstName;
-        private string _lastName;
-        private string _username;
-        private string _password;
-        private DateTime _dob;
-        private User.Memberships _membership;
-        public FormPayment(string firstName, string lastName, string username, string password, DateTime dob, User.Memberships membership)
+        User user;
+        public FormPaymentUpgrade(User user)
         {
             InitializeComponent();
-            _firstName = firstName;
-            _lastName = lastName;
-            _username = username;
-            _password = password;
-            _dob = dob;
-            _membership = membership;
-            fullNameTB.Text = firstName + " " + lastName;
+            this.user = user;
+            fullNameTB.Text = user.FirstName + " " + user.LastName;
         }
 
         private void backBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var frmCreateAcc = new FormCreateAcc();
+            var frmCreateAcc = new FormProfile(user);
             frmCreateAcc.Closed += (s, args) => this.Close();
             frmCreateAcc.ShowDialog();
         }
@@ -66,15 +56,14 @@ namespace MovieDatabase
                     cvv
                 );
 
-                User user = new User(_username, _password, _firstName, _lastName, _dob, _membership);
-                FormLogin.users.Add(user);
+                user.Membership = User.Memberships.PREMIUM;
 
-                MessageBox.Show("Payment approved! Account successfully created.", "Approved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Payment approved! Account successfully upgraded.", "Approved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Hide();
-                var formMainMenu = new FormMainMenu(user);
-                formMainMenu.Closed += (s, args) => this.Close();
-                formMainMenu.ShowDialog();
+                var formProfile = new FormProfile(user);
+                formProfile.Closed += (s, args) => this.Close();
+                formProfile.ShowDialog();
             }
             catch (ArgumentException ex)
             {
