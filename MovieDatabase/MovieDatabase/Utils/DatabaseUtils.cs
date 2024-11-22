@@ -1,5 +1,7 @@
 using Microsoft.VisualBasic.ApplicationServices;
 using MovieDatabase.Exceptions;
+using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 
 namespace MovieDatabase.Utils
@@ -67,17 +69,59 @@ namespace MovieDatabase.Utils
                 throw new ArgumentNullException("The user argument cannot be null.");
             }
             // Define the insert statement
-            const string INSERT_STATEMENT = """
-                                             INSERT INTO user (FirstName, LastName, UserName, Password)
-                                             VALUES (@FirstName, @LastName, @UserName, @Password);
-                                             """;
-            using (SQLiteCommand cmd = new SQLiteCommand(INSERT_STATEMENT, _connection))
+            const string SQL = """
+                                INSERT INTO user (FirstName, LastName, UserName, Password)
+                                VALUES (@FirstName, @LastName, @UserName, @Password);
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 // Form the SQL query using data from the user
                 cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", user.LastName);
                 cmd.Parameters.AddWithValue("@UserName", user.UserName);
                 cmd.Parameters.AddWithValue("@Password", user.Password);
+                // Execute the SQL
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Insert a watchlisttvshow entry into the watchlisttvshow table.
+        /// </summary>
+        /// <param name="userId">The user ID.</param>
+        /// <param name="tvShowId">The tv show ID.</param>
+        public void InsertWatchListTVShow(int userId, int tvShowId)
+        {
+            // Define the insert statement
+            const string SQL = """
+                                INSERT INTO watchlisttvshow (TVShowID, UserID) VALUES (@TVShowID, @UserID);
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL query using data from the user
+                cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
+                cmd.Parameters.AddWithValue("@UserID", userId);
+                // Execute the SQL
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Insert a watchlistmovie entry into the watchlistmovie table.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="movieId"></param>
+        public void InsertWatchListMovie(int userId, int movieId)
+        {
+            // Define the insert statement
+            const string SQL = """
+                                INSERT INTO watchlistmovie (MovieID, UserID) VALUES (@MovieID, @UserID);
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL query using data from the user
+                cmd.Parameters.AddWithValue("@MovieID", movieId);
+                cmd.Parameters.AddWithValue("@UserID", userId);
                 // Execute the SQL
                 cmd.ExecuteNonQuery();
             }
@@ -97,12 +141,12 @@ namespace MovieDatabase.Utils
                 throw new ArgumentNullException("The payment argument cannot be null.");
             }
             // Define the insert statement
-            const string INSERT_STATEMENT = """
-                                            INSERT INTO payment (CardHolderName, CreditCardNumber, CreditCardCVV, 
-                                                CardExpirationDate, PaymentDate, UserID)
-                                            VALUES (@Name, @Number, @CVV, @ExpDate, @PayDate, @UserID);
-                                            """;
-            using (SQLiteCommand cmd = new SQLiteCommand(INSERT_STATEMENT, _connection))
+            const string SQL = """
+                               INSERT INTO payment (CardHolderName, CreditCardNumber, CreditCardCVV, 
+                                 CardExpirationDate, PaymentDate, UserID)
+                               VALUES (@Name, @Number, @CVV, @ExpDate, @PayDate, @UserID);
+                               """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 // Form the SQL query using data from the user
                 cmd.Parameters.AddWithValue("@Name", payment.CardHolderName);
@@ -114,6 +158,111 @@ namespace MovieDatabase.Utils
                 // Execute the SQL
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        /// <summary>
+        /// Insert a movie into the movie table.
+        /// </summary>
+        /// <param name="movie">The movie to isnert.</param>
+        public void InsertMovie(Movie movie)
+        {
+            // Validate the parameter
+            if (movie == null)
+            {
+                throw new ArgumentNullException("The movie argument cannot be null.");
+            }
+            // Define the insert statement
+            const string SQL = """
+                                INSERT INTO movie (Title, ReleaseDate, Duration, Synopsis, ImageLink)
+                                VALUES (@Title, @ReleaseDate, @Duration, @Synopsis, @ImageLink);
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement using data from the user
+                cmd.Parameters.AddWithValue("@Title", movie.Title);
+                cmd.Parameters.AddWithValue("@ReleaseDate", movie.ReleaseDate.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@Duration", movie.Duration);
+                cmd.Parameters.AddWithValue("@Synopsis", movie.Sysnopsis);
+                cmd.Parameters.AddWithValue("@ImageLink", movie.ImageLink);
+                // Execute the SQL query using data from the user
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Insert a tv show into the tvshow table.
+        /// </summary>
+        /// <param name="tvShow">The tv show to insert.</param>
+        public void InsertTVShow(TVShow tvShow)
+        {
+            // Validate the paramater
+            if (tvShow == null)
+            {
+                throw new ArgumentNullException("The tvShow argument cannot be null.");
+            }
+            const string SQL = """
+                                INSERT INTO tvshow (Title, ReleaseDate, Synopsis, ImageLink)
+                                VALUES (@Title, @ReleaseDate, @Synopsis, @ImageLink);
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement using data from the user
+                cmd.Parameters.AddWithValue("@Title", tvShow.Title);
+                cmd.Parameters.AddWithValue("@ReleaseDate", tvShow.ReleaseDate.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@Synopsis", tvShow.Sysnopsis);
+                cmd.Parameters.AddWithValue("@ImageLink", tvShow.ImageLink);
+                // Execute the SQL query using data from the user
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Insert an episode into the episode table.
+        /// </summary>
+        /// <param name="episode">The episode to insert.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown when the episode argument is null.</exception>
+        public void InsertEpisode(Episode episode)
+        {
+            // Validate the parameter
+            if (episode == null)
+            {
+                throw new ArgumentNullException("The episode argument cannot be null.");
+            }
+            const string SQL = """
+                                INSERT INTO episode (Title, ReleaseDate, Synopsis, Duration, SeasonNumber, EpisodeNumber, ImageLink, TVShowID)
+                                VALUES (@Title, @ReleaseDate, @Synopsis, @Duration, @SeasonNumber, @EpisodeNumber, @ImageLink, @TVShowID);
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement using data from the user
+                cmd.Parameters.AddWithValue("@Title", episode.Title);
+                cmd.Parameters.AddWithValue("@ReleaseDate", episode.ReleaseDate.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@Synopsis", episode.Sysnopsis);
+                cmd.Parameters.AddWithValue("@Duration", episode.Duration);
+                cmd.Parameters.AddWithValue("@SeasonNumber", episode.SeasonNumber);
+                cmd.Parameters.AddWithValue("@EpisodeNumber", episode.EpisodeNumber);
+                cmd.Parameters.AddWithValue("@ImageLink", episode.ImageLink);
+                cmd.Parameters.AddWithValue("@Synopsis", episode.TVShowId);
+                // Execute the SQL query using data from the user
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void InsertReview(Review review, int directorId)
+        {
+            // Validate the parameter
+            if (review == null)
+            {
+                throw new ArgumentNullException("The review argument cannot be null.");
+            }
+            const string REVIEW_INS = """
+                                       INSERT INTO review (Comment, Rating, UserID)
+                                       VALUES (@Comment, @Rating, @UserID);
+                                       """;
+            const string DIR_REVIEW_INS = """
+                                           INSERT INTO directorreview (DirectorID)
+                                           """;
+
         }
 
         /// <summary>
@@ -268,6 +417,7 @@ namespace MovieDatabase.Utils
                                     Title TEXT NOT NULL,
                                     ReleaseDate TEXT NOT NULL,
                                     Synopsis TEXT NOT NULL,
+                                    ImageLink TEXT NOT NULL,
                                     CONSTRAINT chk_ReleaseDateFormat CHECK (ReleaseDate LIKE '____-__-__')
                                 );
                                 """;
@@ -291,6 +441,7 @@ namespace MovieDatabase.Utils
                                     Duration INTEGER NOT NULL,
                                     SeasonNumber INTEGER NOT NULL,
                                     EpisodeNumber INTEGER NOT NULL,
+                                    ImageLink TEXT NOT NULL,
                                     TVShowID INTEGER NOT NULL,
                                     CONSTRAINT chk_ReleaseDateFormat CHECK (ReleaseDate LIKE '____-__-__'),
                                     CONSTRAINT chk_DurationPositive CHECK (Duration > 0),
