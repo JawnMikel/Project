@@ -31,8 +31,10 @@
             titleLbl = new Label();
             reviewTB = new RichTextBox();
             label1 = new Label();
-            textBox1 = new TextBox();
+            ratingTB = new TextBox();
             postBtn = new Button();
+            backBtn = new Button();
+            langBtn = new Button();
             SuspendLayout();
             // 
             // titleLbl
@@ -62,16 +64,16 @@
             label1.TabIndex = 2;
             label1.Text = "Ratings:";
             // 
-            // textBox1
+            // ratingTB
             // 
-            textBox1.Location = new Point(397, 108);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(68, 31);
-            textBox1.TabIndex = 3;
+            ratingTB.Location = new Point(397, 108);
+            ratingTB.Name = "ratingTB";
+            ratingTB.Size = new Size(68, 31);
+            ratingTB.TabIndex = 3;
             // 
             // postBtn
             // 
-            postBtn.Location = new Point(353, 400);
+            postBtn.Location = new Point(359, 404);
             postBtn.Name = "postBtn";
             postBtn.Size = new Size(112, 34);
             postBtn.TabIndex = 4;
@@ -79,13 +81,35 @@
             postBtn.UseVisualStyleBackColor = true;
             postBtn.Click += postBtn_Click;
             // 
+            // backBtn
+            // 
+            backBtn.Location = new Point(38, 24);
+            backBtn.Name = "backBtn";
+            backBtn.Size = new Size(124, 34);
+            backBtn.TabIndex = 5;
+            backBtn.Text = "Back";
+            backBtn.UseVisualStyleBackColor = true;
+            backBtn.Click += backBtn_Click;
+            // 
+            // langBtn
+            // 
+            langBtn.Location = new Point(630, 24);
+            langBtn.Name = "langBtn";
+            langBtn.Size = new Size(112, 34);
+            langBtn.TabIndex = 6;
+            langBtn.Text = "French";
+            langBtn.UseVisualStyleBackColor = true;
+            langBtn.Click += langBtn_Click;
+            // 
             // FormWriteReview
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(langBtn);
+            Controls.Add(backBtn);
             Controls.Add(postBtn);
-            Controls.Add(textBox1);
+            Controls.Add(ratingTB);
             Controls.Add(label1);
             Controls.Add(reviewTB);
             Controls.Add(titleLbl);
@@ -100,7 +124,9 @@
         private Label titleLbl;
         private RichTextBox reviewTB;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox ratingTB;
         private Button postBtn;
+        private Button backBtn;
+        private Button langBtn;
     }
 }

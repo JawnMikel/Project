@@ -11,22 +11,24 @@ using MovieDatabase.Utils;
 
 namespace MovieDatabase
 {
-    public partial class FormMediaLoad : Form
+    public partial class FormMediaInformation : Form
     {
         Form form;
-        public FormMediaLoad(Form form, Media media)
+        Media media;
+        public FormMediaInformation(Form form, Media media)
         {
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
 
             InitializeComponent();
+            this.media = media;
             this.form = form;
             titleLbl.Text = media.Title;
             releaseDate.Value = media.ReleaseDate;
             sysnopsisLbl.Text = media.Sysnopsis;
             ratingLbl.Text += media.getMediaRating() + "/5";
         }
-        public FormMediaLoad(Media media)
+        public FormMediaInformation(Media media)
         {
             InitializeComponent();
             titleLbl.Text = media.Title;
@@ -49,12 +51,18 @@ namespace MovieDatabase
 
         private void giveReviewBtn_Click(object sender, EventArgs e)
         {
-
+            Hide();
+            FormViewReview formViewReview = new FormViewReview(media);
+            formViewReview.Closed += (s, args) => this.Close();
+            formViewReview.ShowDialog();
         }
 
         private void viewReviewBtn_Click(object sender, EventArgs e)
         {
-
+            Hide();
+            FormViewReview formViewReview = new FormViewReview(media);
+            formViewReview.Closed += (s, args) => this.Close();
+            formViewReview.ShowDialog();
         }
     }
 }

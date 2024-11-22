@@ -1,6 +1,6 @@
 ﻿namespace MovieDatabase
 {
-    partial class FormMediaLoad
+    partial class FormMediaInformation
     {
         /// <summary>
         /// Required designer variable.
