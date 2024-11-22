@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MovieDatabase.Utils;
 
 namespace MovieDatabase
 {
@@ -15,6 +16,9 @@ namespace MovieDatabase
         User user;
         public FormPaymentUpgrade(User user)
         {
+            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
+            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+
             InitializeComponent();
             this.user = user;
             fullNameTB.Text = user.FirstName + " " + user.LastName;
@@ -30,7 +34,7 @@ namespace MovieDatabase
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-
+            Util.language();
         }
 
         private void payBtn_Click(object sender, EventArgs e)

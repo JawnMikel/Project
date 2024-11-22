@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MovieDatabase.Utils;
 
 namespace MovieDatabase
 {
@@ -14,7 +15,12 @@ namespace MovieDatabase
     {
         public FormCreateAcc()
         {
+            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
+            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+
             InitializeComponent();
+            passwordTB.PasswordChar = '*';
+            passwordBox.CheckedChanged += passwordBox_CheckedChanged;
             nextBtn.Enabled = false;
         }
 
@@ -93,7 +99,12 @@ namespace MovieDatabase
 
         private void passwordBox_CheckedChanged(object sender, EventArgs e)
         {
+            passwordTB.PasswordChar = passwordBox.Checked ? '\0' : '*';
+        }
 
+        private void langBtn_Click(object sender, EventArgs e)
+        {
+            Util.language();
         }
     }
 }

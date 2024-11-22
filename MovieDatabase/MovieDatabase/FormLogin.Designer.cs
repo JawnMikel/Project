@@ -79,6 +79,7 @@
             langBtn.TabIndex = 3;
             langBtn.Text = "French";
             langBtn.UseVisualStyleBackColor = true;
+            langBtn.Click += langBtn_Click;
             // 
             // loginTitleLbl
             // 
@@ -108,7 +109,6 @@
             passwordTB.Name = "passwordTB";
             passwordTB.Size = new Size(184, 31);
             passwordTB.TabIndex = 6;
-            passwordTB.UseSystemPasswordChar = true;
             passwordTB.MouseClick += passwordTB_MouseClick;
             // 
             // createAccBtn

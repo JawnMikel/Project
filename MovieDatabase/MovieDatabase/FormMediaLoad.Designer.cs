@@ -28,32 +28,146 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            titleLbl = new Label();
+            langBtn = new Button();
+            backBtn = new Button();
+            releaseDate = new DateTimePicker();
+            sysnopsisLbl = new Label();
+            mediaPicture = new PictureBox();
+            ratingLbl = new Label();
+            giveReviewBtn = new Button();
+            viewReviewBtn = new Button();
+            watchlistCheckBox = new CheckBox();
+            ((System.ComponentModel.ISupportInitialize)mediaPicture).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // titleLbl
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(396, 17);
-            label1.Name = "label1";
-            label1.Size = new Size(59, 25);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            titleLbl.AutoSize = true;
+            titleLbl.Font = new Font("Segoe UI", 22F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            titleLbl.Location = new Point(12, 9);
+            titleLbl.Name = "titleLbl";
+            titleLbl.Size = new Size(108, 60);
+            titleLbl.TabIndex = 0;
+            titleLbl.Text = "Title";
+            // 
+            // langBtn
+            // 
+            langBtn.Location = new Point(762, 12);
+            langBtn.Name = "langBtn";
+            langBtn.Size = new Size(112, 34);
+            langBtn.TabIndex = 1;
+            langBtn.Text = "French";
+            langBtn.UseVisualStyleBackColor = true;
+            langBtn.Click += langBtn_Click;
+            // 
+            // backBtn
+            // 
+            backBtn.Location = new Point(626, 12);
+            backBtn.Name = "backBtn";
+            backBtn.Size = new Size(112, 34);
+            backBtn.TabIndex = 2;
+            backBtn.Text = "Back";
+            backBtn.UseVisualStyleBackColor = true;
+            backBtn.Click += backBtn_Click;
+            // 
+            // releaseDate
+            // 
+            releaseDate.Enabled = false;
+            releaseDate.Location = new Point(12, 72);
+            releaseDate.Name = "releaseDate";
+            releaseDate.Size = new Size(300, 31);
+            releaseDate.TabIndex = 3;
+            // 
+            // sysnopsisLbl
+            // 
+            sysnopsisLbl.AutoSize = true;
+            sysnopsisLbl.Location = new Point(12, 117);
+            sysnopsisLbl.Name = "sysnopsisLbl";
+            sysnopsisLbl.Size = new Size(59, 25);
+            sysnopsisLbl.TabIndex = 4;
+            sysnopsisLbl.Text = "label1";
+            // 
+            // mediaPicture
+            // 
+            mediaPicture.Location = new Point(12, 162);
+            mediaPicture.Name = "mediaPicture";
+            mediaPicture.Size = new Size(283, 271);
+            mediaPicture.TabIndex = 5;
+            mediaPicture.TabStop = false;
+            // 
+            // ratingLbl
+            // 
+            ratingLbl.AutoSize = true;
+            ratingLbl.Location = new Point(24, 453);
+            ratingLbl.Name = "ratingLbl";
+            ratingLbl.Size = new Size(67, 25);
+            ratingLbl.TabIndex = 6;
+            ratingLbl.Text = "Rating:";
+            // 
+            // giveReviewBtn
+            // 
+            giveReviewBtn.Location = new Point(762, 162);
+            giveReviewBtn.Name = "giveReviewBtn";
+            giveReviewBtn.Size = new Size(161, 34);
+            giveReviewBtn.TabIndex = 7;
+            giveReviewBtn.Text = "Leave a review";
+            giveReviewBtn.UseVisualStyleBackColor = true;
+            giveReviewBtn.Click += giveReviewBtn_Click;
+            // 
+            // viewReviewBtn
+            // 
+            viewReviewBtn.Location = new Point(762, 275);
+            viewReviewBtn.Name = "viewReviewBtn";
+            viewReviewBtn.Size = new Size(151, 34);
+            viewReviewBtn.TabIndex = 8;
+            viewReviewBtn.Text = "View reviews";
+            viewReviewBtn.UseVisualStyleBackColor = true;
+            viewReviewBtn.Click += viewReviewBtn_Click;
+            // 
+            // watchlistCheckBox
+            // 
+            watchlistCheckBox.AutoSize = true;
+            watchlistCheckBox.Location = new Point(756, 425);
+            watchlistCheckBox.Name = "watchlistCheckBox";
+            watchlistCheckBox.Size = new Size(167, 29);
+            watchlistCheckBox.TabIndex = 9;
+            watchlistCheckBox.Text = "Add to watchlist";
+            watchlistCheckBox.UseVisualStyleBackColor = true;
             // 
             // FormMediaLoad
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(899, 507);
-            Controls.Add(label1);
+            ClientSize = new Size(955, 573);
+            Controls.Add(watchlistCheckBox);
+            Controls.Add(viewReviewBtn);
+            Controls.Add(giveReviewBtn);
+            Controls.Add(ratingLbl);
+            Controls.Add(mediaPicture);
+            Controls.Add(sysnopsisLbl);
+            Controls.Add(releaseDate);
+            Controls.Add(backBtn);
+            Controls.Add(langBtn);
+            Controls.Add(titleLbl);
             Name = "FormMediaLoad";
             Text = "FormMediaLoad";
+            ((System.ComponentModel.ISupportInitialize)mediaPicture).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private Label titleLbl;
+        private Button langBtn;
+        private Button backBtn;
+        private DateTimePicker releaseDate;
+        private Label sysnopsisLbl;
+        private PictureBox mediaPicture;
+        private Label ratingLbl;
+        private Button giveReviewBtn;
+        private Button viewReviewBtn;
+        private CheckBox watchlistCheckBox;
     }
 }

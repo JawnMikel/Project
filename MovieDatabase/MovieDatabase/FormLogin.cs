@@ -1,3 +1,5 @@
+using MovieDatabase.Utils;
+
 namespace MovieDatabase
 {
     public partial class FormLogin : Form
@@ -5,6 +7,9 @@ namespace MovieDatabase
         public static List<User> users = new List<User>();
         public FormLogin()
         {
+            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
+            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+
             InitializeComponent();
             passwordTB.PasswordChar = '*';
             passwordBox.CheckedChanged += passwordBox_CheckedChanged;
@@ -46,14 +51,12 @@ namespace MovieDatabase
 
         private void passwordBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (passwordBox.Checked)
-            {
-                passwordTB.PasswordChar = '\0';
-            }
-            else
-            {
-                passwordTB.PasswordChar = '*';
-            }
+            passwordTB.PasswordChar = passwordBox.Checked ? '\0' : '*';
+        }
+
+        private void langBtn_Click(object sender, EventArgs e)
+        {
+             Util.language();
         }
     }
 }

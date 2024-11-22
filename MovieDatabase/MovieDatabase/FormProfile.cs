@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MovieDatabase.Utils;
 
 namespace MovieDatabase
 {
@@ -16,13 +17,16 @@ namespace MovieDatabase
         User user;
         public FormProfile(User user)
         {
+            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
+            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+
             InitializeComponent();
             this.user = user;
             fullNameTB.Text = user.FirstName + " " + user.LastName;
             usernameTB.Text = user.Username;
             dobPicker.Value = user.Dob;
             membershipTB.Text = user.Membership.ToString();
-            
+
             if (user.Membership == User.Memberships.PREMIUM)
             {
                 upgradeBtn.Enabled = false;
@@ -59,6 +63,11 @@ namespace MovieDatabase
             var frmMainMenu = new FormMainMenu(user);
             frmMainMenu.Closed += (s, args) => this.Close();
             frmMainMenu.ShowDialog();
+        }
+
+        private void langBtn_Click(object sender, EventArgs e)
+        {
+            Util.language();
         }
     }
 }

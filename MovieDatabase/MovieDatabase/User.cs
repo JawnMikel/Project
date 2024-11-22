@@ -28,8 +28,8 @@ namespace MovieDatabase
             Id = nextId++;
             Username = username;
             Password = password;
-            FirstName = firstName;
-            LastName = lastName;
+            FirstName = Utils.Util.ToPascaleCase(firstName);
+            LastName = Utils.Util.ToPascaleCase(lastName);
             Dob = dob;
             Membership = membership;
         }

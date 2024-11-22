@@ -41,6 +41,7 @@
             label3 = new Label();
             upgradeBtn = new Button();
             backBtn = new Button();
+            langBtn = new Button();
             SuspendLayout();
             // 
             // profileLbl
@@ -161,11 +162,22 @@
             backBtn.UseVisualStyleBackColor = true;
             backBtn.Click += backBtn_Click;
             // 
+            // langBtn
+            // 
+            langBtn.Location = new Point(574, 12);
+            langBtn.Name = "langBtn";
+            langBtn.Size = new Size(112, 34);
+            langBtn.TabIndex = 13;
+            langBtn.Text = "French";
+            langBtn.UseVisualStyleBackColor = true;
+            langBtn.Click += langBtn_Click;
+            // 
             // FormProfile
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(873, 506);
+            Controls.Add(langBtn);
             Controls.Add(backBtn);
             Controls.Add(upgradeBtn);
             Controls.Add(label3);
@@ -200,5 +212,6 @@
         private Label label3;
         private Button upgradeBtn;
         private Button backBtn;
+        private Button langBtn;
     }
 }

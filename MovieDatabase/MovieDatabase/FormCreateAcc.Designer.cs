@@ -111,6 +111,7 @@
             langBtn.TabIndex = 6;
             langBtn.Text = "French";
             langBtn.UseVisualStyleBackColor = true;
+            langBtn.Click += langBtn_Click;
             // 
             // dobLbl
             // 
@@ -147,7 +148,6 @@
             passwordTB.Name = "passwordTB";
             passwordTB.Size = new Size(175, 31);
             passwordTB.TabIndex = 10;
-            passwordTB.UseSystemPasswordChar = true;
             // 
             // passwordLbl
             // 

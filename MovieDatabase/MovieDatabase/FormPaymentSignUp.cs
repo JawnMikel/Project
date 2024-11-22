@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using MovieDatabase.Utils;
 namespace MovieDatabase
 {
     public partial class FormPaymentSignUp : Form
@@ -20,6 +20,9 @@ namespace MovieDatabase
         private User.Memberships _membership;
         public FormPaymentSignUp(string firstName, string lastName, string username, string password, DateTime dob, User.Memberships membership)
         {
+            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
+            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+
             InitializeComponent();
             _firstName = firstName;
             _lastName = lastName;
@@ -40,7 +43,7 @@ namespace MovieDatabase
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-
+            Util.language();
         }
 
         private void payBtn_Click(object sender, EventArgs e)
