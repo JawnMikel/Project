@@ -39,5 +39,13 @@ namespace MovieDatabase.Utils
             }
             return true;
         }
+
+        public static string ToPascaleCase(string str)
+        {
+            if (string.IsNullOrWhiteSpace(str))
+                return str;
+
+            return char.ToUpper(str[0]) + str.Substring(1).ToLower();        
+        }
     }
 }

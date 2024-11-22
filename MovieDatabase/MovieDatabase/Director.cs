@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace MovieDatabase
 {
-    public class Director
+    public class Director : CrewMember
     {
-        public int DirectorId { get; set; }
-        public List<Media> Directed {  get; set; }
-
-        public Director(int directorId, List<Media> directed)
-        {
-            DirectorId = directorId;
+        public List<Media> Directed { get; set; }
+        public Director(string firstName, string secondName, List<Review> reviews, List<Media> directed) : base(firstName, secondName, reviews)
+        { 
             Directed = directed;
         }
     }
