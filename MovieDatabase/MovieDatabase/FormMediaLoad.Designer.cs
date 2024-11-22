@@ -111,7 +111,7 @@
             giveReviewBtn.Name = "giveReviewBtn";
             giveReviewBtn.Size = new Size(161, 34);
             giveReviewBtn.TabIndex = 7;
-            giveReviewBtn.Text = "Leave a review";
+            giveReviewBtn.Text = "Write a review";
             giveReviewBtn.UseVisualStyleBackColor = true;
             giveReviewBtn.Click += giveReviewBtn_Click;
             // 
