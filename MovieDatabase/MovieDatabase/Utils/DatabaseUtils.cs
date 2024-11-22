@@ -518,7 +518,7 @@ namespace MovieDatabase.Utils
                 reviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
 
                 // Form the director review insert SQL statement
-                showReviewInsCmd.Parameters.AddWithValue("@DirectorID", movie.MediaId);
+                showReviewInsCmd.Parameters.AddWithValue("@DirectorID", tvShow.MediaId);
                 showReviewInsCmd.Parameters.AddWithValue("@ReviewID", reviewId);
 
                 // Execute the insert
@@ -568,13 +568,134 @@ namespace MovieDatabase.Utils
                 reviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
 
                 // Form the director review insert SQL statement
-                epReviewInsCmd.Parameters.AddWithValue("@DirectorID", movie.MediaId);
+                epReviewInsCmd.Parameters.AddWithValue("@DirectorID", episode.MediaId);
                 epReviewInsCmd.Parameters.AddWithValue("@ReviewID", reviewId);
 
                 // Execute the insert
                 epReviewInsCmd.ExecuteNonQuery();
             }
             return reviewId;
+        }
+
+        /// <summary>
+        /// Insert a genre into the genre table.
+        /// </summary>
+        /// <param name="genre">The genre to insert.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown when the genre argument is null.</exception>
+        public void InsertGenre(Media.Genre genre)
+        {
+            const string SQL = """
+                                INSERT INTO genre (GenreName) VALUES (@GenreName);
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the genre insert statement
+                cmd.Parameters.AddWithValue("@GenreName", genre.ToString().ToUpper());
+                // Execute the insert
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Insert a genre to the moviegenre table.
+        /// </summary>
+        /// <param name="genre">The genre of the movie.</param>
+        /// <param name="movie">The movie possessing the genre.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown when the movie argument is null.</exception>
+        public void InsertGenre(Media.Genre genre, Movie movie)
+        {
+            if (movie == null)
+            {
+                throw new ArgumentNullException("The movie argument cannot be null.");
+            }
+            const string INS_SQL = """
+                                    INSERT INTO moviegenre (GenreID, MovieID) VALUES (@GenreID, @MovieID);
+                                    """;
+            const string PK_SQL = """
+                                   SELECT GenreID FROM genre WHERE GenreName = @GenreName;
+                                   """;
+            using (SQLiteCommand insCmd = new SQLiteCommand(INS_SQL, _connection))
+            using (SQLiteCommand pkCmd = new SQLiteCommand(PK_SQL, _connection))
+            {
+                // Form the select query
+                pkCmd.Parameters.AddWithValue("@GenreName", genre.ToString().ToUpper());
+                // Get the pk of the genre
+                int genreId = Convert.ToInt32(pkCmd.ExecuteScalar());
+
+                // Form the insert statement
+                insCmd.Parameters.AddWithValue("@GenreID", genreId);
+                insCmd.Parameters.AddWithValue("@MovieID", movie.MediaId);
+                // Execute the insert statement
+                insCmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Insert a genre to the tvshowgenre table.
+        /// </summary>
+        /// <param name="genre">The genre of the tv show.</param>
+        /// <param name="tvShow">The tv show possessing the genre.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown when the tvShow argument is null.</exception>
+        public void InsertGenre(Media.Genre genre, TVShow tvShow)
+        {
+            if (tvShow == null)
+            {
+                throw new ArgumentNullException("The tvShow argument cannot be null.");
+            }
+            const string INS_SQL = """
+                                    INSERT INTO tvshowgenre (GenreID, TVShowID) VALUES (@GenreID, @TVShowID);
+                                    """;
+            const string PK_SQL = """
+                                   SELECT GenreID FROM genre WHERE GenreName = @GenreName;
+                                   """;
+            using (SQLiteCommand insCmd = new SQLiteCommand(INS_SQL, _connection))
+            using (SQLiteCommand pkCmd = new SQLiteCommand(PK_SQL, _connection))
+            {
+                // Form the select query
+                pkCmd.Parameters.AddWithValue("@GenreName", genre.ToString().ToUpper());
+                // Get the pk of the genre
+                int genreId = Convert.ToInt32(pkCmd.ExecuteScalar());
+
+                // Form the insert statement
+                insCmd.Parameters.AddWithValue("@GenreID", genreId);
+                insCmd.Parameters.AddWithValue("@TVShowID", tvShow.MediaId);
+                // Execute the insert statement
+                insCmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Insert a genre to the episodeGenre table.
+        /// </summary>
+        /// <param name="genre">The genre of the episode.</param>
+        /// <param name="episode">The episode possessing the genre.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown when the episode argument is null.</exception>
+        public void InsertGenre(Media.Genre genre, Episode episode)
+        {
+            if (episode == null)
+            {
+                throw new ArgumentNullException("The episode argument cannot be null.");
+            }
+            const string INS_SQL = """
+                                    INSERT INTO episodegenre (GenreID, EpisodeID) VALUES (@GenreID, @EpisodeID);
+                                    """;
+            const string PK_SQL = """
+                                   SELECT GenreID FROM genre WHERE GenreName = @GenreName;
+                                   """;
+            using (SQLiteCommand insCmd = new SQLiteCommand(INS_SQL, _connection))
+            using (SQLiteCommand pkCmd = new SQLiteCommand(PK_SQL, _connection))
+            {
+                // Form the select query
+                pkCmd.Parameters.AddWithValue("@GenreName", genre.ToString().ToUpper());
+                // Get the pk of the genre
+                int genreId = Convert.ToInt32(pkCmd.ExecuteScalar());
+
+                // Form the insert statement
+                insCmd.Parameters.AddWithValue("@GenreID", genreId);
+                insCmd.Parameters.AddWithValue("@EpisodeID", episode.MediaId);
+                // Execute the insert statement
+                insCmd.ExecuteNonQuery();
+            }
         }
 
         /// <summary>
