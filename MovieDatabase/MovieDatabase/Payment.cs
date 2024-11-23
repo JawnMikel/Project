@@ -10,16 +10,14 @@ namespace MovieDatabase
     public class Payment
     {
         public string CardHolderName { get; set; }
-        public string CVV { get; set; }
+        public string Cvv { get; set; }
         public string CreditCardNum { get; set; }
         public string ExpiryDate { get; set; }
         public DateTime Date { get; private set; }
         
 		public Payment(string cardName, string cardNum, string expiryDate, string cvv)
-
-        public Payment(string cardName, string creditCardNum, string expiryDate, int cvv, decimal amount)
-        {
-            if (!Util.ValidateCreditCard(cardNum,cvv,expiryDate))
+        { 
+            if (!Util.ValidateCreditCard(cardNum, cvv, expiryDate))
             {
                 throw new ArgumentException("Invalid format for the card");
             }
@@ -27,7 +25,7 @@ namespace MovieDatabase
             CardHolderName = cardName;
             CreditCardNum = cardNum;
             ExpiryDate = expiryDate;
-            CVV = cvv;
+            Cvv = cvv;
             Date = DateTime.Now;
 
         }

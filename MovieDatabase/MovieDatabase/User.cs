@@ -10,7 +10,7 @@ namespace MovieDatabase
     {
         private static int nextId = 1;
         public int Id { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -26,10 +26,10 @@ namespace MovieDatabase
         public User(string username, string password, string firstName, string lastName,DateTime dob, Memberships membership)
         {
             Id = nextId++;
-            UserName = username;
+            Username = username;
             Password = password;
-            FirstName = firstName;
-            LastName = lastName;
+            FirstName = Utils.Util.ToPascaleCase(firstName);
+            LastName = Utils.Util.ToPascaleCase(lastName);
             Dob = dob;
             Membership = membership;
         }
@@ -42,7 +42,7 @@ namespace MovieDatabase
         /// <returns>True if the credentials match or returns false if the credentials do not match</returns>
         public bool Login(string username, string password)
         {
-            return UserName == username && Password == password;
+            return Username == username && Password == password;
         }
 
     }

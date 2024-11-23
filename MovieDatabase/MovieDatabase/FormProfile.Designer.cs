@@ -32,14 +32,16 @@
             logoutBtn = new Button();
             watchlistBtn = new Button();
             label1 = new Label();
-            textBox1 = new TextBox();
+            fullNameTB = new TextBox();
             label2 = new Label();
             usernameTB = new TextBox();
             dobLbl = new Label();
-            textBox2 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
+            membershipTB = new TextBox();
+            dobPicker = new DateTimePicker();
             label3 = new Label();
             upgradeBtn = new Button();
+            backBtn = new Button();
+            langBtn = new Button();
             SuspendLayout();
             // 
             // profileLbl
@@ -54,9 +56,9 @@
             // 
             // logoutBtn
             // 
-            logoutBtn.Location = new Point(723, 12);
+            logoutBtn.Location = new Point(716, 12);
             logoutBtn.Name = "logoutBtn";
-            logoutBtn.Size = new Size(138, 34);
+            logoutBtn.Size = new Size(145, 34);
             logoutBtn.TabIndex = 1;
             logoutBtn.Text = "Log out";
             logoutBtn.UseVisualStyleBackColor = true;
@@ -66,7 +68,7 @@
             // 
             watchlistBtn.Location = new Point(28, 12);
             watchlistBtn.Name = "watchlistBtn";
-            watchlistBtn.Size = new Size(142, 34);
+            watchlistBtn.Size = new Size(161, 34);
             watchlistBtn.TabIndex = 2;
             watchlistBtn.Text = "Watch list";
             watchlistBtn.UseVisualStyleBackColor = true;
@@ -81,13 +83,13 @@
             label1.TabIndex = 3;
             label1.Text = "Full Name: ";
             // 
-            // textBox1
+            // fullNameTB
             // 
-            textBox1.Enabled = false;
-            textBox1.Location = new Point(386, 122);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(177, 31);
-            textBox1.TabIndex = 4;
+            fullNameTB.Enabled = false;
+            fullNameTB.Location = new Point(386, 122);
+            fullNameTB.Name = "fullNameTB";
+            fullNameTB.Size = new Size(177, 31);
+            fullNameTB.TabIndex = 4;
             // 
             // label2
             // 
@@ -115,19 +117,21 @@
             dobLbl.TabIndex = 7;
             dobLbl.Text = "Date of Birth";
             // 
-            // textBox2
+            // membershipTB
             // 
-            textBox2.Location = new Point(386, 288);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(177, 31);
-            textBox2.TabIndex = 8;
+            membershipTB.Enabled = false;
+            membershipTB.Location = new Point(386, 288);
+            membershipTB.Name = "membershipTB";
+            membershipTB.Size = new Size(177, 31);
+            membershipTB.TabIndex = 8;
             // 
-            // dateTimePicker1
+            // dobPicker
             // 
-            dateTimePicker1.Location = new Point(386, 228);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(300, 31);
-            dateTimePicker1.TabIndex = 9;
+            dobPicker.Enabled = false;
+            dobPicker.Location = new Point(386, 228);
+            dobPicker.Name = "dobPicker";
+            dobPicker.Size = new Size(300, 31);
+            dobPicker.TabIndex = 9;
             // 
             // label3
             // 
@@ -140,27 +144,49 @@
             // 
             // upgradeBtn
             // 
-            upgradeBtn.Location = new Point(386, 367);
+            upgradeBtn.Location = new Point(386, 366);
             upgradeBtn.Name = "upgradeBtn";
-            upgradeBtn.Size = new Size(112, 34);
+            upgradeBtn.Size = new Size(143, 34);
             upgradeBtn.TabIndex = 11;
             upgradeBtn.Text = "Upgrade";
             upgradeBtn.UseVisualStyleBackColor = true;
             upgradeBtn.Click += upgradeBtn_Click;
+            // 
+            // backBtn
+            // 
+            backBtn.Location = new Point(28, 449);
+            backBtn.Name = "backBtn";
+            backBtn.Size = new Size(149, 34);
+            backBtn.TabIndex = 12;
+            backBtn.Text = "Back";
+            backBtn.UseVisualStyleBackColor = true;
+            backBtn.Click += backBtn_Click;
+            // 
+            // langBtn
+            // 
+            langBtn.Location = new Point(574, 12);
+            langBtn.Name = "langBtn";
+            langBtn.Size = new Size(112, 34);
+            langBtn.TabIndex = 13;
+            langBtn.Text = "French";
+            langBtn.UseVisualStyleBackColor = true;
+            langBtn.Click += langBtn_Click;
             // 
             // FormProfile
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(873, 506);
+            Controls.Add(langBtn);
+            Controls.Add(backBtn);
             Controls.Add(upgradeBtn);
             Controls.Add(label3);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(textBox2);
+            Controls.Add(dobPicker);
+            Controls.Add(membershipTB);
             Controls.Add(dobLbl);
             Controls.Add(usernameTB);
             Controls.Add(label2);
-            Controls.Add(textBox1);
+            Controls.Add(fullNameTB);
             Controls.Add(label1);
             Controls.Add(watchlistBtn);
             Controls.Add(logoutBtn);
@@ -177,13 +203,15 @@
         private Button logoutBtn;
         private Button watchlistBtn;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox fullNameTB;
         private Label label2;
         private TextBox usernameTB;
         private Label dobLbl;
-        private TextBox textBox2;
-        private DateTimePicker dateTimePicker1;
+        private TextBox membershipTB;
+        private DateTimePicker dobPicker;
         private Label label3;
         private Button upgradeBtn;
+        private Button backBtn;
+        private Button langBtn;
     }
 }
