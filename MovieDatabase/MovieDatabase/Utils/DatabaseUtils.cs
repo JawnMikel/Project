@@ -1,10 +1,5 @@
-using Microsoft.VisualBasic.ApplicationServices;
-using Microsoft.VisualBasic.Devices;
 using MovieDatabase.Exceptions;
-using System.ComponentModel;
-using System.Data.SqlClient;
 using System.Data.SQLite;
-using System.IO;
 
 namespace MovieDatabase.Utils
 {
@@ -111,7 +106,7 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 // Form the insert statement
-                cmd.Parameters.AddWithValue("@ActorID", director.DirectorId);
+                cmd.Parameters.AddWithValue("@DirectorID", director.DirectorId);
                 cmd.Parameters.AddWithValue("@MovieID", movie.MediaId);
                 // Execute the insert
                 cmd.ExecuteNonQuery();
@@ -137,7 +132,7 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 // Form the insert statement
-                cmd.Parameters.AddWithValue("@ActorID", director.DirectorId);
+                cmd.Parameters.AddWithValue("@DirectorID", director.DirectorId);
                 cmd.Parameters.AddWithValue("@TVShowID", tvShow.MediaId);
                 // Execute the insert
                 cmd.ExecuteNonQuery();
@@ -163,7 +158,7 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 // Form the insert statement
-                cmd.Parameters.AddWithValue("@ActorID", director.DirectorId);
+                cmd.Parameters.AddWithValue("@DirectorID", director.DirectorId);
                 cmd.Parameters.AddWithValue("@EpisodeID", episode.MediaId);
                 // Execute the insert
                 cmd.ExecuteNonQuery();
@@ -393,7 +388,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@Number", payment.CreditCardNum);
                 cmd.Parameters.AddWithValue("@CVV", payment.CVV);
                 cmd.Parameters.AddWithValue("@ExpDate", payment.ExpiryDate);
-                cmd.Parameters.AddWithValue("@PayDate", DateTime.Now.ToString());
+                cmd.Parameters.AddWithValue("@PayDate", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@UserID", userID);
                 // Execute the SQL
                 cmd.ExecuteNonQuery();
@@ -509,7 +504,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@SeasonNumber", episode.SeasonNumber);
                 cmd.Parameters.AddWithValue("@EpisodeNumber", episode.EpisodeNumber);
                 cmd.Parameters.AddWithValue("@ImageLink", episode.ImageLink);
-                cmd.Parameters.AddWithValue("@Synopsis", episode.TVShowId);
+                cmd.Parameters.AddWithValue("@TVShowID", episode.TVShowId);
                 // Execute the SQL query using data from the user
                 cmd.ExecuteNonQuery();
                 // Get the PK
@@ -609,7 +604,7 @@ namespace MovieDatabase.Utils
                 reviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
 
                 // Form the director review insert SQL statement
-                actReviewInsCmd.Parameters.AddWithValue("@DirectorID", actor.ActorId);
+                actReviewInsCmd.Parameters.AddWithValue("@ActorID", actor.ActorId);
                 actReviewInsCmd.Parameters.AddWithValue("@ReviewID", reviewId);
 
                 // Execute the insert
@@ -659,7 +654,7 @@ namespace MovieDatabase.Utils
                 reviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
 
                 // Form the director review insert SQL statement
-                movieReviewInsCmd.Parameters.AddWithValue("@DirectorID", movie.MediaId);
+                movieReviewInsCmd.Parameters.AddWithValue("@MovieID", movie.MediaId);
                 movieReviewInsCmd.Parameters.AddWithValue("@ReviewID", reviewId);
 
                 // Execute the insert
@@ -709,7 +704,7 @@ namespace MovieDatabase.Utils
                 reviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
 
                 // Form the director review insert SQL statement
-                showReviewInsCmd.Parameters.AddWithValue("@DirectorID", tvShow.MediaId);
+                showReviewInsCmd.Parameters.AddWithValue("@TVShowID", tvShow.MediaId);
                 showReviewInsCmd.Parameters.AddWithValue("@ReviewID", reviewId);
 
                 // Execute the insert
@@ -759,7 +754,7 @@ namespace MovieDatabase.Utils
                 reviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
 
                 // Form the director review insert SQL statement
-                epReviewInsCmd.Parameters.AddWithValue("@DirectorID", episode.MediaId);
+                epReviewInsCmd.Parameters.AddWithValue("@EpisodeID", episode.MediaId);
                 epReviewInsCmd.Parameters.AddWithValue("@ReviewID", reviewId);
 
                 // Execute the insert
@@ -1001,9 +996,11 @@ namespace MovieDatabase.Utils
                                     CreditCardNumber TEXT NOT NULL,
                                     CreditCardCVV TEXT NOT NULL,
                                     CardExpirationDate TEXT NOT NULL,
+                                    PaymentDate TEXT NOT NULL,
                                     UserID INTEGER NOT NULL,
                                     CONSTRAINT chk_CardExpirationDateFormat CHECK (CardExpirationDate LIKE '____-__-00'),
-                                    CONSTRAINT chk_CardExpirationDateFuture CHECK (CardExpirationDate > DATE('now')),
+                                    CONSTRAINT chk_PaymentDateFormat CHECK (PaymentDate LIKE '____-__-__'),
+                                    CONSTRAINT chk_CardExpirationDateFuture CHECK (CardExpirationDate > CURRENT_DATE),
                                     CONSTRAINT fk_UserID FOREIGN KEY (UserID) REFERENCES user(UserID)
                                 );
                                 """;
