@@ -4,6 +4,7 @@ using MovieDatabase.Exceptions;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Data.SQLite;
+using System.IO;
 
 namespace MovieDatabase.Utils
 {
@@ -89,6 +90,196 @@ namespace MovieDatabase.Utils
                 id = Convert.ToInt32(pkCmd.ExecuteScalar());
             }
             return id;
+        }
+
+        /// <summary>
+        /// Insert a movie director entry into the moviedirector table.
+        /// </summary>
+        /// <param name="director">The director who directs the movie.</param>
+        /// <param name="movie">The movie who is directed by the director.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown when the director or movie arguments are null.</exception>
+        public void InsertDirectorMedia(Director director, Movie movie)
+        {
+            // Validate the parameters
+            if (director == null || movie == null)
+            {
+                throw new ArgumentNullException("The director or movie arguments cannot be null.");
+            }
+            const string SQL = """
+                                INSERT INTO moviedirector (DirectorID, MovieID) VALUES (@DirectorID, @MovieID);
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the insert statement
+                cmd.Parameters.AddWithValue("@ActorID", director.DirectorId);
+                cmd.Parameters.AddWithValue("@MovieID", movie.MediaId);
+                // Execute the insert
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Insert a tv show director entry into the tvshowdirector table.
+        /// </summary>
+        /// <param name="director">The director who directs the tv show.</param>
+        /// <param name="tvShow">The tv show who is directed by the director.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown when the director or tvShow arguments are null.</exception>
+        public void InsertDirectorMedia(Director director, TVShow tvShow)
+        {
+            // Validate the parameters
+            if (director == null || tvShow == null)
+            {
+                throw new ArgumentNullException("The director or tvShow arguments cannot be null.");
+            }
+            const string SQL = """
+                                INSERT INTO tvshowdirector (DirectorID, TVShowID) VALUES (@DirectorID, @TVShowID);
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the insert statement
+                cmd.Parameters.AddWithValue("@ActorID", director.DirectorId);
+                cmd.Parameters.AddWithValue("@TVShowID", tvShow.MediaId);
+                // Execute the insert
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Insert an episode director entry into the episodedirector table.
+        /// </summary>
+        /// <param name="director">The director who directs the episode.</param>
+        /// <param name="episode">The episode who is directed by the director.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown when the director or episode arguments are null.</exception>
+        public void InsertDirectorMedia(Director director, Episode episode)
+        {
+            // Validate the parameters
+            if (director == null || episode == null)
+            {
+                throw new ArgumentNullException("The director or episode arguments cannot be null.");
+            }
+            const string SQL = """
+                                INSERT INTO episodedirector (DirectorID, EpisodeID) VALUES (@DirectorID, @EpisodeID);
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the insert statement
+                cmd.Parameters.AddWithValue("@ActorID", director.DirectorId);
+                cmd.Parameters.AddWithValue("@EpisodeID", episode.MediaId);
+                // Execute the insert
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Insert an actor into the actor table.
+        /// </summary>
+        /// <param name="actor">The actor to insert.</param>
+        /// <returns>The ActorID of the actor inserted.</returns>
+        /// <exception cref="ArgumentNullException">Exception thrown when the actor argument is null.</exception>
+        public int InsertActor(Actor actor)
+        {
+            // Validate the parameter
+            if (actor == null)
+            {
+                throw new ArgumentNullException("The actor argument cannot be null.");
+            }
+            const string SQL = """
+                                INSERT INTO actor (FirstName, LastName) VALUES (@FirstName, @LastName);
+                                """;
+            const string PK_SQL = """
+                                   SELECT ActorID FROM actor WHERE rowid = last_insert_rowid();
+                                   """;
+            int id = -1;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            using (SQLiteCommand pkCmd = new SQLiteCommand(PK_SQL, _connection))
+            {
+                // Form the SQL query using data from the user
+                cmd.Parameters.AddWithValue("@FirstName", actor.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", actor.LastName);
+                // Execute the SQL
+                cmd.ExecuteNonQuery();
+                // Get the PK
+                id = Convert.ToInt32(pkCmd.ExecuteScalar());
+            }
+            return id;
+        }
+
+        /// <summary>
+        /// Insert a movie actor entry into the movieactor table.
+        /// </summary>
+        /// <param name="actor">The actor who plays in the movie.</param>
+        /// <param name="movie">The movie who features the actor.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown when the actor or movie arguments are null.</exception>
+        public void InsertActorMedia(Actor actor, Movie movie)
+        {
+            // Validate the parameters
+            if (actor == null || movie == null)
+            {
+                throw new ArgumentNullException("The actor or movie arguments cannot be null.");
+            }
+            const string SQL = """
+                                INSERT INTO movieactor (ActorID, MovieID) VALUES (@ActorID, @MovieID);
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the insert statement
+                cmd.Parameters.AddWithValue("@ActorID", actor.ActorId);
+                cmd.Parameters.AddWithValue("@MovieID", movie.MediaId);
+                // Execute the insert
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Insert a tv show actor entry into the tvshowactor table.
+        /// </summary>
+        /// <param name="actor">The actor who plays in the tv show.</param>
+        /// <param name="tvShow">The tv show who features the actor.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown when the actor or tvShow arguments are null.</exception>
+        public void InsertActorMedia(Actor actor, TVShow tvShow)
+        {
+            // Validate the parameters
+            if (actor == null || tvShow == null)
+            {
+                throw new ArgumentNullException("The actor or tvShow arguments cannot be null.");
+            }
+            const string SQL = """
+                                INSERT INTO tvshowactor (ActorID, TVShowID) VALUES (@ActorID, @TVShowID);
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the insert statement
+                cmd.Parameters.AddWithValue("@ActorID", actor.ActorId);
+                cmd.Parameters.AddWithValue("@TVShowID", tvShow.MediaId);
+                // Execute the insert
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Insert an episode actor entry into the episodeactor table.
+        /// </summary>
+        /// <param name="actor">The actor who plays in the episode.</param>
+        /// <param name="tvShow">The episode who features the actor.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown when the actor or episode arguments are null.</exception>
+        public void InsertActorMedia(Actor actor, Episode episode)
+        {
+            // Validate the parameters
+            if (actor == null || episode == null)
+            {
+                throw new ArgumentNullException("The actor or episode arguments cannot be null.");
+            }
+            const string SQL = """
+                                INSERT INTO episodeactor (ActorID, EpisodeID) VALUES (@ActorID, @EpisodeID);
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the insert statement
+                cmd.Parameters.AddWithValue("@ActorID", actor.ActorId);
+                cmd.Parameters.AddWithValue("@EpisodeID", episode.MediaId);
+                // Execute the insert
+                cmd.ExecuteNonQuery();
+            }
         }
 
         /// <summary>
