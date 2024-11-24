@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MovieDatabase
 {
-    public partial class MediaLoad : Form
+    public partial class FormMediaLoad : Form
     {
-        public MediaLoad()
+        public FormMediaLoad()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace MovieDatabase
 {
-    partial class MediaLoad
+    partial class FormMediaLoad
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "MediaLoad";
+            backBtn = new Button();
+            SuspendLayout();
+            // 
+            // backBtn
+            // 
+            backBtn.Location = new Point(325, 400);
+            backBtn.Name = "backBtn";
+            backBtn.Size = new Size(122, 38);
+            backBtn.TabIndex = 0;
+            backBtn.Text = "Back";
+            backBtn.UseVisualStyleBackColor = true;
+            // 
+            // MediaLoad
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(backBtn);
+            Name = "MediaLoad";
+            Text = "MediaLoad";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button backBtn;
     }
 }
