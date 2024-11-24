@@ -15,11 +15,21 @@ namespace MovieDatabase
     {
         User user;
         Media media;
+        CrewMember member;
         public FormWriteReview(Media media, User user)
         {
             InitializeComponent();
             this.user = user;
             this.media = media;
+            titleLbl.Text = media.Title;
+
+        }
+        public FormWriteReview(CrewMember member, User user)
+        {
+            InitializeComponent();
+            this.user = user;
+            this.member = member;
+            titleLbl.Text = member.FirstName + " " + member.SecondName;
         }
 
         private void postBtn_Click(object sender, EventArgs e)
@@ -27,7 +37,14 @@ namespace MovieDatabase
             double rating = double.Parse(ratingTB.Text);
             string comment = reviewTB.Text;
             Review review = new Review(user, comment, rating);
-            media.addReview(review);
+            if (media != null)
+            {
+                media.addReview(review);
+            }
+            if (member != null)
+            {
+                member.addReview(review);
+            }
         }
 
         private void backBtn_Click(object sender, EventArgs e)

@@ -7,14 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MovieDatabase.Utils;
 
 namespace MovieDatabase
 {
     public partial class FormCrewMemberInformation : Form
     {
-        public FormCrewMemberInformation()
+        public FormCrewMemberInformation(CrewMember member)
         {
+            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
+            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+
             InitializeComponent();
+            nameLbl.Text = member.FirstName + " " + member.SecondName;
+            ratingLbl.Text += member.getCrewMemberRating() + "/5";
+        }
+
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void langBtn_Click(object sender, EventArgs e)
+        {
+            Util.language();
+        }
+
+        private void wirteReviewBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void viewReviewBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -17,5 +17,34 @@ namespace MovieDatabase
             Reviews = reviews;
         }
 
+        /// <summary>
+        /// Adds a review to the list of reviews
+        /// </summary>
+        /// <param name="review">review</param>
+        public void addReview(Review review)
+        {
+            Reviews.Add(review);
+        }
+
+        /// <summary>
+        /// Calculates the media rating by taking the average of all the reviews
+        /// </summary>
+        /// <returns>the average rating</returns>
+        public double getCrewMemberRating()
+        {
+            if (Reviews == null || Reviews.Count == 0)
+            {
+                return 0.0;
+            }
+
+            double total = 0.0;
+            foreach (var review in Reviews)
+            {
+                total += review.Rating;
+            }
+
+            return total / Reviews.Count;
+        }
+
     }
 }
