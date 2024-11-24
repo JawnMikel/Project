@@ -73,5 +73,18 @@ namespace MovieDatabase.Utils
                 Thread.CurrentThread.CurrentUICulture = cultureEn;
             }
         }
+
+        /// <summary>
+        /// Takes the DataTime from and calculates its age by subtracting from todays date.
+        /// </summary>
+        /// <param name="dob">Birthday</param>
+        /// <returns>Returns true if the user is 18 years and older. Returns false if the user is under 18 years old. </returns>
+        public static bool ValidateAge(DateTime dob)
+        {
+            int age = DateTime.Now.Year - dob.Year;
+            if (dob > DateTime.Now.AddYears(-age)) 
+                age--;
+            return age >= 18;
+        }
     }
 }

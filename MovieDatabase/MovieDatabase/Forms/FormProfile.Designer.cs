@@ -66,7 +66,7 @@
             // 
             // watchlistBtn
             // 
-            watchlistBtn.Location = new Point(689, 438);
+            watchlistBtn.Location = new Point(689, 449);
             watchlistBtn.Name = "watchlistBtn";
             watchlistBtn.Size = new Size(161, 34);
             watchlistBtn.TabIndex = 2;
