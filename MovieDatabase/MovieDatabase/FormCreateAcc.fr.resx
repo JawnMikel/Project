@@ -153,4 +153,19 @@
   <data name="BackButton" xml:space="preserve">
     <value>Retour</value>
   </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Paiement</value>
+  </data>
+  <data name="CardHolderName" xml:space="preserve">
+    <value>Nom du Titulaire de la Carte</value>
+  </data>
+  <data name="CardNumber" xml:space="preserve">
+    <value>Numéro du Carte</value>
+  </data>
+  <data name="CVV" xml:space="preserve">
+    <value>CVV</value>
+  </data>
+  <data name="PayButton" xml:space="preserve">
+    <value>Payer</value>
+  </data>
 </root>
