@@ -147,7 +147,9 @@ namespace MovieDatabase
             ResumeLayout(false);
             PerformLayout();
         }
-
+        /// <summary>
+        /// When you call this method, it changes the label and and buttons into french
+        /// </summary>
         public void UpdateComponents()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
