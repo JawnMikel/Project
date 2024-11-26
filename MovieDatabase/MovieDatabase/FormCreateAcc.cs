@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,14 @@ namespace MovieDatabase
 {
     public partial class FormCreateAcc : Form
     {
+        CultureInfo cultureEn = new CultureInfo("en-US");
+        CultureInfo cultureFr = new CultureInfo("fr-Fr");
         public FormCreateAcc()
         {
+            Thread.CurrentThread.CurrentCulture = cultureEn;
+            Thread.CurrentThread.CurrentUICulture = cultureFr;
             InitializeComponent();
+            Update();
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -51,7 +57,7 @@ namespace MovieDatabase
             {
                 nextBtn.Text = "Create Account";
             }
-            else if (membershipCB.SelectedIndex == 1) 
+            else if (membershipCB.SelectedIndex == 1)
             {
                 nextBtn.Text = "Pay";
             }
@@ -61,7 +67,7 @@ namespace MovieDatabase
         {
             string firstName = firstNameTB.Text;
             string lastName = lastNameTB.Text;
-            
+
             int selectedIndex = membershipCB.SelectedIndex;
             User.Memberships selectedMembership = (User.Memberships)selectedIndex;
             //string membership = selectedMembership.ToString();
@@ -69,9 +75,23 @@ namespace MovieDatabase
             string username = usernameTB.Text;
             string password = passwordTB.Text;
 
-            User user = new User(username, password, firstName, lastName, selectedMembership);
-            return user;
+            //User user = new User(username, password, firstName, lastName, selectedMembership);
+            return null;
         }
 
+        private void langBtn_Click(object sender, EventArgs e)
+        {
+            if (Thread.CurrentThread.CurrentCulture.Equals(cultureEn))
+            {
+                Thread.CurrentThread.CurrentCulture = cultureFr;
+                Thread.CurrentThread.CurrentUICulture = cultureFr;
+            }
+            else
+            {
+                Thread.CurrentThread.CurrentCulture = cultureEn;
+                Thread.CurrentThread.CurrentUICulture = cultureEn;
+            }
+            Update();
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace MovieDatabase
+﻿using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormCreateAcc
     {
@@ -59,7 +61,7 @@
             // firstNameLbl
             // 
             firstNameLbl.AutoSize = true;
-            firstNameLbl.Location = new Point(23, 89);
+            firstNameLbl.Location = new Point(2, 89);
             firstNameLbl.Name = "firstNameLbl";
             firstNameLbl.Size = new Size(64, 15);
             firstNameLbl.TabIndex = 1;
@@ -67,7 +69,7 @@
             // 
             // firstNameTB
             // 
-            firstNameTB.Location = new Point(93, 86);
+            firstNameTB.Location = new Point(72, 86);
             firstNameTB.Name = "firstNameTB";
             firstNameTB.Size = new Size(131, 23);
             firstNameTB.TabIndex = 2;
@@ -75,7 +77,7 @@
             // lastNameLbl
             // 
             lastNameLbl.AutoSize = true;
-            lastNameLbl.Location = new Point(243, 89);
+            lastNameLbl.Location = new Point(209, 89);
             lastNameLbl.Name = "lastNameLbl";
             lastNameLbl.Size = new Size(63, 15);
             lastNameLbl.TabIndex = 3;
@@ -103,6 +105,7 @@
             langBtn.TabIndex = 6;
             langBtn.Text = "French";
             langBtn.UseVisualStyleBackColor = true;
+            langBtn.Click += langBtn_Click;
             // 
             // dobLbl
             // 
@@ -116,7 +119,7 @@
             // usernameLbl
             // 
             usernameLbl.AutoSize = true;
-            usernameLbl.Location = new Point(164, 159);
+            usernameLbl.Location = new Point(116, 159);
             usernameLbl.Name = "usernameLbl";
             usernameLbl.Size = new Size(60, 15);
             usernameLbl.TabIndex = 8;
@@ -139,7 +142,7 @@
             // passwordLbl
             // 
             passwordLbl.AutoSize = true;
-            passwordLbl.Location = new Point(384, 159);
+            passwordLbl.Location = new Point(364, 159);
             passwordLbl.Name = "passwordLbl";
             passwordLbl.Size = new Size(57, 15);
             passwordLbl.TabIndex = 11;
@@ -210,6 +213,19 @@
             Text = "frmCreateAcc";
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        public void Update()
+        {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
+            createAccLbl.Text = rm.GetString("CreateAccount");
+            langBtn.Text = rm.GetString("Lanbutton");
+            firstNameLbl.Text = rm.GetString("FirstName");
+            lastNameLbl.Text = rm.GetString("LastName");
+            dobLbl.Text = rm.GetString("DOB");
+            usernameLbl.Text = rm.GetString("Username");
+            passwordLbl.Text = rm.GetString("Password");
+            membershipLbl.Text = rm.GetString("MembershipType");
         }
 
         #endregion
