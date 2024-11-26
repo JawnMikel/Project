@@ -1,4 +1,6 @@
-﻿namespace MovieDatabase
+﻿using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormLogin
     {
@@ -60,7 +62,7 @@
             // usernameLbl
             // 
             usernameLbl.AutoSize = true;
-            usernameLbl.Location = new Point(310, 98);
+            usernameLbl.Location = new Point(262, 98);
             usernameLbl.Name = "usernameLbl";
             usernameLbl.Size = new Size(60, 15);
             usernameLbl.TabIndex = 2;
@@ -74,6 +76,7 @@
             langBtn.TabIndex = 3;
             langBtn.Text = "French";
             langBtn.UseVisualStyleBackColor = true;
+            langBtn.Click += langBtn_Click;
             // 
             // loginTitleLbl
             // 
@@ -89,7 +92,7 @@
             // passwordLbl
             // 
             passwordLbl.AutoSize = true;
-            passwordLbl.Location = new Point(310, 154);
+            passwordLbl.Location = new Point(262, 154);
             passwordLbl.Name = "passwordLbl";
             passwordLbl.Size = new Size(57, 15);
             passwordLbl.TabIndex = 5;
@@ -143,6 +146,17 @@
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        public void UpdateComponents()
+        {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
+            langBtn.Text = rm.GetString("Lanbutton");
+            createAccBtn.Text = rm.GetString("CreateAccountButton");
+            loginBtn.Text = rm.GetString("LoginButton");
+            usernameLbl.Text = rm.GetString("Username");
+            passwordLbl.Text = rm.GetString("Password");
+            loginTitleLbl.Text = rm.GetString("Login");
         }
 
         #endregion

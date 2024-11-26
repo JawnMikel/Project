@@ -1,9 +1,17 @@
+using System.Globalization;
+
 namespace MovieDatabase
 {
     public partial class FormLogin : Form
     {
+        CultureInfo cultureEn = new CultureInfo("en-US");
+        CultureInfo cultureFr = new CultureInfo("fr-Fr");
         public FormLogin()
         {
+
+            Thread.CurrentThread.CurrentCulture = cultureEn;
+            Thread.CurrentThread.CurrentUICulture = cultureFr;
+
             InitializeComponent();
             errorLbl.Visible = false;
         }
@@ -49,6 +57,21 @@ namespace MovieDatabase
         private void passwordTB_MouseClick(object sender, MouseEventArgs e)
         {
             errorLbl.Visible = false;
+        }
+
+        private void langBtn_Click(object sender, EventArgs e)
+        {
+            if(Thread.CurrentThread.CurrentCulture.Equals(cultureEn))
+            {
+                Thread.CurrentThread.CurrentCulture = cultureFr;
+                Thread.CurrentThread.CurrentUICulture = cultureFr;
+            }
+            else
+            {
+                Thread.CurrentThread.CurrentCulture = cultureEn;
+                Thread.CurrentThread.CurrentUICulture = cultureEn;
+            }
+            UpdateComponents();
         }
     }
 }
