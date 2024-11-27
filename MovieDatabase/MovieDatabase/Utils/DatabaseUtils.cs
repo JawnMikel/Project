@@ -54,6 +54,51 @@ namespace MovieDatabase.Utils
         }
 
         /// <summary>
+        /// Get a user based on the username and password.
+        /// </summary>
+        /// <param name="userName">The username of the user.</param>
+        /// <param name="password">The password of the user.</param>
+        /// <returns>The user with the specified credentials, or null if the user does not exist.</returns>
+        /// <exception cref="ArgumentNullException">Exception thrown when the userName or password arguments are null.</exception>
+        public User GetUserByCredentials(string userName, string password)
+        {
+            // Validate the parameters
+            if (userName == null || password == null)
+            {
+                throw new ArgumentNullException("The userName or password arguments cannot be null.");
+            }
+            const string SQL = """
+                                SELECT * FROM user u WHERE u.UserName = @UserName AND u.Password = @Password
+                                LEFT JOIN payment p ON p.UserID = u.UserID;
+                                """;
+            User user = null;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.Parameters.AddWithValue("@UserName", userName);
+                cmd.Parameters.AddWithValue("@Password", password);
+
+                // Execute the SQL and read the next result
+                SQLiteDataReader reader = cmd.ExecuteReader();
+                reader.NextResult();
+                
+                // If the PaymentID field is present, the user has a premium membership
+                User.Memberships membership = User.Memberships.REGULAR;
+                if (reader["PaymentID"] == DBNull.Value)
+                {
+                    membership = User.Memberships.PREMIUM;
+                }
+
+                // Parse the date of birth
+                DateTime dob = DateTime.Parse((string) reader["DateOfBirth"]);
+
+                // Create the user object
+                user = new User((string) reader["UserName"], (string) reader["Password"],
+                    (string) reader["FirstName"], (string) reader["LastName"], dob, membership);
+            }
+            return user;
+        }
+
+        /// <summary>
         /// Insert a director into the director table.
         /// </summary>
         /// <param name="director">The director to insert.</param>
@@ -67,7 +112,7 @@ namespace MovieDatabase.Utils
                 throw new ArgumentNullException("The director argument cannot be null.");
             }
             const string SQL = """
-                                INSERT INTO director (FirstName, LastName) VALUES (@FirstName, @LastName);
+                                INSERT INTO director (FirstName, LastName, ImageLink) VALUES (@FirstName, @LastName, @ImageLink);
                                 """;
             const string PK_SQL = """
                                    SELECT DirectorID FROM director WHERE rowid = last_insert_rowid();
@@ -79,6 +124,7 @@ namespace MovieDatabase.Utils
                 // Form the SQL query using data from the user
                 cmd.Parameters.AddWithValue("@FirstName", director.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", director.LastName);
+                cmd.Parameters.AddWithValue("@ImageLink", director.ImageLink);
                 // Execute the SQL
                 cmd.ExecuteNonQuery();
                 // Get the PK
@@ -179,7 +225,7 @@ namespace MovieDatabase.Utils
                 throw new ArgumentNullException("The actor argument cannot be null.");
             }
             const string SQL = """
-                                INSERT INTO actor (FirstName, LastName) VALUES (@FirstName, @LastName);
+                                INSERT INTO actor (FirstName, LastName, ImageLink) VALUES (@FirstName, @LastName, @ImageLink);
                                 """;
             const string PK_SQL = """
                                    SELECT ActorID FROM actor WHERE rowid = last_insert_rowid();
@@ -191,6 +237,7 @@ namespace MovieDatabase.Utils
                 // Form the SQL query using data from the user
                 cmd.Parameters.AddWithValue("@FirstName", actor.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", actor.LastName);
+                cmd.Parameters.AddWithValue("@ImageLink", actor.ImageLink);
                 // Execute the SQL
                 cmd.ExecuteNonQuery();
                 // Get the PK
@@ -1110,7 +1157,8 @@ namespace MovieDatabase.Utils
                                 CREATE TABLE IF NOT EXISTS actor (
                                     ActorID INTEGER PRIMARY KEY,
                                     FirstName TEXT NOT NULL,
-                                    LastName TEXT NOT NULL
+                                    LastName TEXT NOT NULL,
+                                    ImageLink TEXT NOT NULL
                                 );
                                 """;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
@@ -1128,7 +1176,8 @@ namespace MovieDatabase.Utils
                                 CREATE TABLE IF NOT EXISTS director (
                                     DirectorID INTEGER PRIMARY KEY,
                                     FirstName TEXT NOT NULL,
-                                    LastName TEXT NOT NULL
+                                    LastName TEXT NOT NULL,
+                                    ImageLink TEXT NOT NULL
                                 );
                                 """;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
