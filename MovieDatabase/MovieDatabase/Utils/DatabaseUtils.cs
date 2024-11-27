@@ -94,6 +94,9 @@ namespace MovieDatabase.Utils
                 // Create the user object
                 user = new User((string) reader["UserName"], (string) reader["Password"],
                     (string) reader["FirstName"], (string) reader["LastName"], dob, membership);
+
+                // Set the user ID
+                user.Id = (int)reader["UserID"];
             }
             return user;
         }
