@@ -28,7 +28,7 @@
     <Compile Update="Forms\FormWriteReview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MediaLoad.cs">
+    <Compile Update="Forms\FormMediaLoad.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

@@ -33,9 +33,10 @@
             // 
             // backBtn
             // 
-            backBtn.Location = new Point(12, 12);
+            backBtn.Location = new Point(8, 7);
+            backBtn.Margin = new Padding(2, 2, 2, 2);
             backBtn.Name = "backBtn";
-            backBtn.Size = new Size(122, 38);
+            backBtn.Size = new Size(85, 23);
             backBtn.TabIndex = 0;
             backBtn.Text = "Back";
             backBtn.UseVisualStyleBackColor = true;
@@ -43,12 +44,13 @@
             // 
             // FormMediaLoad
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(560, 270);
             Controls.Add(backBtn);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormMediaLoad";
-            Text = "MediaLoad";
+            Text = "FormMediaLoad";
             ResumeLayout(false);
         }
 
