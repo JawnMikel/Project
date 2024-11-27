@@ -1,4 +1,6 @@
-﻿namespace MovieDatabase
+﻿using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormCreateAcc
     {
@@ -60,7 +62,7 @@
             // 
             // firstNameLbl
             // 
-            firstNameLbl.AutoSize = true;
+            firstNameLbl.AutoSize = true
             firstNameLbl.Location = new Point(33, 148);
             firstNameLbl.Margin = new Padding(4, 0, 4, 0);
             firstNameLbl.Name = "firstNameLbl";
@@ -240,6 +242,19 @@
             Text = "frmCreateAcc";
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        public void Update()
+        {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
+            createAccLbl.Text = rm.GetString("CreateAccount");
+            langBtn.Text = rm.GetString("Lanbutton");
+            firstNameLbl.Text = rm.GetString("FirstName");
+            lastNameLbl.Text = rm.GetString("LastName");
+            dobLbl.Text = rm.GetString("DOB");
+            usernameLbl.Text = rm.GetString("Username");
+            passwordLbl.Text = rm.GetString("Password");
+            membershipLbl.Text = rm.GetString("MembershipType");
         }
 
         #endregion

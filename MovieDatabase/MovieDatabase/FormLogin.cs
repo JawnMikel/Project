@@ -1,4 +1,7 @@
+using System.Globalization;
+using System.Resources;
 using MovieDatabase.Utils;
+
 
 namespace MovieDatabase
 {
@@ -9,7 +12,7 @@ namespace MovieDatabase
         {
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
-
+            
             InitializeComponent();
             passwordTB.PasswordChar = '*';
             passwordBox.CheckedChanged += passwordBox_CheckedChanged;
@@ -57,6 +60,7 @@ namespace MovieDatabase
         private void langBtn_Click(object sender, EventArgs e)
         {
              Util.language();
+             UpdateComponents();
         }
     }
 }

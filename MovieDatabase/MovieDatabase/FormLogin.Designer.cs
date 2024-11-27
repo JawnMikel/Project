@@ -1,4 +1,6 @@
-﻿namespace MovieDatabase
+﻿using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormLogin
     {
@@ -165,6 +167,19 @@
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();
+        }
+        /// <summary>
+        /// When you call this method, it changes the label and and buttons into french
+        /// </summary>
+        public void UpdateComponents()
+        {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
+            langBtn.Text = rm.GetString("Lanbutton");
+            createAccBtn.Text = rm.GetString("CreateAccountButton");
+            loginBtn.Text = rm.GetString("LoginButton");
+            usernameLbl.Text = rm.GetString("Username");
+            passwordLbl.Text = rm.GetString("Password");
+            loginTitleLbl.Text = rm.GetString("Login");
         }
 
         #endregion

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,13 @@ namespace MovieDatabase
 {
     public partial class FormCreateAcc : Form
     {
+        CultureInfo cultureEn = new CultureInfo("en-US");
+        CultureInfo cultureFr = new CultureInfo("fr-Fr");
         public FormCreateAcc()
         {
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
-
+            Update()
             InitializeComponent();
             passwordTB.PasswordChar = '*';
             passwordBox.CheckedChanged += passwordBox_CheckedChanged;
@@ -92,7 +95,6 @@ namespace MovieDatabase
 
             string username = usernameTB.Text;
             string password = passwordTB.Text;
-
             User user = new User(username, password, firstName, lastName, dob, selectedMembership);
             return user;
         }
@@ -105,6 +107,7 @@ namespace MovieDatabase
         private void langBtn_Click(object sender, EventArgs e)
         {
             Util.language();
+            Update();
         }
     }
 }

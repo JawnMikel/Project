@@ -9,6 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+  <Compile Update="message\messages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>messages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="message\messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
   </ItemGroup>
 
