@@ -66,7 +66,7 @@
             // 
             // watchlistBtn
             // 
-            watchlistBtn.Location = new Point(28, 12);
+            watchlistBtn.Location = new Point(689, 449);
             watchlistBtn.Name = "watchlistBtn";
             watchlistBtn.Size = new Size(161, 34);
             watchlistBtn.TabIndex = 2;
@@ -144,11 +144,11 @@
             // 
             // upgradeBtn
             // 
-            upgradeBtn.Location = new Point(386, 366);
+            upgradeBtn.Location = new Point(353, 358);
             upgradeBtn.Name = "upgradeBtn";
-            upgradeBtn.Size = new Size(143, 34);
+            upgradeBtn.Size = new Size(205, 34);
             upgradeBtn.TabIndex = 11;
-            upgradeBtn.Text = "Upgrade";
+            upgradeBtn.Text = "Upgrade Membership";
             upgradeBtn.UseVisualStyleBackColor = true;
             upgradeBtn.Click += upgradeBtn_Click;
             // 
@@ -164,7 +164,7 @@
             // 
             // langBtn
             // 
-            langBtn.Location = new Point(574, 12);
+            langBtn.Location = new Point(12, 12);
             langBtn.Name = "langBtn";
             langBtn.Size = new Size(112, 34);
             langBtn.TabIndex = 13;

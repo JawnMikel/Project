@@ -90,6 +90,12 @@ namespace MovieDatabase
             string lastName = lastNameTB.Text;
             DateTime dob = dobPicker.Value;
 
+            if (!Util.ValidateAge(dob))
+            {
+                MessageBox.Show("User must be at least 18 years old.", "Age Restriction", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw new ArithmeticException("Must be 18 years and older");
+            }
+
             int selectedIndex = membershipCB.SelectedIndex;
             User.Memberships selectedMembership = (User.Memberships)selectedIndex;
 

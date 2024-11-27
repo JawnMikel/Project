@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace MovieDatabase
 {
-    public partial class MediaLoad : Form
+    public partial class FormMediaLoad : Form
     {
-        public MediaLoad()
+        Form form;
+        List<Media> mediaList;
+        public FormMediaLoad(List<Media> medias, Form form)
         {
             InitializeComponent();
+            this.form = form;
+            mediaList = medias;
+        }
+
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            Hide();
+            form.Closed += (s, args) => this.Close();
+            form.ShowDialog();
         }
     }
 }

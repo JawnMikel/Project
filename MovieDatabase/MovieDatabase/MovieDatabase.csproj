@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="FormPaymentUpgrade.cs">
+    <Compile Update="Forms\FormPaymentUpgrade.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
