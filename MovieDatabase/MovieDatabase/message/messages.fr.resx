@@ -157,7 +157,7 @@
     <value>Connexion</value>
   </data>
   <data name="MembershipType" xml:space="preserve">
-    <value>Type d'Adhésion</value>
+    <value>Type d'Abonnement</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Mot de Passe</value>
@@ -169,6 +169,21 @@
     <value>Paiement</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Nom d'Utilisateur</value>
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Nom Complet:</value>
+  </data>
+  <data name="UpgradeMembership" xml:space="preserve">
+    <value>Améliorer l'Abonnement</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Déconnecter</value>
+  </data>
+  <data name="WatchList" xml:space="preserve">
+    <value>List de vissionage</value>
   </data>
 </root>
