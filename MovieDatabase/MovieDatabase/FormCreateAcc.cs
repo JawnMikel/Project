@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MovieDatabase.Utils;
 
 namespace MovieDatabase
 {
     public partial class FormCreateAcc : Form
     {
+        CultureInfo cultureEn = new CultureInfo("en-US");
+        CultureInfo cultureFr = new CultureInfo("fr-Fr");
         public FormCreateAcc()
         {
+            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
+            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+            Update()
             InitializeComponent();
+            passwordTB.PasswordChar = '*';
+            passwordBox.CheckedChanged += passwordBox_CheckedChanged;
             nextBtn.Enabled = false;
         }
 
@@ -31,7 +40,7 @@ namespace MovieDatabase
             if (membershipCB.SelectedIndex == 0)
             {
                 User user = CreateUser();
-                FormLogin.users.Add(user); 
+                FormLogin.users.Add(user);
 
                 MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -40,11 +49,11 @@ namespace MovieDatabase
                 formMainMenu.Closed += (s, args) => this.Close();
                 formMainMenu.ShowDialog();
             }
-            else if (membershipCB.SelectedIndex == 1) 
+            else if (membershipCB.SelectedIndex == 1)
             {
                 this.Hide();
 
-                var formPayment = new FormPayment(
+                var formPayment = new FormPaymentSignUp(
                     firstNameTB.Text,
                     lastNameTB.Text,
                     usernameTB.Text,
@@ -64,7 +73,7 @@ namespace MovieDatabase
                 nextBtn.Text = "Create Account";
                 nextBtn.Enabled = true;
             }
-            else if (membershipCB.SelectedIndex == 1) 
+            else if (membershipCB.SelectedIndex == 1)
             {
                 nextBtn.Text = "Pay";
                 nextBtn.Enabled = true;
@@ -86,10 +95,19 @@ namespace MovieDatabase
 
             string username = usernameTB.Text;
             string password = passwordTB.Text;
-
-            User user = new User(username, password, firstName, lastName, selectedMembership, dob);
+            User user = new User(username, password, firstName, lastName, dob, selectedMembership);
             return user;
         }
 
+        private void passwordBox_CheckedChanged(object sender, EventArgs e)
+        {
+            passwordTB.PasswordChar = passwordBox.Checked ? '\0' : '*';
+        }
+
+        private void langBtn_Click(object sender, EventArgs e)
+        {
+            Util.language();
+            Update();
+        }
     }
 }

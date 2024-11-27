@@ -52,12 +52,23 @@ namespace MovieDatabase
 
         public void addReview(Review review)
         {
-
+            Reviews.Add(review);
         }
-
         public double getMediaRating()
         {
-            return 0;
+            if ( Reviews == null || Reviews.Count == 0)
+            {
+                return 0.0;
+            }
+
+            double total = 0.0;
+            foreach (var review in Reviews)
+            {
+                total += review.Rating;
+            }
+
+            return total / Reviews.Count;
         }
+
     }
 }

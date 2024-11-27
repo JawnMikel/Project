@@ -13,10 +13,12 @@ namespace MovieDatabase
 {
     public partial class FormMainMenu : Form
     {
+        User user;
         public FormMainMenu(User user)
         {
             InitializeComponent();
-            profileBtn.Text = user.FirstName + " " + user.LastName;
+            this.user = user;
+            profileBtn.Text = user.Username;
             if (user.Membership.Equals("REGULAR"))
             {
                 recBtn.Enabled = false;
@@ -32,7 +34,7 @@ namespace MovieDatabase
         private void profileBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formProfile = new FormProfile();
+            var formProfile = new FormProfile(user);
             formProfile.Closed += (s, args) => this.Close();
             formProfile.ShowDialog();
         }

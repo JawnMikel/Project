@@ -1,3 +1,8 @@
+using System.Globalization;
+using System.Resources;
+using MovieDatabase.Utils;
+
+
 namespace MovieDatabase
 {
     public partial class FormLogin : Form
@@ -5,13 +10,18 @@ namespace MovieDatabase
         public static List<User> users = new List<User>();
         public FormLogin()
         {
+            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
+            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+            
             InitializeComponent();
+            passwordTB.PasswordChar = '*';
+            passwordBox.CheckedChanged += passwordBox_CheckedChanged;
             errorLbl.Visible = false;
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            User user = users.FirstOrDefault(u => u.CheckCredentials(usernameTB.Text, passwordTB.Text));
+            User user = users.FirstOrDefault(u => u.Login(usernameTB.Text, passwordTB.Text));
 
             if (user != null)
             {
@@ -40,6 +50,17 @@ namespace MovieDatabase
         private void passwordTB_MouseClick(object sender, MouseEventArgs e)
         {
             errorLbl.Visible = false;
+        }
+
+        private void passwordBox_CheckedChanged(object sender, EventArgs e)
+        {
+            passwordTB.PasswordChar = passwordBox.Checked ? '\0' : '*';
+        }
+
+        private void langBtn_Click(object sender, EventArgs e)
+        {
+             Util.language();
+             UpdateComponents();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace MovieDatabase
+﻿using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormCreateAcc
     {
@@ -44,6 +46,7 @@
             membershipLbl = new Label();
             backBtn = new Button();
             nextBtn = new Button();
+            passwordBox = new CheckBox();
             SuspendLayout();
             // 
             // createAccLbl
@@ -59,7 +62,7 @@
             // 
             // firstNameLbl
             // 
-            firstNameLbl.AutoSize = true;
+            firstNameLbl.AutoSize = true
             firstNameLbl.Location = new Point(33, 148);
             firstNameLbl.Margin = new Padding(4, 0, 4, 0);
             firstNameLbl.Name = "firstNameLbl";
@@ -110,6 +113,7 @@
             langBtn.TabIndex = 6;
             langBtn.Text = "French";
             langBtn.UseVisualStyleBackColor = true;
+            langBtn.Click += langBtn_Click;
             // 
             // dobLbl
             // 
@@ -200,11 +204,23 @@
             nextBtn.UseVisualStyleBackColor = true;
             nextBtn.Click += nextBtn_Click;
             // 
+            // passwordBox
+            // 
+            passwordBox.AutoSize = true;
+            passwordBox.Location = new Point(837, 260);
+            passwordBox.Name = "passwordBox";
+            passwordBox.Size = new Size(164, 29);
+            passwordBox.TabIndex = 16;
+            passwordBox.Text = "Show password";
+            passwordBox.UseVisualStyleBackColor = true;
+            passwordBox.CheckedChanged += passwordBox_CheckedChanged;
+            // 
             // FormCreateAcc
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1143, 750);
+            Controls.Add(passwordBox);
             Controls.Add(nextBtn);
             Controls.Add(backBtn);
             Controls.Add(membershipLbl);
@@ -228,6 +244,19 @@
             PerformLayout();
         }
 
+        public void Update()
+        {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
+            createAccLbl.Text = rm.GetString("CreateAccount");
+            langBtn.Text = rm.GetString("Lanbutton");
+            firstNameLbl.Text = rm.GetString("FirstName");
+            lastNameLbl.Text = rm.GetString("LastName");
+            dobLbl.Text = rm.GetString("DOB");
+            usernameLbl.Text = rm.GetString("Username");
+            passwordLbl.Text = rm.GetString("Password");
+            membershipLbl.Text = rm.GetString("MembershipType");
+        }
+
         #endregion
 
         private Label createAccLbl;
@@ -246,5 +275,6 @@
         private Label membershipLbl;
         private Button backBtn;
         private Button nextBtn;
+        private CheckBox passwordBox;
     }
 }

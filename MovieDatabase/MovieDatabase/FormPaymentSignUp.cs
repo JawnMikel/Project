@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using MovieDatabase.Utils;
 namespace MovieDatabase
 {
-    public partial class FormPayment : Form
+    public partial class FormPaymentSignUp : Form
     {
         private string _firstName;
         private string _lastName;
@@ -18,10 +18,11 @@ namespace MovieDatabase
         private string _password;
         private DateTime _dob;
         private User.Memberships _membership;
-
-        private decimal _paymentAmount = 11.99m;
-        public FormPayment(string firstName, string lastName, string username, string password, DateTime dob, User.Memberships membership)
+        public FormPaymentSignUp(string firstName, string lastName, string username, string password, DateTime dob, User.Memberships membership)
         {
+            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
+            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+
             InitializeComponent();
             _firstName = firstName;
             _lastName = lastName;
@@ -29,6 +30,7 @@ namespace MovieDatabase
             _password = password;
             _dob = dob;
             _membership = membership;
+            fullNameTB.Text = firstName + " " + lastName;
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -41,7 +43,7 @@ namespace MovieDatabase
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-
+            Util.language();
         }
 
         private void payBtn_Click(object sender, EventArgs e)
@@ -55,21 +57,19 @@ namespace MovieDatabase
         private void ConfirmPayment()
         {
             string creditCardNumber = cardNumberTB.Text;
-            int cvv;
-            if (!int.TryParse(cvvTB.Text, out cvv))
+            string cvv = cvvTB.Text;
+            string expiryDate = expiryDateTB.Text;
+
+            try
             {
-                MessageBox.Show("Invalid CVV. Please enter a 3-digit number.", "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            //DateTime expiryDate = expiryDateTB.Text;
+                Payment payment = new Payment(
+                    fullNameTB.Text,
+                    creditCardNumber,
+                    expiryDate,
+                    cvv
+                );
 
-            Payment payment = new Payment(_firstName +" "+ _lastName,creditCardNumber,expiryDate,cvv,_paymentAmount);
-
-            bool paymentSuccess = payment.Process(creditCardNumber, cvv, expiryDate);
-
-            if (paymentSuccess)
-            {
-                User user = new User(_username, _password, _firstName, _lastName, _membership, _dob);
+                User user = new User(_username, _password, _firstName, _lastName, _dob, _membership);
                 FormLogin.users.Add(user);
 
                 MessageBox.Show("Payment approved! Account successfully created.", "Approved", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -79,9 +79,15 @@ namespace MovieDatabase
                 formMainMenu.Closed += (s, args) => this.Close();
                 formMainMenu.ShowDialog();
             }
-            else
+            catch (ArgumentException ex)
             {
-                MessageBox.Show("Payment failed. Please try again.", "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
     }

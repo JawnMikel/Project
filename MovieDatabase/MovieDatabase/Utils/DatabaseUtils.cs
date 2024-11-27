@@ -301,11 +301,12 @@ namespace MovieDatabase.Utils
             int id = -1;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             using (SQLiteCommand pkCmd = new SQLiteCommand(PK_SQL, _connection))
+
             {
                 // Form the SQL query using data from the user
                 cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", user.LastName);
-                cmd.Parameters.AddWithValue("@UserName", user.UserName);
+                cmd.Parameters.AddWithValue("@UserName", user.Username);
                 cmd.Parameters.AddWithValue("@Password", user.Password);
                 // Execute the SQL
                 cmd.ExecuteNonQuery();
@@ -386,7 +387,7 @@ namespace MovieDatabase.Utils
                 // Form the SQL query using data from the user
                 cmd.Parameters.AddWithValue("@Name", payment.CardHolderName);
                 cmd.Parameters.AddWithValue("@Number", payment.CreditCardNum);
-                cmd.Parameters.AddWithValue("@CVV", payment.CVV);
+                cmd.Parameters.AddWithValue("@CVV", payment.Cvv);
                 cmd.Parameters.AddWithValue("@ExpDate", payment.ExpiryDate);
                 cmd.Parameters.AddWithValue("@PayDate", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@UserID", userID);

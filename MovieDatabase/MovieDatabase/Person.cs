@@ -13,8 +13,8 @@ namespace MovieDatabase
 
         protected Person(string firstName, string lastName)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            FirstName = Utils.Util.ToPascaleCase(firstName);
+            SecondName = Utils.Util.ToPascaleCase(secondName);
         }
     }
 }
