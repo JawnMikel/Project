@@ -62,7 +62,7 @@ namespace MovieDatabase
             // 
             // firstNameLbl
             // 
-            firstNameLbl.AutoSize = true
+            firstNameLbl.AutoSize = true;
             firstNameLbl.Location = new Point(33, 148);
             firstNameLbl.Margin = new Padding(4, 0, 4, 0);
             firstNameLbl.Name = "firstNameLbl";
