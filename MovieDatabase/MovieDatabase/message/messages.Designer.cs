@@ -205,6 +205,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string Password {
@@ -241,6 +250,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rating.
+        /// </summary>
+        internal static string Rating {
+            get {
+                return ResourceManager.GetString("Rating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upgrade Membership.
         /// </summary>
         internal static string UpgradeMembership {
@@ -259,11 +277,29 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View reviews.
+        /// </summary>
+        internal static string ViewReviews {
+            get {
+                return ResourceManager.GetString("ViewReviews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Watch list.
         /// </summary>
         internal static string WatchList {
             get {
                 return ResourceManager.GetString("WatchList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write a review.
+        /// </summary>
+        internal static string WriteReview {
+            get {
+                return ResourceManager.GetString("WriteReview", resourceCulture);
             }
         }
     }

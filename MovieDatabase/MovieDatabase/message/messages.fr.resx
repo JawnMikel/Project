@@ -186,4 +186,16 @@
   <data name="WatchList" xml:space="preserve">
     <value>List de vissionage</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Évaluation</value>
+  </data>
+  <data name="WriteReview" xml:space="preserve">
+    <value>Écrire un avis</value>
+  </data>
+  <data name="ViewReviews" xml:space="preserve">
+    <value>Vois les avis</value>
+  </data>
 </root>
