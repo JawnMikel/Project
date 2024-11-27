@@ -8,12 +8,13 @@ namespace MovieDatabase
 {
     public abstract class CrewMember : Person
     {
-        private static int _counter = 1;
         public int Id { get; set; }
         public List<Review> Reviews { get; set; }
+        public string ImageLink { get; set; }
+
         public CrewMember(string firstName, string secondName,List<Review> reviews) : base(firstName, secondName)
         {
-            Id = _counter++;
+            Id = -1;
             Reviews = reviews;
         }
 
