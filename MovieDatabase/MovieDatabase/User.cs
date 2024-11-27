@@ -10,13 +10,12 @@ namespace MovieDatabase
     {
         private static int nextId = 1;
         public int Id { get; set; }
-        
-        private string _username;
-        
-        private string _password;
+        public string Username { get; set; }
+        public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime Dob { get; set; }
+
         public enum Memberships
         {
             REGULAR,
@@ -27,12 +26,24 @@ namespace MovieDatabase
         public User(string username, string password, string firstName, string lastName,DateTime dob, Memberships membership)
         {
             Id = nextId++;
-            _username = username;
-            _password = password;
-            FirstName = firstName;
-            LastName = lastName;
+            Username = username;
+            Password = password;
+            FirstName = Utils.Util.ToPascaleCase(firstName);
+            LastName = Utils.Util.ToPascaleCase(lastName);
             Dob = dob;
             Membership = membership;
         }
+
+        /// <summary>
+        /// Passes a username and password and checks if they match with the fields of the user
+        /// </summary>
+        /// <param name="username">username</param>
+        /// <param name="password">password</param>
+        /// <returns>True if the credentials match or returns false if the credentials do not match</returns>
+        public bool Login(string username, string password)
+        {
+            return Username == username && Password == password;
+        }
+
     }
 }

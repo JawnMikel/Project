@@ -8,9 +8,12 @@ namespace MovieDatabase
 {
     public abstract class CrewMember : Person
     {
+        private static int _counter = 1;
+        public int Id { get; set; }
         public List<Review> Reviews { get; set; }
-        protected CrewMember(string firstName, string secondName,List<Review> reviews) : base(firstName, secondName)
+        public CrewMember(string firstName, string secondName,List<Review> reviews) : base(firstName, secondName)
         {
+            Id = _counter++;
             Reviews = reviews;
         }
 

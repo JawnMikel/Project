@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="message\messages.Designer.cs">
+  <Compile Update="message\messages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>messages.resx</DependentUpon>
@@ -21,6 +21,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="FormPaymentUpgrade.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

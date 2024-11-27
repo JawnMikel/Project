@@ -35,7 +35,7 @@ namespace MovieDatabase
             firstNameTB = new TextBox();
             lastNameLbl = new Label();
             lastNameTB = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
+            dobPicker = new DateTimePicker();
             langBtn = new Button();
             dobLbl = new Label();
             usernameLbl = new Label();
@@ -46,62 +46,70 @@ namespace MovieDatabase
             membershipLbl = new Label();
             backBtn = new Button();
             nextBtn = new Button();
+            passwordBox = new CheckBox();
             SuspendLayout();
             // 
             // createAccLbl
             // 
             createAccLbl.AutoSize = true;
             createAccLbl.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            createAccLbl.Location = new Point(243, 9);
+            createAccLbl.Location = new Point(347, 15);
+            createAccLbl.Margin = new Padding(4, 0, 4, 0);
             createAccLbl.Name = "createAccLbl";
-            createAccLbl.Size = new Size(293, 45);
+            createAccLbl.Size = new Size(441, 65);
             createAccLbl.TabIndex = 0;
             createAccLbl.Text = "Create an Account";
             // 
             // firstNameLbl
             // 
-            firstNameLbl.AutoSize = true;
-            firstNameLbl.Location = new Point(2, 89);
+            firstNameLbl.AutoSize = true
+            firstNameLbl.Location = new Point(33, 148);
+            firstNameLbl.Margin = new Padding(4, 0, 4, 0);
             firstNameLbl.Name = "firstNameLbl";
-            firstNameLbl.Size = new Size(64, 15);
+            firstNameLbl.Size = new Size(97, 25);
             firstNameLbl.TabIndex = 1;
             firstNameLbl.Text = "First Name";
             // 
             // firstNameTB
             // 
-            firstNameTB.Location = new Point(72, 86);
+            firstNameTB.Location = new Point(133, 143);
+            firstNameTB.Margin = new Padding(4, 5, 4, 5);
             firstNameTB.Name = "firstNameTB";
-            firstNameTB.Size = new Size(131, 23);
+            firstNameTB.Size = new Size(185, 31);
             firstNameTB.TabIndex = 2;
             // 
             // lastNameLbl
             // 
             lastNameLbl.AutoSize = true;
-            lastNameLbl.Location = new Point(209, 89);
+            lastNameLbl.Location = new Point(347, 148);
+            lastNameLbl.Margin = new Padding(4, 0, 4, 0);
             lastNameLbl.Name = "lastNameLbl";
-            lastNameLbl.Size = new Size(63, 15);
+            lastNameLbl.Size = new Size(95, 25);
             lastNameLbl.TabIndex = 3;
             lastNameLbl.Text = "Last Name";
             // 
             // lastNameTB
             // 
-            lastNameTB.Location = new Point(305, 86);
+            lastNameTB.Location = new Point(436, 143);
+            lastNameTB.Margin = new Padding(4, 5, 4, 5);
             lastNameTB.Name = "lastNameTB";
-            lastNameTB.Size = new Size(134, 23);
+            lastNameTB.Size = new Size(190, 31);
             lastNameTB.TabIndex = 4;
             // 
-            // dateTimePicker1
+            // dobPicker
             // 
-            dateTimePicker1.Location = new Point(466, 86);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(200, 23);
-            dateTimePicker1.TabIndex = 5;
+            dobPicker.Location = new Point(666, 143);
+            dobPicker.Margin = new Padding(4, 5, 4, 5);
+            dobPicker.Name = "dobPicker";
+            dobPicker.Size = new Size(284, 31);
+            dobPicker.TabIndex = 5;
             // 
             // langBtn
             // 
-            langBtn.Location = new Point(586, 29);
+            langBtn.Location = new Point(837, 48);
+            langBtn.Margin = new Padding(4, 5, 4, 5);
             langBtn.Name = "langBtn";
-            langBtn.Size = new Size(97, 23);
+            langBtn.Size = new Size(139, 38);
             langBtn.TabIndex = 6;
             langBtn.Text = "French";
             langBtn.UseVisualStyleBackColor = true;
@@ -110,41 +118,46 @@ namespace MovieDatabase
             // dobLbl
             // 
             dobLbl.AutoSize = true;
-            dobLbl.Location = new Point(529, 68);
+            dobLbl.Location = new Point(756, 113);
+            dobLbl.Margin = new Padding(4, 0, 4, 0);
             dobLbl.Name = "dobLbl";
-            dobLbl.Size = new Size(73, 15);
+            dobLbl.Size = new Size(113, 25);
             dobLbl.TabIndex = 7;
             dobLbl.Text = "Date of birth";
             // 
             // usernameLbl
             // 
             usernameLbl.AutoSize = true;
-            usernameLbl.Location = new Point(116, 159);
+            usernameLbl.Location = new Point(234, 265);
+            usernameLbl.Margin = new Padding(4, 0, 4, 0);
             usernameLbl.Name = "usernameLbl";
-            usernameLbl.Size = new Size(60, 15);
+            usernameLbl.Size = new Size(91, 25);
             usernameLbl.TabIndex = 8;
             usernameLbl.Text = "Username";
             // 
             // usernameTB
             // 
-            usernameTB.Location = new Point(226, 156);
+            usernameTB.Location = new Point(323, 260);
+            usernameTB.Margin = new Padding(4, 5, 4, 5);
             usernameTB.Name = "usernameTB";
-            usernameTB.Size = new Size(100, 23);
+            usernameTB.Size = new Size(173, 31);
             usernameTB.TabIndex = 9;
             // 
             // passwordTB
             // 
-            passwordTB.Location = new Point(447, 156);
+            passwordTB.Location = new Point(639, 260);
+            passwordTB.Margin = new Padding(4, 5, 4, 5);
             passwordTB.Name = "passwordTB";
-            passwordTB.Size = new Size(100, 23);
+            passwordTB.Size = new Size(175, 31);
             passwordTB.TabIndex = 10;
             // 
             // passwordLbl
             // 
             passwordLbl.AutoSize = true;
-            passwordLbl.Location = new Point(364, 159);
+            passwordLbl.Location = new Point(549, 265);
+            passwordLbl.Margin = new Padding(4, 0, 4, 0);
             passwordLbl.Name = "passwordLbl";
-            passwordLbl.Size = new Size(57, 15);
+            passwordLbl.Size = new Size(87, 25);
             passwordLbl.TabIndex = 11;
             passwordLbl.Text = "Password";
             // 
@@ -153,26 +166,29 @@ namespace MovieDatabase
             membershipCB.DisplayMember = "d";
             membershipCB.FormattingEnabled = true;
             membershipCB.Items.AddRange(new object[] { "Regular", "Premium" });
-            membershipCB.Location = new Point(300, 233);
+            membershipCB.Location = new Point(429, 388);
+            membershipCB.Margin = new Padding(4, 5, 4, 5);
             membershipCB.Name = "membershipCB";
-            membershipCB.Size = new Size(121, 23);
+            membershipCB.Size = new Size(171, 33);
             membershipCB.TabIndex = 12;
             membershipCB.SelectedIndexChanged += membershipCB_SelectedIndexChanged;
             // 
             // membershipLbl
             // 
             membershipLbl.AutoSize = true;
-            membershipLbl.Location = new Point(309, 215);
+            membershipLbl.Location = new Point(441, 358);
+            membershipLbl.Margin = new Padding(4, 0, 4, 0);
             membershipLbl.Name = "membershipLbl";
-            membershipLbl.Size = new Size(101, 15);
+            membershipLbl.Size = new Size(154, 25);
             membershipLbl.TabIndex = 13;
             membershipLbl.Text = "Membership Type";
             // 
             // backBtn
             // 
-            backBtn.Location = new Point(247, 318);
+            backBtn.Location = new Point(353, 530);
+            backBtn.Margin = new Padding(4, 5, 4, 5);
             backBtn.Name = "backBtn";
-            backBtn.Size = new Size(75, 23);
+            backBtn.Size = new Size(107, 38);
             backBtn.TabIndex = 14;
             backBtn.Text = "Back";
             backBtn.UseVisualStyleBackColor = true;
@@ -180,19 +196,31 @@ namespace MovieDatabase
             // 
             // nextBtn
             // 
-            nextBtn.Location = new Point(401, 318);
+            nextBtn.Location = new Point(573, 530);
+            nextBtn.Margin = new Padding(4, 5, 4, 5);
             nextBtn.Name = "nextBtn";
-            nextBtn.Size = new Size(75, 23);
+            nextBtn.Size = new Size(107, 38);
             nextBtn.TabIndex = 15;
-            nextBtn.Text = "button2";
             nextBtn.UseVisualStyleBackColor = true;
             nextBtn.Click += nextBtn_Click;
             // 
+            // passwordBox
+            // 
+            passwordBox.AutoSize = true;
+            passwordBox.Location = new Point(837, 260);
+            passwordBox.Name = "passwordBox";
+            passwordBox.Size = new Size(164, 29);
+            passwordBox.TabIndex = 16;
+            passwordBox.Text = "Show password";
+            passwordBox.UseVisualStyleBackColor = true;
+            passwordBox.CheckedChanged += passwordBox_CheckedChanged;
+            // 
             // FormCreateAcc
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1143, 750);
+            Controls.Add(passwordBox);
             Controls.Add(nextBtn);
             Controls.Add(backBtn);
             Controls.Add(membershipLbl);
@@ -203,12 +231,13 @@ namespace MovieDatabase
             Controls.Add(usernameLbl);
             Controls.Add(dobLbl);
             Controls.Add(langBtn);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dobPicker);
             Controls.Add(lastNameTB);
             Controls.Add(lastNameLbl);
             Controls.Add(firstNameTB);
             Controls.Add(firstNameLbl);
             Controls.Add(createAccLbl);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "FormCreateAcc";
             Text = "frmCreateAcc";
             ResumeLayout(false);
@@ -235,7 +264,7 @@ namespace MovieDatabase
         private TextBox firstNameTB;
         private Label lastNameLbl;
         private TextBox lastNameTB;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dobPicker;
         private Button langBtn;
         private Label dobLbl;
         private Label usernameLbl;
@@ -246,5 +275,6 @@ namespace MovieDatabase
         private Label membershipLbl;
         private Button backBtn;
         private Button nextBtn;
+        private CheckBox passwordBox;
     }
 }

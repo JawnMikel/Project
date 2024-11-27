@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MovieDatabase.Utils;
 
 namespace MovieDatabase
 {
@@ -17,10 +18,13 @@ namespace MovieDatabase
         CultureInfo cultureFr = new CultureInfo("fr-Fr");
         public FormCreateAcc()
         {
-            Thread.CurrentThread.CurrentCulture = cultureEn;
-            Thread.CurrentThread.CurrentUICulture = cultureFr;
+            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
+            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+            Update()
             InitializeComponent();
-            Update();
+            passwordTB.PasswordChar = '*';
+            passwordBox.CheckedChanged += passwordBox_CheckedChanged;
+            nextBtn.Enabled = false;
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -33,64 +37,76 @@ namespace MovieDatabase
 
         private void nextBtn_Click(object sender, EventArgs e)
         {
-            CreateUser();
-            User user = CreateUser();
             if (membershipCB.SelectedIndex == 0)
             {
+                User user = CreateUser();
+                FormLogin.users.Add(user);
+
+                MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 this.Hide();
-                var formMainMenu = new FormMainMenu();
+                var formMainMenu = new FormMainMenu(user);
                 formMainMenu.Closed += (s, args) => this.Close();
                 formMainMenu.ShowDialog();
             }
             else if (membershipCB.SelectedIndex == 1)
             {
                 this.Hide();
-                var formPayment = new FormPayment(user);
+
+                var formPayment = new FormPaymentSignUp(
+                    firstNameTB.Text,
+                    lastNameTB.Text,
+                    usernameTB.Text,
+                    passwordTB.Text,
+                    dobPicker.Value,
+                    User.Memberships.PREMIUM
+                );
+
                 formPayment.Closed += (s, args) => this.Close();
                 formPayment.ShowDialog();
             }
         }
-
         private void membershipCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (membershipCB.SelectedIndex == 0)
             {
                 nextBtn.Text = "Create Account";
+                nextBtn.Enabled = true;
             }
             else if (membershipCB.SelectedIndex == 1)
             {
                 nextBtn.Text = "Pay";
+                nextBtn.Enabled = true;
             }
         }
 
+        /// <summary>
+        /// Creates a user from the user class from using the information in the frame
+        /// </summary>
+        /// <returns>a new user</returns>
         private User CreateUser()
         {
             string firstName = firstNameTB.Text;
             string lastName = lastNameTB.Text;
+            DateTime dob = dobPicker.Value;
 
             int selectedIndex = membershipCB.SelectedIndex;
             User.Memberships selectedMembership = (User.Memberships)selectedIndex;
-            //string membership = selectedMembership.ToString();
 
             string username = usernameTB.Text;
             string password = passwordTB.Text;
+            User user = new User(username, password, firstName, lastName, dob, selectedMembership);
+            return user;
+        }
 
-            //User user = new User(username, password, firstName, lastName, selectedMembership);
-            return null;
+        private void passwordBox_CheckedChanged(object sender, EventArgs e)
+        {
+            passwordTB.PasswordChar = passwordBox.Checked ? '\0' : '*';
         }
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-            if (Thread.CurrentThread.CurrentCulture.Equals(cultureEn))
-            {
-                Thread.CurrentThread.CurrentCulture = cultureFr;
-                Thread.CurrentThread.CurrentUICulture = cultureFr;
-            }
-            else
-            {
-                Thread.CurrentThread.CurrentCulture = cultureEn;
-                Thread.CurrentThread.CurrentUICulture = cultureEn;
-            }
+            Util.language();
             Update();
         }
     }

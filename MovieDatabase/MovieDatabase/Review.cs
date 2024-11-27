@@ -8,14 +8,15 @@ namespace MovieDatabase
 {
     public class Review
     {
+        private static int _nextInt = 1;
         public int ReviewId { get; set; }
         public User Author { get; set; }
         public string Comment { get; set; }
         public double Rating { get; set; }
 
-        public Review(int reviewId, User author, string comment, double rating)
+        public Review(User author, string comment, double rating)
         {
-            ReviewId = reviewId;
+            ReviewId = _nextInt++;
             Author = author;
             Comment = comment;
             Rating = rating;
@@ -29,6 +30,16 @@ namespace MovieDatabase
         public void editReviewRating(double rating)
         {
 
+        }
+
+        public override string? ToString()
+        {
+            return $"""
+                    By: {Author.Username}
+                    Rating: {Rating}
+                    Comment: {Comment}
+                    
+                    """;
         }
     }
 }
