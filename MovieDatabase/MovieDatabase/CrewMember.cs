@@ -10,6 +10,7 @@ namespace MovieDatabase
     {
         private static int _counter = 1;
         public int Id { get; set; }
+        public string ImageLink { get; set; }
         public List<Review> Reviews { get; set; }
         public CrewMember(string firstName, string secondName,List<Review> reviews) : base(firstName, secondName)
         {
