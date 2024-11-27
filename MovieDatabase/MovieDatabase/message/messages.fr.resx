@@ -213,4 +213,13 @@
   <data name="AddToWatchList" xml:space="preserve">
     <value>Ajouté au list de vissionage</value>
   </data>
+  <data name="Reviews" xml:space="preserve">
+    <value>Les Avis:</value>
+  </data>
+  <data name="Post" xml:space="preserve">
+    <value>Publié</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>Montré le mot de passe</value>
+  </data>
 </root>

@@ -213,4 +213,13 @@
   <data name="AddToWatchList" xml:space="preserve">
     <value>Add to watchlist</value>
   </data>
+  <data name="Reviews" xml:space="preserve">
+    <value>Reviews:</value>
+  </data>
+  <data name="Post" xml:space="preserve">
+    <value>Post</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>Show Password</value>
+  </data>
 </root>
