@@ -106,7 +106,7 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 // Form the insert statement
-                cmd.Parameters.AddWithValue("@DirectorID", director.DirectorId);
+                cmd.Parameters.AddWithValue("@DirectorID", director.Id);
                 cmd.Parameters.AddWithValue("@MovieID", movie.MediaId);
                 // Execute the insert
                 cmd.ExecuteNonQuery();
@@ -132,7 +132,7 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 // Form the insert statement
-                cmd.Parameters.AddWithValue("@DirectorID", director.DirectorId);
+                cmd.Parameters.AddWithValue("@DirectorID", director.Id);
                 cmd.Parameters.AddWithValue("@TVShowID", tvShow.MediaId);
                 // Execute the insert
                 cmd.ExecuteNonQuery();
@@ -158,7 +158,7 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 // Form the insert statement
-                cmd.Parameters.AddWithValue("@DirectorID", director.DirectorId);
+                cmd.Parameters.AddWithValue("@DirectorID", director.Id);
                 cmd.Parameters.AddWithValue("@EpisodeID", episode.MediaId);
                 // Execute the insert
                 cmd.ExecuteNonQuery();
@@ -218,7 +218,7 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 // Form the insert statement
-                cmd.Parameters.AddWithValue("@ActorID", actor.ActorId);
+                cmd.Parameters.AddWithValue("@ActorID", actor.Id);
                 cmd.Parameters.AddWithValue("@MovieID", movie.MediaId);
                 // Execute the insert
                 cmd.ExecuteNonQuery();
@@ -244,7 +244,7 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 // Form the insert statement
-                cmd.Parameters.AddWithValue("@ActorID", actor.ActorId);
+                cmd.Parameters.AddWithValue("@ActorID", actor.Id);
                 cmd.Parameters.AddWithValue("@TVShowID", tvShow.MediaId);
                 // Execute the insert
                 cmd.ExecuteNonQuery();
@@ -270,7 +270,7 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 // Form the insert statement
-                cmd.Parameters.AddWithValue("@ActorID", actor.ActorId);
+                cmd.Parameters.AddWithValue("@ActorID", actor.Id);
                 cmd.Parameters.AddWithValue("@EpisodeID", episode.MediaId);
                 // Execute the insert
                 cmd.ExecuteNonQuery();
@@ -555,7 +555,7 @@ namespace MovieDatabase.Utils
                 reviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
 
                 // Form the director review insert SQL statement
-                dirReviewInsCmd.Parameters.AddWithValue("@DirectorID", director.DirectorId);
+                dirReviewInsCmd.Parameters.AddWithValue("@DirectorID", director.Id);
                 dirReviewInsCmd.Parameters.AddWithValue("@ReviewID", reviewId);
 
                 // Execute the insert
@@ -605,7 +605,7 @@ namespace MovieDatabase.Utils
                 reviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
 
                 // Form the director review insert SQL statement
-                actReviewInsCmd.Parameters.AddWithValue("@ActorID", actor.ActorId);
+                actReviewInsCmd.Parameters.AddWithValue("@ActorID", actor.Id);
                 actReviewInsCmd.Parameters.AddWithValue("@ReviewID", reviewId);
 
                 // Execute the insert
