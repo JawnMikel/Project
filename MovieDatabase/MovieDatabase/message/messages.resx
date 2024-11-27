@@ -190,7 +190,7 @@
     <value>Name</value>
   </data>
   <data name="Rating" xml:space="preserve">
-    <value>Rating</value>
+    <value>Rating:</value>
   </data>
   <data name="WriteReview" xml:space="preserve">
     <value>Write a review</value>
@@ -206,5 +206,11 @@
   </data>
   <data name="TvShows" xml:space="preserve">
     <value>Tv Shows</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="AddToWatchList" xml:space="preserve">
+    <value>Add to watchlist</value>
   </data>
 </root>

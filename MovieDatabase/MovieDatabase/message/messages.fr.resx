@@ -190,7 +190,7 @@
     <value>Nom</value>
   </data>
   <data name="Rating" xml:space="preserve">
-    <value>Évaluation</value>
+    <value>Évaluation:</value>
   </data>
   <data name="WriteReview" xml:space="preserve">
     <value>Écrire un avis</value>
@@ -206,5 +206,11 @@
   </data>
   <data name="TvShows" xml:space="preserve">
     <value>Des Séries Télévisé</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titre</value>
+  </data>
+  <data name="AddToWatchList" xml:space="preserve">
+    <value>Ajouté au list de vissionage</value>
   </data>
 </root>

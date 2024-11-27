@@ -61,6 +61,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to watchlist.
+        /// </summary>
+        internal static string AddToWatchList {
+            get {
+                return ResourceManager.GetString("AddToWatchList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         internal static string BackButton {
@@ -259,7 +268,7 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rating.
+        ///   Looks up a localized string similar to Rating:.
         /// </summary>
         internal static string Rating {
             get {
@@ -273,6 +282,15 @@ namespace MovieDatabase.message {
         internal static string Recommendation {
             get {
                 return ResourceManager.GetString("Recommendation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        internal static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         
