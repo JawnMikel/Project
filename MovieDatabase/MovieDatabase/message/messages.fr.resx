@@ -198,4 +198,13 @@
   <data name="ViewReviews" xml:space="preserve">
     <value>Vois les avis</value>
   </data>
+  <data name="Recommendation" xml:space="preserve">
+    <value>Recommandation</value>
+  </data>
+  <data name="Movies" xml:space="preserve">
+    <value>Films</value>
+  </data>
+  <data name="TvShows" xml:space="preserve">
+    <value>Des Séries Télévisé</value>
+  </data>
 </root>

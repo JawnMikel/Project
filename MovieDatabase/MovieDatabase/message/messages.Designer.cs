@@ -205,6 +205,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Movies.
+        /// </summary>
+        internal static string Movies {
+            get {
+                return ResourceManager.GetString("Movies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Name {
@@ -255,6 +264,24 @@ namespace MovieDatabase.message {
         internal static string Rating {
             get {
                 return ResourceManager.GetString("Rating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recommendation.
+        /// </summary>
+        internal static string Recommendation {
+            get {
+                return ResourceManager.GetString("Recommendation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tv Shows.
+        /// </summary>
+        internal static string TvShows {
+            get {
+                return ResourceManager.GetString("TvShows", resourceCulture);
             }
         }
         
