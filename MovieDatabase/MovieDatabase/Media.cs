@@ -17,6 +17,7 @@ namespace MovieDatabase
         public Genre Genres { get; set; }
         public List<Review> Reviews { get; set; }
         public string Sysnopsis { get; set; }
+        public string ImageLink { get; set; }
 
         protected Media(int mediaId, string title, DateTime releaseDate, List<Director> directors, List<Actor> actors, Genre genres, List<Review> reviews, string sysnopsis)
         {

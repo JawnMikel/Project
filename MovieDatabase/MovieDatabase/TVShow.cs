@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MovieDatabase
 {
-    public class TVShow
+    public class TVShow : Media
     {
         public List<Episode> Episodes;
 
-        public TVShow(List<Episode> episodes)
+        public TVShow(int mediaId, string title, DateTime releaseDate, List<Director> directors, List<Actor> actors, Genre genres, List<Review> reviews, string sysnopsis, List<Episode> episodes) : base(mediaId, title, releaseDate, directors, actors, genres, reviews, sysnopsis)
         {
             Episodes = episodes;
         }
