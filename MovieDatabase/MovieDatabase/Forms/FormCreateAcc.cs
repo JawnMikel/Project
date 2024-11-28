@@ -20,7 +20,6 @@ namespace MovieDatabase
         {
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
-            
             InitializeComponent();
             Update();
             passwordTB.PasswordChar = '*';

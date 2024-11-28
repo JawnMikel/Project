@@ -171,4 +171,55 @@
   <data name="Username" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Full Name:</value>
+  </data>
+  <data name="UpgradeMembership" xml:space="preserve">
+    <value>Upgrade Membership</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="WatchList" xml:space="preserve">
+    <value>Watch list</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rating:</value>
+  </data>
+  <data name="WriteReview" xml:space="preserve">
+    <value>Write a review</value>
+  </data>
+  <data name="ViewReviews" xml:space="preserve">
+    <value>View reviews</value>
+  </data>
+  <data name="Recommendation" xml:space="preserve">
+    <value>Recommendation</value>
+  </data>
+  <data name="Movies" xml:space="preserve">
+    <value>Movies</value>
+  </data>
+  <data name="TvShows" xml:space="preserve">
+    <value>Tv Shows</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="AddToWatchList" xml:space="preserve">
+    <value>Add to watchlist</value>
+  </data>
+  <data name="Reviews" xml:space="preserve">
+    <value>Reviews:</value>
+  </data>
+  <data name="Post" xml:space="preserve">
+    <value>Post</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>Show Password</value>
+  </data>
 </root>
