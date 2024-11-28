@@ -20,7 +20,7 @@ namespace MovieDatabase
         /// <param name="secondName">The last name of the director.</param>
         /// <param name="imageLink">The link of the picture of the director.</param>
         public Director(string firstName, string secondName, string imageLink) : base(firstName, secondName, imageLink)
-        { 
+        {
             Directed = new List<Media>();
         }
 

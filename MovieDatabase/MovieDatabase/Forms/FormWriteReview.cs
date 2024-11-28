@@ -39,7 +39,7 @@ namespace MovieDatabase
             Review review = new Review(user, comment, rating);
             if (media != null)
             {
-                media.addReview(review);
+                media.AddReview(review);
             }
             if (member != null)
             {
