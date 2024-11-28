@@ -19,7 +19,7 @@ namespace MovieDatabase
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
 
             InitializeComponent();
-            nameLbl.Text = member.FirstName + " " + member.SecondName;
+            nameLbl.Text = member.FirstName + " " + member.LastName;
             ratingLbl.Text += member.getCrewMemberRating() + "/5";
         }
 
