@@ -30,7 +30,7 @@ namespace MovieDatabase
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-            Util.language();
+            Util.Language();
         }
 
         private void wirteReviewBtn_Click(object sender, EventArgs e)

@@ -57,7 +57,7 @@ namespace MovieDatabase
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-            Util.language();
+            Util.Language();
         }
     }
 }

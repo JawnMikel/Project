@@ -129,15 +129,16 @@ namespace MovieDatabase.Utils
         public static string ToPascalCase(string str)
         {
             if (string.IsNullOrWhiteSpace(str))
+            {
                 return str;
-
+            }
             return char.ToUpper(str[0]) + str.Substring(1).ToLower();        
         }
 
         /// <summary>
         /// Changes the language between English and French.
         /// </summary>
-        public static void language()
+        public static void Language()
         {
             if (Thread.CurrentThread.CurrentCulture.Equals(cultureEn))
             {
@@ -159,8 +160,10 @@ namespace MovieDatabase.Utils
         public static bool ValidateUserAge(DateTime dob)
         {
             int age = DateTime.Now.Year - dob.Year;
-            if (dob > DateTime.Now.AddYears(-age)) 
+            if (dob > DateTime.Now.AddYears(-age))
+            {
                 age--;
+            }
             return age >= 18;
         }
 
