@@ -34,7 +34,7 @@ namespace MovieDatabase
                 throw new ArgumentNullException("The author or comment arguments cannot be null.");
             }
             // Round the rating to one decimal point
-            rating = Math.Round(rating, 2, MidpointRounding.AwayFromZero);
+            rating = Math.Round(rating, 1, MidpointRounding.AwayFromZero);
             if (!Util.ValidateRatingRange(rating))
             {
                 throw new ArgumentException("The rating must be in the range defined by Util.LOWEST_RATING and UTIL.HIGHEST_RATING.");
@@ -67,7 +67,7 @@ namespace MovieDatabase
         public void EditReviewRating(double rating)
         {
             // Round the rating to one decimal point
-            rating = Math.Round(rating, 2, MidpointRounding.AwayFromZero);
+            rating = Math.Round(rating, 1, MidpointRounding.AwayFromZero);
             if (!Util.ValidateRatingRange(rating))
             {
                 throw new ArgumentException("The rating must be in the range defined by Util.LOWEST_RATING and UTIL.HIGHEST_RATING.");
