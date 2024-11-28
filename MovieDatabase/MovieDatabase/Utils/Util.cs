@@ -12,9 +12,11 @@ namespace MovieDatabase.Utils
 
         public static CultureInfo cultureEn = new CultureInfo("en-CA");
         public static CultureInfo cultureFr = new CultureInfo("en-CA");
+        public const int LOWEST_RATING = 0;
+        public const int HIGHEST_RATING = 5;
 
         /// <summary>
-        /// Validateps the card information (Card#, cvv, expiry date)
+        /// Validates the card information (Card#, cvv, expiry date)
         /// </summary>
         /// <param name="creditCardNumber">Card number</param>
         /// <param name="cvv">CVV</param>
@@ -85,6 +87,17 @@ namespace MovieDatabase.Utils
             if (dob > DateTime.Now.AddYears(-age)) 
                 age--;
             return age >= 18;
+        }
+
+        /// <summary>
+        /// Validates the rating range.
+        /// The rating must be between the LOWEST_RATING and HIGHEST_RATING constants (both are inclusive).
+        /// </summary>
+        /// <param name="rating">The rating.</param>
+        /// <returns>A boolean indicating whether the rating is valid.</returns>
+        public static bool ValidateRatingRange(double rating)
+        {
+            return rating >= LOWEST_RATING && rating <= HIGHEST_RATING;
         }
     }
 }
