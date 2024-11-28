@@ -18,8 +18,8 @@ namespace MovieDatabase
         /// <param name="lastName">The last name of the person.</param>
         protected Person(string firstName, string lastName)
         {
-            FirstName = Utils.Util.ToPascaleCase(firstName);
-            LastName = Utils.Util.ToPascaleCase(lastName);
+            FirstName = Utils.Util.ToPascalCase(firstName);
+            LastName = Utils.Util.ToPascalCase(lastName);
         }
     }
 }
