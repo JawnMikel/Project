@@ -50,7 +50,7 @@ namespace MovieDatabase
         private void backBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formMediaLoad = new FormMediaInformation(media);
+            var formMediaLoad = new FormMediaInformation(this, media, user);
             formMediaLoad.Closed += (s, args) => this.Close();
             formMediaLoad.ShowDialog();
         }

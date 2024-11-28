@@ -24,8 +24,8 @@ namespace MovieDatabase
             this.crewMember = crewMember;
 
             InitializeComponent();
-            nameLbl.Text = member.FirstName + " " + member.LastName;
-            ratingLbl.Text += member.GetPopularity() + "/5";
+            nameLbl.Text = crewMember.FirstName + " " + crewMember.LastName;
+            ratingLbl.Text += crewMember.GetPopularity() + "/5";
             this.user = user;
         }
 
