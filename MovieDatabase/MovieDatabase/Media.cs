@@ -13,14 +13,14 @@ namespace MovieDatabase
     public abstract class Media
     {
         public int MediaId { get; set; }
-        public string Title { get; set; }
-        public DateTime ReleaseDate { get; set; }
-        public List<Director> Directors { get; set; }
-        public List<Actor> Actors { get; set; }
-        public List<Genre> Genres { get; set; }
-        public List<Review> Reviews { get; set; }
-        public string Synopsis { get; set; }
-        public string ImageLink { get; set; }
+        public string Title { get; }
+        public DateTime ReleaseDate { get; }
+        public List<Director> Directors { get; }
+        public List<Actor> Actors { get; }
+        public List<Genre> Genres { get; }
+        public List<Review> Reviews { get;}
+        public string Synopsis { get; }
+        public string ImageLink { get; }
 
         /// <summary>
         /// Genre enum is used to represent all of the available genres.
