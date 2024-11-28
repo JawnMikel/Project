@@ -12,6 +12,7 @@ namespace MovieDatabase
     /// </summary>
     public class User
     {
+        private const int MAX_REVIEWS_REGULAR = 5;
         private string _userName;
         private string _password;
         private string _firstName;
@@ -81,7 +82,7 @@ namespace MovieDatabase
         }
         public List<Review> WrittenReviews { get; }
         public List<Media> WatchList { get; }
-        public Memberships Membership { get; private set; }
+        public Memberships Membership { get; set; } // TODO: make setter private
 
         /// <summary>
         /// Memberships enum used to represent the two available membership types.
@@ -160,9 +161,16 @@ namespace MovieDatabase
         /// </summary>
         /// <param name="comment">The comment of the review.</param>
         /// <param name="rating">The rating associated with the review.</param>
-        /// <returns>The review written.</returns>
-        public Review WriteReview(string comment, double rating)
+        /// <returns>
+        /// The review written. Null if the user has a regular membership
+        /// and already wrote the MAX_REVIEWS_REGULAR number of reviews.
+        /// </returns>
+        public Review? WriteReview(string comment, double rating)
         {
+            if (Membership == Memberships.REGULAR && WatchList.Count >= MAX_REVIEWS_REGULAR)
+            {
+                return null;
+            }
             Review review = new Review(this, comment, rating);
             WrittenReviews.Add(review);
             return review;
