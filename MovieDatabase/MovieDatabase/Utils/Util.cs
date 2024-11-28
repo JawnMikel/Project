@@ -126,7 +126,7 @@ namespace MovieDatabase.Utils
         /// </summary>
         /// <param name="str">name</param>
         /// <returns>The first letter uppercase and all the rest to lowercase</returns>
-        public static string ToPascalCase(string str)
+        public static string? ToPascalCase(string str)
         {
             if (string.IsNullOrWhiteSpace(str))
             {
