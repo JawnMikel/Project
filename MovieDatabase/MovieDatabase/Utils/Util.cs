@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace MovieDatabase.Utils
 {
@@ -47,11 +48,30 @@ namespace MovieDatabase.Utils
         }
 
         /// <summary>
+        /// Validate the format of a name.
+        /// The accepted characters any letter from any alphabet and spaces.
+        /// </summary>
+        /// <param name="name">The name to validate.</param>
+        /// <returns>A boolean indicating whether the name is valid.</returns>
+        public static bool ValidateNameFormat(string name)
+        {
+            if (String.IsNullOrEmpty(name))
+            {
+                return false;
+            }
+            // Match any letter and space.
+            // No two consecutive spaces are allowed
+            const string regex = @"^([\p{L}]+ ?)+$";
+
+            return Regex.IsMatch(name, regex);
+        }
+
+        /// <summary>
         /// Returns the first letter to uppercase and the rest to lowercase.
         /// </summary>
         /// <param name="str">name</param>
         /// <returns>The first letter uppercase and all the rest to lowercase</returns>
-        public static string ToPascaleCase(string str)
+        public static string ToPascalCase(string str)
         {
             if (string.IsNullOrWhiteSpace(str))
                 return str;
