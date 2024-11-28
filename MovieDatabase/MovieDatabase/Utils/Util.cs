@@ -8,13 +8,16 @@ using System.Text.RegularExpressions;
 
 namespace MovieDatabase.Utils
 {
+    /// <summary>
+    /// Util class is used to provide util methods globally (mostly input validation).
+    /// </summary>
     public class Util
     {
-
         public static CultureInfo cultureEn = new CultureInfo("en-CA");
         public static CultureInfo cultureFr = new CultureInfo("en-CA");
         public const int LOWEST_RATING = 0;
         public const int HIGHEST_RATING = 5;
+        public const int MAX_NAME_LENGTH = 100;
 
         /// <summary>
         /// Validates the card information (Card#, cvv, expiry date)
@@ -49,7 +52,9 @@ namespace MovieDatabase.Utils
 
         /// <summary>
         /// Validate the format of a name.
-        /// The accepted characters any letter from any alphabet and spaces.
+        /// The accepted characters are any letter from any alphabet and spaces.
+        /// The name must start and end with a letter.
+        /// The name's length must be less than or equal to the MAX_NAME_LENGTH.
         /// </summary>
         /// <param name="name">The name to validate.</param>
         /// <returns>A boolean indicating whether the name is valid.</returns>
@@ -59,11 +64,40 @@ namespace MovieDatabase.Utils
             {
                 return false;
             }
-            // Match any letter and space.
+            if (name.Length > MAX_NAME_LENGTH)
+            {
+                return false;
+            }
+            // Match any letter and space
             // No two consecutive spaces are allowed
-            const string regex = @"^([\p{L}]+ ?)+$";
+            const string regex = @"^([\p{L}]+ ?)+\p{L}$";
 
             return Regex.IsMatch(name, regex);
+        }
+
+        /// <summary>
+        /// Validate the format of a username.
+        /// The accepted characters are any letter from any alphabet and spaces.
+        /// The username must start and end with a letter or digit.
+        /// The username's length must be less than or equal to MAX_NAME_LENGTH.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public static bool ValidateUsernameFormat(string username)
+        {
+            if (String.IsNullOrEmpty(username))
+            {
+                return false;
+            }
+            if (username.Length > MAX_NAME_LENGTH)
+            {
+                return false;
+            }
+            // Match any combination of letters, spaces, and digits
+            // The match must start and end with a letter or digit
+            const string regex = @"^[\p{L}0-9][\p{L}0-9 ]+[\p{L}0-9]$";
+
+            return Regex.IsMatch(username, regex);
         }
 
         /// <summary>
