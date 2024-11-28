@@ -27,8 +27,8 @@ namespace MovieDatabase
             this.user = user;
             titleLbl.Text = media.Title;
             releaseDate.Value = media.ReleaseDate;
-            sysnopsisLbl.Text = media.Sysnopsis;
-            ratingLbl.Text += media.getMediaRating() + "/5";
+            sysnopsisLbl.Text = media.Synopsis;
+            ratingLbl.Text += media.GetMediaRating() + "/5";
         }
         public FormMediaInformation(Media media, User user)
         {
@@ -37,13 +37,13 @@ namespace MovieDatabase
             this.media = media;
             titleLbl.Text = media.Title;
             releaseDate.Value = media.ReleaseDate;
-            sysnopsisLbl.Text = media.Sysnopsis;
-            ratingLbl.Text += media.getMediaRating() + "/5";
+            sysnopsisLbl.Text = media.Synopsis;
+            ratingLbl.Text += media.GetMediaRating() + "/5";
         }
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-            Util.language();
+            Util.Language();
         }
 
         private void backBtn_Click(object sender, EventArgs e)

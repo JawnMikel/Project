@@ -39,11 +39,11 @@ namespace MovieDatabase
             Review review = new Review(user, comment, rating);
             if (media != null)
             {
-                media.addReview(review);
+                media.AddReview(review);
             }
             if (member != null)
             {
-                member.addReview(review);
+                member.AddReview(review);
             }
         }
 
@@ -57,7 +57,7 @@ namespace MovieDatabase
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-            Util.language();
+            Util.Language();
         }
     }
 }

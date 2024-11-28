@@ -24,8 +24,8 @@ namespace MovieDatabase
             this.crewMember = crewMember;
 
             InitializeComponent();
-            nameLbl.Text = crewMember.FirstName + " " + crewMember.LastName;
-            ratingLbl.Text += crewMember.getCrewMemberRating() + "/5";
+            nameLbl.Text = member.FirstName + " " + member.LastName;
+            ratingLbl.Text += member.GetPopularity() + "/5";
             this.user = user;
         }
 
@@ -38,7 +38,7 @@ namespace MovieDatabase
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-            Util.language();
+            Util.Language();
         }
 
         private void wirteReviewBtn_Click(object sender, EventArgs e)
