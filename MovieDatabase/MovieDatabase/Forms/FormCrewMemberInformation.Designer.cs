@@ -49,7 +49,7 @@
             // ratingLbl
             // 
             ratingLbl.AutoSize = true;
-            ratingLbl.Location = new Point(32, 93);
+            ratingLbl.Location = new Point(24, 125);
             ratingLbl.Name = "ratingLbl";
             ratingLbl.Size = new Size(67, 25);
             ratingLbl.TabIndex = 1;
