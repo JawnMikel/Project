@@ -76,6 +76,29 @@ namespace MovieDatabase
         }
 
         /// <summary>
+        /// Check whether an object is equal to this review.
+        /// </summary>
+        /// <param name="obj">The object to compare.</param>
+        /// <returns>A boolean indicating whether the object provided is equal to this review.</returns>
+        public override bool Equals(object? obj)
+        {
+            return obj is Review review &&
+                   ReviewId == review.ReviewId &&
+                   EqualityComparer<User>.Default.Equals(Author, review.Author) &&
+                   Comment == review.Comment &&
+                   Rating == review.Rating;
+        }
+
+        /// <summary>
+        /// Generate a hashcode for this review.
+        /// </summary>
+        /// <returns>The hashcode of this review.</returns>
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(ReviewId, Author, Comment, Rating);
+        }
+
+        /// <summary>
         /// Generate a string representation of this review.
         /// </summary>
         /// <returns>A string representation of this review.</returns>
