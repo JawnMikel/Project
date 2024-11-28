@@ -54,7 +54,7 @@ namespace MovieDatabase
         /// Exception thrown when the title or synopsis arguments 
         /// are null or contain only whitespaces.
         /// </exception>
-        public Media(string title, DateTime releaseDate, string synopsis)
+        public Media(string title, DateTime releaseDate, string synopsis, string imageLink)
         {
             if (String.IsNullOrWhiteSpace(title) || String.IsNullOrWhiteSpace(synopsis))
             {
@@ -68,6 +68,7 @@ namespace MovieDatabase
             Genres = new List<Genre>();
             Reviews = new List<Review>();
             Synopsis = synopsis;
+            ImageLink = imageLink;
         }
 
         /// <summary>
