@@ -101,6 +101,27 @@ namespace MovieDatabase.Utils
         }
 
         /// <summary>
+        /// Validate the format of a password.
+        /// The accepted characters are any letter, digit, and the following special characters:
+        /// ! @ # $ % ^ & * ( )
+        /// No spaces are allowed.
+        /// The password's length must be between 8 and 50 characters inclusively.
+        /// </summary>
+        /// <param name="password">The password to validate.</param>
+        /// <returns></returns>
+        public static bool ValidatePasswordFormat(string password)
+        {
+            if (String.IsNullOrEmpty(password))
+            {
+                return false;
+            }
+            // Match between 8 and 50 letters, digits, and special characters.
+            const string regex = @"^[\p{L}\d!@#$%^&*()]{8,50}$";
+
+            return Regex.IsMatch(password, regex);
+        }
+
+        /// <summary>
         /// Returns the first letter to uppercase and the rest to lowercase.
         /// </summary>
         /// <param name="str">name</param>
@@ -135,7 +156,7 @@ namespace MovieDatabase.Utils
         /// </summary>
         /// <param name="dob">Birthday</param>
         /// <returns>Returns true if the user is 18 years and older. Returns false if the user is under 18 years old. </returns>
-        public static bool ValidateAge(DateTime dob)
+        public static bool ValidateUserAge(DateTime dob)
         {
             int age = DateTime.Now.Year - dob.Year;
             if (dob > DateTime.Now.AddYears(-age)) 
