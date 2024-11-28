@@ -12,11 +12,12 @@ namespace MovieDatabase
         {
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
-            
+
             InitializeComponent();
             passwordTB.PasswordChar = '*';
             passwordBox.CheckedChanged += passwordBox_CheckedChanged;
             errorLbl.Visible = false;
+            UpdateComponents();
         }
 
         private void loginBtn_Click(object sender, EventArgs e)

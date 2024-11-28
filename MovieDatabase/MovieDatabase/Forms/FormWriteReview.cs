@@ -29,7 +29,7 @@ namespace MovieDatabase
             InitializeComponent();
             this.user = user;
             this.member = member;
-            titleLbl.Text = member.FirstName + " " + member.SecondName;
+            titleLbl.Text = member.FirstName + " " + member.LastName;
         }
 
         private void postBtn_Click(object sender, EventArgs e)
