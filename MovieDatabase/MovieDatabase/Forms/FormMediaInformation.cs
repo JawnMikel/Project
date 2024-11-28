@@ -15,7 +15,8 @@ namespace MovieDatabase
     {
         Form form;
         Media media;
-        public FormMediaInformation(Form form, Media media)
+        User user;
+        public FormMediaInformation(Form form, Media media, User user)
         {
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
@@ -23,23 +24,26 @@ namespace MovieDatabase
             InitializeComponent();
             this.media = media;
             this.form = form;
+            this.user = user;
             titleLbl.Text = media.Title;
             releaseDate.Value = media.ReleaseDate;
-            sysnopsisLbl.Text = media.Sysnopsis;
-            ratingLbl.Text += media.getMediaRating() + "/5";
+            sysnopsisLbl.Text = media.Synopsis;
+            ratingLbl.Text += media.GetMediaRating() + "/5";
         }
-        public FormMediaInformation(Media media)
+        public FormMediaInformation(Media media, User user)
         {
             InitializeComponent();
+            this.user = user;
+            this.media = media;
             titleLbl.Text = media.Title;
             releaseDate.Value = media.ReleaseDate;
-            sysnopsisLbl.Text = media.Sysnopsis;
-            ratingLbl.Text += media.getMediaRating() + "/5";
+            sysnopsisLbl.Text = media.Synopsis;
+            ratingLbl.Text += media.GetMediaRating() + "/5";
         }
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-            Util.language();
+            Util.Language();
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -52,7 +56,7 @@ namespace MovieDatabase
         private void giveReviewBtn_Click(object sender, EventArgs e)
         {
             Hide();
-            FormViewReview formViewReview = new FormViewReview(media);
+            FormViewReview formViewReview = new FormViewReview(media, user);
             formViewReview.Closed += (s, args) => this.Close();
             formViewReview.ShowDialog();
         }
@@ -60,7 +64,7 @@ namespace MovieDatabase
         private void viewReviewBtn_Click(object sender, EventArgs e)
         {
             Hide();
-            FormViewReview formViewReview = new FormViewReview(media);
+            FormViewReview formViewReview = new FormViewReview(media, user);
             formViewReview.Closed += (s, args) => this.Close();
             formViewReview.ShowDialog();
         }

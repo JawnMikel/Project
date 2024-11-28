@@ -20,8 +20,8 @@ namespace MovieDatabase
         {
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
-            Update()
             InitializeComponent();
+            Update();
             passwordTB.PasswordChar = '*';
             passwordBox.CheckedChanged += passwordBox_CheckedChanged;
             nextBtn.Enabled = false;
@@ -90,7 +90,7 @@ namespace MovieDatabase
             string lastName = lastNameTB.Text;
             DateTime dob = dobPicker.Value;
 
-            if (!Util.ValidateAge(dob))
+            if (!Util.ValidateUserAge(dob))
             {
                 MessageBox.Show("User must be at least 18 years old.", "Age Restriction", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 throw new ArithmeticException("Must be 18 years and older");
@@ -112,7 +112,7 @@ namespace MovieDatabase
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-            Util.language();
+            Util.Language();
             Update();
         }
     }

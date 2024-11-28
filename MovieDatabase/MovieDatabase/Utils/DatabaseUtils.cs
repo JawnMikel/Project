@@ -477,7 +477,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@Title", movie.Title);
                 cmd.Parameters.AddWithValue("@ReleaseDate", movie.ReleaseDate.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@Duration", movie.Duration);
-                cmd.Parameters.AddWithValue("@Synopsis", movie.Sysnopsis);
+                cmd.Parameters.AddWithValue("@Synopsis", movie.Synopsis);
                 cmd.Parameters.AddWithValue("@ImageLink", movie.ImageLink);
                 // Execute the SQL query using data from the user
                 cmd.ExecuteNonQuery();
@@ -513,7 +513,7 @@ namespace MovieDatabase.Utils
                 // Form the SQL statement using data from the user
                 cmd.Parameters.AddWithValue("@Title", tvShow.Title);
                 cmd.Parameters.AddWithValue("@ReleaseDate", tvShow.ReleaseDate.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@Synopsis", tvShow.Sysnopsis);
+                cmd.Parameters.AddWithValue("@Synopsis", tvShow.Synopsis);
                 cmd.Parameters.AddWithValue("@ImageLink", tvShow.ImageLink);
                 // Execute the SQL query using data from the user
                 cmd.ExecuteNonQuery();
@@ -550,7 +550,7 @@ namespace MovieDatabase.Utils
                 // Form the SQL statement using data from the user
                 cmd.Parameters.AddWithValue("@Title", episode.Title);
                 cmd.Parameters.AddWithValue("@ReleaseDate", episode.ReleaseDate.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@Synopsis", episode.Sysnopsis);
+                cmd.Parameters.AddWithValue("@Synopsis", episode.Synopsis);
                 cmd.Parameters.AddWithValue("@Duration", episode.Duration);
                 cmd.Parameters.AddWithValue("@SeasonNumber", episode.SeasonNumber);
                 cmd.Parameters.AddWithValue("@EpisodeNumber", episode.EpisodeNumber);

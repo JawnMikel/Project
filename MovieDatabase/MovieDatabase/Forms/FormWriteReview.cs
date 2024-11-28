@@ -29,7 +29,7 @@ namespace MovieDatabase
             InitializeComponent();
             this.user = user;
             this.member = member;
-            titleLbl.Text = member.FirstName + " " + member.SecondName;
+            titleLbl.Text = member.FirstName + " " + member.LastName;
         }
 
         private void postBtn_Click(object sender, EventArgs e)
@@ -39,25 +39,25 @@ namespace MovieDatabase
             Review review = new Review(user, comment, rating);
             if (media != null)
             {
-                media.addReview(review);
+                media.AddReview(review);
             }
             if (member != null)
             {
-                member.addReview(review);
+                member.AddReview(review);
             }
         }
 
         private void backBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formMediaLoad = new FormMediaInformation(media);
+            var formMediaLoad = new FormMediaInformation(this, media, user);
             formMediaLoad.Closed += (s, args) => this.Close();
             formMediaLoad.ShowDialog();
         }
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-            Util.language();
+            Util.Language();
         }
     }
 }
