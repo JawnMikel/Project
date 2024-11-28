@@ -20,7 +20,7 @@ namespace MovieDatabase
         /// <param name="title">The title of the tv show.</param>
         /// <param name="releaseDate">The release date of the tv show.</param>
         /// <param name="sysnopsis">The synopsis of the tv show.</param>
-        public TVShow(string title, DateTime releaseDate, string sysnopsis) : base(title, releaseDate, sysnopsis)
+        public TVShow(string title, DateTime releaseDate, string sysnopsis, string imageLink) : base(title, releaseDate, sysnopsis, imageLink)
         {
             Episodes = new List<Episode>();
         }
@@ -90,6 +90,7 @@ namespace MovieDatabase
             // Only add if not already present
             if (!Episodes.Contains(episode))
             {
+                episode.TVShowId = MediaId; // Link the episode to this tv show
                 Episodes.Add(episode);
             }
         }
