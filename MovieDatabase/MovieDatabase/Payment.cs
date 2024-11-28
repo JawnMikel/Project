@@ -27,7 +27,7 @@ namespace MovieDatabase
         /// <param name="expiryDate">The card's expiry date</param>
         /// <param name="cvv"></param>
         /// <exception cref="ArgumentException">Exception thrown when the arguments passed are of invalid format.</exception>
-		public Payment(string cardHolderName, string cardNum, string expiryDate, string cvv)
+		public Payment(string cardHolderName, string cardNum, string cvv, string expiryDate)
         {
             if (!Util.ValidateNameFormat(cardHolderName))
             {

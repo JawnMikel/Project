@@ -82,6 +82,7 @@ namespace MovieDatabase
         }
         public List<Review> WrittenReviews { get; }
         public List<Media> WatchList { get; }
+        public Payment? MembershipPayment { get; private set; }
         public Memberships Membership { get; set; } // TODO: make setter private
 
         /// <summary>
@@ -169,11 +170,31 @@ namespace MovieDatabase
         {
             if (Membership == Memberships.REGULAR && WatchList.Count >= MAX_REVIEWS_REGULAR)
             {
-                return null;
+                throw new InvalidOperationException("The user already reached the maximum number of reviews for his regular membership.");
             }
             Review review = new Review(this, comment, rating);
             WrittenReviews.Add(review);
             return review;
+        }
+
+        /// <summary>
+        /// Upgrade the user's membership.
+        /// </summary>
+        /// <param name="cardHolderName">The card holder name.</param>
+        /// <param name="cardNum">The card number.</param>
+        /// <param name="cvv">The card's security code.</param>
+        /// <param name="expiryDate">The card's expiration date.</param>
+        /// <returns>The Payment made by the user.</returns>
+        /// <exception cref="InvalidOperationException">Exception thrown when the user already has a premium membership.</exception>
+        public Payment UpgradeMembership(string cardHolderName, string cardNum, string cvv, string expiryDate)
+        {
+            if (MembershipPayment != null)
+            {
+                throw new InvalidOperationException("The user already has a premium membership.");
+            }
+            Payment payment = new Payment(cardHolderName, cardNum, cvv, expiryDate);
+            MembershipPayment = payment;
+            return payment;
         }
 
         /// <summary>
