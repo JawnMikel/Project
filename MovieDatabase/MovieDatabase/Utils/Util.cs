@@ -177,5 +177,20 @@ namespace MovieDatabase.Utils
         {
             return rating >= LOWEST_RATING && rating <= HIGHEST_RATING;
         }
+
+        /// <summary>
+        /// Validates the duration of a media.
+        /// The duration must be greater than 0.
+        /// </summary>
+        /// <param name="duration">The duration to validate.</param>
+        /// <returns>A boolean indicating whether the duration is valid.</returns>
+        public static bool ValidateMediaDuration(int duration)
+        {
+            if (duration <= 0)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
