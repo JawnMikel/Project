@@ -43,7 +43,7 @@ namespace MovieDatabase
             }
             if (member != null)
             {
-                member.addReview(review);
+                member.AddReview(review);
             }
         }
 

@@ -20,7 +20,7 @@ namespace MovieDatabase
 
             InitializeComponent();
             nameLbl.Text = member.FirstName + " " + member.LastName;
-            ratingLbl.Text += member.getCrewMemberRating() + "/5";
+            ratingLbl.Text += member.GetPopularity() + "/5";
         }
 
         private void backBtn_Click(object sender, EventArgs e)
