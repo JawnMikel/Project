@@ -11,9 +11,9 @@ namespace MovieDatabase
     /// </summary>
     public class Director : CrewMember
     {
-        public List<int> DirectedMovies { get; }
-        public List<int> DirectedTVShows { get; }
-        public List<int> DirectedEpisodes { get; }
+        public List<int> DirectedMovies { get; set; }
+        public List<int> DirectedTVShows { get; set; }
+        public List<int> DirectedEpisodes { get; set; }
 
         /// <summary>
         /// All argument constructor for a new director.
