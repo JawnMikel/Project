@@ -547,7 +547,7 @@ namespace MovieDatabase.Utils
                 // Form the review insert SQL statement
                 reviewInsCmd.Parameters.AddWithValue("@Comment", review.Comment);
                 reviewInsCmd.Parameters.AddWithValue("@Rating", review.Rating);
-                reviewInsCmd.Parameters.AddWithValue("@UserID", review.Author.Id);
+                reviewInsCmd.Parameters.AddWithValue("@UserID", review.AuthorId);
                 // Execute the insert
                 reviewInsCmd.ExecuteNonQuery();
                 
@@ -597,7 +597,7 @@ namespace MovieDatabase.Utils
                 // Form the review insert SQL statement
                 reviewInsCmd.Parameters.AddWithValue("@Comment", review.Comment);
                 reviewInsCmd.Parameters.AddWithValue("@Rating", review.Rating);
-                reviewInsCmd.Parameters.AddWithValue("@UserID", review.Author.Id);
+                reviewInsCmd.Parameters.AddWithValue("@UserID", review.AuthorId);
                 // Execute the insert
                 reviewInsCmd.ExecuteNonQuery();
 
@@ -647,7 +647,7 @@ namespace MovieDatabase.Utils
                 // Form the review insert SQL statement
                 reviewInsCmd.Parameters.AddWithValue("@Comment", review.Comment);
                 reviewInsCmd.Parameters.AddWithValue("@Rating", review.Rating);
-                reviewInsCmd.Parameters.AddWithValue("@UserID", review.Author.Id);
+                reviewInsCmd.Parameters.AddWithValue("@UserID", review.AuthorId);
                 // Execute the insert
                 reviewInsCmd.ExecuteNonQuery();
 
@@ -697,7 +697,7 @@ namespace MovieDatabase.Utils
                 // Form the review insert SQL statement
                 reviewInsCmd.Parameters.AddWithValue("@Comment", review.Comment);
                 reviewInsCmd.Parameters.AddWithValue("@Rating", review.Rating);
-                reviewInsCmd.Parameters.AddWithValue("@UserID", review.Author.Id);
+                reviewInsCmd.Parameters.AddWithValue("@UserID", review.AuthorId);
                 // Execute the insert
                 reviewInsCmd.ExecuteNonQuery();
 
@@ -747,7 +747,7 @@ namespace MovieDatabase.Utils
                 // Form the review insert SQL statement
                 reviewInsCmd.Parameters.AddWithValue("@Comment", review.Comment);
                 reviewInsCmd.Parameters.AddWithValue("@Rating", review.Rating);
-                reviewInsCmd.Parameters.AddWithValue("@UserID", review.Author.Id);
+                reviewInsCmd.Parameters.AddWithValue("@UserID", review.AuthorId);
                 // Execute the insert
                 reviewInsCmd.ExecuteNonQuery();
 
