@@ -33,14 +33,14 @@ namespace MovieDatabase
             profileLbl = new Label();
             logoutBtn = new Button();
             watchlistBtn = new Button();
-            label1 = new Label();
+            fullNameLbl = new Label();
             fullNameTB = new TextBox();
-            label2 = new Label();
+            usernameLbl = new Label();
             usernameTB = new TextBox();
             dobLbl = new Label();
             membershipTB = new TextBox();
             dobPicker = new DateTimePicker();
-            label3 = new Label();
+            membershipLbl = new Label();
             upgradeBtn = new Button();
             backBtn = new Button();
             langBtn = new Button();
@@ -76,44 +76,44 @@ namespace MovieDatabase
             watchlistBtn.UseVisualStyleBackColor = true;
             watchlistBtn.Click += watchlistBtn_Click;
             // 
-            // label1
+            // fullNameLbl
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(280, 122);
-            label1.Name = "label1";
-            label1.Size = new Size(100, 25);
-            label1.TabIndex = 3;
-            label1.Text = "Full Name: ";
+            fullNameLbl.AutoSize = true;
+            fullNameLbl.Location = new Point(247, 122);
+            fullNameLbl.Name = "fullNameLbl";
+            fullNameLbl.Size = new Size(100, 25);
+            fullNameLbl.TabIndex = 3;
+            fullNameLbl.Text = "Full Name: ";
             // 
             // fullNameTB
             // 
             fullNameTB.Enabled = false;
             fullNameTB.Location = new Point(386, 122);
             fullNameTB.Name = "fullNameTB";
-            fullNameTB.Size = new Size(177, 31);
+            fullNameTB.Size = new Size(208, 31);
             fullNameTB.TabIndex = 4;
             // 
-            // label2
+            // usernameLbl
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(280, 179);
-            label2.Name = "label2";
-            label2.Size = new Size(91, 25);
-            label2.TabIndex = 5;
-            label2.Text = "Username";
+            usernameLbl.AutoSize = true;
+            usernameLbl.Location = new Point(244, 176);
+            usernameLbl.Name = "usernameLbl";
+            usernameLbl.Size = new Size(91, 25);
+            usernameLbl.TabIndex = 5;
+            usernameLbl.Text = "Username";
             // 
             // usernameTB
             // 
             usernameTB.Enabled = false;
             usernameTB.Location = new Point(386, 176);
             usernameTB.Name = "usernameTB";
-            usernameTB.Size = new Size(177, 31);
+            usernameTB.Size = new Size(208, 31);
             usernameTB.TabIndex = 6;
             // 
             // dobLbl
             // 
             dobLbl.AutoSize = true;
-            dobLbl.Location = new Point(268, 228);
+            dobLbl.Location = new Point(235, 228);
             dobLbl.Name = "dobLbl";
             dobLbl.Size = new Size(112, 25);
             dobLbl.TabIndex = 7;
@@ -132,23 +132,23 @@ namespace MovieDatabase
             dobPicker.Enabled = false;
             dobPicker.Location = new Point(386, 228);
             dobPicker.Name = "dobPicker";
-            dobPicker.Size = new Size(300, 31);
+            dobPicker.Size = new Size(256, 31);
             dobPicker.TabIndex = 9;
             // 
-            // label3
+            // membershipLbl
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(268, 294);
-            label3.Name = "label3";
-            label3.Size = new Size(112, 25);
-            label3.TabIndex = 10;
-            label3.Text = "Membership";
+            membershipLbl.AutoSize = true;
+            membershipLbl.Location = new Point(244, 291);
+            membershipLbl.Name = "membershipLbl";
+            membershipLbl.Size = new Size(112, 25);
+            membershipLbl.TabIndex = 10;
+            membershipLbl.Text = "Membership";
             // 
             // upgradeBtn
             // 
-            upgradeBtn.Location = new Point(353, 358);
+            upgradeBtn.Location = new Point(340, 357);
             upgradeBtn.Name = "upgradeBtn";
-            upgradeBtn.Size = new Size(205, 34);
+            upgradeBtn.Size = new Size(254, 34);
             upgradeBtn.TabIndex = 11;
             upgradeBtn.Text = "Upgrade Membership";
             upgradeBtn.UseVisualStyleBackColor = true;
@@ -182,14 +182,14 @@ namespace MovieDatabase
             Controls.Add(langBtn);
             Controls.Add(backBtn);
             Controls.Add(upgradeBtn);
-            Controls.Add(label3);
+            Controls.Add(membershipLbl);
             Controls.Add(dobPicker);
             Controls.Add(membershipTB);
             Controls.Add(dobLbl);
             Controls.Add(usernameTB);
-            Controls.Add(label2);
+            Controls.Add(usernameLbl);
             Controls.Add(fullNameTB);
-            Controls.Add(label1);
+            Controls.Add(fullNameLbl);
             Controls.Add(watchlistBtn);
             Controls.Add(logoutBtn);
             Controls.Add(profileLbl);
@@ -198,16 +198,17 @@ namespace MovieDatabase
             ResumeLayout(false);
             PerformLayout();
         }
+
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
             profileLbl.Text = rm.GetString("Profile");
             logoutBtn.Text = rm.GetString("LogOut");
             watchlistBtn.Text = rm.GetString("WatchList");
-            label1.Text = rm.GetString("FullName");
-            label2.Text = rm.GetString("Username");
+            fullNameLbl.Text = rm.GetString("FullName");
+            usernameLbl.Text = rm.GetString("Username");
             dobLbl.Text = rm.GetString("DOB");
-            label3.Text = rm.GetString("Membership");
+            membershipLbl.Text = rm.GetString("Membership");
             upgradeBtn.Text = rm.GetString("UpgradeMembership");
             backBtn.Text = rm.GetString("BackButton");
             langBtn.Text = rm.GetString("Lanbutton");
@@ -218,14 +219,14 @@ namespace MovieDatabase
         private Label profileLbl;
         private Button logoutBtn;
         private Button watchlistBtn;
-        private Label label1;
+        private Label fullNameLbl;
         private TextBox fullNameTB;
-        private Label label2;
+        private Label usernameLbl;
         private TextBox usernameTB;
         private Label dobLbl;
         private TextBox membershipTB;
         private DateTimePicker dobPicker;
-        private Label label3;
+        private Label membershipLbl;
         private Button upgradeBtn;
         private Button backBtn;
         private Button langBtn;

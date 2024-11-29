@@ -19,9 +19,11 @@ namespace MovieDatabase
         {
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+            
+            InitializeComponent();
             Util.Language();
             Update();
-            InitializeComponent();
+
             this.user = user;
             fullNameTB.Text = user.FirstName + " " + user.LastName;
             usernameTB.Text = user.Username;
@@ -39,15 +41,29 @@ namespace MovieDatabase
         }
         private void logoutBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var frmLogin = new FormLogin();
-            frmLogin.Closed += (s, args) => this.Close();
-            frmLogin.ShowDialog();
+
+            var result = MessageBox.Show(
+            "Are you sure you want to log out?",
+            "Logout Confirmation",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                var frmLogin = new FormLogin();
+                frmLogin.Closed += (s, args) => this.Close();
+                frmLogin.ShowDialog();
+            }
         }
 
         private void watchlistBtn_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            var formWatchList = new FormWatchList();
+            formWatchList.Closed += (s, args) => this.Close();
+            formWatchList.ShowDialog();
         }
 
         private void upgradeBtn_Click(object sender, EventArgs e)

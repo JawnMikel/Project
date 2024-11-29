@@ -16,5 +16,15 @@ namespace MovieDatabase
         {
             InitializeComponent();
         }
+
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void langBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
