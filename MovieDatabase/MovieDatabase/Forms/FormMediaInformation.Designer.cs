@@ -1,4 +1,6 @@
-﻿namespace MovieDatabase
+﻿using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormMediaInformation
     {
@@ -155,6 +157,17 @@
             ((System.ComponentModel.ISupportInitialize)mediaPicture).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+        public void Update()
+        {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
+            titleLbl.Text = rm.GetString("Title");
+            langBtn.Text = rm.GetString("LanButton");
+            backBtn.Text = rm.GetString("BackButton");
+            ratingLbl.Text = rm.GetString("Rating");
+            giveReviewBtn.Text = rm.GetString("WriteReview");
+            viewReviewBtn.Text = rm.GetString("ViewReviews");
+            watchlistCheckBox.Text = rm.GetString("AddToWatchList");
         }
 
         #endregion
