@@ -75,7 +75,7 @@ namespace MovieDatabase.Utils
                                 SELECT * FROM user u WHERE u.UserName = @UserName AND u.Password = @Password
                                 LEFT JOIN payment p ON p.UserID = u.UserID;
                                 """;
-            User user = null;
+            User? user = null;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 cmd.Parameters.AddWithValue("@UserName", userName);
@@ -97,20 +97,51 @@ namespace MovieDatabase.Utils
 
                 // Parse the date of birth
                 DateTime dob = DateTime.Parse((string)reader["DateOfBirth"]);
-
                 // Create the user object
                 user = new User((string)reader["UserName"], (string)reader["Password"],
                     (string)reader["FirstName"], (string)reader["LastName"], dob, membership);
-
                 // Set the user ID
                 user.Id = (int)reader["UserID"];
-
-                // TODO add user watchlist and reviews
+                // Set the watchlist and reviews
+                user.WatchList = GetUserWatchList(user.Id);
+                user.WrittenReviews = GetUserReviews(user.Id);
             }
             return user;
         }
 
-        // TODO
+        /// <summary>
+        /// Fetch all reviews for a given user.
+        /// </summary>
+        /// <param name="userId">The user ID of the user whose reviews are to be fetched.</param>
+        /// <returns>A list of all of the reviews of the user.</returns>
+        private List<Review> GetUserReviews(int userId)
+        {
+            const string SQL = """
+                                SELECT * FROM review WHERE UserID = @UserID;
+                                """;
+            List<Review> reviews = new List<Review>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@UserID", userId);
+                SQLiteDataReader reviewReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all reviews
+                while (reviewReader.NextResult())
+                {
+                    Review review = new Review((int)reviewReader["UserID"], (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                    review.ReviewId = (int)reviewReader["ReviewID"];
+                    reviews.Add(review);
+                }
+            }
+            return reviews;
+        }
+
+        /// <summary>
+        /// Get the watch list of the user.
+        /// </summary>
+        /// <param name="userId">The user ID of the user.</param>
+        /// <returns>The watch list of the user.</returns>
         private List<Media> GetUserWatchList(int userId)
         {
             const string MOVIE_SQL = """
@@ -129,6 +160,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader movieReader = movieCmd.ExecuteReader();
                 SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader();
 
+                // Add Movies to the watchlist
                 while (movieReader.NextResult())
                 {
                     Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
@@ -142,9 +174,21 @@ namespace MovieDatabase.Utils
                     movie.Genres = GetMovieGenres(movie.MediaId);
                     watchList.Add(movie);
                 }
-                // TODO add tv shows
+                
+                // Add TV Shows to the watchlist
                 while (tvShowReader.NextResult())
                 {
+                    TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
+                        (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
+                    // Set the tv show id
+                    tvShow.MediaId = (int)tvShowReader["TVShowID"];
+                    // Set the tv show revies, directors, actors, genres, and episodes
+                    tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
+                    tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
+                    tvShow.Actors = GetTVShowActors(tvShow.MediaId);
+                    tvShow.Reviews = GetTVShowReviews(tvShow.MediaId);
+                    tvShow.Genres = GetTVShowGenres(tvShow.MediaId);
+                    watchList.Add(tvShow);
                 }
 
             }
@@ -179,6 +223,11 @@ namespace MovieDatabase.Utils
             return reviews;
         }
 
+        /// <summary>
+        /// Get the genres of a movie.
+        /// </summary>
+        /// <param name="movieId">The movie ID of the movie.</param>
+        /// <returns>The list of genres of a movie.</returns>
         private List<Media.Genre> GetMovieGenres(int movieId)
         {
             const string SQL = """
@@ -219,7 +268,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@MovieID", movieId);
                 SQLiteDataReader actorReader = cmd.ExecuteReader();
 
-                // Loop through the results and fetch all reviews
+                // Loop through the results and fetch all actors
                 while (actorReader.NextResult())
                 {
                     // Create an actor
@@ -253,7 +302,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@MovieID", movieId);
                 SQLiteDataReader directorReader = cmd.ExecuteReader();
 
-                // Loop through the results and fetch all reviews
+                // Loop through the results and fetch all directors
                 while (directorReader.NextResult())
                 {
                     // Create a director
@@ -290,6 +339,7 @@ namespace MovieDatabase.Utils
                 // Loop through the results and fetch all reviews
                 while (reviewReader.NextResult())
                 {
+                    // Create a review and all it to the reviews list
                     Review review = new Review((int)reviewReader["UserID"], (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
                     review.ReviewId = (int)reviewReader["ReviewID"];
                     reviews.Add(review);
@@ -315,7 +365,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@EpisodeID", episodeId);
                 SQLiteDataReader genreReader = cmd.ExecuteReader();
 
-                // Loop through the results and fetch all reviews
+                // Loop through the results and fetch all genres
                 while (genreReader.NextResult())
                 {
                     // Create the Genre and add it to the genres list
@@ -343,7 +393,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@EpisodeID", episodeId);
                 SQLiteDataReader actorReader = cmd.ExecuteReader();
 
-                // Loop through the results and fetch all reviews
+                // Loop through the results and fetch all actors
                 while (actorReader.NextResult())
                 {
                     // Create an actor
@@ -377,7 +427,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@EpisodeID", episodeId);
                 SQLiteDataReader directorReader = cmd.ExecuteReader();
 
-                // Loop through the results and fetch all reviews
+                // Loop through the results and fetch all directors
                 while (directorReader.NextResult())
                 {
                     // Create a director
@@ -439,7 +489,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
                 SQLiteDataReader genreReader = cmd.ExecuteReader();
 
-                // Loop through the results and fetch all reviews
+                // Loop through the results and fetch all genres
                 while (genreReader.NextResult())
                 {
                     // Create the Genre and add it to the genres list
@@ -467,7 +517,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
                 SQLiteDataReader actorReader = cmd.ExecuteReader();
 
-                // Loop through the results and fetch all reviews
+                // Loop through the results and fetch all actors
                 while (actorReader.NextResult())
                 {
                     // Create an actor
@@ -501,7 +551,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
                 SQLiteDataReader directorReader = cmd.ExecuteReader();
 
-                // Loop through the results and fetch all reviews
+                // Loop through the results and fetch all directors
                 while (directorReader.NextResult())
                 {
                     // Create a director
@@ -518,6 +568,11 @@ namespace MovieDatabase.Utils
             return directors;
         }
 
+        /// <summary>
+        /// Get the list of episodes of a tv show.
+        /// </summary>
+        /// <param name="tvShowId">The tv show ID of the tv show.</param>
+        /// <returns>The list of episodes of a tv show.</returns>
         private List<Episode> GetTVShowEpisodes(int tvShowId)
         {
             const string SQL = """
