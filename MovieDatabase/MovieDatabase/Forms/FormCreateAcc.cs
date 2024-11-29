@@ -97,7 +97,9 @@ namespace MovieDatabase
         /// <summary>
         /// Creates a user from the user class from using the information in the frame
         /// </summary>
+        /// <param name="memberships">the memberships</param>
         /// <returns>a new user</returns>
+
         private User CreateUser(User.Memberships memberships)
         {
             string firstName = firstNameTB.Text;
@@ -120,6 +122,10 @@ namespace MovieDatabase
             return null;
         }
 
+        /// <summary>
+        /// Checks all the user's information 
+        /// </summary>
+        /// <returns>returns false if the user's information is invalid and returns true if all of the information is valid</returns>
         private bool CheckUser()
         {
             string firstName = firstNameTB.Text;
