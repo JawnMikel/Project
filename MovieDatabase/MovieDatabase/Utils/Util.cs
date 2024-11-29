@@ -82,7 +82,7 @@ namespace MovieDatabase.Utils
         /// The username's length must be less than or equal to MAX_NAME_LENGTH.
         /// </summary>
         /// <param name="username"></param>
-        /// <returns></returns>
+        /// <returns>A boolean indicating whether the username's format is valid.</returns>
         public static bool ValidateUsernameFormat(string username)
         {
             if (String.IsNullOrEmpty(username))

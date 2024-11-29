@@ -12,8 +12,8 @@ namespace MovieDatabase
     public abstract class CrewMember : Person
     {
         public int Id { get; set; }
-        public List<Review> Reviews { get; set; }
         public string ImageLink { get; set; }
+        public List<Review> Reviews { get; set; }
 
         public CrewMember(string firstName, string lastName, string imageLink) : base(firstName, lastName)
         {
