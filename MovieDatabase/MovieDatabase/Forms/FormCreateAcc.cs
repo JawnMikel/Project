@@ -40,6 +40,11 @@ namespace MovieDatabase
             if (membershipCB.SelectedIndex == 0)
             {
                 User user = CreateUser();
+
+                if (user == null)
+                {
+                    return;
+                }
                 FormLogin.users.Add(user);
 
                 MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -93,7 +98,7 @@ namespace MovieDatabase
             if (!Util.ValidateUserAge(dob))
             {
                 MessageBox.Show("User must be at least 18 years old.", "Age Restriction", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                throw new ArithmeticException("Must be 18 years and older");
+                return null;
             }
 
             int selectedIndex = membershipCB.SelectedIndex;

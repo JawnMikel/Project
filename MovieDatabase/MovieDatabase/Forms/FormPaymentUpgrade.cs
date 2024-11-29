@@ -47,20 +47,14 @@ namespace MovieDatabase
         /// </summary>
         private void ConfirmPayment()
         {
+            string cardHolderName = fullNameTB.Text;
             string creditCardNumber = cardNumberTB.Text;
             string cvv = cvvTB.Text;
             string expiryDate = expiryDateTB.Text;
 
             try
             {
-                Payment payment = new Payment(
-                    fullNameTB.Text,
-                    creditCardNumber,
-                    expiryDate,
-                    cvv
-                );
-
-                user.Membership = User.Memberships.PREMIUM;
+                user.UpgradeMembership(cardHolderName, creditCardNumber, cvv, expiryDate);
 
                 MessageBox.Show("Payment approved! Account successfully upgraded.", "Approved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

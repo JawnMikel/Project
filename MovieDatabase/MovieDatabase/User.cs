@@ -75,7 +75,7 @@ namespace MovieDatabase
             {
                 if (!Util.ValidateUserAge(value))
                 {
-                    throw new ArgumentException("The user must be 18 years of age to create an account.");
+                    return;
                 }
                 _dob = value;
             }
