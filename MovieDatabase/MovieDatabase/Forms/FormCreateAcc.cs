@@ -14,8 +14,7 @@ namespace MovieDatabase
 {
     public partial class FormCreateAcc : Form
     {
-        CultureInfo cultureEn = new CultureInfo("en-US");
-        CultureInfo cultureFr = new CultureInfo("fr-Fr");
+       
         public FormCreateAcc()
         {
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
