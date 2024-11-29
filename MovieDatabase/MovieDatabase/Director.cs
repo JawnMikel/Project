@@ -87,12 +87,9 @@ namespace MovieDatabase
         {
             return obj is Director director &&
                    base.Equals(obj) &&
-                   FirstName == director.FirstName &&
-                   LastName == director.LastName &&
-                   Id == director.Id &&
-                   EqualityComparer<List<Review>>.Default.Equals(Reviews, director.Reviews) &&
-                   ImageLink == director.ImageLink &&
-                   EqualityComparer<List<Media>>.Default.Equals(Directed, director.Directed);
+                   EqualityComparer<List<int>>.Default.Equals(DirectedMovies, director.DirectedMovies) &&
+                   EqualityComparer<List<int>>.Default.Equals(DirectedTVShows, director.DirectedTVShows) &&
+                   EqualityComparer<List<int>>.Default.Equals(DirectedEpisodes, director.DirectedEpisodes);
         }
 
         /// <summary>
@@ -101,7 +98,7 @@ namespace MovieDatabase
         /// <returns>The hashcode of this actor.</returns>
         public override int GetHashCode()
         {
-            return HashCode.Combine(base.GetHashCode(), FirstName, LastName, Id, Reviews, ImageLink, Directed);
+            return HashCode.Combine(base.GetHashCode(), DirectedMovies, DirectedTVShows, DirectedEpisodes);
         }
 
         /// <summary>
@@ -111,7 +108,7 @@ namespace MovieDatabase
         public override string? ToString()
         {
             return $"Director{{Id: {Id}, FirstName: {FirstName}, LastName: {LastName}, ImageLink: {ImageLink}, " +
-               $"Reviews: {String.Join(",", Reviews)}, Directed: {String.Join(",", Directed)}}}";
+               $"Reviews: {String.Join(",", Reviews)}}}";
         }
     }
 }

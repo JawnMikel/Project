@@ -108,7 +108,7 @@ namespace MovieDatabase
         public override string? ToString()
         {
             return $"Actor{{Id: {Id}, FirstName: {FirstName}, LastName: {LastName}, ImageLink: {ImageLink}, " +
-                $"Reviews: {String.Join(",", Reviews)}, Starred: {String.Join(",", Starred)}}}";
+                $"Reviews: {String.Join(",", Reviews)}}}";
         }
     }
 }
