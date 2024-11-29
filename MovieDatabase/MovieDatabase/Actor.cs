@@ -11,17 +11,17 @@ namespace MovieDatabase
     /// </summary>
     public class Actor : CrewMember
     {
-        public List<int> StarredMovies { get; }
-        public List<int> StarredTVShows { get; }
-        public List<int> StarredEpisodes { get; }
+        public List<int> StarredMovies { get; set; }
+        public List<int> StarredTVShows { get; set; }
+        public List<int> StarredEpisodes { get; set; }
 
         /// <summary>
         /// All argument constructor for a new actor.
         /// </summary>
         /// <param name="firstName">The first name of the actor.</param>
-        /// <param name="secondName">The last name of the actor.</param>
+        /// <param name="lastName">The last name of the actor.</param>
         /// <param name="imageLink">The image link of the picture of the actor.</param>
-        public Actor(string firstName, string secondName, string imageLink) : base(firstName, secondName, imageLink)
+        public Actor(string firstName, string lastName, string imageLink) : base(firstName, lastName, imageLink)
         {
             StarredMovies = new List<int>();
             StarredTVShows = new List<int>();
