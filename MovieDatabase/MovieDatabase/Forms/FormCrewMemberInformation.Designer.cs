@@ -1,4 +1,7 @@
-﻿namespace MovieDatabase
+﻿using System.Reflection;
+using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormCrewMemberInformation
     {
@@ -32,7 +35,7 @@
             ratingLbl = new Label();
             backBtn = new Button();
             langBtn = new Button();
-            wirteReviewBtn = new Button();
+            writeReviewBtn = new Button();
             viewReviewBtn = new Button();
             SuspendLayout();
             // 
@@ -77,13 +80,13 @@
             // 
             // wirteReviewBtn
             // 
-            wirteReviewBtn.Location = new Point(797, 106);
-            wirteReviewBtn.Name = "wirteReviewBtn";
-            wirteReviewBtn.Size = new Size(156, 34);
-            wirteReviewBtn.TabIndex = 4;
-            wirteReviewBtn.Text = "Write a review";
-            wirteReviewBtn.UseVisualStyleBackColor = true;
-            wirteReviewBtn.Click += wirteReviewBtn_Click;
+            writeReviewBtn.Location = new Point(797, 106);
+            writeReviewBtn.Name = "wirteReviewBtn";
+            writeReviewBtn.Size = new Size(156, 34);
+            writeReviewBtn.TabIndex = 4;
+            writeReviewBtn.Text = "Write a review";
+            writeReviewBtn.UseVisualStyleBackColor = true;
+            writeReviewBtn.Click += wirteReviewBtn_Click;
             // 
             // viewReviewBtn
             // 
@@ -101,7 +104,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(995, 592);
             Controls.Add(viewReviewBtn);
-            Controls.Add(wirteReviewBtn);
+            Controls.Add(writeReviewBtn);
             Controls.Add(langBtn);
             Controls.Add(backBtn);
             Controls.Add(ratingLbl);
@@ -112,13 +115,24 @@
             PerformLayout();
         }
 
+        public void Update()
+        {
+           ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
+           nameLbl.Text = rm.GetString("Name");
+           backBtn.Text = rm.GetString("BackButton");
+           ratingLbl.Text = rm.GetString("Rating");
+           langBtn.Text = rm.GetString("LanButton");
+           writeReviewBtn.Text = rm.GetString("WriteReview");
+           viewReviewBtn.Text = rm.GetString("ViewReviews"); 
+        }
+
         #endregion
 
         private Label nameLbl;
         private Label ratingLbl;
         private Button backBtn;
         private Button langBtn;
-        private Button wirteReviewBtn;
+        private Button writeReviewBtn;
         private Button viewReviewBtn;
     }
 }

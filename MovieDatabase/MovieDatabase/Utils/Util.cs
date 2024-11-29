@@ -13,8 +13,8 @@ namespace MovieDatabase.Utils
     /// </summary>
     public class Util
     {
-        public static CultureInfo cultureEn = new CultureInfo("en-CA");
-        public static CultureInfo cultureFr = new CultureInfo("en-CA");
+        public static CultureInfo cultureEn = new CultureInfo("en-Us");
+        public static CultureInfo cultureFr = new CultureInfo("fr-FR");
         public const int LOWEST_RATING = 0;
         public const int HIGHEST_RATING = 5;
         public const int MAX_NAME_LENGTH = 100;

@@ -166,13 +166,13 @@ namespace MovieDatabase
         /// The review written. Null if the user has a regular membership
         /// and already wrote the MAX_REVIEWS_REGULAR number of reviews.
         /// </returns>
-        public Review? WriteReview(string comment, double rating)
+        public Review WriteReview(string comment, double rating)
         {
-            if (Membership == Memberships.REGULAR && WatchList.Count >= MAX_REVIEWS_REGULAR)
+            if (Membership == Memberships.REGULAR && WrittenReviews.Count >= MAX_REVIEWS_REGULAR)
             {
                 throw new InvalidOperationException("The user already reached the maximum number of reviews for his regular membership.");
             }
-            Review review = new Review(this, comment, rating);
+            Review review = new Review(Id, comment, rating);
             WrittenReviews.Add(review);
             return review;
         }
@@ -194,6 +194,7 @@ namespace MovieDatabase
             }
             Payment payment = new Payment(cardHolderName, cardNum, cvv, expiryDate);
             MembershipPayment = payment;
+            Membership = Memberships.PREMIUM;
             return payment;
         }
 
