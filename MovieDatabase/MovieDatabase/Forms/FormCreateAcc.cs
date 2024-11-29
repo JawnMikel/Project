@@ -7,6 +7,7 @@ using System.Data.SQLite;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -82,14 +83,15 @@ namespace MovieDatabase
            
         private void membershipCB_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
             if (membershipCB.SelectedIndex == 0)
             {
-                nextBtn.Text = "Create Account";
+                nextBtn.Text = rm.GetString("CreateAccountButton");
                 nextBtn.Enabled = true;
             }
             else if (membershipCB.SelectedIndex == 1)
             {
-                nextBtn.Text = "Pay";
+                nextBtn.Text = rm.GetString("PayButton");
                 nextBtn.Enabled = true;
             }
         }

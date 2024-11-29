@@ -257,18 +257,6 @@ namespace MovieDatabase
             membershipLbl.Text = rm.GetString("MembershipType");
             passwordBox.Text = rm.GetString("ShowPassword");
             backBtn.Text = rm.GetString("BackButton");
-            if (membershipCB.SelectedIndex == 0)
-            {
-                nextBtn.Text = rm.GetString("CreateAccount");
-            }
-            else if (membershipCB.SelectedIndex == 1)
-            {
-                nextBtn.Text = rm.GetString("PayButton");
-            }
-            else
-            {
-                nextBtn.Text = string.Empty;
-            }
         }
 
         #endregion

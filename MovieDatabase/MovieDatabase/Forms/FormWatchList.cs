@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieDatabase.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace MovieDatabase
         public FormWatchList()
         {
             InitializeComponent();
+            Update();
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -24,7 +26,8 @@ namespace MovieDatabase
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-
+            Util.Language();
+            Update();
         }
     }
 }
