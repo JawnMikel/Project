@@ -72,7 +72,7 @@ namespace MovieDatabase
         private void OpenMediaInfo(Media media)
         {
             Hide();
-            FormMediaInformation mediaInformationForm = new FormMediaInformation(this, media, user); // Assuming user is null for now
+            FormMediaInformation mediaInformationForm = new FormMediaInformation(this, media, user);
             mediaInformationForm.Closed += (s, args) => this.Close();
             mediaInformationForm.ShowDialog();
         }

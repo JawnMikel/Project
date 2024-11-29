@@ -40,6 +40,8 @@ namespace MovieDatabase
             giveReviewBtn = new Button();
             viewReviewBtn = new Button();
             watchlistCheckBox = new CheckBox();
+            label1 = new Label();
+            crewLayoutPanel = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)mediaPicture).BeginInit();
             SuspendLayout();
             // 
@@ -138,11 +140,30 @@ namespace MovieDatabase
             watchlistCheckBox.UseVisualStyleBackColor = true;
             watchlistCheckBox.CheckedChanged += watchlistCheckBox_CheckedChanged;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(424, 117);
+            label1.Name = "label1";
+            label1.Size = new Size(181, 25);
+            label1.TabIndex = 10;
+            label1.Text = "List of crew members";
+            // 
+            // crewLayoutPanel
+            // 
+            crewLayoutPanel.AutoSize = true;
+            crewLayoutPanel.Location = new Point(301, 164);
+            crewLayoutPanel.Name = "crewLayoutPanel";
+            crewLayoutPanel.Size = new Size(449, 408);
+            crewLayoutPanel.TabIndex = 11;
+            // 
             // FormMediaInformation
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(955, 573);
+            Controls.Add(crewLayoutPanel);
+            Controls.Add(label1);
             Controls.Add(watchlistCheckBox);
             Controls.Add(viewReviewBtn);
             Controls.Add(giveReviewBtn);
@@ -159,6 +180,7 @@ namespace MovieDatabase
             ResumeLayout(false);
             PerformLayout();
         }
+
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
@@ -183,5 +205,7 @@ namespace MovieDatabase
         private Button giveReviewBtn;
         private Button viewReviewBtn;
         private CheckBox watchlistCheckBox;
+        private Label label1;
+        private FlowLayoutPanel crewLayoutPanel;
     }
 }
