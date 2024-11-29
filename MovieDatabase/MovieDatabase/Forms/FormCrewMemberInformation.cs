@@ -45,7 +45,7 @@ namespace MovieDatabase
         private void wirteReviewBtn_Click(object sender, EventArgs e)
         {
             Hide();
-            FormWriteReview formWriteReview = new FormWriteReview(crewMember, user);
+            var formWriteReview = new FormWriteReview(crewMember, user);
             formWriteReview.Closed += (s, args) => this.Close();
             formWriteReview.ShowDialog();
         }
@@ -53,7 +53,7 @@ namespace MovieDatabase
         private void viewReviewBtn_Click(object sender, EventArgs e)
         {
             Hide();
-            FormViewReview formViewReview = new FormViewReview(crewMember, user);
+            var formViewReview = new FormViewReview(crewMember, user);
             formViewReview.Closed += (s, args) => this.Close();
             formViewReview.ShowDialog();
         }

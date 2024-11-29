@@ -30,6 +30,8 @@ namespace MovieDatabase
             releaseDate.Value = media.ReleaseDate;
             sysnopsisLbl.Text = media.Synopsis;
             ratingLbl.Text += media.GetMediaRating() + "/5";
+            watchlistCheckBox.Checked = user.WatchList.Contains(media);
+            watchlistCheckBox.CheckedChanged += watchlistCheckBox_CheckedChanged;
         }
         public FormMediaInformation(Media media, User user)
         {
@@ -58,7 +60,7 @@ namespace MovieDatabase
         private void giveReviewBtn_Click(object sender, EventArgs e)
         {
             Hide();
-            FormViewReview formViewReview = new FormViewReview(media, user);
+            var formViewReview = new FormViewReview(media, user);
             formViewReview.Closed += (s, args) => this.Close();
             formViewReview.ShowDialog();
         }
@@ -66,9 +68,29 @@ namespace MovieDatabase
         private void viewReviewBtn_Click(object sender, EventArgs e)
         {
             Hide();
-            FormViewReview formViewReview = new FormViewReview(media, user);
+            var formViewReview = new FormViewReview(media, user);
             formViewReview.Closed += (s, args) => this.Close();
             formViewReview.ShowDialog();
+        }
+
+        private void watchlistCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (watchlistCheckBox.Checked)
+            {
+                if (!user.WatchList.Contains(media))
+                {
+                    user.WatchList.Add(media);
+                    MessageBox.Show($"{media.Title} has been added to your watchlist.", "Watchlist Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                if (user.WatchList.Contains(media))
+                {
+                    user.WatchList.Remove(media);
+                    MessageBox.Show($"{media.Title} has been removed from your watchlist.", "Watchlist Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }

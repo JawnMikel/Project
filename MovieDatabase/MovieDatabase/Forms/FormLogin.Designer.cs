@@ -47,7 +47,7 @@ namespace MovieDatabase
             loginBtn.Location = new Point(657, 390);
             loginBtn.Margin = new Padding(4, 5, 4, 5);
             loginBtn.Name = "loginBtn";
-            loginBtn.Size = new Size(153, 38);
+            loginBtn.Size = new Size(188, 38);
             loginBtn.TabIndex = 0;
             loginBtn.Text = "Login";
             loginBtn.UseVisualStyleBackColor = true;
@@ -55,7 +55,7 @@ namespace MovieDatabase
             // 
             // usernameTB
             // 
-            usernameTB.Location = new Point(540, 158);
+            usernameTB.Location = new Point(553, 158);
             usernameTB.Margin = new Padding(4, 5, 4, 5);
             usernameTB.Name = "usernameTB";
             usernameTB.Size = new Size(184, 31);
@@ -65,7 +65,7 @@ namespace MovieDatabase
             // usernameLbl
             // 
             usernameLbl.AutoSize = true;
-            usernameLbl.Location = new Point(443, 163);
+            usernameLbl.Location = new Point(388, 161);
             usernameLbl.Margin = new Padding(4, 0, 4, 0);
             usernameLbl.Name = "usernameLbl";
             usernameLbl.Size = new Size(91, 25);
@@ -97,7 +97,7 @@ namespace MovieDatabase
             // passwordLbl
             // 
             passwordLbl.AutoSize = true;
-            passwordLbl.Location = new Point(445, 223);
+            passwordLbl.Location = new Point(418, 223);
             passwordLbl.Margin = new Padding(4, 0, 4, 0);
             passwordLbl.Name = "passwordLbl";
             passwordLbl.Size = new Size(87, 25);
@@ -106,7 +106,7 @@ namespace MovieDatabase
             // 
             // passwordTB
             // 
-            passwordTB.Location = new Point(540, 220);
+            passwordTB.Location = new Point(553, 223);
             passwordTB.Margin = new Padding(4, 5, 4, 5);
             passwordTB.Name = "passwordTB";
             passwordTB.Size = new Size(184, 31);
@@ -115,10 +115,10 @@ namespace MovieDatabase
             // 
             // createAccBtn
             // 
-            createAccBtn.Location = new Point(401, 390);
+            createAccBtn.Location = new Point(340, 390);
             createAccBtn.Margin = new Padding(4, 5, 4, 5);
             createAccBtn.Name = "createAccBtn";
-            createAccBtn.Size = new Size(153, 38);
+            createAccBtn.Size = new Size(214, 38);
             createAccBtn.TabIndex = 7;
             createAccBtn.Text = "Create Account";
             createAccBtn.UseVisualStyleBackColor = true;
@@ -168,6 +168,7 @@ namespace MovieDatabase
             ResumeLayout(false);
             PerformLayout();
         }
+
         /// <summary>
         /// When you call this method, it changes the label and and buttons into french
         /// </summary>

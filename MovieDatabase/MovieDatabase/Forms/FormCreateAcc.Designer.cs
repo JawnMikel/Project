@@ -81,7 +81,7 @@ namespace MovieDatabase
             // lastNameLbl
             // 
             lastNameLbl.AutoSize = true;
-            lastNameLbl.Location = new Point(347, 148);
+            lastNameLbl.Location = new Point(326, 148);
             lastNameLbl.Margin = new Padding(4, 0, 4, 0);
             lastNameLbl.Name = "lastNameLbl";
             lastNameLbl.Size = new Size(95, 25);
@@ -90,7 +90,7 @@ namespace MovieDatabase
             // 
             // lastNameTB
             // 
-            lastNameTB.Location = new Point(436, 143);
+            lastNameTB.Location = new Point(490, 145);
             lastNameTB.Margin = new Padding(4, 5, 4, 5);
             lastNameTB.Name = "lastNameTB";
             lastNameTB.Size = new Size(190, 31);
@@ -98,7 +98,7 @@ namespace MovieDatabase
             // 
             // dobPicker
             // 
-            dobPicker.Location = new Point(666, 143);
+            dobPicker.Location = new Point(727, 145);
             dobPicker.Margin = new Padding(4, 5, 4, 5);
             dobPicker.Name = "dobPicker";
             dobPicker.Size = new Size(284, 31);
@@ -118,7 +118,7 @@ namespace MovieDatabase
             // dobLbl
             // 
             dobLbl.AutoSize = true;
-            dobLbl.Location = new Point(756, 113);
+            dobLbl.Location = new Point(816, 113);
             dobLbl.Margin = new Padding(4, 0, 4, 0);
             dobLbl.Name = "dobLbl";
             dobLbl.Size = new Size(113, 25);
@@ -128,7 +128,7 @@ namespace MovieDatabase
             // usernameLbl
             // 
             usernameLbl.AutoSize = true;
-            usernameLbl.Location = new Point(234, 265);
+            usernameLbl.Location = new Point(168, 262);
             usernameLbl.Margin = new Padding(4, 0, 4, 0);
             usernameLbl.Name = "usernameLbl";
             usernameLbl.Size = new Size(91, 25);
@@ -145,7 +145,7 @@ namespace MovieDatabase
             // 
             // passwordTB
             // 
-            passwordTB.Location = new Point(639, 260);
+            passwordTB.Location = new Point(688, 259);
             passwordTB.Margin = new Padding(4, 5, 4, 5);
             passwordTB.Name = "passwordTB";
             passwordTB.Size = new Size(175, 31);
@@ -154,7 +154,7 @@ namespace MovieDatabase
             // passwordLbl
             // 
             passwordLbl.AutoSize = true;
-            passwordLbl.Location = new Point(549, 265);
+            passwordLbl.Location = new Point(553, 263);
             passwordLbl.Margin = new Padding(4, 0, 4, 0);
             passwordLbl.Name = "passwordLbl";
             passwordLbl.Size = new Size(87, 25);
@@ -207,7 +207,7 @@ namespace MovieDatabase
             // passwordBox
             // 
             passwordBox.AutoSize = true;
-            passwordBox.Location = new Point(837, 260);
+            passwordBox.Location = new Point(881, 262);
             passwordBox.Name = "passwordBox";
             passwordBox.Size = new Size(164, 29);
             passwordBox.TabIndex = 16;

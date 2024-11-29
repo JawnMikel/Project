@@ -136,8 +136,9 @@ namespace MovieDatabase
             watchlistCheckBox.TabIndex = 9;
             watchlistCheckBox.Text = "Add to watchlist";
             watchlistCheckBox.UseVisualStyleBackColor = true;
+            watchlistCheckBox.CheckedChanged += watchlistCheckBox_CheckedChanged;
             // 
-            // FormMediaLoad
+            // FormMediaInformation
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -152,7 +153,7 @@ namespace MovieDatabase
             Controls.Add(backBtn);
             Controls.Add(langBtn);
             Controls.Add(titleLbl);
-            Name = "FormMediaLoad";
+            Name = "FormMediaInformation";
             Text = "FormMediaLoad";
             ((System.ComponentModel.ISupportInitialize)mediaPicture).EndInit();
             ResumeLayout(false);
