@@ -214,6 +214,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Membership.
+        /// </summary>
+        internal static string Memebership {
+            get {
+                return ResourceManager.GetString("Memebership", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Movies.
         /// </summary>
         internal static string Movies {

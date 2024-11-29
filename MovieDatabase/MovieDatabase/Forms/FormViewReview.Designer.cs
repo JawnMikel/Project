@@ -1,4 +1,6 @@
-﻿namespace MovieDatabase
+﻿using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormViewReview
     {
@@ -86,6 +88,13 @@
             Text = "ViewReview";
             ResumeLayout(false);
             PerformLayout();
+        }
+        public void Update()
+        {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+            titleLbl.Text = rm.GetString("Reviews");
+            backBtn.Text = rm.GetString("BackButton");
+            langBtn.Text = rm.GetString("Lanbutton");
         }
 
         #endregion

@@ -1,4 +1,6 @@
-﻿namespace MovieDatabase
+﻿using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormProfile
     {
@@ -195,6 +197,20 @@
             Text = "FormProfile";
             ResumeLayout(false);
             PerformLayout();
+        }
+        public void Update()
+        {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+            profileLbl.Text = rm.GetString("Profile");
+            logoutBtn.Text = rm.GetString("LogOut");
+            watchlistBtn.Text = rm.GetString("WatchList");
+            label1.Text = rm.GetString("FullName");
+            label2.Text = rm.GetString("Username");
+            dobLbl.Text = rm.GetString("DOB");
+            label3.Text = rm.GetString("Membership");
+            upgradeBtn.Text = rm.GetString("UpgradeMembership");
+            backBtn.Text = rm.GetString("BackButton");
+            langBtn.Text = rm.GetString("Lanbutton");
         }
 
         #endregion
