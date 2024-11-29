@@ -28,12 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FormWatchList";
+            watchListLbl = new Label();
+            watchlistLayout = new FlowLayoutPanel();
+            SuspendLayout();
+            // 
+            // watchListLbl
+            // 
+            watchListLbl.AutoSize = true;
+            watchListLbl.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            watchListLbl.Location = new Point(300, 9);
+            watchListLbl.Name = "watchListLbl";
+            watchListLbl.Size = new Size(244, 65);
+            watchListLbl.TabIndex = 0;
+            watchListLbl.Text = "Watch List";
+            // 
+            // watchlistLayout
+            // 
+            watchlistLayout.Dock = DockStyle.Bottom;
+            watchlistLayout.Location = new Point(0, 77);
+            watchlistLayout.Name = "watchlistLayout";
+            watchlistLayout.Size = new Size(863, 468);
+            watchlistLayout.TabIndex = 1;
+            // 
+            // FormWatchList
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(863, 545);
+            Controls.Add(watchlistLayout);
+            Controls.Add(watchListLbl);
+            Name = "FormWatchList";
+            Text = "FormWatchList";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label watchListLbl;
+        private FlowLayoutPanel watchlistLayout;
     }
 }

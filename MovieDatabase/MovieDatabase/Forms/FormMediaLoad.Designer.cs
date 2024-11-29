@@ -29,26 +29,34 @@
         private void InitializeComponent()
         {
             backBtn = new Button();
+            mediaLayout = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // backBtn
             // 
-            backBtn.Location = new Point(8, 7);
-            backBtn.Margin = new Padding(2, 2, 2, 2);
+            backBtn.Location = new Point(11, 12);
             backBtn.Name = "backBtn";
-            backBtn.Size = new Size(85, 23);
+            backBtn.Size = new Size(121, 38);
             backBtn.TabIndex = 0;
             backBtn.Text = "Back";
             backBtn.UseVisualStyleBackColor = true;
             backBtn.Click += backBtn_Click;
             // 
+            // mediaLayout
+            // 
+            mediaLayout.AutoScroll = true;
+            mediaLayout.Location = new Point(0, 56);
+            mediaLayout.Name = "mediaLayout";
+            mediaLayout.Size = new Size(917, 517);
+            mediaLayout.TabIndex = 1;
+            // 
             // FormMediaLoad
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(560, 270);
+            ClientSize = new Size(914, 573);
+            Controls.Add(mediaLayout);
             Controls.Add(backBtn);
-            Margin = new Padding(2, 2, 2, 2);
             Name = "FormMediaLoad";
             Text = "FormMediaLoad";
             ResumeLayout(false);
@@ -57,5 +65,6 @@
         #endregion
 
         private Button backBtn;
+        private FlowLayoutPanel mediaLayout;
     }
 }

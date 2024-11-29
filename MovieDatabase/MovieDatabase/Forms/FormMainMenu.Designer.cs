@@ -34,7 +34,8 @@
             tvshowBtn = new Button();
             searchTB = new TextBox();
             profileBtn = new Button();
-            comboBox1 = new ComboBox();
+            genreBox = new ComboBox();
+            mediaLayout = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // recBtn
@@ -45,6 +46,7 @@
             recBtn.TabIndex = 0;
             recBtn.Text = "Recommendation";
             recBtn.UseVisualStyleBackColor = true;
+            recBtn.Click += recBtn_Click;
             // 
             // top10Btn
             // 
@@ -54,6 +56,7 @@
             top10Btn.TabIndex = 1;
             top10Btn.Text = "Top 10";
             top10Btn.UseVisualStyleBackColor = true;
+            top10Btn.Click += top10Btn_Click;
             // 
             // moviesBtn
             // 
@@ -63,6 +66,7 @@
             moviesBtn.TabIndex = 2;
             moviesBtn.Text = "Movies";
             moviesBtn.UseVisualStyleBackColor = true;
+            moviesBtn.Click += moviesBtn_Click;
             // 
             // tvshowBtn
             // 
@@ -72,6 +76,7 @@
             tvshowBtn.TabIndex = 3;
             tvshowBtn.Text = "Tv Shows";
             tvshowBtn.UseVisualStyleBackColor = true;
+            tvshowBtn.Click += tvshowBtn_Click;
             // 
             // searchTB
             // 
@@ -79,6 +84,7 @@
             searchTB.Name = "searchTB";
             searchTB.Size = new Size(228, 31);
             searchTB.TabIndex = 5;
+            searchTB.TextChanged += searchTB_TextChanged;
             // 
             // profileBtn
             // 
@@ -89,21 +95,32 @@
             profileBtn.UseVisualStyleBackColor = true;
             profileBtn.Click += profileBtn_Click;
             // 
-            // comboBox1
+            // genreBox
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "ACTION", "ANIMATION", "COMEDY", "CRIME", "DOCUMENTARY", "DRAMA", "FANTASY", "HORROR", "MUSICAL", "MYSTERY", "ROMANCE", "SCI_FI", "SUPERHERO", "THRILLER", "WAR" });
-            comboBox1.Location = new Point(532, 14);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(182, 33);
-            comboBox1.TabIndex = 7;
+            genreBox.FormattingEnabled = true;
+            genreBox.Items.AddRange(new object[] { "ACTION", "ANIMATION", "COMEDY", "CRIME", "DOCUMENTARY", "DRAMA", "FANTASY", "HORROR", "MUSICAL", "MYSTERY", "ROMANCE", "SCI_FI", "SUPERHERO", "THRILLER", "WAR" });
+            genreBox.Location = new Point(532, 14);
+            genreBox.Name = "genreBox";
+            genreBox.Size = new Size(182, 33);
+            genreBox.TabIndex = 7;
+            genreBox.SelectedIndexChanged += genreBox_SelectedIndexChanged;
+            // 
+            // mediaLayout
+            // 
+            mediaLayout.AutoScroll = true;
+            mediaLayout.Dock = DockStyle.Bottom;
+            mediaLayout.Location = new Point(0, 63);
+            mediaLayout.Name = "mediaLayout";
+            mediaLayout.Size = new Size(1176, 530);
+            mediaLayout.TabIndex = 8;
             // 
             // FormMainMenu
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1176, 593);
-            Controls.Add(comboBox1);
+            Controls.Add(mediaLayout);
+            Controls.Add(genreBox);
             Controls.Add(profileBtn);
             Controls.Add(searchTB);
             Controls.Add(tvshowBtn);
@@ -124,6 +141,7 @@
         private Button tvshowBtn;
         private TextBox searchTB;
         private Button profileBtn;
-        private ComboBox comboBox1;
+        private ComboBox genreBox;
+        private FlowLayoutPanel mediaLayout;
     }
 }

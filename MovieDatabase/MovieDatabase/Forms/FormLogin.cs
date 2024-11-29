@@ -60,8 +60,8 @@ namespace MovieDatabase
 
         private void langBtn_Click(object sender, EventArgs e)
         {
-             Util.Language();
-             UpdateComponents();
+            Util.Language();
+            UpdateComponents();
         }
     }
 }
