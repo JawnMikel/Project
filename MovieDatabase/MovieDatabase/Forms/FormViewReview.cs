@@ -20,7 +20,8 @@ namespace MovieDatabase
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
             this.media = null;
-
+            Util.Language();
+            Update();
             InitializeComponent();
             this.crewMember = crewMember;
             titleLbl.Text += " " + crewMember.FirstName + " " + crewMember.LastName;
@@ -60,6 +61,7 @@ namespace MovieDatabase
         private void langBtn_Click(object sender, EventArgs e)
         {
             Util.Language();
+            Update();
         }
     }
 }

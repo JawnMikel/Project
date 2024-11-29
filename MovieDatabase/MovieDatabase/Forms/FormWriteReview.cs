@@ -19,6 +19,10 @@ namespace MovieDatabase
         public FormWriteReview(Media media, User user)
         {
             InitializeComponent();
+            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
+            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+            Util.Language();
+            Update();
             this.user = user;
             this.media = media;
             titleLbl.Text = media.Title;
@@ -58,6 +62,7 @@ namespace MovieDatabase
         private void langBtn_Click(object sender, EventArgs e)
         {
             Util.Language();
+            Update();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace MovieDatabase
+﻿using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormPaymentUpgrade
     {
@@ -179,6 +181,18 @@
             Text = "frmPayment";
             ResumeLayout(false);
             PerformLayout();
+        }
+        public void Update()
+        {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+            paymentTitleLbl.Text = rm.GetString("Payment");
+            fullnameLbl.Text = rm.GetString("CardHolderName");
+            cardNumLbl.Text = rm.GetString("CardNumber");
+            cvvLbl.Text = rm.GetString("CVV");
+            backBtn.Text = rm.GetString("BackButton");
+            payBtn.Text = rm.GetString("PayButton");
+            langBtn.Text = rm.GetString("Lanbutton");
+            expiryDateLbl.Text = rm.GetString("ExpiryDate");
         }
 
         #endregion

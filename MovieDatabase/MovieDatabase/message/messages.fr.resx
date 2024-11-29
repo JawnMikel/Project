@@ -222,4 +222,7 @@
   <data name="ShowPassword" xml:space="preserve">
     <value>Montré le mot de passe</value>
   </data>
+  <data name="Memebership" xml:space="preserve">
+    <value>Abonnement</value>
+  </data>
 </root>

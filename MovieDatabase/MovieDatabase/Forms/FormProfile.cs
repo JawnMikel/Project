@@ -19,7 +19,8 @@ namespace MovieDatabase
         {
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
-
+            Util.Language();
+            Update();
             InitializeComponent();
             this.user = user;
             fullNameTB.Text = user.FirstName + " " + user.LastName;
@@ -68,6 +69,7 @@ namespace MovieDatabase
         private void langBtn_Click(object sender, EventArgs e)
         {
             Util.Language();
+            Update();
         }
     }
 }
