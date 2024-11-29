@@ -11,17 +11,17 @@ namespace MovieDatabase
     /// </summary>
     public class Director : CrewMember
     {
-        public List<int> DirectedMovies { get; }
-        public List<int> DirectedTVShows { get; }
-        public List<int> DirectedEpisodes { get; }
+        public List<int> DirectedMovies { get; set; }
+        public List<int> DirectedTVShows { get; set; }
+        public List<int> DirectedEpisodes { get; set; }
 
         /// <summary>
         /// All argument constructor for a new director.
         /// </summary>
         /// <param name="firstName">The first name of the director.</param>
-        /// <param name="secondName">The last name of the director.</param>
+        /// <param name="lastName">The last name of the director.</param>
         /// <param name="imageLink">The link of the picture of the director.</param>
-        public Director(string firstName, string secondName, string imageLink) : base(firstName, secondName, imageLink)
+        public Director(string firstName, string lastName, string imageLink) : base(firstName, lastName, imageLink)
         {
             DirectedMovies = new List<int>();
             DirectedTVShows = new List<int>();

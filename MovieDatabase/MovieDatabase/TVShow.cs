@@ -12,7 +12,7 @@ namespace MovieDatabase
     /// </summary>
     public class TVShow : Media
     {
-        public List<Episode> Episodes { get; }
+        public List<Episode> Episodes { get; set; }
 
         /// <summary>
         /// All argument constructor for a new tv show

@@ -15,10 +15,10 @@ namespace MovieDatabase
         public int MediaId { get; set; }
         public string Title { get; }
         public DateTime ReleaseDate { get; }
-        public List<Director> Directors { get; }
-        public List<Actor> Actors { get; }
-        public List<Genre> Genres { get; }
-        public List<Review> Reviews { get;}
+        public List<Director> Directors { get; set; }
+        public List<Actor> Actors { get; set;  }
+        public List<Genre> Genres { get; set; }
+        public List<Review> Reviews { get; set; }
         public string Synopsis { get; }
         public string ImageLink { get; }
 
