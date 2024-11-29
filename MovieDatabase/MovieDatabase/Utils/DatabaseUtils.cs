@@ -3,6 +3,7 @@ using MovieDatabase.Exceptions;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.DirectoryServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MovieDatabase.Utils
 {
@@ -173,7 +174,7 @@ namespace MovieDatabase.Utils
                     movie.Genres = GetMovieGenres(movie.MediaId);
                     watchList.Add(movie);
                 }
-                
+
                 // Add TV Shows to the watchlist
                 while (tvShowReader.NextResult())
                 {
@@ -812,7 +813,7 @@ namespace MovieDatabase.Utils
                 // Form the SQL and execute the query
                 cmd.Parameters.AddWithValue("@GenreName", genre.ToString().ToUpper());
                 SQLiteDataReader movieReader = cmd.ExecuteReader();
-                
+
                 // Get all of the movie results
                 while (movieReader.NextResult())
                 {
@@ -882,6 +883,157 @@ namespace MovieDatabase.Utils
             media.AddRange(GetMoviesByGenre(genre));
             media.AddRange(GetTVShowsByGenre(genre));
             return media;
+        }
+
+        /// <summary>
+        /// Get a tv show by id.
+        /// </summary>
+        /// <param name="tvShowId">The ID of the tv show.</param>
+        /// <returns>The TVShow with the specified ID.</returns>
+        public TVShow? GetTVShowById(int tvShowId)
+        {
+            const string SQL = """
+                                SELECT * FROM tvshow WHERE TVShowID = @TVShowID;
+                                """;
+            TVShow? tvShow = null;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
+                SQLiteDataReader tvShowReader = cmd.ExecuteReader();
+
+                // If no result, return
+                if (!tvShowReader.NextResult())
+                {
+                    return null;
+                }
+
+                // Create the tv show
+                tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
+                    (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
+                // Set the tv show id
+                tvShow.MediaId = (int)tvShowReader["TVShowID"];
+                // Set the tv show revies, directors, actors, genres, and episodes
+                tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
+                tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
+                tvShow.Actors = GetTVShowActors(tvShow.MediaId);
+                tvShow.Reviews = GetTVShowReviews(tvShow.MediaId);
+                tvShow.Genres = GetTVShowGenres(tvShow.MediaId);
+            }
+            return tvShow;
+        }
+
+        /// <summary>
+        /// Get an episode by id.
+        /// </summary>
+        /// <param name="episodeId">The ID of the episode.</param>
+        /// <returns>The Episode with the specified ID.</returns>
+        public Episode? GetEpisodeById(int episodeId)
+        {
+            const string SQL = """
+                                SELECT * FROM episode WHERE EpisodeID = @EpisodeID;
+                                """;
+            Episode? episode = null;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.Parameters.AddWithValue("@EpisodeID", episodeId);
+                SQLiteDataReader episodeReader = cmd.ExecuteReader();
+
+                // If no result, return
+                if (!episodeReader.NextResult())
+                {
+                    return null;
+                }
+
+                // Create an episode
+                episode = new Episode((string)episodeReader["Title"], DateTime.Parse((string)episodeReader["ReleaseDate"]),
+                    (string)episodeReader["Synopsis"], (string)episodeReader["ImageLink"], (int)episodeReader["Duration"],
+                    (int)episodeReader["SeasonNumber"], (int)episodeReader["EpisodeNumber"]);
+                // Set the episode
+                episode.MediaId = (int)episodeReader["EpisodeID"];
+                // Set the movie reviews, directors, actors, genres, and episodes
+                episode.Reviews = GetEpisodeReviews(episode.MediaId);
+                episode.Directors = GetEpisodeDirectors(episode.MediaId);
+                episode.Actors = GetEpisodeActors(episode.MediaId);
+                episode.Genres = GetEpisodeGenres(episode.MediaId);
+            }
+            return episode;
+        }
+
+        /// <summary>
+        /// Get a movie by id.
+        /// </summary>
+        /// <param name="movieId">The ID of the movie.</param>
+        /// <returns>The Movie with the specified ID.</returns>
+        public Movie? GetMovieById(int movieId)
+        {
+            const string SQL = """
+                                SELECT * FROM movie WHERE MovieID = @MovieID;
+                                """;
+            Movie? movie = null;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.Parameters.AddWithValue("@MovieID", movieId);
+                SQLiteDataReader movieReader = cmd.ExecuteReader();
+
+                // If no result, return
+                if (!movieReader.NextResult())
+                {
+                    return null;
+                }
+
+                // Create the movie
+                movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
+                        (string)movieReader["Synopsis"], (int)movieReader["Duration"], (string)movieReader["ImageLink"]);
+                // Set the movie id
+                movie.MediaId = (int)movieReader["MovieID"];
+                // Set the movie reviews, directors, actors, and genres
+                movie.Reviews = GetMovieReviews(movie.MediaId);
+                movie.Directors = GetMovieDirectors(movie.MediaId);
+                movie.Actors = GetMovieActors(movie.MediaId);
+                movie.Genres = GetMovieGenres(movie.MediaId);
+            }
+            return movie;
+        }
+        
+
+        public User? GetUserById(int userId)
+        {
+            const string SQL = """
+                                SELECT * FROM user u 
+                                LEFT JOIN payment p ON p.UserID = u.UserID
+                                WHERE u.UserID = @UserID;
+                                """;
+            User? user = null;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                cmd.Parameters.AddWithValue("@UserName", userId);
+
+                // Execute the SQL and read the next result
+                SQLiteDataReader reader = cmd.ExecuteReader();
+                if (!reader.NextResult())
+                {
+                    return null;
+                }
+
+                // If the PaymentID field is present, the user has a premium membership
+                User.Memberships membership = User.Memberships.REGULAR;
+                if (reader["PaymentID"] == DBNull.Value)
+                {
+                    membership = User.Memberships.PREMIUM;
+                }
+
+                // Parse the date of birth
+                DateTime dob = DateTime.Parse((string)reader["DateOfBirth"]);
+                // Create the user object
+                user = new User((string)reader["UserName"], (string)reader["Password"],
+                    (string)reader["FirstName"], (string)reader["LastName"], dob, membership);
+                // Set the user ID
+                user.Id = (int)reader["UserID"];
+                // Set the watchlist and reviews
+                user.WatchList = GetUserWatchList(user.Id);
+                user.WrittenReviews = GetUserReviews(user.Id);
+            }
+            return user;
         }
 
         /// <summary>
