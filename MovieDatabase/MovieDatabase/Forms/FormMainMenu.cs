@@ -19,8 +19,9 @@ namespace MovieDatabase
         public FormMainMenu(User user)
         {
             Util.Language();
-            Update();
+            
             InitializeComponent();
+            Update();
             this.user = user;
             profileBtn.Text = user.Username;
             if (user.Membership.Equals("REGULAR"))

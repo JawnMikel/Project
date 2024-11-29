@@ -22,9 +22,10 @@ namespace MovieDatabase
         {
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
-            Util.Language();
-            Update();
+            
             InitializeComponent();
+           
+            Update();
             _firstName = firstName;
             _lastName = lastName;
             _username = username;
@@ -58,6 +59,7 @@ namespace MovieDatabase
         /// </summary>
         private void ConfirmPayment()
         {
+            string cardHolderName = fullNameTB.Text;
             string creditCardNumber = cardNumberTB.Text;
             string cvv = cvvTB.Text;
             string expiryDate = expiryDateTB.Text;
@@ -65,7 +67,7 @@ namespace MovieDatabase
             try
             {
                 Payment payment = new Payment(
-                    fullNameTB.Text,
+                    cardHolderName,
                     creditCardNumber,
                     expiryDate,
                     cvv

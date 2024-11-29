@@ -10,8 +10,8 @@ namespace MovieDatabase
         public static List<User> users = new List<User>();
         public FormLogin()
         {
-            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
-            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+        
+
             InitializeComponent();
             UpdateComponents();
             passwordTB.PasswordChar = '*';
