@@ -20,7 +20,8 @@ namespace MovieDatabase
         {
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
-
+            Util.Language();
+            Update();
             InitializeComponent();
             this.media = media;
             this.form = form;
@@ -44,6 +45,7 @@ namespace MovieDatabase
         private void langBtn_Click(object sender, EventArgs e)
         {
             Util.Language();
+            Update();
         }
 
         private void backBtn_Click(object sender, EventArgs e)
