@@ -15,6 +15,7 @@ namespace MovieDatabase
     public partial class FormCreateAcc : Form
     {
        
+
         public FormCreateAcc()
         {
             InitializeComponent();
@@ -34,14 +35,14 @@ namespace MovieDatabase
 
         private void nextBtn_Click(object sender, EventArgs e)
         {
+            if (!CheckUser())
+            {
+                return;
+            }
+
             if (membershipCB.SelectedIndex == 0)
             {
-                User user = CreateUser();
-
-                if (user == null)
-                {
-                    return;
-                }
+                User user = CreateUser(User.Memberships.REGULAR);
                 FormLogin.users.Add(user);
 
                 MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -54,7 +55,6 @@ namespace MovieDatabase
             else if (membershipCB.SelectedIndex == 1)
             {
                 this.Hide();
-
                 var formPayment = new FormPaymentSignUp(
                     firstNameTB.Text,
                     lastNameTB.Text,
@@ -68,6 +68,7 @@ namespace MovieDatabase
                 formPayment.ShowDialog();
             }
         }
+           
         private void membershipCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (membershipCB.SelectedIndex == 0)
@@ -86,14 +87,26 @@ namespace MovieDatabase
         /// Creates a user from the user class from using the information in the frame
         /// </summary>
         /// <returns>a new user</returns>
-        private User CreateUser()
+        private User CreateUser(User.Memberships memberships)
+        {
+            string firstName = firstNameTB.Text;
+            string lastName = lastNameTB.Text;
+            string username = usernameTB.Text;
+            string password = passwordTB.Text;
+            DateTime dob = dobPicker.Value;
+
+            User user = new User(username, password, firstName, lastName, dob, memberships);
+            return user;
+        }
+
+        private bool CheckUser()
         {
             string firstName = firstNameTB.Text;
 
             if (!Util.ValidateNameFormat(firstName))
             {
                 MessageBox.Show("User must have a proper first name", "Invalid First Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return null;
+                return false;
             }
 
             string lastName = lastNameTB.Text;
@@ -101,7 +114,7 @@ namespace MovieDatabase
             if (!Util.ValidateNameFormat(lastName))
             {
                 MessageBox.Show("User must have a proper last name", "Invalid Last Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return null;
+                return false;
             }
 
             DateTime dob = dobPicker.Value;
@@ -109,7 +122,7 @@ namespace MovieDatabase
             if (!Util.ValidateUserAge(dob))
             {
                 MessageBox.Show("User must be at least 18 years old.", "Age Restriction", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return null;
+                return false;
             }
 
             int selectedIndex = membershipCB.SelectedIndex;
@@ -120,7 +133,7 @@ namespace MovieDatabase
             if (!Util.ValidateUsernameFormat(username))
             {
                 MessageBox.Show("User must have a valid username.", "Invalid Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return null;
+                return false;
             }
 
 
@@ -129,11 +142,10 @@ namespace MovieDatabase
             if (!Util.ValidatePasswordFormat(password))
             {
                 MessageBox.Show("User must have a valid password.", "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return null;
+                return false;
             }
 
-            User user = new User(username, password, firstName, lastName, dob, selectedMembership);
-            return user;
+            return true;
         }
 
         private void passwordBox_CheckedChanged(object sender, EventArgs e)

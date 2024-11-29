@@ -30,6 +30,8 @@
         {
             watchListLbl = new Label();
             watchlistLayout = new FlowLayoutPanel();
+            backBtn = new Button();
+            langBtn = new Button();
             SuspendLayout();
             // 
             // watchListLbl
@@ -50,11 +52,33 @@
             watchlistLayout.Size = new Size(863, 468);
             watchlistLayout.TabIndex = 1;
             // 
+            // backBtn
+            // 
+            backBtn.Location = new Point(27, 23);
+            backBtn.Name = "backBtn";
+            backBtn.Size = new Size(132, 36);
+            backBtn.TabIndex = 2;
+            backBtn.Text = "Back";
+            backBtn.UseVisualStyleBackColor = true;
+            backBtn.Click += backBtn_Click;
+            // 
+            // langBtn
+            // 
+            langBtn.Location = new Point(695, 25);
+            langBtn.Name = "langBtn";
+            langBtn.Size = new Size(112, 34);
+            langBtn.TabIndex = 3;
+            langBtn.Text = "French";
+            langBtn.UseVisualStyleBackColor = true;
+            langBtn.Click += langBtn_Click;
+            // 
             // FormWatchList
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(863, 545);
+            Controls.Add(langBtn);
+            Controls.Add(backBtn);
             Controls.Add(watchlistLayout);
             Controls.Add(watchListLbl);
             Name = "FormWatchList";
@@ -67,5 +91,7 @@
 
         private Label watchListLbl;
         private FlowLayoutPanel watchlistLayout;
+        private Button backBtn;
+        private Button langBtn;
     }
 }

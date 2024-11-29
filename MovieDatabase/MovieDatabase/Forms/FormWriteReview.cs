@@ -18,9 +18,10 @@ namespace MovieDatabase
         CrewMember member;
         public FormWriteReview(Media media, User user)
         {
-            InitializeComponent();
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+            InitializeComponent();
+            
             Util.Language();
             Update();
             this.user = user;

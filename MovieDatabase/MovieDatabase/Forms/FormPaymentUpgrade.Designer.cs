@@ -58,7 +58,7 @@ namespace MovieDatabase
             // fullnameLbl
             // 
             fullnameLbl.AutoSize = true;
-            fullnameLbl.Location = new Point(256, 135);
+            fullnameLbl.Location = new Point(185, 133);
             fullnameLbl.Margin = new Padding(4, 0, 4, 0);
             fullnameLbl.Name = "fullnameLbl";
             fullnameLbl.Size = new Size(160, 25);
@@ -76,7 +76,7 @@ namespace MovieDatabase
             // cardNumLbl
             // 
             cardNumLbl.AutoSize = true;
-            cardNumLbl.Location = new Point(295, 218);
+            cardNumLbl.Location = new Point(247, 218);
             cardNumLbl.Margin = new Padding(4, 0, 4, 0);
             cardNumLbl.Name = "cardNumLbl";
             cardNumLbl.Size = new Size(119, 25);
@@ -86,7 +86,7 @@ namespace MovieDatabase
             // cvvLbl
             // 
             cvvLbl.AutoSize = true;
-            cvvLbl.Location = new Point(628, 313);
+            cvvLbl.Location = new Point(625, 311);
             cvvLbl.Margin = new Padding(4, 0, 4, 0);
             cvvLbl.Name = "cvvLbl";
             cvvLbl.Size = new Size(45, 25);
@@ -96,7 +96,7 @@ namespace MovieDatabase
             // expiryDateLbl
             // 
             expiryDateLbl.AutoSize = true;
-            expiryDateLbl.Location = new Point(328, 313);
+            expiryDateLbl.Location = new Point(265, 308);
             expiryDateLbl.Margin = new Padding(4, 0, 4, 0);
             expiryDateLbl.Name = "expiryDateLbl";
             expiryDateLbl.Size = new Size(101, 25);
@@ -132,7 +132,7 @@ namespace MovieDatabase
             backBtn.Location = new Point(425, 452);
             backBtn.Margin = new Padding(4, 5, 4, 5);
             backBtn.Name = "backBtn";
-            backBtn.Size = new Size(107, 38);
+            backBtn.Size = new Size(129, 38);
             backBtn.TabIndex = 9;
             backBtn.Text = "Back";
             backBtn.UseVisualStyleBackColor = true;
@@ -143,7 +143,7 @@ namespace MovieDatabase
             payBtn.Location = new Point(643, 452);
             payBtn.Margin = new Padding(4, 5, 4, 5);
             payBtn.Name = "payBtn";
-            payBtn.Size = new Size(107, 38);
+            payBtn.Size = new Size(136, 38);
             payBtn.TabIndex = 10;
             payBtn.Text = "Pay";
             payBtn.UseVisualStyleBackColor = true;
@@ -153,7 +153,7 @@ namespace MovieDatabase
             // 
             langBtn.Location = new Point(803, 36);
             langBtn.Name = "langBtn";
-            langBtn.Size = new Size(112, 34);
+            langBtn.Size = new Size(147, 34);
             langBtn.TabIndex = 11;
             langBtn.Text = "French";
             langBtn.UseVisualStyleBackColor = true;
@@ -182,6 +182,7 @@ namespace MovieDatabase
             ResumeLayout(false);
             PerformLayout();
         }
+
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
