@@ -222,6 +222,9 @@
   <data name="ShowPassword" xml:space="preserve">
     <value>Show Password</value>
   </data>
+  <data name="Membership" xml:space="preserve">
+    <value>Membership</value>
+  </data>
   <data name="ErrorMessage" xml:space="preserve">
     <value>Username or password do not match! Please try again</value>
   </data>
