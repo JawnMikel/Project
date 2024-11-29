@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic.Devices;
 using MovieDatabase.Exceptions;
 using System.Data.SqlClient;
 using System.Data.SQLite;
@@ -118,7 +119,7 @@ namespace MovieDatabase.Utils
             const string TVSHOW_SQL = """
                                        SELECT t.* FROM tvshow t JOIN watchlisttvshow wl on t.TVShowID = wl.TVShowID WHERE wl.UserID = @UserID;
                                        """;
-            List<Media> list = new List<Media>();
+            List<Media> watchList = new List<Media>();
             using (SQLiteCommand movieCmd = new SQLiteCommand(MOVIE_SQL, _connection))
             using (SQLiteCommand tvShowCmd = new SQLiteCommand(TVSHOW_SQL, _connection))
             {
@@ -127,16 +128,27 @@ namespace MovieDatabase.Utils
                 tvShowCmd.Parameters.AddWithValue("@UserID", userId);
                 SQLiteDataReader movieReader = movieCmd.ExecuteReader();
                 SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader();
+
                 while (movieReader.NextResult())
                 {
                     Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
                         (string)movieReader["Synopsis"], (int)movieReader["Duration"], (string)movieReader["ImageLink"]);
-                    // TODO: Get the list of reviews, of directors, and of actors
-                    list.Add(movie);
+                    // Set the movie id
+                    movie.MediaId = (int)movieReader["MovieID"];
+                    // Set the movie reviews, directors, actors, and genres
+                    movie.Reviews = GetMovieReviews(movie.MediaId);
+                    movie.Directors = GetMovieDirectors(movie.MediaId);
+                    movie.Actors = GetMovieActors(movie.MediaId);
+                    movie.Genres = GetMovieGenres(movie.MediaId);
+                    watchList.Add(movie);
+                }
+                // TODO add tv shows
+                while (tvShowReader.NextResult())
+                {
                 }
 
             }
-            return list;
+            return watchList;
         }
 
         /// <summary>
@@ -147,7 +159,7 @@ namespace MovieDatabase.Utils
         private List<Review> GetMovieReviews(int movieId)
         {
             const string SQL = """
-                                SELECT r.* FROM review JOIN moviereview mr on r.ReviewID = mr.ReviewID WHERE mr.MovieID = @MovieID;
+                                SELECT r.* FROM review r JOIN moviereview mr on r.ReviewID = mr.ReviewID WHERE mr.MovieID = @MovieID;
                                 """;
             List<Review> reviews = new List<Review>();
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
@@ -165,6 +177,29 @@ namespace MovieDatabase.Utils
                 }
             }
             return reviews;
+        }
+
+        private List<Media.Genre> GetMovieGenres(int movieId)
+        {
+            const string SQL = """
+                                SELECT g.GenreName FROM genre g JOIN moviegenre mg ON g.GenreID = mg.GenreID WHERE mg.MovieID = @MovieID;
+                                """;
+            List<Media.Genre> genres = new List<Media.Genre>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@MovieID", movieId);
+                SQLiteDataReader genreReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all reviews
+                while (genreReader.NextResult())
+                {
+                    // Create the Genre and add it to the genres list
+                    Media.Genre genre = (Media.Genre)Enum.Parse(typeof(Media.Genre), (string)genreReader["GenreName"]);
+                    genres.Add(genre);
+                }
+            }
+            return genres;
         }
 
         /// <summary>
@@ -202,6 +237,321 @@ namespace MovieDatabase.Utils
         }
 
         /// <summary>
+        /// Get the list of directors of a movie.
+        /// </summary>
+        /// <param name="movieId">The movie Id of the movie.</param>
+        /// <returns>The list of directors directing the movie specified by movieId.</returns>
+        private List<Director> GetMovieDirectors(int movieId)
+        {
+            const string SQL = """
+                                SELECT d.* FROM director d JOIN moviedirector md ON d.DirectorID = md.DirectorID WHERE md.MovieID = @MovieID;
+                                """;
+            List<Director> directors = new List<Director>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@MovieID", movieId);
+                SQLiteDataReader directorReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all reviews
+                while (directorReader.NextResult())
+                {
+                    // Create a director
+                    Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
+                    // Set the director id
+                    director.Id = (int)directorReader["DirectorID"];
+                    // Set the lists of directed media
+                    Dictionary<string, List<int>> directedIds = GetDirectorDirected(director.Id);
+                    director.DirectedMovies = directedIds["MovieIds"];
+                    director.DirectedTVShows = directedIds["TVShowIds"];
+                    director.DirectedEpisodes = directedIds["EpisodeIds"];
+                }
+            }
+            return directors;
+        }
+
+        /// <summary>
+        /// Fetch all reviews for a given episode.
+        /// </summary>
+        /// <param name="episodeId">The episode ID of the episode whose reviews are to be fetched.</param>
+        /// <returns>A list of all of the reviews of the episode.</returns>
+        private List<Review> GetEpisodeReviews(int episodeId)
+        {
+            const string SQL = """
+                                SELECT r.* FROM review r JOIN episodereview er on r.ReviewID = r.ReviewID WHERE er.EpisodeID = @EpisodeID;
+                                """;
+            List<Review> reviews = new List<Review>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@EpisodeID", episodeId);
+                SQLiteDataReader reviewReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all reviews
+                while (reviewReader.NextResult())
+                {
+                    Review review = new Review((int)reviewReader["UserID"], (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                    review.ReviewId = (int)reviewReader["ReviewID"];
+                    reviews.Add(review);
+                }
+            }
+            return reviews;
+        }
+
+        /// <summary>
+        /// Get the genres of an episode.
+        /// </summary>
+        /// <param name="episodeId">The episode ID of the episode.</param>
+        /// <returns>The list of genres of an episode.</returns>
+        private List<Media.Genre> GetEpisodeGenres(int episodeId)
+        {
+            const string SQL = """
+                                SELECT g.GenreName FROM genre g JOIN episodegenre eg ON g.GenreID = eg.GenreID WHERE eg.EpisodeID = @EpisodeID;
+                                """;
+            List<Media.Genre> genres = new List<Media.Genre>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@EpisodeID", episodeId);
+                SQLiteDataReader genreReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all reviews
+                while (genreReader.NextResult())
+                {
+                    // Create the Genre and add it to the genres list
+                    Media.Genre genre = (Media.Genre)Enum.Parse(typeof(Media.Genre), (string)genreReader["GenreName"]);
+                    genres.Add(genre);
+                }
+            }
+            return genres;
+        }
+
+        /// <summary>
+        /// Get the actors starring an episode.
+        /// </summary>
+        /// <param name="episodeId">The episode ID of the episode.</param>
+        /// <returns>A list of all of the actors starring the specified episode.</returns>
+        private List<Actor> GetEpisodeActors(int episodeId)
+        {
+            const string SQL = """
+                                SELECT a.* FROM actor a JOIN episodeactor ea ON a.ActorID = ea.ActorID WHERE ea.EpisodeID = @EpisodeID;
+                                """;
+            List<Actor> actors = new List<Actor>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@EpisodeID", episodeId);
+                SQLiteDataReader actorReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all reviews
+                while (actorReader.NextResult())
+                {
+                    // Create an actor
+                    Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
+                    // Set the actor id
+                    actor.Id = (int)actorReader["ActorID"];
+                    // Set the lists of starred media
+                    Dictionary<string, List<int>> starredIds = GetActorStarred(actor.Id);
+                    actor.StarredMovies = starredIds["MovieIds"];
+                    actor.StarredTVShows = starredIds["TVShowIds"];
+                    actor.StarredEpisodes = starredIds["EpisodeIds"];
+                }
+            }
+            return actors;
+        }
+
+        /// <summary>
+        /// Get the list of directors of an episode.
+        /// </summary>
+        /// <param name="episodeId">The episode Id of the episode.</param>
+        /// <returns>The list of directors directing the episode specified by episodeId.</returns>
+        private List<Director> GetEpisodeDirectors(int episodeId)
+        {
+            const string SQL = """
+                                SELECT d.* FROM director d JOIN episodedirector ed ON d.DirectorID = ed.DirectorID WHERE ed.EpisodeID = @EpisodeID;
+                                """;
+            List<Director> directors = new List<Director>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@EpisodeID", episodeId);
+                SQLiteDataReader directorReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all reviews
+                while (directorReader.NextResult())
+                {
+                    // Create a director
+                    Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
+                    // Set the director id
+                    director.Id = (int)directorReader["DirectorID"];
+                    // Set the lists of directed media
+                    Dictionary<string, List<int>> directedIds = GetDirectorDirected(director.Id);
+                    director.DirectedMovies = directedIds["MovieIds"];
+                    director.DirectedTVShows = directedIds["TVShowIds"];
+                    director.DirectedEpisodes = directedIds["EpisodeIds"];
+                }
+            }
+            return directors;
+        }
+
+        /// <summary>
+        /// Fetch all reviews for a given tv show.
+        /// </summary>
+        /// <param name="tvShowId">The tv show ID of the tv show whose reviews are to be fetched.</param>
+        /// <returns>A list of all of the reviews of the tv show.</returns>
+        private List<Review> GetTVShowReviews(int tvShowId)
+        {
+            const string SQL = """
+                                SELECT r.* FROM review r JOIN tvshowreview tr on r.ReviewID = r.ReviewID WHERE tr.TVShowID = @TVShowID;
+                                """;
+            List<Review> reviews = new List<Review>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
+                SQLiteDataReader reviewReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all reviews
+                while (reviewReader.NextResult())
+                {
+                    Review review = new Review((int)reviewReader["UserID"], (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                    review.ReviewId = (int)reviewReader["ReviewID"];
+                    reviews.Add(review);
+                }
+            }
+            return reviews;
+        }
+
+        /// <summary>
+        /// Get the genres of a tv show.
+        /// </summary>
+        /// <param name="tvShowId">The tv show ID of the tv show.</param>
+        /// <returns>The list of genres of a tv show.</returns>
+        private List<Media.Genre> GetTVShowGenres(int tvShowId)
+        {
+            const string SQL = """
+                                SELECT g.GenreName FROM genre g JOIN tvshowgenre tg ON g.GenreID = tg.GenreID WHERE tg.TVShowID = @TVShowID;
+                                """;
+            List<Media.Genre> genres = new List<Media.Genre>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
+                SQLiteDataReader genreReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all reviews
+                while (genreReader.NextResult())
+                {
+                    // Create the Genre and add it to the genres list
+                    Media.Genre genre = (Media.Genre)Enum.Parse(typeof(Media.Genre), (string)genreReader["GenreName"]);
+                    genres.Add(genre);
+                }
+            }
+            return genres;
+        }
+
+        /// <summary>
+        /// Get the actors starring a tv show.
+        /// </summary>
+        /// <param name="tvShowId">The tv show ID of the tv show.</param>
+        /// <returns>A list of all of the actors starring the specified tv show.</returns>
+        private List<Actor> GetTVShowActors(int tvShowId)
+        {
+            const string SQL = """
+                                SELECT a.* FROM actor a JOIN tvshowactor ta ON a.ActorID = ta.ActorID WHERE ta.TVShowID = @tvShowId;
+                                """;
+            List<Actor> actors = new List<Actor>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
+                SQLiteDataReader actorReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all reviews
+                while (actorReader.NextResult())
+                {
+                    // Create an actor
+                    Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
+                    // Set the actor id
+                    actor.Id = (int)actorReader["ActorID"];
+                    // Set the lists of starred media
+                    Dictionary<string, List<int>> starredIds = GetActorStarred(actor.Id);
+                    actor.StarredMovies = starredIds["MovieIds"];
+                    actor.StarredTVShows = starredIds["TVShowIds"];
+                    actor.StarredEpisodes = starredIds["EpisodeIds"];
+                }
+            }
+            return actors;
+        }
+
+        /// <summary>
+        /// Get the list of directors of a tv show.
+        /// </summary>
+        /// <param name="tvShowId">The tv show Id of the tv show.</param>
+        /// <returns>The list of directors directing the tv show specified by tvShowId.</returns>
+        private List<Director> GetTVShowDirectors(int tvShowId)
+        {
+            const string SQL = """
+                                SELECT d.* FROM director d JOIN tvshowdirector td ON d.DirectorID = td.DirectorID WHERE td.TVShowID = @TVShowID;
+                                """;
+            List<Director> directors = new List<Director>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
+                SQLiteDataReader directorReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all reviews
+                while (directorReader.NextResult())
+                {
+                    // Create a director
+                    Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
+                    // Set the director id
+                    director.Id = (int)directorReader["DirectorID"];
+                    // Set the lists of directed media
+                    Dictionary<string, List<int>> directedIds = GetDirectorDirected(director.Id);
+                    director.DirectedMovies = directedIds["MovieIds"];
+                    director.DirectedTVShows = directedIds["TVShowIds"];
+                    director.DirectedEpisodes = directedIds["EpisodeIds"];
+                }
+            }
+            return directors;
+        }
+
+        private List<Episode> GetTVShowEpisodes(int tvShowId)
+        {
+            const string SQL = """
+                                SELECT * FROM episode WHERE TVShowID = @TVShowID;
+                                """;
+            List<Episode> episodes = new List<Episode>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
+                SQLiteDataReader episodeReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all episodes
+                while (episodeReader.NextResult())
+                {
+                    // Create an episode
+                    Episode episode = new Episode((string)episodeReader["Title"], DateTime.Parse((string)episodeReader["ReleaseDate"]),
+                        (string)episodeReader["Synopsis"], (string)episodeReader["ImageLink"], (int)episodeReader["Duration"],
+                        (int)episodeReader["SeasonNumber"], (int)episodeReader["EpisodeNumber"]);
+                    // Set the episode
+                    episode.MediaId = (int)episodeReader["EpisodeID"];
+                    // Set the movie reviews, directors, actors, genres, and episodes
+                    episode.Reviews = GetEpisodeReviews(episode.MediaId);
+                    episode.Directors = GetEpisodeDirectors(episode.MediaId);
+                    episode.Actors = GetEpisodeActors(episode.MediaId);
+                    episode.Genres = GetEpisodeGenres(episode.MediaId);
+                    // Add the episodes
+                    episodes.Add(episode);
+                }
+            }
+            return episodes;
+        }
+
+        /// <summary>
         /// Get the list of ids of the movies, tv shows, and episodes featuring 
         /// an actor.
         /// </summary>
@@ -218,7 +568,7 @@ namespace MovieDatabase.Utils
             const string EPISODE_SQL = """
                                 SELECT EpisodeID FROM episodeactor WHERE ActorID = @ActorID;
                                 """;
-            
+
             Dictionary<String, List<int>> starredIds = new Dictionary<String, List<int>>();
             starredIds["MovieIds"] = new List<int>();
             starredIds["TVShowIds"] = new List<int>();
