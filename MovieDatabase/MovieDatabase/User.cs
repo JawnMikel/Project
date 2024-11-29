@@ -75,7 +75,7 @@ namespace MovieDatabase
             {
                 if (!Util.ValidateUserAge(value))
                 {
-                    return;
+                    throw new ArgumentException("The lastname's format is invalid."); 
                 }
                 _dob = value;
             }
