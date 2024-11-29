@@ -36,7 +36,7 @@ namespace MovieDatabase
         {
             double rating = double.Parse(ratingTB.Text);
             string comment = reviewTB.Text;
-            Review review = new Review(user, comment, rating);
+            Review review = new Review(user.Id, comment, rating);
             if (media != null)
             {
                 media.AddReview(review);

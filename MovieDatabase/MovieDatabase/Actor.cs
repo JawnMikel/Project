@@ -11,7 +11,9 @@ namespace MovieDatabase
     /// </summary>
     public class Actor : CrewMember
     {
-        public List<Media> Starred { get; }
+        public List<int> StarredMovies { get; }
+        public List<int> StarredTVShows { get; }
+        public List<int> StarredEpisodes { get; }
 
         /// <summary>
         /// All argument constructor for a new actor.
@@ -21,11 +23,13 @@ namespace MovieDatabase
         /// <param name="imageLink">The image link of the picture of the actor.</param>
         public Actor(string firstName, string secondName, string imageLink) : base(firstName, secondName, imageLink)
         {
-            Starred = new List<Media>();
+            StarredMovies = new List<int>();
+            StarredTVShows = new List<int>();
+            StarredEpisodes = new List<int>();
         }
 
         /// <summary>
-        /// Add a media to the starred list of this actor.
+        /// Add a media to the appropriate starred list of this actor.
         /// </summary>
         /// <param name="media">The media to add.</param>
         /// <exception cref="ArgumentNullException">Exception thrown when the media argument is null.</exception>
@@ -35,11 +39,22 @@ namespace MovieDatabase
             {
                 throw new ArgumentNullException("The media argument cannot be null.");
             }
-            Starred.Add(media);
+            if (media is Movie)
+            {
+                StarredMovies.Add(media.MediaId);
+            }
+            else if (media is TVShow)
+            {
+                StarredTVShows.Add(media.MediaId);
+            }
+            else
+            {
+                StarredEpisodes.Add(media.MediaId);
+            }
         }
 
         /// <summary>
-        /// Remove a media from the starred list of this actor.
+        /// Remove a media from the appropriate starred list of this actor.
         /// </summary>
         /// <param name="media">The media to remove.</param>
         /// <exception cref="ArgumentNullException">Exception thrown when the media argument is null.</exception>
@@ -49,7 +64,18 @@ namespace MovieDatabase
             {
                 throw new ArgumentNullException("The media argument cannot be null.");
             }
-            Starred.Remove(media);
+            if (media is Movie)
+            {
+                StarredEpisodes.Remove(media.MediaId);
+            }
+            else if (media is TVShow)
+            {
+                StarredTVShows.Remove(media.MediaId);
+            }
+            else
+            {
+                StarredEpisodes.Remove(media.MediaId);
+            }
         }
 
         /// <summary>
@@ -61,12 +87,9 @@ namespace MovieDatabase
         {
             return obj is Actor actor &&
                    base.Equals(obj) &&
-                   FirstName == actor.FirstName &&
-                   LastName == actor.LastName &&
-                   Id == actor.Id &&
-                   EqualityComparer<List<Review>>.Default.Equals(Reviews, actor.Reviews) &&
-                   ImageLink == actor.ImageLink &&
-                   EqualityComparer<List<Media>>.Default.Equals(Starred, actor.Starred);
+                   EqualityComparer<List<int>>.Default.Equals(StarredMovies, actor.StarredMovies) &&
+                   EqualityComparer<List<int>>.Default.Equals(StarredTVShows, actor.StarredTVShows) &&
+                   EqualityComparer<List<int>>.Default.Equals(StarredEpisodes, actor.StarredEpisodes);
         }
 
         /// <summary>
@@ -75,7 +98,7 @@ namespace MovieDatabase
         /// <returns>The hashcode of this actor.</returns>
         public override int GetHashCode()
         {
-            return HashCode.Combine(base.GetHashCode(), FirstName, LastName, Id, Reviews, ImageLink, Starred);
+            return HashCode.Combine(base.GetHashCode(), StarredMovies, StarredTVShows, StarredEpisodes);
         }
 
         /// <summary>
@@ -85,7 +108,7 @@ namespace MovieDatabase
         public override string? ToString()
         {
             return $"Actor{{Id: {Id}, FirstName: {FirstName}, LastName: {LastName}, ImageLink: {ImageLink}, " +
-                $"Reviews: {String.Join(",", Reviews)}, Starred: {String.Join(",", Starred)}}}";
+                $"Reviews: {String.Join(",", Reviews)}}}";
         }
     }
 }
