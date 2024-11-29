@@ -7,10 +7,11 @@ namespace MovieDatabase
 {
     public partial class FormLogin : Form
     {
-        public static List<User> users = new List<User>();
+        
+        
+        public static List<User> users = new List<User>(); 
         public FormLogin()
         {
-        
 
             InitializeComponent();
             UpdateComponents();
@@ -22,8 +23,8 @@ namespace MovieDatabase
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            User user = users.FirstOrDefault(u => u.Login(usernameTB.Text, passwordTB.Text));
-
+           // User user = users.FirstOrDefault(u => u.Login(usernameTB.Text, passwordTB.Text));
+            User? user = DatabaseUtils.GetInstance().GetUserByCredentials(usernameTB.Text, passwordTB.Text);
             if (user != null)
             {
                 this.Hide();

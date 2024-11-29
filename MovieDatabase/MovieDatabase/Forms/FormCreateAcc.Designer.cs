@@ -188,7 +188,7 @@ namespace MovieDatabase
             backBtn.Location = new Point(353, 530);
             backBtn.Margin = new Padding(4, 5, 4, 5);
             backBtn.Name = "backBtn";
-            backBtn.Size = new Size(107, 38);
+            backBtn.Size = new Size(194, 38);
             backBtn.TabIndex = 14;
             backBtn.Text = "Back";
             backBtn.UseVisualStyleBackColor = true;
@@ -199,7 +199,7 @@ namespace MovieDatabase
             nextBtn.Location = new Point(573, 530);
             nextBtn.Margin = new Padding(4, 5, 4, 5);
             nextBtn.Name = "nextBtn";
-            nextBtn.Size = new Size(107, 38);
+            nextBtn.Size = new Size(215, 38);
             nextBtn.TabIndex = 15;
             nextBtn.UseVisualStyleBackColor = true;
             nextBtn.Click += nextBtn_Click;
@@ -257,6 +257,18 @@ namespace MovieDatabase
             membershipLbl.Text = rm.GetString("MembershipType");
             passwordBox.Text = rm.GetString("ShowPassword");
             backBtn.Text = rm.GetString("BackButton");
+            if (membershipCB.SelectedIndex == 0)
+            {
+                nextBtn.Text = rm.GetString("CreateAccount");
+            }
+            else if (membershipCB.SelectedIndex == 1)
+            {
+                nextBtn.Text = rm.GetString("PayButton");
+            }
+            else
+            {
+                nextBtn.Text = string.Empty;
+            }
         }
 
         #endregion

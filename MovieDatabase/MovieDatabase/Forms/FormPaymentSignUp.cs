@@ -20,9 +20,6 @@ namespace MovieDatabase
         private User.Memberships _membership;
         public FormPaymentSignUp(string firstName, string lastName, string username, string password, DateTime dob, User.Memberships membership)
         {
-            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
-            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
-            
             InitializeComponent();
            
             Update();
