@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -34,15 +36,20 @@ namespace MovieDatabase
         }
 
         private void nextBtn_Click(object sender, EventArgs e)
-        {
-            if (!CheckUser())
-            {
-                return;
-            }
-
+        { 
             if (membershipCB.SelectedIndex == 0)
             {
+                if (!CheckUser())
+                {
+                    return;
+                }
                 User user = CreateUser(User.Memberships.REGULAR);
+                if(user == null)
+                {
+                    MessageBox.Show("Failed to create account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    return;
+                }
                 FormLogin.users.Add(user);
 
                 MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -54,6 +61,10 @@ namespace MovieDatabase
             }
             else if (membershipCB.SelectedIndex == 1)
             {
+                if (!CheckUser())
+                {
+                    return;
+                }
                 this.Hide();
                 var formPayment = new FormPaymentSignUp(
                     firstNameTB.Text,
@@ -94,9 +105,19 @@ namespace MovieDatabase
             string username = usernameTB.Text;
             string password = passwordTB.Text;
             DateTime dob = dobPicker.Value;
-
-            User user = new User(username, password, firstName, lastName, dob, memberships);
-            return user;
+            try
+            {
+                User user = new User(username, password, firstName, lastName, dob, memberships);
+                var database = DatabaseUtils.GetInstance();
+                database.InsertUser(user);
+                database.CloseConnection();
+                return user;
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show(ex.Message, "Invalid User", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            return null;
         }
 
         private bool CheckUser()

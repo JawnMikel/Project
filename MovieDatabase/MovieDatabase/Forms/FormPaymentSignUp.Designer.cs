@@ -58,7 +58,7 @@ namespace MovieDatabase
             // fullnameLbl
             // 
             fullnameLbl.AutoSize = true;
-            fullnameLbl.Location = new Point(256, 135);
+            fullnameLbl.Location = new Point(188, 133);
             fullnameLbl.Margin = new Padding(4, 0, 4, 0);
             fullnameLbl.Name = "fullnameLbl";
             fullnameLbl.Size = new Size(160, 25);
@@ -76,7 +76,7 @@ namespace MovieDatabase
             // cardNumLbl
             // 
             cardNumLbl.AutoSize = true;
-            cardNumLbl.Location = new Point(295, 218);
+            cardNumLbl.Location = new Point(243, 218);
             cardNumLbl.Margin = new Padding(4, 0, 4, 0);
             cardNumLbl.Name = "cardNumLbl";
             cardNumLbl.Size = new Size(119, 25);
@@ -96,7 +96,7 @@ namespace MovieDatabase
             // expiryDateLbl
             // 
             expiryDateLbl.AutoSize = true;
-            expiryDateLbl.Location = new Point(328, 313);
+            expiryDateLbl.Location = new Point(271, 313);
             expiryDateLbl.Margin = new Padding(4, 0, 4, 0);
             expiryDateLbl.Name = "expiryDateLbl";
             expiryDateLbl.Size = new Size(101, 25);
