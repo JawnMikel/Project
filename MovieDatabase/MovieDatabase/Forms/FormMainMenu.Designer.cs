@@ -1,4 +1,6 @@
-﻿namespace MovieDatabase
+﻿using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormMainMenu
     {
@@ -114,6 +116,13 @@
             Text = "MainMenu";
             ResumeLayout(false);
             PerformLayout();
+        }
+        public void Update()
+        {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
+            recBtn.Text = rm.GetString("Recommendation");
+            moviesBtn.Text = rm.GetString("Movies");
+            tvshowBtn.Text = rm.GetString("TvShows");
         }
 
         #endregion

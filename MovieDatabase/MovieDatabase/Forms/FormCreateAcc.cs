@@ -20,6 +20,7 @@ namespace MovieDatabase
             Thread.CurrentThread.CurrentCulture = Util.cultureEn;
             Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
             InitializeComponent();
+            Util.Language();
             Update();
             passwordTB.PasswordChar = '*';
             passwordBox.CheckedChanged += passwordBox_CheckedChanged;

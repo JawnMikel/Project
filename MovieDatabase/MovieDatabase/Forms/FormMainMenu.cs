@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
+using MovieDatabase.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,8 @@ namespace MovieDatabase
         User user;
         public FormMainMenu(User user)
         {
+            Util.Language();
+            Update();
             InitializeComponent();
             this.user = user;
             profileBtn.Text = user.Username;
