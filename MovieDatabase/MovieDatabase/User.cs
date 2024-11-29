@@ -80,9 +80,9 @@ namespace MovieDatabase
                 _dob = value;
             }
         }
-        public List<Review> WrittenReviews { get; }
-        public List<Media> WatchList { get; }
-        public Payment? MembershipPayment { get; private set; }
+        public List<Review> WrittenReviews { get; set; }
+        public List<Media> WatchList { get; set; }
+        public Payment? MembershipPayment { get; set; }
         public Memberships Membership { get; set; } // TODO: make setter private
 
         /// <summary>
