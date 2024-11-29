@@ -194,6 +194,7 @@ namespace MovieDatabase
             }
             Payment payment = new Payment(cardHolderName, cardNum, cvv, expiryDate);
             MembershipPayment = payment;
+            Membership = Memberships.PREMIUM;
             return payment;
         }
 
