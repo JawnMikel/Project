@@ -33,9 +33,9 @@ namespace MovieDatabase
             paymentTitleLbl = new Label();
             fullnameLbl = new Label();
             fullNameTB = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
+            cardNumLbl = new Label();
+            cvvLbl = new Label();
+            expiryDateLbl = new Label();
             expiryDateTB = new TextBox();
             cvvTB = new TextBox();
             cardNumberTB = new TextBox();
@@ -73,35 +73,35 @@ namespace MovieDatabase
             fullNameTB.Size = new Size(331, 31);
             fullNameTB.TabIndex = 2;
             // 
-            // label1
+            // cardNumLbl
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(295, 218);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(119, 25);
-            label1.TabIndex = 3;
-            label1.Text = "Card Number";
+            cardNumLbl.AutoSize = true;
+            cardNumLbl.Location = new Point(295, 218);
+            cardNumLbl.Margin = new Padding(4, 0, 4, 0);
+            cardNumLbl.Name = "cardNumLbl";
+            cardNumLbl.Size = new Size(119, 25);
+            cardNumLbl.TabIndex = 3;
+            cardNumLbl.Text = "Card Number";
             // 
-            // label2
+            // cvvLbl
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(628, 313);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(45, 25);
-            label2.TabIndex = 4;
-            label2.Text = "CVV";
+            cvvLbl.AutoSize = true;
+            cvvLbl.Location = new Point(628, 313);
+            cvvLbl.Margin = new Padding(4, 0, 4, 0);
+            cvvLbl.Name = "cvvLbl";
+            cvvLbl.Size = new Size(45, 25);
+            cvvLbl.TabIndex = 4;
+            cvvLbl.Text = "CVV";
             // 
-            // label3
+            // expiryDateLbl
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(328, 313);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(101, 25);
-            label3.TabIndex = 5;
-            label3.Text = "Expiry Date";
+            expiryDateLbl.AutoSize = true;
+            expiryDateLbl.Location = new Point(328, 313);
+            expiryDateLbl.Margin = new Padding(4, 0, 4, 0);
+            expiryDateLbl.Name = "expiryDateLbl";
+            expiryDateLbl.Size = new Size(101, 25);
+            expiryDateLbl.TabIndex = 5;
+            expiryDateLbl.Text = "Expiry Date";
             // 
             // expiryDateTB
             // 
@@ -159,7 +159,7 @@ namespace MovieDatabase
             langBtn.UseVisualStyleBackColor = true;
             langBtn.Click += langBtn_Click;
             // 
-            // FormPayment
+            // FormPaymentSignUp
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -170,29 +170,31 @@ namespace MovieDatabase
             Controls.Add(cardNumberTB);
             Controls.Add(cvvTB);
             Controls.Add(expiryDateTB);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(expiryDateLbl);
+            Controls.Add(cvvLbl);
+            Controls.Add(cardNumLbl);
             Controls.Add(fullNameTB);
             Controls.Add(fullnameLbl);
             Controls.Add(paymentTitleLbl);
             Margin = new Padding(4, 5, 4, 5);
-            Name = "FormPayment";
+            Name = "FormPaymentSignUp";
             Text = "frmPayment";
             ResumeLayout(false);
             PerformLayout();
         }
+
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
-            paymentTitleLbl.Text = rm.GetString("Payment");
             fullnameLbl.Text = rm.GetString("CardHolderName");
-            label1.Text = rm.GetString("CardNumber");
-            label2.Text = rm.GetString("CVV");
+            cardNumLbl.Text = rm.GetString("CardNumber");
+            cvvLbl.Text = rm.GetString("CVV");
             backBtn.Text = rm.GetString("BackButton");
             payBtn.Text = rm.GetString("PayButton");
             langBtn.Text = rm.GetString("Lanbutton");
-            label3.Text = rm.GetString("ExpiryDate");
+            expiryDateLbl.Text = rm.GetString("ExpiryDate");
+            paymentTitleLbl.Text = rm.GetString("Payment");
+
         }
 
         #endregion
@@ -200,9 +202,9 @@ namespace MovieDatabase
         private Label paymentTitleLbl;
         private Label fullnameLbl;
         private TextBox fullNameTB;
-        private Label label1;
-        private Label label2;
-        private Label label3;
+        private Label cardNumLbl;
+        private Label cvvLbl;
+        private Label expiryDateLbl;
         private TextBox expiryDateTB;
         private TextBox cvvTB;
         private TextBox cardNumberTB;

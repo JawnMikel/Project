@@ -37,6 +37,9 @@ namespace MovieDatabase
             langBtn = new Button();
             writeReviewBtn = new Button();
             viewReviewBtn = new Button();
+            portraitFlowPanel = new FlowLayoutPanel();
+            mediaFlowPanel = new FlowLayoutPanel();
+            listMediaLbl = new Label();
             SuspendLayout();
             // 
             // nameLbl
@@ -78,10 +81,10 @@ namespace MovieDatabase
             langBtn.UseVisualStyleBackColor = true;
             langBtn.Click += langBtn_Click;
             // 
-            // wirteReviewBtn
+            // writeReviewBtn
             // 
             writeReviewBtn.Location = new Point(797, 106);
-            writeReviewBtn.Name = "wirteReviewBtn";
+            writeReviewBtn.Name = "writeReviewBtn";
             writeReviewBtn.Size = new Size(156, 34);
             writeReviewBtn.TabIndex = 4;
             writeReviewBtn.Text = "Write a review";
@@ -98,11 +101,38 @@ namespace MovieDatabase
             viewReviewBtn.UseVisualStyleBackColor = true;
             viewReviewBtn.Click += viewReviewBtn_Click;
             // 
+            // portraitFlowPanel
+            // 
+            portraitFlowPanel.AutoScroll = true;
+            portraitFlowPanel.Location = new Point(12, 184);
+            portraitFlowPanel.Name = "portraitFlowPanel";
+            portraitFlowPanel.Size = new Size(227, 209);
+            portraitFlowPanel.TabIndex = 6;
+            // 
+            // mediaFlowPanel
+            // 
+            mediaFlowPanel.Location = new Point(257, 147);
+            mediaFlowPanel.Name = "mediaFlowPanel";
+            mediaFlowPanel.Size = new Size(527, 433);
+            mediaFlowPanel.TabIndex = 7;
+            // 
+            // listMediaLbl
+            // 
+            listMediaLbl.AutoSize = true;
+            listMediaLbl.Location = new Point(414, 95);
+            listMediaLbl.Name = "listMediaLbl";
+            listMediaLbl.Size = new Size(122, 25);
+            listMediaLbl.TabIndex = 8;
+            listMediaLbl.Text = "List of medias";
+            // 
             // FormCrewMemberInformation
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(995, 592);
+            Controls.Add(listMediaLbl);
+            Controls.Add(mediaFlowPanel);
+            Controls.Add(portraitFlowPanel);
             Controls.Add(viewReviewBtn);
             Controls.Add(writeReviewBtn);
             Controls.Add(langBtn);
@@ -134,5 +164,8 @@ namespace MovieDatabase
         private Button langBtn;
         private Button writeReviewBtn;
         private Button viewReviewBtn;
+        private FlowLayoutPanel portraitFlowPanel;
+        private FlowLayoutPanel mediaFlowPanel;
+        private Label listMediaLbl;
     }
 }
