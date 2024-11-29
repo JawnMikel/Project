@@ -255,6 +255,8 @@ namespace MovieDatabase
             usernameLbl.Text = rm.GetString("Username");
             passwordLbl.Text = rm.GetString("Password");
             membershipLbl.Text = rm.GetString("MembershipType");
+            passwordBox.Text = rm.GetString("ShowPassword");
+            backBtn.Text = rm.GetString("BackButton");
         }
 
         #endregion
