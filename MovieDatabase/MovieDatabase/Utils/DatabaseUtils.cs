@@ -1,5 +1,7 @@
 using MovieDatabase.Exceptions;
+using System.Data.SqlClient;
 using System.Data.SQLite;
+using System.DirectoryServices;
 
 namespace MovieDatabase.Utils
 {
@@ -53,6 +55,7 @@ namespace MovieDatabase.Utils
             return _instance;
         }
 
+        // TODO
         /// <summary>
         /// Get a user based on the username and password.
         /// </summary>
@@ -60,7 +63,7 @@ namespace MovieDatabase.Utils
         /// <param name="password">The password of the user.</param>
         /// <returns>The user with the specified credentials, or null if the user does not exist.</returns>
         /// <exception cref="ArgumentNullException">Exception thrown when the userName or password arguments are null.</exception>
-        public User GetUserByCredentials(string userName, string password)
+        public User? GetUserByCredentials(string userName, string password)
         {
             // Validate the parameters
             if (userName == null || password == null)
@@ -79,8 +82,11 @@ namespace MovieDatabase.Utils
 
                 // Execute the SQL and read the next result
                 SQLiteDataReader reader = cmd.ExecuteReader();
-                reader.NextResult();
-                
+                if (!reader.NextResult())
+                {
+                    return null;
+                }
+
                 // If the PaymentID field is present, the user has a premium membership
                 User.Memberships membership = User.Memberships.REGULAR;
                 if (reader["PaymentID"] == DBNull.Value)
@@ -89,16 +95,222 @@ namespace MovieDatabase.Utils
                 }
 
                 // Parse the date of birth
-                DateTime dob = DateTime.Parse((string) reader["DateOfBirth"]);
+                DateTime dob = DateTime.Parse((string)reader["DateOfBirth"]);
 
                 // Create the user object
-                user = new User((string) reader["UserName"], (string) reader["Password"],
-                    (string) reader["FirstName"], (string) reader["LastName"], dob, membership);
+                user = new User((string)reader["UserName"], (string)reader["Password"],
+                    (string)reader["FirstName"], (string)reader["LastName"], dob, membership);
 
                 // Set the user ID
                 user.Id = (int)reader["UserID"];
+
+                // TODO add user watchlist and reviews
             }
             return user;
+        }
+
+        // TODO
+        private List<Media> GetUserWatchList(int userId)
+        {
+            const string MOVIE_SQL = """
+                                SELECT m.* FROM movie m JOIN watchlistmovie wl on m.MovieID = wl.MovieID WHERE wl.UserID = @UserID;
+                                """;
+            const string TVSHOW_SQL = """
+                                       SELECT t.* FROM tvshow t JOIN watchlisttvshow wl on t.TVShowID = wl.TVShowID WHERE wl.UserID = @UserID;
+                                       """;
+            List<Media> list = new List<Media>();
+            using (SQLiteCommand movieCmd = new SQLiteCommand(MOVIE_SQL, _connection))
+            using (SQLiteCommand tvShowCmd = new SQLiteCommand(TVSHOW_SQL, _connection))
+            {
+                // Form the SQL and execute the queries
+                movieCmd.Parameters.AddWithValue("@UserID", userId);
+                tvShowCmd.Parameters.AddWithValue("@UserID", userId);
+                SQLiteDataReader movieReader = movieCmd.ExecuteReader();
+                SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader();
+                while (movieReader.NextResult())
+                {
+                    Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
+                        (string)movieReader["Synopsis"], (int)movieReader["Duration"], (string)movieReader["ImageLink"]);
+                    // TODO: Get the list of reviews, of directors, and of actors
+                    list.Add(movie);
+                }
+
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// Fetch all reviews for a given movie.
+        /// </summary>
+        /// <param name="movieId">The movieId of the movie whose reviews are to be fetched.</param>
+        /// <returns>A list of all of the reviews of the movie.</returns>
+        private List<Review> GetMovieReviews(int movieId)
+        {
+            const string SQL = """
+                                SELECT r.* FROM review JOIN moviereview mr on r.ReviewID = mr.ReviewID WHERE mr.MovieID = @MovieID;
+                                """;
+            List<Review> reviews = new List<Review>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@MovieID", movieId);
+                SQLiteDataReader reviewReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all reviews
+                while (reviewReader.NextResult())
+                {
+                    Review review = new Review((int)reviewReader["UserID"], (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                    review.ReviewId = (int)reviewReader["ReviewID"];
+                    reviews.Add(review);
+                }
+            }
+            return reviews;
+        }
+
+        /// <summary>
+        /// Get the actors starring a movie.
+        /// </summary>
+        /// <param name="movieId">The movie ID of the movie.</param>
+        /// <returns>A list of all of the actors starring the specified movie.</returns>
+        private List<Actor> GetMovieActors(int movieId)
+        {
+            const string SQL = """
+                                SELECT a.* FROM actor a JOIN movieactor ma ON a.ActorID = ma.ActorID WHERE ma.MovieID = @MovieID;
+                                """;
+            List<Actor> actors = new List<Actor>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@MovieID", movieId);
+                SQLiteDataReader actorReader = cmd.ExecuteReader();
+
+                // Loop through the results and fetch all reviews
+                while (actorReader.NextResult())
+                {
+                    // Create an actor
+                    Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
+                    // Set the actor id
+                    actor.Id = (int)actorReader["ActorID"];
+                    // Set the lists of starred media
+                    Dictionary<string, List<int>> starredIds = GetActorStarred(actor.Id);
+                    actor.StarredMovies = starredIds["MovieIds"];
+                    actor.StarredTVShows = starredIds["TVShowIds"];
+                    actor.StarredEpisodes = starredIds["EpisodeIds"];
+                }
+            }
+            return actors;
+        }
+
+        /// <summary>
+        /// Get the list of ids of the movies, tv shows, and episodes featuring 
+        /// an actor.
+        /// </summary>
+        /// <param name="actorId">The actor ID of the actor.</param>
+        /// <returns>A dictionnary containing the list of ids of the movies, tv shows, and episodes.</returns>
+        private Dictionary<string, List<int>> GetActorStarred(int actorId)
+        {
+            const string MOVIE_SQL = """
+                                SELECT MovieID FROM movieactor WHERE ActorID = @ActorID;
+                                """;
+            const string TVSHOW_SQL = """
+                                SELECT TVShowID FROM tvshowactor WHERE ActorID = @ActorID;
+                                """;
+            const string EPISODE_SQL = """
+                                SELECT EpisodeID FROM episodeactor WHERE ActorID = @ActorID;
+                                """;
+            
+            Dictionary<String, List<int>> starredIds = new Dictionary<String, List<int>>();
+            starredIds["MovieIds"] = new List<int>();
+            starredIds["TVShowIds"] = new List<int>();
+            starredIds["EpisodeIds"] = new List<int>();
+
+            using (SQLiteCommand movieCmd = new SQLiteCommand(MOVIE_SQL, _connection))
+            using (SQLiteCommand tvShowCmd = new SQLiteCommand(TVSHOW_SQL, _connection))
+            using (SQLiteCommand episodeCmd = new SQLiteCommand(EPISODE_SQL, _connection))
+            {
+                // Form the SQL statements and execute the queries
+                movieCmd.Parameters.AddWithValue("@ActorID", actorId);
+                tvShowCmd.Parameters.AddWithValue("@ActorID", actorId);
+                episodeCmd.Parameters.AddWithValue("@ActorID", actorId);
+                SQLiteDataReader movieReader = movieCmd.ExecuteReader();
+                SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader();
+                SQLiteDataReader episodeReader = episodeCmd.ExecuteReader();
+
+                // Loop through the movie results
+                while (movieReader.NextResult())
+                {
+                    starredIds["MovieIds"].Add((int)movieReader["MovieID"]);
+                }
+
+                // Loop through the tv show results
+                while (tvShowReader.NextResult())
+                {
+                    starredIds["TVShowIds"].Add((int)tvShowReader["TVShowID"]);
+                }
+
+                // Loop through the episode results
+                while (episodeReader.NextResult())
+                {
+                    starredIds["EpisodeIds"].Add((int)episodeReader["EpisodeID"]);
+                }
+            }
+            return starredIds;
+        }
+
+        /// <summary>
+        /// Get the list of ids of the movies, tv shows, and episodes directed by 
+        /// a director.
+        /// </summary>
+        /// <param name="directorId">The director ID of the director.</param>
+        /// <returns>A dictionnary containing the list of ids of movies, tv shows, and episodes.</returns>
+        private Dictionary<string, List<int>> GetDirectorDirected(int directorId)
+        {
+            const string MOVIE_SQL = """
+                                SELECT MovieID FROM moviedirector WHERE DirectorID = @DirectorID;
+                                """;
+            const string TVSHOW_SQL = """
+                                SELECT TVShowID FROM tvshowdirector WHERE DirectorID = @DirectorID;
+                                """;
+            const string EPISODE_SQL = """
+                                SELECT EpisodeID FROM episodedirector WHERE DirectorID = @DirectorID;
+                                """;
+
+            Dictionary<String, List<int>> directedIds = new Dictionary<String, List<int>>();
+            directedIds["MovieIds"] = new List<int>();
+            directedIds["TVShowIds"] = new List<int>();
+            directedIds["EpisodeIds"] = new List<int>();
+
+            using (SQLiteCommand movieCmd = new SQLiteCommand(MOVIE_SQL, _connection))
+            using (SQLiteCommand tvShowCmd = new SQLiteCommand(TVSHOW_SQL, _connection))
+            using (SQLiteCommand episodeCmd = new SQLiteCommand(EPISODE_SQL, _connection))
+            {
+                // Form the SQL statements and execute the queries
+                movieCmd.Parameters.AddWithValue("@DirectorID", directorId);
+                tvShowCmd.Parameters.AddWithValue("@DirectorID", directorId);
+                episodeCmd.Parameters.AddWithValue("@DirectorID", directorId);
+                SQLiteDataReader movieReader = movieCmd.ExecuteReader();
+                SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader();
+                SQLiteDataReader episodeReader = episodeCmd.ExecuteReader();
+
+                // Loop through the movie results
+                while (movieReader.NextResult())
+                {
+                    directedIds["MovieIds"].Add((int)movieReader["MovieID"]);
+                }
+
+                // Loop through the tv show results
+                while (tvShowReader.NextResult())
+                {
+                    directedIds["TVShowIds"].Add((int)tvShowReader["TVShowID"]);
+                }
+
+                // Loop through the episode results
+                while (episodeReader.NextResult())
+                {
+                    directedIds["EpisodeIds"].Add((int)episodeReader["EpisodeID"]);
+                }
+            }
+            return directedIds;
         }
 
         /// <summary>
