@@ -56,7 +56,6 @@ namespace MovieDatabase.Utils
             return _instance;
         }
 
-        // TODO
         /// <summary>
         /// Get a user based on the username and password.
         /// </summary>
@@ -72,8 +71,8 @@ namespace MovieDatabase.Utils
                 throw new ArgumentNullException("The userName or password arguments cannot be null.");
             }
             const string SQL = """
-                                SELECT * FROM user u WHERE u.UserName = @UserName AND u.Password = @Password
-                                LEFT JOIN payment p ON p.UserID = u.UserID;
+                                SELECT * FROM user u LEFT JOIN payment p ON p.UserID = u.UserID
+                                WHERE u.UserName = @UserName AND u.Password = @Password;
                                 """;
             User? user = null;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
@@ -968,7 +967,6 @@ namespace MovieDatabase.Utils
             int id = -1;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             using (SQLiteCommand pkCmd = new SQLiteCommand(PK_SQL, _connection))
-
             {
                 // Form the SQL query using data from the user
                 cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
