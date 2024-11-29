@@ -54,7 +54,7 @@ namespace MovieDatabase
         }
 
         /// <summary>
-        /// Remove a media from the starred list of this actor.
+        /// Remove a media from the appropriate starred list of this actor.
         /// </summary>
         /// <param name="media">The media to remove.</param>
         /// <exception cref="ArgumentNullException">Exception thrown when the media argument is null.</exception>
