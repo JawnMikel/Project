@@ -168,7 +168,7 @@ namespace MovieDatabase
         /// </returns>
         public Review WriteReview(string comment, double rating)
         {
-            if (Membership == Memberships.REGULAR && WatchList.Count >= MAX_REVIEWS_REGULAR)
+            if (Membership == Memberships.REGULAR && WrittenReviews.Count >= MAX_REVIEWS_REGULAR)
             {
                 throw new InvalidOperationException("The user already reached the maximum number of reviews for his regular membership.");
             }
