@@ -1125,8 +1125,8 @@ namespace MovieDatabase.Utils
             }
             // Define the insert statement
             const string SQL = """
-                                INSERT INTO user (FirstName, LastName, UserName, Password)
-                                VALUES (@FirstName, @LastName, @UserName, @Password);
+                                INSERT INTO user (FirstName, LastName, UserName, DateOfBirth, Password)
+                                VALUES (@FirstName, @LastName, @UserName, @DateOfBirth, @Password);
                                 """;
             const string PK_SQL = """
                                    SELECT UserID FROM user WHERE rowid = last_insert_rowid();
@@ -1139,6 +1139,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@FirstName", user.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", user.LastName);
                 cmd.Parameters.AddWithValue("@UserName", user.Username);
+                cmd.Parameters.AddWithValue("@DateOfBirth", user.Dob.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@Password", user.Password);
                 // Execute the SQL
                 cmd.ExecuteNonQuery();
@@ -1808,7 +1809,9 @@ namespace MovieDatabase.Utils
                                     FirstName TEXT NOT NULL,
                                     LastName TEXT NOT NULL,
                                     UserName TEXT UNIQUE NOT NULL,
-                                    Password TEXT NOT NULL
+                                    DateOfBirth TEXT NOT NULL,
+                                    Password TEXT NOT NULL,
+                                    CONSTRAINT chk_DateOfBirthFormat CHECK (DateOfBirth LIKE '____-__-__')
                                 );
                                 """;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
