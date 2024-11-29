@@ -166,7 +166,7 @@ namespace MovieDatabase
         /// The review written. Null if the user has a regular membership
         /// and already wrote the MAX_REVIEWS_REGULAR number of reviews.
         /// </returns>
-        public Review? WriteReview(string comment, double rating)
+        public Review WriteReview(string comment, double rating)
         {
             if (Membership == Memberships.REGULAR && WatchList.Count >= MAX_REVIEWS_REGULAR)
             {
