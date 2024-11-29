@@ -225,4 +225,7 @@
   <data name="Memebership" xml:space="preserve">
     <value>Abonnement</value>
   </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Le nom d’utilisateur ou le mot de passe ne correspondent pas ! Veuillez réessayer</value>
+  </data>
 </root>
