@@ -172,7 +172,7 @@ namespace MovieDatabase
             {
                 throw new InvalidOperationException("The user already reached the maximum number of reviews for his regular membership.");
             }
-            Review review = new Review(this, comment, rating);
+            Review review = new Review(Id, comment, rating);
             WrittenReviews.Add(review);
             return review;
         }
