@@ -718,6 +718,173 @@ namespace MovieDatabase.Utils
         }
 
         /// <summary>
+        /// Get all of the movies stored in the database.
+        /// </summary>
+        /// <returns>A list of all of the movies.</returns>
+        public List<Movie> GetAllMovies()
+        {
+            const string SQL = """
+                                SELECT * FROM movie;
+                                """;
+            List<Movie> movies = new List<Movie>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                SQLiteDataReader movieReader = cmd.ExecuteReader();
+                while (movieReader.NextResult())
+                {
+                    // Create a movie
+                    Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
+                        (string)movieReader["Synopsis"], (int)movieReader["Duration"], (string)movieReader["ImageLink"]);
+                    // Set the movie id
+                    movie.MediaId = (int)movieReader["MovieID"];
+                    // Set the movie reviews, directors, actors, and genres
+                    movie.Reviews = GetMovieReviews(movie.MediaId);
+                    movie.Directors = GetMovieDirectors(movie.MediaId);
+                    movie.Actors = GetMovieActors(movie.MediaId);
+                    movie.Genres = GetMovieGenres(movie.MediaId);
+                    movies.Add(movie);
+                }
+            }
+            return movies;
+        }
+
+        /// <summary>
+        /// Get all of the tv shows stored in the database.
+        /// </summary>
+        /// <returns>The list of all tv shows in the database.</returns>
+        public List<TVShow> GetAllTVShows()
+        {
+            const string SQL = """
+                                SELECT * FROM tvshow;
+                                """;
+            List<TVShow> tvShows = new List<TVShow>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                SQLiteDataReader tvShowReader = cmd.ExecuteReader();
+                while (tvShowReader.NextResult())
+                {
+                    TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
+                        (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
+                    // Set the tv show id
+                    tvShow.MediaId = (int)tvShowReader["TVShowID"];
+                    // Set the tv show revies, directors, actors, genres, and episodes
+                    tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
+                    tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
+                    tvShow.Actors = GetTVShowActors(tvShow.MediaId);
+                    tvShow.Reviews = GetTVShowReviews(tvShow.MediaId);
+                    tvShow.Genres = GetTVShowGenres(tvShow.MediaId);
+                    tvShows.Add(tvShow);
+                }
+            }
+            return tvShows;
+        }
+
+        /// <summary>
+        /// Get all of the media stored in the database.
+        /// </summary>
+        /// <returns>A list of all of the media stored in the database.</returns>
+        public List<Media> GetAllMedia()
+        {
+            List<Media> list = new List<Media>();
+            // Add the movies
+            list.AddRange(GetAllMovies());
+            // Add the tv shows
+            list.AddRange(GetAllTVShows());
+            return list;
+        }
+
+        /// <summary>
+        /// Get all of the movies that have the genre specified.
+        /// </summary>
+        /// <param name="genre">The genre to filter by.</param>
+        /// <returns>A list of all of the movies of that genre.</returns>
+        public List<Movie> GetMoviesByGenre(Media.Genre genre)
+        {
+            const string SQL = """
+                                SELECT m.* FROM movie m 
+                                JOIN moviegenre mg ON m.MovieID = mg.MovieID
+                                JOIN genre g ON g.GenreID = mg.GenreID
+                                WHERE g.GenreName = @GenreName;
+                                """;
+            List<Movie> movies = new List<Movie>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL and execute the query
+                cmd.Parameters.AddWithValue("@GenreName", genre.ToString().ToUpper());
+                SQLiteDataReader movieReader = cmd.ExecuteReader();
+                
+                // Get all of the movie results
+                while (movieReader.NextResult())
+                {
+                    // Create a movie
+                    Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
+                        (string)movieReader["Synopsis"], (int)movieReader["Duration"], (string)movieReader["ImageLink"]);
+                    // Set the movie id
+                    movie.MediaId = (int)movieReader["MovieID"];
+                    // Set the movie reviews, directors, actors, and genres
+                    movie.Reviews = GetMovieReviews(movie.MediaId);
+                    movie.Directors = GetMovieDirectors(movie.MediaId);
+                    movie.Actors = GetMovieActors(movie.MediaId);
+                    movie.Genres = GetMovieGenres(movie.MediaId);
+                    movies.Add(movie);
+                }
+            }
+            return movies;
+        }
+
+        /// <summary>
+        /// Get all of the tv shows that have the genre specified.
+        /// </summary>
+        /// <param name="genre">The genre to filter by.</param>
+        /// <returns>A list of all of the tv shows of that genre.</returns>
+        public List<TVShow> GetTVShowsByGenre(Media.Genre genre)
+        {
+            const string SQL = """
+                                SELECT t.* FROM tvshow t 
+                                JOIN tvshowgenre tg ON t.MovieID = tg.MovieID
+                                JOIN genre g ON g.GenreID = tg.GenreID
+                                WHERE g.GenreName = @GenreName;
+                                """;
+            List<TVShow> tvShows = new List<TVShow>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL and execute the query
+                cmd.Parameters.AddWithValue("GenreName", genre.ToString().ToUpper());
+                SQLiteDataReader tvShowReader = cmd.ExecuteReader();
+
+                // Get all of the tv show results
+                while (tvShowReader.NextResult())
+                {
+                    TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
+                        (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
+                    // Set the tv show id
+                    tvShow.MediaId = (int)tvShowReader["TVShowID"];
+                    // Set the tv show revies, directors, actors, genres, and episodes
+                    tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
+                    tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
+                    tvShow.Actors = GetTVShowActors(tvShow.MediaId);
+                    tvShow.Reviews = GetTVShowReviews(tvShow.MediaId);
+                    tvShow.Genres = GetTVShowGenres(tvShow.MediaId);
+                    tvShows.Add(tvShow);
+                }
+            }
+            return tvShows;
+        }
+
+        /// <summary>
+        /// Get all of the media that have the genre specified.
+        /// </summary>
+        /// <param name="genre">The genre to filter by.</param>
+        /// <returns>A list of all of the media of that genre.</returns>
+        public List<Media> GetMediaByGenre(Movie.Genre genre)
+        {
+            List<Media> media = new List<Media>();
+            media.AddRange(GetMoviesByGenre(genre));
+            media.AddRange(GetTVShowsByGenre(genre));
+            return media;
+        }
+
+        /// <summary>
         /// Insert a director into the director table.
         /// </summary>
         /// <param name="director">The director to insert.</param>
