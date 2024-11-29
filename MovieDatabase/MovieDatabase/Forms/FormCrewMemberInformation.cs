@@ -18,11 +18,10 @@ namespace MovieDatabase
         User user;
         public FormCrewMemberInformation(Form form, CrewMember crewMember, User user)
         {
-            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
-            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+            
             this.form = form;
             this.crewMember = crewMember;
-
+            Update();
             InitializeComponent();
             nameLbl.Text = crewMember.FirstName + " " + crewMember.LastName;
             ratingLbl.Text += crewMember.GetPopularity() + "/5";

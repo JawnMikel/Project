@@ -136,8 +136,11 @@ namespace MovieDatabase
         }
         public void Update()
         {
-            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
             recBtn.Text = rm.GetString("Recommendation");
+
+            //ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
+            //recBtn.Text = rm.GetString("Recommendation");
             moviesBtn.Text = rm.GetString("Movies");
             tvshowBtn.Text = rm.GetString("TvShows");
         }
