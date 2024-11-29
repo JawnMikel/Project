@@ -66,7 +66,7 @@
             // 
             langBtn.Location = new Point(695, 25);
             langBtn.Name = "langBtn";
-            langBtn.Size = new Size(112, 34);
+            langBtn.Size = new Size(133, 34);
             langBtn.TabIndex = 3;
             langBtn.Text = "French";
             langBtn.UseVisualStyleBackColor = true;
