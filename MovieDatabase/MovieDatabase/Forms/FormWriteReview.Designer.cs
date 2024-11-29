@@ -1,4 +1,6 @@
-﻿namespace MovieDatabase
+﻿using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormWriteReview
     {
@@ -30,7 +32,7 @@
         {
             titleLbl = new Label();
             reviewTB = new RichTextBox();
-            label1 = new Label();
+            ratingBtn = new Label();
             ratingTB = new TextBox();
             postBtn = new Button();
             backBtn = new Button();
@@ -57,12 +59,12 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(324, 111);
-            label1.Name = "label1";
-            label1.Size = new Size(75, 25);
-            label1.TabIndex = 2;
-            label1.Text = "Ratings:";
+            ratingBtn.AutoSize = true;
+            ratingBtn.Location = new Point(324, 111);
+            ratingBtn.Name = "label1";
+            ratingBtn.Size = new Size(75, 25);
+            ratingBtn.TabIndex = 2;
+            ratingBtn.Text = "Ratings:";
             // 
             // ratingTB
             // 
@@ -110,7 +112,7 @@
             Controls.Add(backBtn);
             Controls.Add(postBtn);
             Controls.Add(ratingTB);
-            Controls.Add(label1);
+            Controls.Add(ratingBtn);
             Controls.Add(reviewTB);
             Controls.Add(titleLbl);
             Name = "FormWriteReview";
@@ -118,12 +120,21 @@
             ResumeLayout(false);
             PerformLayout();
         }
+        public void Update()
+        {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
+            titleLbl.Text = rm.GetString("Title");
+            ratingBtn.Text = rm.GetString("Rating");
+            postBtn.Text = rm.GetString("Post");
+            backBtn.Text = rm.GetString("BackButton");
+            langBtn.Text = rm.GetString("Lanbutton");
+        }
 
         #endregion
 
         private Label titleLbl;
         private RichTextBox reviewTB;
-        private Label label1;
+        private Label ratingBtn;
         private TextBox ratingTB;
         private Button postBtn;
         private Button backBtn;
