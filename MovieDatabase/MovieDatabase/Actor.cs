@@ -41,11 +41,11 @@ namespace MovieDatabase
             }
             if (media is Movie)
             {
-                StarredEpisodes.Remove(media.MediaId);
+                StarredMovies.Add(media.MediaId);
             }
             else if (media is TVShow)
             {
-                StarredTVShows.Remove(media.MediaId);
+                StarredTVShows.Add(media.MediaId);
             }
             else
             {
