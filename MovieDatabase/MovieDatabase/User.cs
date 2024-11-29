@@ -75,7 +75,7 @@ namespace MovieDatabase
             {
                 if (!Util.ValidateUserAge(value))
                 {
-                    throw new ArgumentException("The user must be 18 years of age to create an account.");
+                    throw new ArgumentException("The lastname's format is invalid."); 
                 }
                 _dob = value;
             }

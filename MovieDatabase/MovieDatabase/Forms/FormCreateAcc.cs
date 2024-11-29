@@ -40,6 +40,11 @@ namespace MovieDatabase
             if (membershipCB.SelectedIndex == 0)
             {
                 User user = CreateUser();
+
+                if (user == null)
+                {
+                    return;
+                }
                 FormLogin.users.Add(user);
 
                 MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -87,20 +92,49 @@ namespace MovieDatabase
         private User CreateUser()
         {
             string firstName = firstNameTB.Text;
+
+            if (!Util.ValidateNameFormat(firstName))
+            {
+                MessageBox.Show("User must have a proper first name", "Invalid First Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+
             string lastName = lastNameTB.Text;
+
+            if (!Util.ValidateNameFormat(lastName))
+            {
+                MessageBox.Show("User must have a proper last name", "Invalid Last Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+
             DateTime dob = dobPicker.Value;
 
             if (!Util.ValidateUserAge(dob))
             {
                 MessageBox.Show("User must be at least 18 years old.", "Age Restriction", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                throw new ArithmeticException("Must be 18 years and older");
+                return null;
             }
 
             int selectedIndex = membershipCB.SelectedIndex;
             User.Memberships selectedMembership = (User.Memberships)selectedIndex;
 
             string username = usernameTB.Text;
+
+            if (!Util.ValidateUsernameFormat(username))
+            {
+                MessageBox.Show("User must have a valid username.", "Invalid Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+
+
             string password = passwordTB.Text;
+
+            if (!Util.ValidatePasswordFormat(password))
+            {
+                MessageBox.Show("User must have a valid password.", "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+
             User user = new User(username, password, firstName, lastName, dob, selectedMembership);
             return user;
         }
