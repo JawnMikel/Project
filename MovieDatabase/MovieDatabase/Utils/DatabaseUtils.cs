@@ -1046,7 +1046,7 @@ namespace MovieDatabase.Utils
         /// <param name="director">The director to insert.</param>
         /// <exception cref="ArgumentNullException">Exception thrown when the director argument is null.</exception>
         /// <returns>The DirectorID of the director inserted.</returns>
-        public int InsertDirector(Director director)
+        public void InsertDirector(Director director)
         {
             // Validate the parameter
             if (director == null)
@@ -1059,7 +1059,6 @@ namespace MovieDatabase.Utils
             const string PK_SQL = """
                                    SELECT DirectorID FROM director WHERE rowid = last_insert_rowid();
                                    """;
-            int id = -1;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             using (SQLiteCommand pkCmd = new SQLiteCommand(PK_SQL, _connection))
             {
@@ -1069,10 +1068,9 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@ImageLink", director.ImageLink);
                 // Execute the SQL
                 cmd.ExecuteNonQuery();
-                // Get the PK
-                id = Convert.ToInt32(pkCmd.ExecuteScalar());
+                // Set the DirectorID
+                director.Id = Convert.ToInt32(pkCmd.ExecuteScalar());
             }
-            return id;
         }
 
         /// <summary>
@@ -1159,7 +1157,7 @@ namespace MovieDatabase.Utils
         /// <param name="actor">The actor to insert.</param>
         /// <returns>The ActorID of the actor inserted.</returns>
         /// <exception cref="ArgumentNullException">Exception thrown when the actor argument is null.</exception>
-        public int InsertActor(Actor actor)
+        public void InsertActor(Actor actor)
         {
             // Validate the parameter
             if (actor == null)
@@ -1172,7 +1170,6 @@ namespace MovieDatabase.Utils
             const string PK_SQL = """
                                    SELECT ActorID FROM actor WHERE rowid = last_insert_rowid();
                                    """;
-            int id = -1;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             using (SQLiteCommand pkCmd = new SQLiteCommand(PK_SQL, _connection))
             {
@@ -1182,10 +1179,9 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@ImageLink", actor.ImageLink);
                 // Execute the SQL
                 cmd.ExecuteNonQuery();
-                // Get the PK
-                id = Convert.ToInt32(pkCmd.ExecuteScalar());
+                // Set the ActorID
+                actor.Id = Convert.ToInt32(pkCmd.ExecuteScalar());
             }
-            return id;
         }
 
         /// <summary>
@@ -1271,8 +1267,7 @@ namespace MovieDatabase.Utils
         /// </summary>
         /// <param name="user">The user to insert.</param>
         /// <exception cref="ArgumentNullException">Thrown when the user provided is null.</exception>
-        /// <returns>The UserId of the user inserted.</returns>
-        public int InsertUser(User user)
+        public void InsertUser(User user)
         {
             // Validate the parameter
             if (user == null)
@@ -1287,7 +1282,6 @@ namespace MovieDatabase.Utils
             const string PK_SQL = """
                                    SELECT UserID FROM user WHERE rowid = last_insert_rowid();
                                    """;
-            int id = -1;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             using (SQLiteCommand pkCmd = new SQLiteCommand(PK_SQL, _connection))
             {
@@ -1299,10 +1293,9 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@Password", user.Password);
                 // Execute the SQL
                 cmd.ExecuteNonQuery();
-                // Get the PK
-                id = Convert.ToInt32(pkCmd.ExecuteScalar());
+                // Set the userId
+                user.Id = Convert.ToInt32(pkCmd.ExecuteScalar());
             }
-            return id;
         }
 
         /// <summary>
@@ -1353,7 +1346,7 @@ namespace MovieDatabase.Utils
         /// <param name="payment">The payment object.</param>
         /// <param name="userID">The user ID of the user making the payment.</param>
         /// <exception cref="ArgumentNullException">Thrown when the payment object is null.</exception>
-        public int InsertPayment(Payment payment, int userID)
+        public void InsertPayment(Payment payment, int userID)
         {
             // Validate the parameter
             if (payment == null)
@@ -1369,9 +1362,7 @@ namespace MovieDatabase.Utils
             const string PK_SQL = """
                                    SELECT UserID FROM user WHERE rowid = last_insert_rowid();
                                    """;
-            int id = -1;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
-            using (SQLiteCommand pkCmd = new SQLiteCommand(PK_SQL, _connection))
             {
                 // Form the SQL query using data from the user
                 cmd.Parameters.AddWithValue("@Name", payment.CardHolderName);
@@ -1382,18 +1373,14 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@UserID", userID);
                 // Execute the SQL
                 cmd.ExecuteNonQuery();
-                // Get the PK
-                id = Convert.ToInt32(pkCmd.ExecuteScalar());
             }
-            return id;
         }
 
         /// <summary>
         /// Insert a movie into the movie table.
         /// </summary>
-        /// <param name="movie">The movie to isnert.</param>
-        /// <returns>The MovieID of the movie inserted.</returns>
-        public int InsertMovie(Movie movie)
+        /// <param name="movie">The movie to insert.</param>
+        public void InsertMovie(Movie movie)
         {
             // Validate the parameter
             if (movie == null)
@@ -1408,7 +1395,6 @@ namespace MovieDatabase.Utils
             const string PK_SQL = """
                                    SELECT MovieID FROM movie WHERE rowid = last_insert_rowid();
                                    """;
-            int id = -1;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             using (SQLiteCommand pkCmd = new SQLiteCommand(PK_SQL, _connection))
             {
@@ -1420,18 +1406,16 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@ImageLink", movie.ImageLink);
                 // Execute the SQL query using data from the user
                 cmd.ExecuteNonQuery();
-                // Get the PK
-                id = Convert.ToInt32(pkCmd.ExecuteScalar());
+                // Set the MovieID
+                movie.MediaId = Convert.ToInt32(pkCmd.ExecuteScalar());
             }
-            return id;
         }
 
         /// <summary>
         /// Insert a tv show into the tvshow table.
         /// </summary>
         /// <param name="tvShow">The tv show to insert.</param>
-        /// <returns>The TVShowID of the tv show inserted.</returns>
-        public int InsertTVShow(TVShow tvShow)
+        public void InsertTVShow(TVShow tvShow)
         {
             // Validate the paramater
             if (tvShow == null)
@@ -1445,7 +1429,6 @@ namespace MovieDatabase.Utils
             const string PK_SQL = """
                                    SELECT TVShowID FROM tvshow WHERE rowid = last_insert_rowid();
                                    """;
-            int id = -1;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             using (SQLiteCommand pkCmd = new SQLiteCommand(PK_SQL, _connection))
             {
@@ -1456,10 +1439,9 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@ImageLink", tvShow.ImageLink);
                 // Execute the SQL query using data from the user
                 cmd.ExecuteNonQuery();
-                // Get the PK
-                id = Convert.ToInt32(pkCmd.ExecuteScalar());
+                // Set the TVShowID
+                tvShow.MediaId = Convert.ToInt32(pkCmd.ExecuteScalar());
             }
-            return id;
         }
 
         /// <summary>
@@ -1467,8 +1449,7 @@ namespace MovieDatabase.Utils
         /// </summary>
         /// <param name="episode">The episode to insert.</param>
         /// <exception cref="ArgumentNullException">Exception thrown when the episode argument is null.</exception>
-        /// <returns>The EpisodeID of the episode inserted.</returns>
-        public int InsertEpisode(Episode episode)
+        public void InsertEpisode(Episode episode)
         {
             // Validate the parameter
             if (episode == null)
@@ -1482,7 +1463,6 @@ namespace MovieDatabase.Utils
             const string PK_SQL = """
                                    SELECT EpisodeID FROM episode WHERE rowid = last_insert_rowid();
                                    """;
-            int id = -1;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             using (SQLiteCommand pkCmd = new SQLiteCommand(PK_SQL, _connection))
             {
@@ -1498,9 +1478,8 @@ namespace MovieDatabase.Utils
                 // Execute the SQL query using data from the user
                 cmd.ExecuteNonQuery();
                 // Get the PK
-                id = Convert.ToInt32(pkCmd.ExecuteScalar());
+                episode.MediaId = Convert.ToInt32(pkCmd.ExecuteScalar());
             }
-            return id;
         }
 
         /// <summary>
@@ -1510,7 +1489,7 @@ namespace MovieDatabase.Utils
         /// <param name="director">The director being reviewed</param>
         /// <exception cref="ArgumentNullException">Exception thrown when the review or director argument is null.</exception>
         /// <returns>The ReviewID of the review inserted.</returns>
-        public int InsertReview(Review review, Director director)
+        public void InsertReview(Review review, Director director)
         {
             // Validate the parameter
             if (review == null || director == null)
@@ -1528,7 +1507,6 @@ namespace MovieDatabase.Utils
                                            INSERT INTO directorreview (DirectorID, ReviewID)
                                            VALUES (@DirectorID, @ReviewID);
                                            """;
-            int reviewId = -1;
             using (SQLiteCommand reviewInsCmd = new SQLiteCommand(REVIEW_INS, _connection))
             using (SQLiteCommand lastIdCmd = new SQLiteCommand(LAST_REVIEW_ID, _connection))
             using (SQLiteCommand dirReviewInsCmd = new SQLiteCommand(DIR_REVIEW_INS, _connection))
@@ -1541,16 +1519,15 @@ namespace MovieDatabase.Utils
                 reviewInsCmd.ExecuteNonQuery();
                 
                 // Get the ID of the inserted row
-                reviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
+                review.ReviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
 
                 // Form the director review insert SQL statement
                 dirReviewInsCmd.Parameters.AddWithValue("@DirectorID", director.Id);
-                dirReviewInsCmd.Parameters.AddWithValue("@ReviewID", reviewId);
+                dirReviewInsCmd.Parameters.AddWithValue("@ReviewID", review.ReviewId);
 
                 // Execute the insert
                 dirReviewInsCmd.ExecuteNonQuery();
             }
-            return reviewId;
         }
 
         /// <summary>
@@ -1559,8 +1536,7 @@ namespace MovieDatabase.Utils
         /// <param name="review">The review of the actor.</param>
         /// <param name="actor">The actor being reviewed</param>
         /// <exception cref="ArgumentNullException">Exception thrown when the review or actor argument is null.</exception>
-        /// <returns>The ReviewID of the review inserted.</returns>
-        public int InsertReview(Review review, Actor actor)
+        public void InsertReview(Review review, Actor actor)
         {
             // Validate the parameter
             if (review == null || actor == null)
@@ -1578,7 +1554,6 @@ namespace MovieDatabase.Utils
                                            INSERT INTO actorreview (ActorID, ReviewID)
                                            VALUES (@ActorID, @ReviewID);
                                            """;
-            int reviewId = -1;
             using (SQLiteCommand reviewInsCmd = new SQLiteCommand(REVIEW_INS, _connection))
             using (SQLiteCommand lastIdCmd = new SQLiteCommand(LAST_REVIEW_ID, _connection))
             using (SQLiteCommand actReviewInsCmd = new SQLiteCommand(ACT_REVIEW_INS, _connection))
@@ -1591,16 +1566,15 @@ namespace MovieDatabase.Utils
                 reviewInsCmd.ExecuteNonQuery();
 
                 // Get the ID of the inserted row
-                reviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
+                review.ReviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
 
                 // Form the director review insert SQL statement
                 actReviewInsCmd.Parameters.AddWithValue("@ActorID", actor.Id);
-                actReviewInsCmd.Parameters.AddWithValue("@ReviewID", reviewId);
+                actReviewInsCmd.Parameters.AddWithValue("@ReviewID", review.ReviewId);
 
                 // Execute the insert
                 actReviewInsCmd.ExecuteNonQuery();
             }
-            return reviewId;
         }
 
         /// <summary>
@@ -1609,8 +1583,7 @@ namespace MovieDatabase.Utils
         /// <param name="review">The review of the movie.</param>
         /// <param name="movie">The movie being reviewed</param>
         /// <exception cref="ArgumentNullException">Exception thrown when the review or movie argument is null.</exception>
-        /// <returns>The ReviewID of the review inserted.</returns>
-        public int InsertReview(Review review, Movie movie)
+        public void InsertReview(Review review, Movie movie)
         {
             // Validate the parameter
             if (review == null || movie == null)
@@ -1628,7 +1601,6 @@ namespace MovieDatabase.Utils
                                            INSERT INTO moviereview (MovieID, ReviewID)
                                            VALUES (@MovieID, @ReviewID);
                                            """;
-            int reviewId = -1;
             using (SQLiteCommand reviewInsCmd = new SQLiteCommand(REVIEW_INS, _connection))
             using (SQLiteCommand lastIdCmd = new SQLiteCommand(LAST_REVIEW_ID, _connection))
             using (SQLiteCommand movieReviewInsCmd = new SQLiteCommand(MOVIE_REVIEW_INS, _connection))
@@ -1641,16 +1613,15 @@ namespace MovieDatabase.Utils
                 reviewInsCmd.ExecuteNonQuery();
 
                 // Get the ID of the inserted row
-                reviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
+                review.ReviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
 
                 // Form the director review insert SQL statement
                 movieReviewInsCmd.Parameters.AddWithValue("@MovieID", movie.MediaId);
-                movieReviewInsCmd.Parameters.AddWithValue("@ReviewID", reviewId);
+                movieReviewInsCmd.Parameters.AddWithValue("@ReviewID", review.ReviewId);
 
                 // Execute the insert
                 movieReviewInsCmd.ExecuteNonQuery();
             }
-            return reviewId;
         }
 
         /// <summary>
@@ -1659,8 +1630,7 @@ namespace MovieDatabase.Utils
         /// <param name="review">The review of the tv show.</param>
         /// <param name="tvShow">The tv show being reviewed</param>
         /// <exception cref="ArgumentNullException">Exception thrown when the review or tv show argument is null.</exception>
-        /// <returns>The ReviewID of the review inserted.</returns>
-        public int InsertReview(Review review, TVShow tvShow)
+        public void InsertReview(Review review, TVShow tvShow)
         {
             // Validate the parameter
             if (review == null || tvShow == null)
@@ -1678,7 +1648,6 @@ namespace MovieDatabase.Utils
                                            INSERT INTO tvshowreview (TVShowID, ReviewID)
                                            VALUES (@TVShowID, @ReviewID);
                                            """;
-            int reviewId = -1;
             using (SQLiteCommand reviewInsCmd = new SQLiteCommand(REVIEW_INS, _connection))
             using (SQLiteCommand lastIdCmd = new SQLiteCommand(LAST_REVIEW_ID, _connection))
             using (SQLiteCommand showReviewInsCmd = new SQLiteCommand(MOVIE_REVIEW_INS, _connection))
@@ -1691,16 +1660,15 @@ namespace MovieDatabase.Utils
                 reviewInsCmd.ExecuteNonQuery();
 
                 // Get the ID of the inserted row
-                reviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
+                review.ReviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
 
                 // Form the director review insert SQL statement
                 showReviewInsCmd.Parameters.AddWithValue("@TVShowID", tvShow.MediaId);
-                showReviewInsCmd.Parameters.AddWithValue("@ReviewID", reviewId);
+                showReviewInsCmd.Parameters.AddWithValue("@ReviewID", review.ReviewId);
 
                 // Execute the insert
                 showReviewInsCmd.ExecuteNonQuery();
             }
-            return reviewId;
         }
 
         /// <summary>
@@ -1709,8 +1677,7 @@ namespace MovieDatabase.Utils
         /// <param name="review">The review of the episode.</param>
         /// <param name="episode">The episode being reviewed</param>
         /// <exception cref="ArgumentNullException">Exception thrown when the review or episode argument is null.</exception>
-        /// <returns>The ReviewID of the review inserted.</returns>
-        public int InsertReview(Review review, Episode episode)
+        public void InsertReview(Review review, Episode episode)
         {
             // Validate the parameter
             if (review == null || episode == null)
@@ -1728,7 +1695,6 @@ namespace MovieDatabase.Utils
                                            INSERT INTO episodereview (EpisodeID, ReviewID)
                                            VALUES (@EpisodeID, @ReviewID);
                                            """;
-            int reviewId = -1;
             using (SQLiteCommand reviewInsCmd = new SQLiteCommand(REVIEW_INS, _connection))
             using (SQLiteCommand lastIdCmd = new SQLiteCommand(LAST_REVIEW_ID, _connection))
             using (SQLiteCommand epReviewInsCmd = new SQLiteCommand(EPISODE_REVIEW_INS, _connection))
@@ -1741,16 +1707,15 @@ namespace MovieDatabase.Utils
                 reviewInsCmd.ExecuteNonQuery();
 
                 // Get the ID of the inserted row
-                reviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
+                review.ReviewId = Convert.ToInt32(lastIdCmd.ExecuteScalar());
 
                 // Form the director review insert SQL statement
                 epReviewInsCmd.Parameters.AddWithValue("@EpisodeID", episode.MediaId);
-                epReviewInsCmd.Parameters.AddWithValue("@ReviewID", reviewId);
+                epReviewInsCmd.Parameters.AddWithValue("@ReviewID", review.ReviewId);
 
                 // Execute the insert
                 epReviewInsCmd.ExecuteNonQuery();
             }
-            return reviewId;
         }
 
         /// <summary>
