@@ -17,6 +17,7 @@ VALUES
     ('CRIME'),
     ('FANTASY');
 
+-- Insert statements for the movies
 INSERT INTO movie (Title, ReleaseDate, Duration, Synopsis, ImageLink)
 VALUES 
     ('Harry Potter and the Deathly Hallows: Part 2', '2011-07-15', 130, 'As the battle between the forces of good and evil in the wizarding world escalates, Harry Potter draws ever closer to his final confrontation with Voldemort.', 'https://m.media-amazon.com/images/M/MV5BOTA1Mzc2N2ItZWRiNS00MjQzLTlmZDQtMjU0NmY1YWRkMGQ4XkEyXkFqcGc@._V1_.jpg'),
