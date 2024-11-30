@@ -776,6 +776,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader tvShowReader = cmd.ExecuteReader();
                 while (tvShowReader.Read())
                 {
+                    // Create a tv show
                     TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
                         (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
                     // Set the tv show id
@@ -1126,6 +1127,70 @@ namespace MovieDatabase.Utils
             crewMembers.AddRange(GetAllActors());
             crewMembers.AddRange(GetAllDirectors());
             return crewMembers;
+        }
+
+        /// <summary>
+        /// Search all media by the title.
+        /// The search is case insensitive.
+        /// </summary>
+        /// <param name="title">The title to filter by</param>
+        /// <returns>A list of all media containing the title provided.</returns>
+        /// <exception cref="ArgumentNullException">Exception thrown when the title argument is null.</exception>
+        public List<Media> SearchMediaByTitle(string title)
+        {
+            if (title == null)
+            {
+                throw new ArgumentNullException("The title argument cannot be null.");
+            }
+            const string MOVIE_SQL = """
+                                SELECT * FROM movie WHERE Title LIKE @Search;
+                                """;
+            const string TVSHOW_SQL = """
+                                       SELECT * FROM tvshow WHERE Title LIKE @Search;
+                                       """;
+            List<Media> media = new List<Media>();
+            using (SQLiteCommand movieCmd = new SQLiteCommand(MOVIE_SQL, _connection))
+            using (SQLiteCommand tvShowCmd = new SQLiteCommand(TVSHOW_SQL, _connection))
+            {
+                // Form the SQL and execute the query
+                movieCmd.Parameters.AddWithValue("@Search", "%" + title + "%");
+                tvShowCmd.Parameters.AddWithValue("@Search", "%" + title + "%");
+                SQLiteDataReader movieReader = movieCmd.ExecuteReader();
+                SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader();
+
+                // Read all movie results.
+                while (movieReader.Read())
+                {
+                    // Create a movie
+                    Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
+                        (string)movieReader["Synopsis"], Convert.ToInt32(movieReader["Duration"]), (string)movieReader["ImageLink"]);
+                    // Set the movie id
+                    movie.MediaId = Convert.ToInt32(movieReader["MovieID"]);
+                    // Set the movie reviews, directors, actors, and genres
+                    movie.Reviews = GetMovieReviews(movie.MediaId);
+                    movie.Directors = GetMovieDirectors(movie.MediaId);
+                    movie.Actors = GetMovieActors(movie.MediaId);
+                    movie.Genres = GetMovieGenres(movie.MediaId);
+                    media.Add(movie);
+                }
+
+                // Read all tv show results
+                while (tvShowReader.Read())
+                {
+                    TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
+                        (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
+                    // Set the tv show id
+                    tvShow.MediaId = Convert.ToInt32(tvShowReader["TVShowID"]);
+                    // Set the tv show revies, directors, actors, genres, and episodes
+                    tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
+                    tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
+                    tvShow.Actors = GetTVShowActors(tvShow.MediaId);
+                    tvShow.Reviews = GetTVShowReviews(tvShow.MediaId);
+                    tvShow.Genres = GetTVShowGenres(tvShow.MediaId);
+                    media.Add(tvShow);
+                }
+            }
+            return media;
         }
 
         /// <summary>
@@ -2048,7 +2113,7 @@ namespace MovieDatabase.Utils
                                     CardExpirationDate TEXT NOT NULL,
                                     PaymentDate TEXT NOT NULL,
                                     UserID INTEGER NOT NULL,
-                                    CONSTRAINT chk_CardExpirationDateFormat CHECK (CardExpirationDate LIKE '____-__-00'),
+                                    CONSTRAINT chk_CardExpirationDateFormat CHECK (CardExpirationDate LIKE '____-__-01'),
                                     CONSTRAINT chk_PaymentDateFormat CHECK (PaymentDate LIKE '____-__-__'),
                                     CONSTRAINT chk_CardExpirationDateFuture CHECK (CardExpirationDate > CURRENT_DATE),
                                     CONSTRAINT fk_UserID FOREIGN KEY (UserID) REFERENCES user(UserID)
