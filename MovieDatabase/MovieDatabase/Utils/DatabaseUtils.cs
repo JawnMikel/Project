@@ -1296,6 +1296,11 @@ namespace MovieDatabase.Utils
                 // Set the userId
                 user.Id = Convert.ToInt32(pkCmd.ExecuteScalar());
             }
+            // Inser the payment information if the user has a premium membership
+            if (user.MembershipPayment != null)
+            {
+                InsertPayment(user.MembershipPayment, user.Id);
+            }
         }
 
         /// <summary>
