@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -63,15 +64,13 @@ namespace MovieDatabase
 
             try
             {
-                Payment payment = new Payment(
-                    cardHolderName,
-                    creditCardNumber,
-                    expiryDate,
-                    cvv
-                );
+                Payment payment = new Payment(cardHolderName, creditCardNumber, cvv, expiryDate);
 
                 User user = new User(_username, _password, _firstName, _lastName, _dob, _membership);
-                FormLogin.users.Add(user);
+                var database = DatabaseUtils.GetInstance();
+                database.InsertUser(user);
+                database.InsertPayment(payment,user.Id);
+                database.CloseConnection();
 
                 MessageBox.Show("Payment approved! Account successfully created.", "Approved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -79,6 +78,11 @@ namespace MovieDatabase
                 var formMainMenu = new FormMainMenu(user);
                 formMainMenu.Closed += (s, args) => this.Close();
                 formMainMenu.ShowDialog();
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show(ex.Message, "SQL error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             catch (ArgumentException ex)
             {

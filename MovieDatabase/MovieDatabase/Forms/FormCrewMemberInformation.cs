@@ -26,6 +26,10 @@ namespace MovieDatabase
             nameLbl.Text = crewMember.FirstName + " " + crewMember.LastName;
             ratingLbl.Text += crewMember.GetPopularity() + "/5";
             this.user = user;
+            if (user.Membership.Equals("REGULAR"))
+            {
+                writeReviewBtn.Enabled = false;
+            }
         }
 
         private void backBtn_Click(object sender, EventArgs e)
