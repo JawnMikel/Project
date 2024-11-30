@@ -1041,6 +1041,82 @@ namespace MovieDatabase.Utils
         }
 
         /// <summary>
+        /// Get all of the actors stored in the database.
+        /// </summary>
+        /// <returns>The list of all actors in the database.</returns>
+        public List<Actor> GetAllActors()
+        {
+            const string SQL = """
+                                SELECT * FROM actor;
+                                """;
+            List<Actor> actors = new List<Actor>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                SQLiteDataReader actorReader = cmd.ExecuteReader();
+
+                while (actorReader.Read())
+                {
+                    // Create an actor
+                    Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
+                    // Set the actor id
+                    actor.Id = Convert.ToInt32(actorReader["ActorID"]);
+                    // Set the lists of starred media
+                    Dictionary<string, List<int>> starredIds = GetActorStarred(actor.Id);
+                    actor.StarredMovies = starredIds["MovieIds"];
+                    actor.StarredTVShows = starredIds["TVShowIds"];
+                    actor.StarredEpisodes = starredIds["EpisodeIds"];
+                    // Add to the list of actors
+                    actors.Add(actor);
+                }
+            }
+            return actors;
+        }
+
+        /// <summary>
+        /// Get all of the directors stored in the database.
+        /// </summary>
+        /// <returns>The list of all directors in the database.</returns>
+        public List<Director> GetAllDirectors()
+        {
+            const string SQL = """
+                                SELECT * FROM director;
+                                """;
+            List<Director> directors = new List<Director>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                SQLiteDataReader directorReader = cmd.ExecuteReader();
+
+                while (directorReader.Read())
+                {
+                    // Create a director
+                    Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
+                    // Set the director id
+                    director.Id = Convert.ToInt32(directorReader["DirectorID"]);
+                    // Set the lists of directed media
+                    Dictionary<string, List<int>> directedIds = GetDirectorDirected(director.Id);
+                    director.DirectedMovies = directedIds["MovieIds"];
+                    director.DirectedTVShows = directedIds["TVShowIds"];
+                    director.DirectedEpisodes = directedIds["EpisodeIds"];
+                    // Add the director
+                    directors.Add(director);
+                }
+            }
+            return directors;
+        }
+
+        /// <summary>
+        /// Get all of the crew members stored in the database.
+        /// </summary>
+        /// <returns>The list of all crew members in the database.</returns>
+        public List<CrewMember> GetAllCrewMembers()
+        {
+            List<CrewMember> crewMembers = new List<CrewMember>();
+            crewMembers.AddRange(GetAllActors());
+            crewMembers.AddRange(GetAllDirectors());
+            return crewMembers;
+        }
+
+        /// <summary>
         /// Insert a director into the director table.
         /// </summary>
         /// <param name="director">The director to insert.</param>
@@ -1296,7 +1372,7 @@ namespace MovieDatabase.Utils
                 // Set the userId
                 user.Id = Convert.ToInt32(pkCmd.ExecuteScalar());
             }
-            // Inser the payment information if the user has a premium membership
+            // Insert the payment information if the user has a premium membership
             if (user.MembershipPayment != null)
             {
                 InsertPayment(user.MembershipPayment, user.Id);
