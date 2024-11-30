@@ -22,8 +22,10 @@ namespace MovieDatabase
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-           // User user = users.FirstOrDefault(u => u.Login(usernameTB.Text, passwordTB.Text));
-            User? user = DatabaseUtils.GetInstance().GetUserByCredentials(usernameTB.Text, passwordTB.Text);
+            // User user = users.FirstOrDefault(u => u.Login(usernameTB.Text, passwordTB.Text));
+            var database = DatabaseUtils.GetInstance();
+            User user = database.GetUserByCredentials(usernameTB.Text, passwordTB.Text);
+            database.CloseConnection();
             if (user != null)
             {
                 this.Hide();

@@ -6,7 +6,7 @@
 Our project is a movie system that allows the user to sign in as a client to search through a database of films. The system will allow the user to create an account and pay for a premium membership or keep the regular membership. The premium membership will have access to the recommendation engine that generates movies that seem appealing for the user in reference to their search history and their preferences. Premium members will also be able to view the best actors around the world and can comment on their performance as many times as they want to. In contrast, the regular membership has a limit of 5 comments on their account just for movies and Tv shows. In addition, the interface will allow the client to search for their favorite movies based on the directors, actors, genre, and title. Our project will also allow the client to add movies to their watchlist, see the reviews that movie critiques leave on the film. Furthermore, the user can leave their own review on the different media, actors and even directors by giving it a rating and comment.  
 
 ## Functionalities
-- Fetching and filtering movie information such as title, genre, rating, release year, director, and actors from the movie database. 
+- Fetching and filtering movie information such as title, genre, rating, director, and actors from the movie database. 
 - Add movies to the user’s watchlist. 
 - The user can rate and review media, which are stored in the database. 
 - Premium members can give a rating to the actors and directors of their choice.  

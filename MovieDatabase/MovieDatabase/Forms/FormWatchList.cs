@@ -13,15 +13,21 @@ namespace MovieDatabase
 {
     public partial class FormWatchList : Form
     {
-        public FormWatchList()
+        User user;
+        public FormWatchList(User user)
         {
             InitializeComponent();
             Update();
+            this.user = user; 
+
         }
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            var formProfile = new FormProfile(user);
+            formProfile.Closed += (s, args) => this.Close();
+            formProfile.ShowDialog();
         }
 
         private void langBtn_Click(object sender, EventArgs e)
