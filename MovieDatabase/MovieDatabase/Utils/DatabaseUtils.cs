@@ -2113,7 +2113,7 @@ namespace MovieDatabase.Utils
                                     CardExpirationDate TEXT NOT NULL,
                                     PaymentDate TEXT NOT NULL,
                                     UserID INTEGER NOT NULL,
-                                    CONSTRAINT chk_CardExpirationDateFormat CHECK (CardExpirationDate LIKE '____-__-00'),
+                                    CONSTRAINT chk_CardExpirationDateFormat CHECK (CardExpirationDate LIKE '____-__-01'),
                                     CONSTRAINT chk_PaymentDateFormat CHECK (PaymentDate LIKE '____-__-__'),
                                     CONSTRAINT chk_CardExpirationDateFuture CHECK (CardExpirationDate > CURRENT_DATE),
                                     CONSTRAINT fk_UserID FOREIGN KEY (UserID) REFERENCES user(UserID)
