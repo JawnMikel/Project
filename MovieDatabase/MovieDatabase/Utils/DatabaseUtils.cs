@@ -83,7 +83,7 @@ namespace MovieDatabase.Utils
 
                 // Execute the SQL and read the next result
                 SQLiteDataReader reader = cmd.ExecuteReader();
-                if (!reader.NextResult())
+                if (!reader.Read())
                 {
                     return null;
                 }
@@ -127,7 +127,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader reviewReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all reviews
-                while (reviewReader.NextResult())
+                while (reviewReader.Read())
                 {
                     Review review = new Review((int)reviewReader["UserID"], (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
                     review.ReviewId = (int)reviewReader["ReviewID"];
@@ -161,7 +161,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader();
 
                 // Add Movies to the watchlist
-                while (movieReader.NextResult())
+                while (movieReader.Read())
                 {
                     Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
                         (string)movieReader["Synopsis"], (int)movieReader["Duration"], (string)movieReader["ImageLink"]);
@@ -176,7 +176,7 @@ namespace MovieDatabase.Utils
                 }
 
                 // Add TV Shows to the watchlist
-                while (tvShowReader.NextResult())
+                while (tvShowReader.Read())
                 {
                     TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
                         (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
@@ -213,7 +213,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader reviewReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all reviews
-                while (reviewReader.NextResult())
+                while (reviewReader.Read())
                 {
                     Review review = new Review((int)reviewReader["UserID"], (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
                     review.ReviewId = (int)reviewReader["ReviewID"];
@@ -241,7 +241,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader genreReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all reviews
-                while (genreReader.NextResult())
+                while (genreReader.Read())
                 {
                     // Create the Genre and add it to the genres list
                     Media.Genre genre = (Media.Genre)Enum.Parse(typeof(Media.Genre), (string)genreReader["GenreName"]);
@@ -269,7 +269,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader actorReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all actors
-                while (actorReader.NextResult())
+                while (actorReader.Read())
                 {
                     // Create an actor
                     Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
@@ -303,7 +303,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader directorReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all directors
-                while (directorReader.NextResult())
+                while (directorReader.Read())
                 {
                     // Create a director
                     Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
@@ -337,7 +337,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader reviewReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all reviews
-                while (reviewReader.NextResult())
+                while (reviewReader.Read())
                 {
                     // Create a review and all it to the reviews list
                     Review review = new Review((int)reviewReader["UserID"], (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
@@ -366,7 +366,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader genreReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all genres
-                while (genreReader.NextResult())
+                while (genreReader.Read())
                 {
                     // Create the Genre and add it to the genres list
                     Media.Genre genre = (Media.Genre)Enum.Parse(typeof(Media.Genre), (string)genreReader["GenreName"]);
@@ -394,7 +394,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader actorReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all actors
-                while (actorReader.NextResult())
+                while (actorReader.Read())
                 {
                     // Create an actor
                     Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
@@ -428,7 +428,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader directorReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all directors
-                while (directorReader.NextResult())
+                while (directorReader.Read())
                 {
                     // Create a director
                     Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
@@ -462,7 +462,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader reviewReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all reviews
-                while (reviewReader.NextResult())
+                while (reviewReader.Read())
                 {
                     Review review = new Review((int)reviewReader["UserID"], (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
                     review.ReviewId = (int)reviewReader["ReviewID"];
@@ -490,7 +490,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader genreReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all genres
-                while (genreReader.NextResult())
+                while (genreReader.Read())
                 {
                     // Create the Genre and add it to the genres list
                     Media.Genre genre = (Media.Genre)Enum.Parse(typeof(Media.Genre), (string)genreReader["GenreName"]);
@@ -518,7 +518,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader actorReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all actors
-                while (actorReader.NextResult())
+                while (actorReader.Read())
                 {
                     // Create an actor
                     Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
@@ -552,7 +552,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader directorReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all directors
-                while (directorReader.NextResult())
+                while (directorReader.Read())
                 {
                     // Create a director
                     Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
@@ -586,7 +586,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader episodeReader = cmd.ExecuteReader();
 
                 // Loop through the results and fetch all episodes
-                while (episodeReader.NextResult())
+                while (episodeReader.Read())
                 {
                     // Create an episode
                     Episode episode = new Episode((string)episodeReader["Title"], DateTime.Parse((string)episodeReader["ReleaseDate"]),
@@ -642,19 +642,19 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader episodeReader = episodeCmd.ExecuteReader();
 
                 // Loop through the movie results
-                while (movieReader.NextResult())
+                while (movieReader.Read())
                 {
                     starredIds["MovieIds"].Add((int)movieReader["MovieID"]);
                 }
 
                 // Loop through the tv show results
-                while (tvShowReader.NextResult())
+                while (tvShowReader.Read())
                 {
                     starredIds["TVShowIds"].Add((int)tvShowReader["TVShowID"]);
                 }
 
                 // Loop through the episode results
-                while (episodeReader.NextResult())
+                while (episodeReader.Read())
                 {
                     starredIds["EpisodeIds"].Add((int)episodeReader["EpisodeID"]);
                 }
@@ -698,19 +698,19 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader episodeReader = episodeCmd.ExecuteReader();
 
                 // Loop through the movie results
-                while (movieReader.NextResult())
+                while (movieReader.Read())
                 {
                     directedIds["MovieIds"].Add((int)movieReader["MovieID"]);
                 }
 
                 // Loop through the tv show results
-                while (tvShowReader.NextResult())
+                while (tvShowReader.Read())
                 {
                     directedIds["TVShowIds"].Add((int)tvShowReader["TVShowID"]);
                 }
 
                 // Loop through the episode results
-                while (episodeReader.NextResult())
+                while (episodeReader.Read())
                 {
                     directedIds["EpisodeIds"].Add((int)episodeReader["EpisodeID"]);
                 }
@@ -731,7 +731,7 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 SQLiteDataReader movieReader = cmd.ExecuteReader();
-                while (movieReader.NextResult())
+                while (movieReader.Read())
                 {
                     // Create a movie
                     Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
@@ -762,7 +762,7 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 SQLiteDataReader tvShowReader = cmd.ExecuteReader();
-                while (tvShowReader.NextResult())
+                while (tvShowReader.Read())
                 {
                     TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
                         (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
@@ -815,7 +815,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader movieReader = cmd.ExecuteReader();
 
                 // Get all of the movie results
-                while (movieReader.NextResult())
+                while (movieReader.Read())
                 {
                     // Create a movie
                     Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
@@ -854,7 +854,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader tvShowReader = cmd.ExecuteReader();
 
                 // Get all of the tv show results
-                while (tvShowReader.NextResult())
+                while (tvShowReader.Read())
                 {
                     TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
                         (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
@@ -902,7 +902,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader tvShowReader = cmd.ExecuteReader();
 
                 // If no result, return
-                if (!tvShowReader.NextResult())
+                if (!tvShowReader.Read())
                 {
                     return null;
                 }
@@ -939,7 +939,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader episodeReader = cmd.ExecuteReader();
 
                 // If no result, return
-                if (!episodeReader.NextResult())
+                if (!episodeReader.Read())
                 {
                     return null;
                 }
@@ -976,7 +976,7 @@ namespace MovieDatabase.Utils
                 SQLiteDataReader movieReader = cmd.ExecuteReader();
 
                 // If no result, return
-                if (!movieReader.NextResult())
+                if (!movieReader.Read())
                 {
                     return null;
                 }
@@ -994,8 +994,12 @@ namespace MovieDatabase.Utils
             }
             return movie;
         }
-        
 
+        /// <summary>
+        /// Get a user by id.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        /// <returns>The User with the specified ID.</returns>
         public User? GetUserById(int userId)
         {
             const string SQL = """
@@ -1010,7 +1014,7 @@ namespace MovieDatabase.Utils
 
                 // Execute the SQL and read the next result
                 SQLiteDataReader reader = cmd.ExecuteReader();
-                if (!reader.NextResult())
+                if (!reader.Read())
                 {
                     return null;
                 }
