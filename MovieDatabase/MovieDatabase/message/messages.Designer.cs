@@ -304,6 +304,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Premium.
+        /// </summary>
+        internal static string Premium {
+            get {
+                return ResourceManager.GetString("Premium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profile.
         /// </summary>
         internal static string Profile {
@@ -327,6 +336,15 @@ namespace MovieDatabase.message {
         internal static string Recommendation {
             get {
                 return ResourceManager.GetString("Recommendation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regular.
+        /// </summary>
+        internal static string Regular {
+            get {
+                return ResourceManager.GetString("Regular", resourceCulture);
             }
         }
         

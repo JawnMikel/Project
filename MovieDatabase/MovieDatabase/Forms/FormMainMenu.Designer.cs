@@ -38,13 +38,15 @@ namespace MovieDatabase
             profileBtn = new Button();
             genreBox = new ComboBox();
             mediaLayout = new FlowLayoutPanel();
+            langBtn = new Button();
             SuspendLayout();
             // 
             // recBtn
             // 
-            recBtn.Location = new Point(12, 12);
+            recBtn.Location = new Point(17, 16);
+            recBtn.Margin = new Padding(2, 2, 2, 2);
             recBtn.Name = "recBtn";
-            recBtn.Size = new Size(168, 34);
+            recBtn.Size = new Size(118, 22);
             recBtn.TabIndex = 0;
             recBtn.Text = "Recommendation";
             recBtn.UseVisualStyleBackColor = true;
@@ -52,9 +54,10 @@ namespace MovieDatabase
             // 
             // top10Btn
             // 
-            top10Btn.Location = new Point(198, 12);
+            top10Btn.Location = new Point(139, 15);
+            top10Btn.Margin = new Padding(2, 2, 2, 2);
             top10Btn.Name = "top10Btn";
-            top10Btn.Size = new Size(112, 34);
+            top10Btn.Size = new Size(78, 23);
             top10Btn.TabIndex = 1;
             top10Btn.Text = "Top 10";
             top10Btn.UseVisualStyleBackColor = true;
@@ -62,9 +65,10 @@ namespace MovieDatabase
             // 
             // moviesBtn
             // 
-            moviesBtn.Location = new Point(316, 11);
+            moviesBtn.Location = new Point(221, 15);
+            moviesBtn.Margin = new Padding(2, 2, 2, 2);
             moviesBtn.Name = "moviesBtn";
-            moviesBtn.Size = new Size(82, 35);
+            moviesBtn.Size = new Size(57, 26);
             moviesBtn.TabIndex = 2;
             moviesBtn.Text = "Movies";
             moviesBtn.UseVisualStyleBackColor = true;
@@ -72,9 +76,10 @@ namespace MovieDatabase
             // 
             // tvshowBtn
             // 
-            tvshowBtn.Location = new Point(414, 12);
+            tvshowBtn.Location = new Point(282, 16);
+            tvshowBtn.Margin = new Padding(2, 2, 2, 2);
             tvshowBtn.Name = "tvshowBtn";
-            tvshowBtn.Size = new Size(112, 34);
+            tvshowBtn.Size = new Size(78, 25);
             tvshowBtn.TabIndex = 3;
             tvshowBtn.Text = "Tv Shows";
             tvshowBtn.UseVisualStyleBackColor = true;
@@ -82,17 +87,19 @@ namespace MovieDatabase
             // 
             // searchTB
             // 
-            searchTB.Location = new Point(730, 13);
+            searchTB.Location = new Point(519, 16);
+            searchTB.Margin = new Padding(2, 2, 2, 2);
             searchTB.Name = "searchTB";
-            searchTB.Size = new Size(228, 31);
+            searchTB.Size = new Size(161, 23);
             searchTB.TabIndex = 5;
             searchTB.TextChanged += searchTB_TextChanged;
             // 
             // profileBtn
             // 
-            profileBtn.Location = new Point(981, 13);
+            profileBtn.Location = new Point(684, 11);
+            profileBtn.Margin = new Padding(2, 2, 2, 2);
             profileBtn.Name = "profileBtn";
-            profileBtn.Size = new Size(183, 34);
+            profileBtn.Size = new Size(128, 30);
             profileBtn.TabIndex = 6;
             profileBtn.UseVisualStyleBackColor = true;
             profileBtn.Click += profileBtn_Click;
@@ -101,9 +108,10 @@ namespace MovieDatabase
             // 
             genreBox.FormattingEnabled = true;
             genreBox.Items.AddRange(new object[] { "ACTION", "ANIMATION", "COMEDY", "CRIME", "DOCUMENTARY", "DRAMA", "FANTASY", "HORROR", "MUSICAL", "MYSTERY", "ROMANCE", "SCI_FI", "SUPERHERO", "THRILLER", "WAR" });
-            genreBox.Location = new Point(532, 14);
+            genreBox.Location = new Point(372, 16);
+            genreBox.Margin = new Padding(2, 2, 2, 2);
             genreBox.Name = "genreBox";
-            genreBox.Size = new Size(182, 33);
+            genreBox.Size = new Size(129, 23);
             genreBox.TabIndex = 7;
             genreBox.SelectedIndexChanged += genreBox_SelectedIndexChanged;
             // 
@@ -111,16 +119,28 @@ namespace MovieDatabase
             // 
             mediaLayout.AutoScroll = true;
             mediaLayout.Dock = DockStyle.Bottom;
-            mediaLayout.Location = new Point(0, 63);
+            mediaLayout.Location = new Point(0, 70);
+            mediaLayout.Margin = new Padding(2, 2, 2, 2);
             mediaLayout.Name = "mediaLayout";
-            mediaLayout.Size = new Size(1176, 530);
+            mediaLayout.Size = new Size(823, 318);
             mediaLayout.TabIndex = 8;
+            // 
+            // button1
+            // 
+            langBtn.Location = new Point(687, 42);
+            langBtn.Name = "button1";
+            langBtn.Size = new Size(124, 23);
+            langBtn.TabIndex = 9;
+            langBtn.Text = "French";
+            langBtn.UseVisualStyleBackColor = true;
+            langBtn.Click += langBtn_Click;
             // 
             // FormMainMenu
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1176, 593);
+            ClientSize = new Size(823, 388);
+            Controls.Add(langBtn);
             Controls.Add(mediaLayout);
             Controls.Add(genreBox);
             Controls.Add(profileBtn);
@@ -129,17 +149,20 @@ namespace MovieDatabase
             Controls.Add(moviesBtn);
             Controls.Add(top10Btn);
             Controls.Add(recBtn);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormMainMenu";
             Text = "MainMenu";
             ResumeLayout(false);
             PerformLayout();
         }
+
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
             recBtn.Text = rm.GetString("Recommendation");
             moviesBtn.Text = rm.GetString("Movies");
             tvshowBtn.Text = rm.GetString("TvShows");
+            langBtn.Text = rm.GetString("Lanbutton");
         }
 
         #endregion
@@ -152,5 +175,6 @@ namespace MovieDatabase
         private Button profileBtn;
         private ComboBox genreBox;
         private FlowLayoutPanel mediaLayout;
+        private Button langBtn;
     }
 }
