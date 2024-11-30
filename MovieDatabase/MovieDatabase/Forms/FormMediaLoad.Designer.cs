@@ -32,6 +32,7 @@ namespace MovieDatabase
         {
             backBtn = new Button();
             mediaLayout = new FlowLayoutPanel();
+            genreLbl = new Label();
             SuspendLayout();
             // 
             // backBtn
@@ -52,17 +53,30 @@ namespace MovieDatabase
             mediaLayout.Size = new Size(917, 517);
             mediaLayout.TabIndex = 1;
             // 
+            // genreLbl
+            // 
+            genreLbl.AutoSize = true;
+            genreLbl.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            genreLbl.Location = new Point(386, 5);
+            genreLbl.Name = "genreLbl";
+            genreLbl.Size = new Size(105, 45);
+            genreLbl.TabIndex = 2;
+            genreLbl.Text = "Genre";
+            // 
             // FormMediaLoad
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 573);
+            Controls.Add(genreLbl);
             Controls.Add(mediaLayout);
             Controls.Add(backBtn);
             Name = "FormMediaLoad";
             Text = "FormMediaLoad";
             ResumeLayout(false);
+            PerformLayout();
         }
+
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
@@ -73,5 +87,6 @@ namespace MovieDatabase
 
         private Button backBtn;
         private FlowLayoutPanel mediaLayout;
+        private Label genreLbl;
     }
 }

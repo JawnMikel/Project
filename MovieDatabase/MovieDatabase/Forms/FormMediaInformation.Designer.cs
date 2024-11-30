@@ -94,7 +94,7 @@ namespace MovieDatabase
             // 
             // mediaPicture
             // 
-            mediaPicture.Location = new Point(12, 162);
+            mediaPicture.Location = new Point(12, 265);
             mediaPicture.Name = "mediaPicture";
             mediaPicture.Size = new Size(283, 271);
             mediaPicture.TabIndex = 5;
@@ -103,7 +103,7 @@ namespace MovieDatabase
             // ratingLbl
             // 
             ratingLbl.AutoSize = true;
-            ratingLbl.Location = new Point(24, 453);
+            ratingLbl.Location = new Point(29, 539);
             ratingLbl.Name = "ratingLbl";
             ratingLbl.Size = new Size(67, 25);
             ratingLbl.TabIndex = 6;
@@ -140,11 +140,11 @@ namespace MovieDatabase
             watchlistCheckBox.UseVisualStyleBackColor = true;
             watchlistCheckBox.CheckedChanged += watchlistCheckBox_CheckedChanged;
             // 
-            // label1
+            // listOfCrewLabel
             // 
             listOfCrewLabel.AutoSize = true;
             listOfCrewLabel.Location = new Point(424, 117);
-            listOfCrewLabel.Name = "label1";
+            listOfCrewLabel.Name = "listOfCrewLabel";
             listOfCrewLabel.Size = new Size(181, 25);
             listOfCrewLabel.TabIndex = 10;
             listOfCrewLabel.Text = "List of crew members";

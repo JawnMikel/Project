@@ -20,6 +20,7 @@ namespace MovieDatabase
             Update();
             this.form = form;
             mediaList = medias;
+           // genreLbl.Text = selected genre
         }
 
         private void backBtn_Click(object sender, EventArgs e)

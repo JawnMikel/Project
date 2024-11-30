@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -83,31 +84,53 @@ namespace MovieDatabase
 
         private void top10Btn_Click(object sender, EventArgs e)
         {
-            //sorts in the database by the rating average
+            var database = DatabaseUtils.GetInstance();
+            List<Media> allMedias = database.GetAllMedia();
+            List<Media> top10 = allMedias
+                .OrderByDescending(m => m.GetMediaRating())
+                .Take(10)
+                .ToList(); 
+         
+            LoadMedias(top10);
         }
 
         private void moviesBtn_Click(object sender, EventArgs e)
         {
-            // selects all from movies from the database
+
+            var database = DatabaseUtils.GetInstance();
+            List<Movie> movies = database.GetAllMovies(); 
+            List<Media> mediaList = movies.Cast<Media>().ToList();
+            LoadMedias(mediaList);
+            database.CloseConnection();
+
         }
 
         private void tvshowBtn_Click(object sender, EventArgs e)
         {
-            // shows all from tvshows from the database
+            var database = DatabaseUtils.GetInstance();
+            List<TVShow> tvshows = database.GetAllTVShows();
+            List<Media> mediaList = tvshows.Cast<Media>().ToList();
+            LoadMedias(mediaList);
+            database.CloseConnection();
+
         }
 
         private void genreBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var database = DatabaseUtils.GetInstance();
             if (genreBox.SelectedItem == null || string.IsNullOrEmpty(genreBox.SelectedItem.ToString()))
             {
-                //show all the medias in the database
+               
+                List<Media> allMedias = database.GetAllMedia();
+                LoadMedias(allMedias);
             }
             else
             {
-                //filter all the medias by the selected genre
-                string selectedGenre = genreBox.SelectedItem.ToString();
-
+                Media.Genre selectedGenre = (Media.Genre)Enum.Parse(typeof(Media.Genre), genreBox.SelectedItem.ToString()); 
+                List<Media> genres = database.GetMediaByGenre(selectedGenre);
+                LoadMedias(genres);
             }
+            database.CloseConnection();
         }
 
         private void searchTB_TextChanged(object sender, EventArgs e)
@@ -116,7 +139,10 @@ namespace MovieDatabase
 
             if (!string.IsNullOrWhiteSpace(searchText))
             {
-                //searches through the database by the title using LIKE 
+                var database = DatabaseUtils.GetInstance();
+                List<Media> searches = database.SearchMediaByTitle(searchText);
+                LoadMedias(searches);
+                database.CloseConnection();
             }
             else
             {
