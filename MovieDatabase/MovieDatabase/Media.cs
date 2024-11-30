@@ -70,7 +70,6 @@ namespace MovieDatabase
             Synopsis = synopsis;
             ImageLink = imageLink;
         }
-
         /// <summary>
         /// Adds a review to the list of reviews
         /// </summary>

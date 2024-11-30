@@ -96,7 +96,7 @@ namespace MovieDatabase.Utils
                 }
 
                 // Parse the date of birth
-                DateTime dob = DateTime.Parse((string)reader["DateOfBirth"]);
+                DateTime dob = DateTime.Parse((string)reader["DateOfBirth"]);        
                 // Create the user object
                 user = new User((string)reader["UserName"], (string)reader["Password"],
                     (string)reader["FirstName"], (string)reader["LastName"], dob, membership);
