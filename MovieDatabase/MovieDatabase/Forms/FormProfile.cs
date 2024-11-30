@@ -57,7 +57,7 @@ namespace MovieDatabase
         private void watchlistBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formWatchList = new FormWatchList();
+            var formWatchList = new FormWatchList(user);
             formWatchList.Closed += (s, args) => this.Close();
             formWatchList.ShowDialog();
         }

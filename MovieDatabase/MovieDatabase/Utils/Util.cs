@@ -179,6 +179,20 @@ namespace MovieDatabase.Utils
         }
 
         /// <summary>
+        /// Cheecks if the comment has response
+        /// </summary>
+        /// <param name="comment">comment</param>
+        /// <returns>returns false if the user leaves the comment empty</returns>
+        public static bool ValidateComment(string comment)
+        {
+            if (string.IsNullOrWhiteSpace(comment))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Validates the duration of a media.
         /// The duration must be greater than 0.
         /// </summary>
