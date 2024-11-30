@@ -994,8 +994,12 @@ namespace MovieDatabase.Utils
             }
             return movie;
         }
-        
 
+        /// <summary>
+        /// Get a user by id.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        /// <returns>The User with the specified ID.</returns>
         public User? GetUserById(int userId)
         {
             const string SQL = """
