@@ -17,7 +17,7 @@ namespace MovieDatabase
 {
     public partial class FormCreateAcc : Form
     {
-       
+
 
         public FormCreateAcc()
         {
@@ -37,7 +37,7 @@ namespace MovieDatabase
         }
 
         private void nextBtn_Click(object sender, EventArgs e)
-        { 
+        {
             if (membershipCB.SelectedIndex == 0)
             {
                 if (!CheckUser())
@@ -45,7 +45,7 @@ namespace MovieDatabase
                     return;
                 }
                 User user = CreateUser(User.Memberships.REGULAR);
-                if(user == null)
+                if (user == null)
                 {
                     MessageBox.Show("Failed to create account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -80,10 +80,10 @@ namespace MovieDatabase
                 formPayment.ShowDialog();
             }
         }
-           
+
         private void membershipCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
             if (membershipCB.SelectedIndex == 0)
             {
                 nextBtn.Text = rm.GetString("CreateAccountButton");
@@ -187,5 +187,6 @@ namespace MovieDatabase
             Util.Language();
             Update();
         }
+
     }
 }

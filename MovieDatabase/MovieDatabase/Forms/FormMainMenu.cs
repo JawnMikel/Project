@@ -100,13 +100,13 @@ namespace MovieDatabase
         {
             if (genreBox.SelectedItem == null || string.IsNullOrEmpty(genreBox.SelectedItem.ToString()))
             {
-               //show all the medias in the database
+                //show all the medias in the database
             }
             else
             {
                 //filter all the medias by the selected genre
                 string selectedGenre = genreBox.SelectedItem.ToString();
-               
+
             }
         }
 
@@ -116,12 +116,18 @@ namespace MovieDatabase
 
             if (!string.IsNullOrWhiteSpace(searchText))
             {
-               //searches through the database by the title using LIKE 
+                //searches through the database by the title using LIKE 
             }
             else
             {
                 mediaLayout.Controls.Clear();
             }
+        }
+
+        private void langBtn_Click(object sender, EventArgs e)
+        {
+            Util.Language();
+            Update();
         }
     }
 }

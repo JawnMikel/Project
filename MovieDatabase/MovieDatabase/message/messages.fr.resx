@@ -237,4 +237,10 @@
   <data name="CreateAccountTitle" xml:space="preserve">
     <value>Créer un Compte</value>
   </data>
+  <data name="Premium" xml:space="preserve">
+    <value>Prime</value>
+  </data>
+  <data name="Regular" xml:space="preserve">
+    <value>Régulié</value>
+  </data>
 </root>
