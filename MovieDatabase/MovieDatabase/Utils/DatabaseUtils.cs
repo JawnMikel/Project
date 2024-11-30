@@ -280,6 +280,8 @@ namespace MovieDatabase.Utils
                     actor.StarredMovies = starredIds["MovieIds"];
                     actor.StarredTVShows = starredIds["TVShowIds"];
                     actor.StarredEpisodes = starredIds["EpisodeIds"];
+                    // Add the actor
+                    actors.Add(actor);
                 }
             }
             return actors;
@@ -314,6 +316,8 @@ namespace MovieDatabase.Utils
                     director.DirectedMovies = directedIds["MovieIds"];
                     director.DirectedTVShows = directedIds["TVShowIds"];
                     director.DirectedEpisodes = directedIds["EpisodeIds"];
+                    // Add the director
+                    directors.Add(director);
                 }
             }
             return directors;
@@ -405,6 +409,8 @@ namespace MovieDatabase.Utils
                     actor.StarredMovies = starredIds["MovieIds"];
                     actor.StarredTVShows = starredIds["TVShowIds"];
                     actor.StarredEpisodes = starredIds["EpisodeIds"];
+                    // Add the actor
+                    actors.Add(actor);
                 }
             }
             return actors;
@@ -439,6 +445,8 @@ namespace MovieDatabase.Utils
                     director.DirectedMovies = directedIds["MovieIds"];
                     director.DirectedTVShows = directedIds["TVShowIds"];
                     director.DirectedEpisodes = directedIds["EpisodeIds"];
+                    // Add the director 
+                    directors.Add(director);
                 }
             }
             return directors;
@@ -529,6 +537,8 @@ namespace MovieDatabase.Utils
                     actor.StarredMovies = starredIds["MovieIds"];
                     actor.StarredTVShows = starredIds["TVShowIds"];
                     actor.StarredEpisodes = starredIds["EpisodeIds"];
+                    // Add the actor
+                    actors.Add(actor);
                 }
             }
             return actors;
@@ -563,6 +573,8 @@ namespace MovieDatabase.Utils
                     director.DirectedMovies = directedIds["MovieIds"];
                     director.DirectedTVShows = directedIds["TVShowIds"];
                     director.DirectedEpisodes = directedIds["EpisodeIds"];
+                    // Add the director
+                    directors.Add(director);
                 }
             }
             return directors;
