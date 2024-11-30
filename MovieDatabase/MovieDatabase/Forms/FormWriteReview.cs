@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MovieDatabase.Utils;
+using static MovieDatabase.User;
 
 namespace MovieDatabase
 {
@@ -15,11 +18,10 @@ namespace MovieDatabase
     {
         User user;
         Media media;
-        CrewMember member;
+        CrewMember crew;
         public FormWriteReview(Media media, User user)
         {
-            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
-            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+          
             InitializeComponent();
             
             Util.Language();
@@ -29,27 +31,53 @@ namespace MovieDatabase
             titleLbl.Text = media.Title;
 
         }
-        public FormWriteReview(CrewMember member, User user)
+        public FormWriteReview(CrewMember crew, User user)
         {
             InitializeComponent();
+            Util.Language();
+            Update();
             this.user = user;
-            this.member = member;
-            titleLbl.Text = member.FirstName + " " + member.LastName;
+            this.crew = crew;
+            titleLbl.Text = crew.FirstName + " " + crew.LastName;
         }
 
         private void postBtn_Click(object sender, EventArgs e)
         {
-            double rating = double.Parse(ratingTB.Text);
-            string comment = reviewTB.Text;
-            Review review = new Review(user.Id, comment, rating);
+            var database = DatabaseUtils.GetInstance();
+
+            if (!CheckReview())
+            {
+                return;
+            }
+            Review review = CreateReview();
             if (media != null)
             {
-                media.AddReview(review);
+                if (media is Movie)
+                {
+                    database.InsertReview(review, (Movie)media);
+                }
+                else if (media is TVShow)
+                {
+                    database.InsertReview(review, (TVShow)media);
+
+                }
+                else if (media is Episode)
+                { 
+                    database.InsertReview(review, (Episode)media);
+                }
             }
-            if (member != null)
+            if (crew != null)
             {
-                member.AddReview(review);
+                if (crew is Actor)
+                {
+                    database.InsertReview(review, (Actor)crew);
+                }
+                else
+                {
+                    database.InsertReview(review, (Director)crew);
+                }
             }
+            database.CloseConnection();
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -64,6 +92,46 @@ namespace MovieDatabase
         {
             Util.Language();
             Update();
+        }
+
+        private Review CreateReview()
+        {
+            string comment = reviewTB.Text;
+            double rating = double.Parse(ratingTB.Text);
+            try
+            {
+                Review review = new Review(user.Id,comment,rating);
+                return review;
+            }
+            catch (ArithmeticException ex)
+            {
+                MessageBox.Show(ex.Message, "Invalid review", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Checks the review format
+        /// </summary>
+        /// <returns>returns true if the user's review is properly formatted.</returns>
+        private bool CheckReview()
+        {
+            string comment = reviewTB.Text;
+
+            if (!Util.ValidateNameFormat(comment))
+            {
+                MessageBox.Show("User must have a proper comment", "Invalid Comment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            double rating = double.Parse(ratingTB.Text);
+
+            if (!Util.ValidateRatingRange(rating))
+            {
+                MessageBox.Show("User must input a proper rating number (0-5)", "Invalid Number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
         }
     }
 }
