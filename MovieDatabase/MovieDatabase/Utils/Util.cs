@@ -33,12 +33,12 @@ namespace MovieDatabase.Utils
                 return false;
             }
 
-            if (cvv.Length != 3 && !cvv.All(char.IsDigit))
+            if (cvv.Length != 3 || !cvv.All(char.IsDigit))
             {
                 return false;
             }
 
-            if (!DateTime.TryParseExact(expiryDate, "MM/yy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedExpiryDate))
+            if (!DateTime.TryParseExact(expiryDate, "MM/yy", null, DateTimeStyles.None, out DateTime parsedExpiryDate))
             {
                 return false;
             }
