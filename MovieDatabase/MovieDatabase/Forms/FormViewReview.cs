@@ -17,12 +17,9 @@ namespace MovieDatabase
         User user;
         public FormViewReview(CrewMember crewMember, User user)
         {
-            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
-            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
             this.media = null;
-            Util.Language();
-            Update();
             InitializeComponent();
+            Update();
             this.crewMember = crewMember;
             titleLbl.Text += " " + crewMember.FirstName + " " + crewMember.LastName;
             

@@ -154,6 +154,7 @@ namespace MovieDatabase
            langBtn.Text = rm.GetString("LanButton");
            writeReviewBtn.Text = rm.GetString("WriteReview");
            viewReviewBtn.Text = rm.GetString("ViewReviews"); 
+            
         }
 
         #endregion

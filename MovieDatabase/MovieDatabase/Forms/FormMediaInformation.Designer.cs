@@ -40,7 +40,7 @@ namespace MovieDatabase
             giveReviewBtn = new Button();
             viewReviewBtn = new Button();
             watchlistCheckBox = new CheckBox();
-            label1 = new Label();
+            listOfCrewLabel = new Label();
             crewLayoutPanel = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)mediaPicture).BeginInit();
             SuspendLayout();
@@ -142,12 +142,12 @@ namespace MovieDatabase
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(424, 117);
-            label1.Name = "label1";
-            label1.Size = new Size(181, 25);
-            label1.TabIndex = 10;
-            label1.Text = "List of crew members";
+            listOfCrewLabel.AutoSize = true;
+            listOfCrewLabel.Location = new Point(424, 117);
+            listOfCrewLabel.Name = "label1";
+            listOfCrewLabel.Size = new Size(181, 25);
+            listOfCrewLabel.TabIndex = 10;
+            listOfCrewLabel.Text = "List of crew members";
             // 
             // crewLayoutPanel
             // 
@@ -163,7 +163,7 @@ namespace MovieDatabase
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(955, 573);
             Controls.Add(crewLayoutPanel);
-            Controls.Add(label1);
+            Controls.Add(listOfCrewLabel);
             Controls.Add(watchlistCheckBox);
             Controls.Add(viewReviewBtn);
             Controls.Add(giveReviewBtn);
@@ -191,6 +191,7 @@ namespace MovieDatabase
             giveReviewBtn.Text = rm.GetString("WriteReview");
             viewReviewBtn.Text = rm.GetString("ViewReviews");
             watchlistCheckBox.Text = rm.GetString("AddToWatchList");
+            listOfCrewLabel.Text = rm.GetString("ListOfCrewMembers");
         }
 
         #endregion
@@ -205,7 +206,7 @@ namespace MovieDatabase
         private Button giveReviewBtn;
         private Button viewReviewBtn;
         private CheckBox watchlistCheckBox;
-        private Label label1;
+        private Label listOfCrewLabel;
         private FlowLayoutPanel crewLayoutPanel;
     }
 }

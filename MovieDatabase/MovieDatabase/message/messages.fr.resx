@@ -126,9 +126,6 @@
   <data name="CardNumber" xml:space="preserve">
     <value>Numéro de la Carte</value>
   </data>
-  <data name="CreateAccount" xml:space="preserve">
-    <value>Créer un Compte</value>
-  </data>
   <data name="CreateAccountButton" xml:space="preserve">
     <value>Créer un Compte</value>
   </data>
@@ -222,10 +219,22 @@
   <data name="ShowPassword" xml:space="preserve">
     <value>Montré le mot de passe</value>
   </data>
-  <data name="Memebership" xml:space="preserve">
+  <data name="Membership" xml:space="preserve">
     <value>Abonnement</value>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
     <value>Le nom d’utilisateur ou le mot de passe ne correspondent pas ! Veuillez réessayer</value>
+  </data>
+  <data name="Memebership" xml:space="preserve">
+    <value>Abonnement</value>
+  </data>
+  <data name="WatchListTitle" xml:space="preserve">
+    <value>List De Vissionage</value>
+  </data>
+  <data name="ListOfCrewMembers" xml:space="preserve">
+    <value>Liste des membres d'équipe</value>
+  </data>
+  <data name="CreateAccountTitle" xml:space="preserve">
+    <value>Créer un Compte</value>
   </data>
 </root>

@@ -1,4 +1,6 @@
-﻿namespace MovieDatabase
+﻿using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormMediaLoad
     {
@@ -60,6 +62,11 @@
             Name = "FormMediaLoad";
             Text = "FormMediaLoad";
             ResumeLayout(false);
+        }
+        public void Update()
+        {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+            backBtn.Text = rm.GetString("BackButton");
         }
 
         #endregion

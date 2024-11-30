@@ -1,4 +1,6 @@
-﻿namespace MovieDatabase
+﻿using System.Resources;
+
+namespace MovieDatabase
 {
     partial class FormWatchList
     {
@@ -85,6 +87,13 @@
             Text = "FormWatchList";
             ResumeLayout(false);
             PerformLayout();
+        }
+        public void Update()
+        {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+            watchListLbl.Text = rm.GetString("WatchListTitle");
+            backBtn.Text = rm.GetString("BackButton");
+            langBtn.Text = rm.GetString("Lanbutton");
         }
 
         #endregion

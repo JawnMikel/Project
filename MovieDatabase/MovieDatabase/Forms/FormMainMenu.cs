@@ -18,8 +18,6 @@ namespace MovieDatabase
         private readonly List<Media> mediaList = new List<Media>(); // going to be a list of medias from the database
         public FormMainMenu(User user)
         {
-            Util.Language();
-            
             InitializeComponent();
             Update();
             this.user = user;

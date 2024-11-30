@@ -99,18 +99,18 @@ namespace MovieDatabase.message {
         /// <summary>
         ///   Looks up a localized string similar to Create Account.
         /// </summary>
-        internal static string CreateAccount {
+        internal static string CreateAccountButton {
             get {
-                return ResourceManager.GetString("CreateAccount", resourceCulture);
+                return ResourceManager.GetString("CreateAccountButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Create Account.
         /// </summary>
-        internal static string CreateAccountButton {
+        internal static string CreateAccountTitle {
             get {
-                return ResourceManager.GetString("CreateAccountButton", resourceCulture);
+                return ResourceManager.GetString("CreateAccountTitle", resourceCulture);
             }
         }
         
@@ -187,6 +187,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List of crew members.
+        /// </summary>
+        internal static string ListOfCrewMembers {
+            get {
+                return ResourceManager.GetString("ListOfCrewMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         internal static string Login {
@@ -228,6 +237,15 @@ namespace MovieDatabase.message {
         internal static string MembershipType {
             get {
                 return ResourceManager.GetString("MembershipType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Membership.
+        /// </summary>
+        internal static string Memebership {
+            get {
+                return ResourceManager.GetString("Memebership", resourceCulture);
             }
         }
         
@@ -381,6 +399,15 @@ namespace MovieDatabase.message {
         internal static string WatchList {
             get {
                 return ResourceManager.GetString("WatchList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Watch List.
+        /// </summary>
+        internal static string WatchListTitle {
+            get {
+                return ResourceManager.GetString("WatchListTitle", resourceCulture);
             }
         }
         

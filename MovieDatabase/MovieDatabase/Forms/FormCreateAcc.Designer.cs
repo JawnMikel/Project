@@ -247,7 +247,7 @@ namespace MovieDatabase
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
-            createAccLbl.Text = rm.GetString("CreateAccount");
+            createAccLbl.Text = rm.GetString("CreateAccountTitle");
             langBtn.Text = rm.GetString("Lanbutton");
             firstNameLbl.Text = rm.GetString("FirstName");
             lastNameLbl.Text = rm.GetString("LastName");
@@ -259,16 +259,15 @@ namespace MovieDatabase
             backBtn.Text = rm.GetString("BackButton");
             if (membershipCB.SelectedIndex == 0)
             {
-                nextBtn.Text = rm.GetString("CreateAccount");
+                nextBtn.Text = rm.GetString("CreateAccountButton");
+                nextBtn.Enabled = true;
             }
             else if (membershipCB.SelectedIndex == 1)
             {
                 nextBtn.Text = rm.GetString("PayButton");
+                nextBtn.Enabled = true;
             }
-            else
-            {
-                nextBtn.Text = string.Empty;
-            }
+
         }
 
         #endregion

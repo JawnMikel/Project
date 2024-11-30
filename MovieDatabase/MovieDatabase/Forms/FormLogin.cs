@@ -12,7 +12,6 @@ namespace MovieDatabase
         public static List<User> users = new List<User>(); 
         public FormLogin()
         {
-
             InitializeComponent();
             UpdateComponents();
             passwordTB.PasswordChar = '*';

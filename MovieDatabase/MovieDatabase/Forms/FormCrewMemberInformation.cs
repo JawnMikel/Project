@@ -21,8 +21,8 @@ namespace MovieDatabase
             
             this.form = form;
             this.crewMember = crewMember;
-            Update();
             InitializeComponent();
+            Update();
             nameLbl.Text = crewMember.FirstName + " " + crewMember.LastName;
             ratingLbl.Text += crewMember.GetPopularity() + "/5";
             this.user = user;

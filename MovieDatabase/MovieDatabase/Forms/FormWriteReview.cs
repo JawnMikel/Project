@@ -21,10 +21,7 @@ namespace MovieDatabase
         CrewMember crew;
         public FormWriteReview(Media media, User user)
         {
-          
             InitializeComponent();
-            
-            Util.Language();
             Update();
             this.user = user;
             this.media = media;

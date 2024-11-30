@@ -16,12 +16,8 @@ namespace MovieDatabase
     {
         User user;
         public FormProfile(User user)
-        {
-            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
-            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
-            
+        { 
             InitializeComponent();
-            Util.Language();
             Update();
 
             this.user = user;
