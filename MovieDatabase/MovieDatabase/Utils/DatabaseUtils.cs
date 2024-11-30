@@ -101,7 +101,7 @@ namespace MovieDatabase.Utils
                 user = new User((string)reader["UserName"], (string)reader["Password"],
                     (string)reader["FirstName"], (string)reader["LastName"], dob, membership);
                 // Set the user ID
-                user.Id = (int)reader["UserID"];
+                user.Id = Convert.ToInt32(reader["UserID"]);
                 // Set the watchlist and reviews
                 user.WatchList = GetUserWatchList(user.Id);
                 user.WrittenReviews = GetUserReviews(user.Id);
@@ -129,8 +129,8 @@ namespace MovieDatabase.Utils
                 // Loop through the results and fetch all reviews
                 while (reviewReader.Read())
                 {
-                    Review review = new Review((int)reviewReader["UserID"], (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
-                    review.ReviewId = (int)reviewReader["ReviewID"];
+                    Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                    review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
                     reviews.Add(review);
                 }
             }
@@ -164,9 +164,9 @@ namespace MovieDatabase.Utils
                 while (movieReader.Read())
                 {
                     Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
-                        (string)movieReader["Synopsis"], (int)movieReader["Duration"], (string)movieReader["ImageLink"]);
+                        (string)movieReader["Synopsis"], Convert.ToInt32(movieReader["Duration"]), (string)movieReader["ImageLink"]);
                     // Set the movie id
-                    movie.MediaId = (int)movieReader["MovieID"];
+                    movie.MediaId = Convert.ToInt32(movieReader["MovieID"]);
                     // Set the movie reviews, directors, actors, and genres
                     movie.Reviews = GetMovieReviews(movie.MediaId);
                     movie.Directors = GetMovieDirectors(movie.MediaId);
@@ -181,7 +181,7 @@ namespace MovieDatabase.Utils
                     TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
                         (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
                     // Set the tv show id
-                    tvShow.MediaId = (int)tvShowReader["TVShowID"];
+                    tvShow.MediaId = Convert.ToInt32(tvShowReader["TVShowID"]);
                     // Set the tv show revies, directors, actors, genres, and episodes
                     tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
                     tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
@@ -215,8 +215,8 @@ namespace MovieDatabase.Utils
                 // Loop through the results and fetch all reviews
                 while (reviewReader.Read())
                 {
-                    Review review = new Review((int)reviewReader["UserID"], (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
-                    review.ReviewId = (int)reviewReader["ReviewID"];
+                    Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                    review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
                     reviews.Add(review);
                 }
             }
@@ -274,7 +274,7 @@ namespace MovieDatabase.Utils
                     // Create an actor
                     Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
                     // Set the actor id
-                    actor.Id = (int)actorReader["ActorID"];
+                    actor.Id = Convert.ToInt32(actorReader["ActorID"]);
                     // Set the lists of starred media
                     Dictionary<string, List<int>> starredIds = GetActorStarred(actor.Id);
                     actor.StarredMovies = starredIds["MovieIds"];
@@ -308,7 +308,7 @@ namespace MovieDatabase.Utils
                     // Create a director
                     Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
                     // Set the director id
-                    director.Id = (int)directorReader["DirectorID"];
+                    director.Id = Convert.ToInt32(directorReader["DirectorID"]);
                     // Set the lists of directed media
                     Dictionary<string, List<int>> directedIds = GetDirectorDirected(director.Id);
                     director.DirectedMovies = directedIds["MovieIds"];
@@ -340,8 +340,8 @@ namespace MovieDatabase.Utils
                 while (reviewReader.Read())
                 {
                     // Create a review and all it to the reviews list
-                    Review review = new Review((int)reviewReader["UserID"], (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
-                    review.ReviewId = (int)reviewReader["ReviewID"];
+                    Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                    review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
                     reviews.Add(review);
                 }
             }
@@ -399,7 +399,7 @@ namespace MovieDatabase.Utils
                     // Create an actor
                     Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
                     // Set the actor id
-                    actor.Id = (int)actorReader["ActorID"];
+                    actor.Id = Convert.ToInt32(actorReader["ActorID"]);
                     // Set the lists of starred media
                     Dictionary<string, List<int>> starredIds = GetActorStarred(actor.Id);
                     actor.StarredMovies = starredIds["MovieIds"];
@@ -433,7 +433,7 @@ namespace MovieDatabase.Utils
                     // Create a director
                     Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
                     // Set the director id
-                    director.Id = (int)directorReader["DirectorID"];
+                    director.Id = Convert.ToInt32(directorReader["DirectorID"]);
                     // Set the lists of directed media
                     Dictionary<string, List<int>> directedIds = GetDirectorDirected(director.Id);
                     director.DirectedMovies = directedIds["MovieIds"];
@@ -464,8 +464,8 @@ namespace MovieDatabase.Utils
                 // Loop through the results and fetch all reviews
                 while (reviewReader.Read())
                 {
-                    Review review = new Review((int)reviewReader["UserID"], (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
-                    review.ReviewId = (int)reviewReader["ReviewID"];
+                    Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                    review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
                     reviews.Add(review);
                 }
             }
@@ -523,7 +523,7 @@ namespace MovieDatabase.Utils
                     // Create an actor
                     Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
                     // Set the actor id
-                    actor.Id = (int)actorReader["ActorID"];
+                    actor.Id = Convert.ToInt32(actorReader["ActorID"]);
                     // Set the lists of starred media
                     Dictionary<string, List<int>> starredIds = GetActorStarred(actor.Id);
                     actor.StarredMovies = starredIds["MovieIds"];
@@ -557,7 +557,7 @@ namespace MovieDatabase.Utils
                     // Create a director
                     Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
                     // Set the director id
-                    director.Id = (int)directorReader["DirectorID"];
+                    director.Id = Convert.ToInt32(directorReader["DirectorID"]);
                     // Set the lists of directed media
                     Dictionary<string, List<int>> directedIds = GetDirectorDirected(director.Id);
                     director.DirectedMovies = directedIds["MovieIds"];
@@ -590,10 +590,10 @@ namespace MovieDatabase.Utils
                 {
                     // Create an episode
                     Episode episode = new Episode((string)episodeReader["Title"], DateTime.Parse((string)episodeReader["ReleaseDate"]),
-                        (string)episodeReader["Synopsis"], (string)episodeReader["ImageLink"], (int)episodeReader["Duration"],
-                        (int)episodeReader["SeasonNumber"], (int)episodeReader["EpisodeNumber"]);
+                        (string)episodeReader["Synopsis"], (string)episodeReader["ImageLink"], Convert.ToInt32(episodeReader["Duration"]),
+                        Convert.ToInt32(episodeReader["SeasonNumber"]), Convert.ToInt32(episodeReader["EpisodeNumber"]));
                     // Set the episode
-                    episode.MediaId = (int)episodeReader["EpisodeID"];
+                    episode.MediaId = Convert.ToInt32(episodeReader["EpisodeID"]);
                     // Set the movie reviews, directors, actors, genres, and episodes
                     episode.Reviews = GetEpisodeReviews(episode.MediaId);
                     episode.Directors = GetEpisodeDirectors(episode.MediaId);
@@ -644,19 +644,19 @@ namespace MovieDatabase.Utils
                 // Loop through the movie results
                 while (movieReader.Read())
                 {
-                    starredIds["MovieIds"].Add((int)movieReader["MovieID"]);
+                    starredIds["MovieIds"].Add(Convert.ToInt32(movieReader["MovieID"]));
                 }
 
                 // Loop through the tv show results
                 while (tvShowReader.Read())
                 {
-                    starredIds["TVShowIds"].Add((int)tvShowReader["TVShowID"]);
+                    starredIds["TVShowIds"].Add(Convert.ToInt32(tvShowReader["TVShowID"]));
                 }
 
                 // Loop through the episode results
                 while (episodeReader.Read())
                 {
-                    starredIds["EpisodeIds"].Add((int)episodeReader["EpisodeID"]);
+                    starredIds["EpisodeIds"].Add(Convert.ToInt32(episodeReader["EpisodeID"]));
                 }
             }
             return starredIds;
@@ -700,19 +700,19 @@ namespace MovieDatabase.Utils
                 // Loop through the movie results
                 while (movieReader.Read())
                 {
-                    directedIds["MovieIds"].Add((int)movieReader["MovieID"]);
+                    directedIds["MovieIds"].Add(Convert.ToInt32(movieReader["MovieID"]));
                 }
 
                 // Loop through the tv show results
                 while (tvShowReader.Read())
                 {
-                    directedIds["TVShowIds"].Add((int)tvShowReader["TVShowID"]);
+                    directedIds["TVShowIds"].Add(Convert.ToInt32(tvShowReader["TVShowID"]));
                 }
 
                 // Loop through the episode results
                 while (episodeReader.Read())
                 {
-                    directedIds["EpisodeIds"].Add((int)episodeReader["EpisodeID"]);
+                    directedIds["EpisodeIds"].Add(Convert.ToInt32(episodeReader["EpisodeID"]));
                 }
             }
             return directedIds;
@@ -735,9 +735,9 @@ namespace MovieDatabase.Utils
                 {
                     // Create a movie
                     Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
-                        (string)movieReader["Synopsis"], (int)movieReader["Duration"], (string)movieReader["ImageLink"]);
+                        (string)movieReader["Synopsis"], Convert.ToInt32(movieReader["Duration"]), (string)movieReader["ImageLink"]);
                     // Set the movie id
-                    movie.MediaId = (int)movieReader["MovieID"];
+                    movie.MediaId = Convert.ToInt32(movieReader["MovieID"]);
                     // Set the movie reviews, directors, actors, and genres
                     movie.Reviews = GetMovieReviews(movie.MediaId);
                     movie.Directors = GetMovieDirectors(movie.MediaId);
@@ -767,7 +767,7 @@ namespace MovieDatabase.Utils
                     TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
                         (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
                     // Set the tv show id
-                    tvShow.MediaId = (int)tvShowReader["TVShowID"];
+                    tvShow.MediaId = Convert.ToInt32(tvShowReader["TVShowID"]);
                     // Set the tv show revies, directors, actors, genres, and episodes
                     tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
                     tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
@@ -819,9 +819,9 @@ namespace MovieDatabase.Utils
                 {
                     // Create a movie
                     Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
-                        (string)movieReader["Synopsis"], (int)movieReader["Duration"], (string)movieReader["ImageLink"]);
+                        (string)movieReader["Synopsis"], Convert.ToInt32(movieReader["Duration"]), (string)movieReader["ImageLink"]);
                     // Set the movie id
-                    movie.MediaId = (int)movieReader["MovieID"];
+                    movie.MediaId = Convert.ToInt32(movieReader["MovieID"]);
                     // Set the movie reviews, directors, actors, and genres
                     movie.Reviews = GetMovieReviews(movie.MediaId);
                     movie.Directors = GetMovieDirectors(movie.MediaId);
@@ -859,7 +859,7 @@ namespace MovieDatabase.Utils
                     TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
                         (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
                     // Set the tv show id
-                    tvShow.MediaId = (int)tvShowReader["TVShowID"];
+                    tvShow.MediaId = Convert.ToInt32(tvShowReader["TVShowID"]);
                     // Set the tv show revies, directors, actors, genres, and episodes
                     tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
                     tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
@@ -911,7 +911,7 @@ namespace MovieDatabase.Utils
                 tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
                     (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
                 // Set the tv show id
-                tvShow.MediaId = (int)tvShowReader["TVShowID"];
+                tvShow.MediaId = Convert.ToInt32(tvShowReader["TVShowID"]);
                 // Set the tv show revies, directors, actors, genres, and episodes
                 tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
                 tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
@@ -946,10 +946,10 @@ namespace MovieDatabase.Utils
 
                 // Create an episode
                 episode = new Episode((string)episodeReader["Title"], DateTime.Parse((string)episodeReader["ReleaseDate"]),
-                    (string)episodeReader["Synopsis"], (string)episodeReader["ImageLink"], (int)episodeReader["Duration"],
-                    (int)episodeReader["SeasonNumber"], (int)episodeReader["EpisodeNumber"]);
+                    (string)episodeReader["Synopsis"], (string)episodeReader["ImageLink"], Convert.ToInt32(episodeReader["Duration"]),
+                    Convert.ToInt32(episodeReader["SeasonNumber"]), Convert.ToInt32(episodeReader["EpisodeNumber"]));
                 // Set the episode
-                episode.MediaId = (int)episodeReader["EpisodeID"];
+                episode.MediaId = Convert.ToInt32(episodeReader["EpisodeID"]);
                 // Set the movie reviews, directors, actors, genres, and episodes
                 episode.Reviews = GetEpisodeReviews(episode.MediaId);
                 episode.Directors = GetEpisodeDirectors(episode.MediaId);
@@ -983,9 +983,9 @@ namespace MovieDatabase.Utils
 
                 // Create the movie
                 movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
-                        (string)movieReader["Synopsis"], (int)movieReader["Duration"], (string)movieReader["ImageLink"]);
+                        (string)movieReader["Synopsis"], Convert.ToInt32(movieReader["Duration"]), (string)movieReader["ImageLink"]);
                 // Set the movie id
-                movie.MediaId = (int)movieReader["MovieID"];
+                movie.MediaId = Convert.ToInt32(movieReader["MovieID"]);
                 // Set the movie reviews, directors, actors, and genres
                 movie.Reviews = GetMovieReviews(movie.MediaId);
                 movie.Directors = GetMovieDirectors(movie.MediaId);
@@ -1032,7 +1032,7 @@ namespace MovieDatabase.Utils
                 user = new User((string)reader["UserName"], (string)reader["Password"],
                     (string)reader["FirstName"], (string)reader["LastName"], dob, membership);
                 // Set the user ID
-                user.Id = (int)reader["UserID"];
+                user.Id = Convert.ToInt32(reader["UserID"]);
                 // Set the watchlist and reviews
                 user.WatchList = GetUserWatchList(user.Id);
                 user.WrittenReviews = GetUserReviews(user.Id);
