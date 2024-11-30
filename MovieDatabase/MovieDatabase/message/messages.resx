@@ -234,4 +234,7 @@
   <data name="ListOfCrewMembers" xml:space="preserve">
     <value>List of crew members</value>
   </data>
+  <data name="CreateAccountTitle" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
 </root>

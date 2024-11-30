@@ -17,6 +17,7 @@ namespace MovieDatabase
         public FormMediaLoad(List<Media> medias, Form form)
         {
             InitializeComponent();
+            Update();
             this.form = form;
             mediaList = medias;
         }
