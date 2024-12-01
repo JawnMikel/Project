@@ -90,7 +90,7 @@ namespace MovieDatabase.Utils
 
                 // If the PaymentID field is present, the user has a premium membership
                 User.Memberships membership = User.Memberships.REGULAR;
-                if (reader["PaymentID"] == DBNull.Value)
+                if (reader["PaymentID"] != DBNull.Value)
                 {
                     membership = User.Memberships.PREMIUM;
                 }
@@ -2113,7 +2113,7 @@ namespace MovieDatabase.Utils
                                     CardExpirationDate TEXT NOT NULL,
                                     PaymentDate TEXT NOT NULL,
                                     UserID INTEGER NOT NULL,
-                                    CONSTRAINT chk_CardExpirationDateFormat CHECK (CardExpirationDate LIKE '____-__-01'),
+                                    CONSTRAINT chk_CardExpirationDateFormat CHECK (CardExpirationDate LIKE '____-__-__'),
                                     CONSTRAINT chk_PaymentDateFormat CHECK (PaymentDate LIKE '____-__-__'),
                                     CONSTRAINT chk_CardExpirationDateFuture CHECK (CardExpirationDate > CURRENT_DATE),
                                     CONSTRAINT fk_UserID FOREIGN KEY (UserID) REFERENCES user(UserID)

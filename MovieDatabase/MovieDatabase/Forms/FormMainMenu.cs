@@ -25,7 +25,7 @@ namespace MovieDatabase
             Update();
             this.user = user;
             profileBtn.Text = user.Username;
-            if (user.Membership.Equals("REGULAR"))
+            if (user.Membership == User.Memberships.REGULAR)
             {
                 recBtn.Enabled = false;
                 top10Btn.Enabled = false;
@@ -45,7 +45,7 @@ namespace MovieDatabase
             this.user = user;
             this.form = form;
             profileBtn.Text = user.Username;
-            if (user.Membership.Equals("REGULAR"))
+            if (user.Membership == User.Memberships.REGULAR)
             {
                 recBtn.Enabled = false;
                 top10Btn.Enabled = false;
@@ -84,13 +84,17 @@ namespace MovieDatabase
                     Margin = new Padding(10)
                 };
 
-                pictureBox.Click += (s, e) => OpenMediaInfo(form,media);
+                pictureBox.Click += (s, e) => OpenMediaInfo(media);
 
                 mediaLayout.Controls.Add(pictureBox);
             }
         }
 
-        private void OpenMediaInfo(Form form,Media media)
+        /// <summary>
+        /// Opens the FormMediaInformation and closes the currentForm
+        /// </summary>
+        /// <param name="media">Media</param>
+        private void OpenMediaInfo(Media media)
         {
             var currentForm = this;
             var mediaInformationForm = new FormMediaInformation(currentForm, media, user);

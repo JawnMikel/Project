@@ -20,7 +20,7 @@ namespace MovieDatabase
             get => _firstName;
             set
             {
-                if (Util.ValidateNameFormat(value))
+                if (!Util.ValidateNameFormat(value))
                 {
                     throw new ArgumentException("The first name's format is invalid.");
                 }
@@ -32,7 +32,7 @@ namespace MovieDatabase
             get => _lastName;
             set
             {
-                if (Util.ValidateNameFormat(value))
+                if (!Util.ValidateNameFormat(value))
                 {
                     throw new ArgumentException("The last name's format is invalid.");
                 }

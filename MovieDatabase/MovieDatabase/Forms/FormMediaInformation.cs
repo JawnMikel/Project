@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Loader;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,10 @@ namespace MovieDatabase
         Form form;
         Media media;
         User user;
+
+        // private readonly List<Media> mediaList = DatabaseUtils.GetInstance().GetAllMedia();
+        //private readonly List<Actor> actors = DatabaseUtils.GetInstance().GetAllActors();
+
         public FormMediaInformation(Form form, Media media, User user)
         {
             InitializeComponent();
@@ -39,6 +44,11 @@ namespace MovieDatabase
                 watchlistCheckBox.Checked = user.WatchList.Any(m => m.MediaId == media.MediaId);
                 watchlistCheckBox.CheckedChanged += watchlistCheckBox_CheckedChanged;
             }
+
+            LoadPhoto(media);
+            LoadActors(media);
+            LoadDirector(media);
+
         }
         private void langBtn_Click(object sender, EventArgs e)
         {
@@ -71,11 +81,99 @@ namespace MovieDatabase
 
         private void watchlistCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            WatchListControl();
+        }
+
+        /// <summary>
+        /// Loads all the actors from the database
+        /// </summary>
+        /// <param name="media">Media</param>
+        private void LoadActors(Media media)
+        {
+            actorPanel.Controls.Clear();
+            foreach (var actor in media.Actors)
+            {
+                PictureBox pictureBox = new PictureBox
+                {
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    ImageLocation = media.ImageLink,
+                    Width = 150,
+                    Height = 200,
+                    Margin = new Padding(10)
+                };
+
+                pictureBox.Click += (s, e) => OpenCrewInfo(actor);
+
+                actorPanel.Controls.Add(pictureBox);
+            }
+        }
+
+        /// <summary>
+        /// Loads all the directors from the database
+        /// </summary>
+        /// <param name="media">media</param>
+        private void LoadDirector(Media media)
+        {
+            actorPanel.Controls.Clear();
+            foreach (var director in media.Directors)
+            {
+                PictureBox pictureBox = new PictureBox
+                {
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    ImageLocation = media.ImageLink,
+                    Width = 150,
+                    Height = 200,
+                    Margin = new Padding(10)
+                };
+
+                pictureBox.Click += (s, e) => OpenCrewInfo(director);
+
+                directorPanel.Controls.Add(pictureBox);
+            }
+        }
+
+        /// <summary>
+        /// Loads the photo of the media
+        /// </summary>
+        /// <param name="media"></param>
+        private void LoadPhoto(Media media)
+        {
+            mediaPicture.Controls.Clear();
+            
+                PictureBox pictureBox = new PictureBox
+                {
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    ImageLocation = media.ImageLink,
+                    Width = 250,
+                    Height = 300,
+                    Margin = new Padding(10)
+                };
+
+                mediaPicture.Controls.Add(pictureBox);
+        }
+
+        /// <summary>
+        /// Opens the crew member form by needing a crew member
+        /// </summary>
+        /// <param name="crewMember">crew member</param>
+        private void OpenCrewInfo(CrewMember crewMember)
+        {
+            var currentForm = this;
+            var mediaInformationForm = new FormCrewMemberInformation(currentForm, crewMember, user);
+            this.Hide();
+            mediaInformationForm.Closed += (s, args) => this.Close();
+            mediaInformationForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Adds a movie to watch list
+        /// </summary>
+        private void WatchListControl()
+        {
             var database = DatabaseUtils.GetInstance();
 
             if (watchlistCheckBox.Checked)
             {
-                // Add to watchlist only if it isn't already present
                 if (!user.WatchList.Any(m => m.MediaId == media.MediaId))
                 {
                     user.WatchList.Add(media);
@@ -95,7 +193,6 @@ namespace MovieDatabase
             }
             else
             {
-                // Remove from watchlist if it exists
                 var mediaToRemove = user.WatchList.FirstOrDefault(m => m.MediaId == media.MediaId);
                 if (mediaToRemove != null)
                 {

@@ -40,7 +40,7 @@ namespace MovieDatabase
             // 
             watchListLbl.AutoSize = true;
             watchListLbl.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            watchListLbl.Location = new Point(300, 9);
+            watchListLbl.Location = new Point(253, 9);
             watchListLbl.Name = "watchListLbl";
             watchListLbl.Size = new Size(244, 65);
             watchListLbl.TabIndex = 0;
@@ -88,6 +88,7 @@ namespace MovieDatabase
             ResumeLayout(false);
             PerformLayout();
         }
+
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);

@@ -65,19 +65,27 @@ namespace MovieDatabase
             try
             {
                 Payment payment = new Payment(cardHolderName, creditCardNumber, cvv, expiryDate);
+                if (payment != null)
+                {
+                    User user = new User(_username, _password, _firstName, _lastName, _dob, _membership);
+                    var database = DatabaseUtils.GetInstance();
+                    database.InsertUser(user);
+                    database.InsertPayment(payment, user.Id);
+                    database.CloseConnection();
 
-                User user = new User(_username, _password, _firstName, _lastName, _dob, _membership);
-                var database = DatabaseUtils.GetInstance();
-                database.InsertUser(user);
-                database.InsertPayment(payment,user.Id);
-                database.CloseConnection();
+                    MessageBox.Show("Payment approved! Account successfully created.", "Approved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                MessageBox.Show("Payment approved! Account successfully created.", "Approved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                this.Hide();
-                var formMainMenu = new FormMainMenu(user);
-                formMainMenu.Closed += (s, args) => this.Close();
-                formMainMenu.ShowDialog();
+                    this.Hide();
+                    var formMainMenu = new FormMainMenu(user);
+                    formMainMenu.Closed += (s, args) => this.Close();
+                    formMainMenu.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Payment failed", "Payment failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                
             }
             catch (SQLiteException ex)
             {

@@ -16,6 +16,8 @@ namespace MovieDatabase
         Form form;
         CrewMember crewMember;
         User user;
+
+        //private readonly List<Media> medias = DatabaseUtils.GetInstance().GetM
         public FormCrewMemberInformation(Form form, CrewMember crewMember, User user)
         {
             
@@ -59,6 +61,63 @@ namespace MovieDatabase
             var formViewReview = new FormViewReview(form, crewMember, user);
             formViewReview.Closed += (s, args) => this.Close();
             formViewReview.ShowDialog();
+        }
+
+        /// <summary>
+        /// Loads all the medias from the database
+        /// </summary>
+        /// <param name="medias">list of medias</param>
+        private void LoadMedia(List<Media> medias)
+        {
+            mediaFlowPanel.Controls.Clear();
+            foreach (var media in medias)
+            {
+                PictureBox pictureBox = new PictureBox
+                {
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    ImageLocation = media.ImageLink,
+                    Width = 150,
+                    Height = 200,
+                    Margin = new Padding(10)
+                };
+
+                pictureBox.Click += (s, e) => OpenMediaInfo(media);
+
+                mediaFlowPanel.Controls.Add(pictureBox);
+            }
+        }
+
+        /// <summary>
+        /// Loads the photo of the crew member
+        /// </summary>
+        /// <param name="crewMember">Crew member</param>
+        private void LoadPhoto(CrewMember crewMember)
+        {
+            portraitFlowPanel.Controls.Clear();
+
+            PictureBox pictureBox = new PictureBox
+            {
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                ImageLocation = crewMember.ImageLink,
+                Width = 150,
+                Height = 200,
+                Margin = new Padding(10)
+            };
+
+            portraitFlowPanel.Controls.Add(pictureBox);
+        }
+
+        /// <summary>
+        /// Opens the FormMediaInformation by needing a media
+        /// </summary>
+        /// <param name="media">Media</param>
+        private void OpenMediaInfo(Media media)
+        {
+            var currentForm = this;
+            var mediaInformationForm = new FormMediaInformation(currentForm, media, user);
+            this.Hide();
+            mediaInformationForm.Closed += (s, args) => this.Close();
+            mediaInformationForm.ShowDialog();
         }
     }
 }

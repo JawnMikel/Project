@@ -60,7 +60,7 @@ namespace MovieDatabase
             // ratingBtn
             // 
             ratingBtn.AutoSize = true;
-            ratingBtn.Location = new Point(324, 111);
+            ratingBtn.Location = new Point(305, 111);
             ratingBtn.Name = "ratingBtn";
             ratingBtn.Size = new Size(75, 25);
             ratingBtn.TabIndex = 2;
@@ -124,7 +124,6 @@ namespace MovieDatabase
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
-            titleLbl.Text = rm.GetString("Title");
             ratingBtn.Text = rm.GetString("Rating");
             postBtn.Text = rm.GetString("Post");
             backBtn.Text = rm.GetString("BackButton");

@@ -70,7 +70,7 @@ namespace MovieDatabase.Utils
             }
             // Match any letter and space
             // No two consecutive spaces are allowed
-            const string regex = @"^([\p{L}]+ ?)+\p{L}$";
+            const string regex = @"^([\p{L}\.]+ ?)+\p{L}|\.$";
 
             return Regex.IsMatch(name, regex);
         }

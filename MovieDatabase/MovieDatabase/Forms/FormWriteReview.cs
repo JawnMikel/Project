@@ -101,6 +101,7 @@ namespace MovieDatabase
             try
             {
                 Review review = new Review(user.Id,comment,rating);
+                MessageBox.Show("Successfully posted review", "Posted review", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return review;
             }
             catch (ArithmeticException ex)

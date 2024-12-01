@@ -61,6 +61,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actor.
+        /// </summary>
+        internal static string Actor {
+            get {
+                return ResourceManager.GetString("Actor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add to watchlist.
         /// </summary>
         internal static string AddToWatchList {
@@ -124,6 +133,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Director.
+        /// </summary>
+        internal static string Director {
+            get {
+                return ResourceManager.GetString("Director", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date of Birth.
         /// </summary>
         internal static string DOB {
@@ -183,15 +201,6 @@ namespace MovieDatabase.message {
         internal static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to List of crew members.
-        /// </summary>
-        internal static string ListOfCrewMembers {
-            get {
-                return ResourceManager.GetString("ListOfCrewMembers", resourceCulture);
             }
         }
         
