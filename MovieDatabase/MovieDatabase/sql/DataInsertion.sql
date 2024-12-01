@@ -357,6 +357,39 @@ VALUES
     (30, 89),
     (30, 90);
 
+
+
 -- Insert statement for the directors
 INSERT INTO director (FirstName, LastName, ImageLink)
 VALUES
+    ('David', 'Yates', 'https://m.media-amazon.com/images/M/MV5BMTY2NTU4NjY4M15BMl5BanBnXkFtZTYwNjIxOTI1._V1_QL75_UY207_CR7,0,140,207_.jpg'),
+    ('Peter', 'Jackson', 'https://m.media-amazon.com/images/M/MV5BNTk2MzA0ZDAtMTI0Yy00NzU2LTgyYmUtMDRlOGFmYjM3NzJhXkEyXkFqcGc@._V1_QL75_UY207_CR74,0,140,207_.jpg'),
+    ('Jacques', 'Audiard', 'https://m.media-amazon.com/images/M/MV5BMTk0NjU4Njg1OV5BMl5BanBnXkFtZTYwODU5MDY1._V1_QL75_UY207_CR5,0,140,207_.jpg'),
+    ('Anna', 'Kendrick', 'https://m.media-amazon.com/images/M/MV5BMjIzOTA0OTQyN15BMl5BanBnXkFtZTcwMjE1OTIwMw@@._V1_QL75_UY207_CR3,0,140,207_.jpg'),
+    ('Orlando', 'von Einsiedel', 'https://m.media-amazon.com/images/M/MV5BMTY5NzczNzc0NV5BMl5BanBnXkFtZTgwNjIwNDk0MTE@._V1_QL75_UY207_CR4,0,140,207_.jpg'),
+    ('Jason', 'Hehir', 'https://www.goldderby.com/wp-content/uploads/2020/07/jasonhehir.jpg'),
+    ('Charles', 'Ferguson', 'https://m.media-amazon.com/images/M/MV5BMTQ5NTE5NjYyOV5BMl5BanBnXkFtZTcwMDYyMDQ1NA@@._V1_QL75_UY207_CR7,0,140,207_.jpg'),
+    ('Shawn', 'Levy', 'https://m.media-amazon.com/images/M/MV5BNTkyNjk4MTM0NF5BMl5BanBnXkFtZTcwNTA4MTQ5Mw@@._V1_QL75_UY207_CR86,0,140,207_.jpg'),
+    ('Sam', 'Raimi', 'https://m.media-amazon.com/images/M/MV5BODQ0NjI0NzkzMV5BMl5BanBnXkFtZTYwMDc0ODk1._V1_QL75_UY207_CR5,0,140,207_.jpg'),
+    ('Steve', 'McQueen', 'https://m.media-amazon.com/images/M/MV5BMTQzNjQ5NDUxNl5BMl5BanBnXkFtZTcwNjA0MTg1Ng@@._V1_QL75_UX140_CR0,2,140,207_.jpg'),
+    ('Steven', 'Spielberg', 'https://m.media-amazon.com/images/M/MV5BMTY1NjAzNzE1MV5BMl5BanBnXkFtZTYwNTk0ODc0._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Sam', 'Mendes', 'https://m.media-amazon.com/images/M/MV5BNTgzODMyMDUwNF5BMl5BanBnXkFtZTcwNzEyMjAyMg@@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Michael', 'Gracey', 'https://m.media-amazon.com/images/M/MV5BNjkwMDRhZDMtYzliNC00NzA5LTkxYjEtZDc3YzNiZWY1NjY5XkEyXkFqcGc@._V1_QL75_UY207_CR103,0,140,207_.jpg'),
+    ('Phyllida', 'Lloyd', 'https://m.media-amazon.com/images/M/MV5BMTUyNzkyOTY2Ml5BMl5BanBnXkFtZTcwNDg0MjAyNw@@._V1_QL75_UY207_CR86,0,140,207_.jpg'),
+    ('Jason', 'Moore', 'https://m.media-amazon.com/images/M/MV5BNjY4MjUzNjUyM15BMl5BanBnXkFtZTcwMjE0NDI1OA@@._V1_QL75_UY207_CR86,0,140,207_.jpg'),
+    ('Coralie', 'Fargeat', 'https://m.media-amazon.com/images/M/MV5BNDk3OTc3MTYzMF5BMl5BanBnXkFtZTgwMTg2MzI2NDM@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Jason', 'Reitman', 'https://m.media-amazon.com/images/M/MV5BMTQ4NTU0NzM1OF5BMl5BanBnXkFtZTgwNjMzMjcxMDE@._V1_QL75_UY207_CR3,0,140,207_.jpg'),
+    ('Baz', 'Luhrmann', 'https://m.media-amazon.com/images/M/MV5BMTY0MjM4NzkzNV5BMl5BanBnXkFtZTcwNjQwOTQ0OQ@@._V1_QL75_UY207_CR86,0,140,207_.jpg'),
+    ('George', 'Lucas', 'https://m.media-amazon.com/images/M/MV5BMTA0Mjc0NzExNzBeQTJeQWpwZ15BbWU3MDEzMzQ3MDI@._V1_QL75_UY207_CR0,0,140,207_.jpg'),
+    ('Anthony', 'Russo', 'https://m.media-amazon.com/images/M/MV5BMTc2NjM5MTM0Ml5BMl5BanBnXkFtZTgwMTY3ODczNjM@._V1_QL75_UX140_CR0,6,140,207_.jpg'),
+    ('Joe', 'Russo', 'https://m.media-amazon.com/images/M/MV5BMTc2NzY1NTY5OF5BMl5BanBnXkFtZTgwNjY3ODczNjM@._V1_QL75_UY207_CR2,0,140,207_.jpg'),
+    ('Gary', 'Ross', 'https://m.media-amazon.com/images/M/MV5BMTI3NjcxMTA2Nl5BMl5BanBnXkFtZTcwMjkwNDYyMQ@@._V1_QL75_UY207_CR4,0,140,207_.jpg'),
+    ('James', 'Cameron', 'https://m.media-amazon.com/images/M/MV5BMjI0MjMzOTg2MF5BMl5BanBnXkFtZTcwMTM3NjQxMw@@._V1_QL75_UX140_CR0,2,140,207_.jpg'),
+    ('Christopher', 'Nolan', 'https://m.media-amazon.com/images/M/MV5BNjE3NDQyOTYyMV5BMl5BanBnXkFtZTcwODcyODU2Mw@@._V1_QL75_UY207_CR5,0,140,207_.jpg'),
+    ('Pierre', 'Coffin', 'https://m.media-amazon.com/images/M/MV5BMTUzOTQ3OTA3OF5BMl5BanBnXkFtZTcwNzEzNTMyOA@@._V1_QL75_UY207_CR2,0,140,207_.jpg'),
+    ('Chris', 'Renaud', 'https://m.media-amazon.com/images/M/MV5BNzMxNjEwNjAwNV5BMl5BanBnXkFtZTgwNTAzMjE2OTE@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Hayao', 'Miyazaki', 'https://m.media-amazon.com/images/M/MV5BMjcyNjk2OTkwNF5BMl5BanBnXkFtZTcwOTk0MTQ3Mg@@._V1_QL75_UY207_CR12,0,140,207_.jpg'),
+    ('Frank', 'Darabont', 'https://m.media-amazon.com/images/M/MV5BNjk0MTkxNzQwOF5BMl5BanBnXkFtZTcwODM5OTMwNA@@._V1_QL75_UY207_CR14,0,140,207_.jpg'),
+    ('Andy', 'Muschietti', 'https://m.media-amazon.com/images/M/MV5BMTkwMDE0NTc0NF5BMl5BanBnXkFtZTcwNTcyMTM5OA@@._V1_QL75_UY207_CR1,0,140,207_.jpg');
+
+    
