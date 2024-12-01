@@ -34,7 +34,6 @@ namespace MovieDatabase
             langBtn = new Button();
             backBtn = new Button();
             releaseDate = new DateTimePicker();
-            sysnopsisLbl = new Label();
             mediaPicture = new PictureBox();
             ratingLbl = new Label();
             giveReviewBtn = new Button();
@@ -42,6 +41,7 @@ namespace MovieDatabase
             watchlistCheckBox = new CheckBox();
             listOfCrewLabel = new Label();
             crewLayoutPanel = new FlowLayoutPanel();
+            synopsisTB = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)mediaPicture).BeginInit();
             SuspendLayout();
             // 
@@ -57,7 +57,7 @@ namespace MovieDatabase
             // 
             // langBtn
             // 
-            langBtn.Location = new Point(762, 12);
+            langBtn.Location = new Point(935, 12);
             langBtn.Name = "langBtn";
             langBtn.Size = new Size(112, 34);
             langBtn.TabIndex = 1;
@@ -67,7 +67,7 @@ namespace MovieDatabase
             // 
             // backBtn
             // 
-            backBtn.Location = new Point(626, 12);
+            backBtn.Location = new Point(811, 12);
             backBtn.Name = "backBtn";
             backBtn.Size = new Size(112, 34);
             backBtn.TabIndex = 2;
@@ -83,20 +83,11 @@ namespace MovieDatabase
             releaseDate.Size = new Size(300, 31);
             releaseDate.TabIndex = 3;
             // 
-            // sysnopsisLbl
-            // 
-            sysnopsisLbl.AutoSize = true;
-            sysnopsisLbl.Location = new Point(12, 117);
-            sysnopsisLbl.Name = "sysnopsisLbl";
-            sysnopsisLbl.Size = new Size(59, 25);
-            sysnopsisLbl.TabIndex = 4;
-            sysnopsisLbl.Text = "label1";
-            // 
             // mediaPicture
             // 
-            mediaPicture.Location = new Point(12, 265);
+            mediaPicture.Location = new Point(77, 287);
             mediaPicture.Name = "mediaPicture";
-            mediaPicture.Size = new Size(283, 271);
+            mediaPicture.Size = new Size(177, 251);
             mediaPicture.TabIndex = 5;
             mediaPicture.TabStop = false;
             // 
@@ -111,7 +102,7 @@ namespace MovieDatabase
             // 
             // giveReviewBtn
             // 
-            giveReviewBtn.Location = new Point(762, 162);
+            giveReviewBtn.Location = new Point(886, 172);
             giveReviewBtn.Name = "giveReviewBtn";
             giveReviewBtn.Size = new Size(161, 34);
             giveReviewBtn.TabIndex = 7;
@@ -121,7 +112,7 @@ namespace MovieDatabase
             // 
             // viewReviewBtn
             // 
-            viewReviewBtn.Location = new Point(762, 275);
+            viewReviewBtn.Location = new Point(886, 285);
             viewReviewBtn.Name = "viewReviewBtn";
             viewReviewBtn.Size = new Size(151, 34);
             viewReviewBtn.TabIndex = 8;
@@ -132,7 +123,7 @@ namespace MovieDatabase
             // watchlistCheckBox
             // 
             watchlistCheckBox.AutoSize = true;
-            watchlistCheckBox.Location = new Point(756, 425);
+            watchlistCheckBox.Location = new Point(880, 435);
             watchlistCheckBox.Name = "watchlistCheckBox";
             watchlistCheckBox.Size = new Size(167, 29);
             watchlistCheckBox.TabIndex = 9;
@@ -143,7 +134,7 @@ namespace MovieDatabase
             // listOfCrewLabel
             // 
             listOfCrewLabel.AutoSize = true;
-            listOfCrewLabel.Location = new Point(424, 117);
+            listOfCrewLabel.Location = new Point(533, 109);
             listOfCrewLabel.Name = "listOfCrewLabel";
             listOfCrewLabel.Size = new Size(181, 25);
             listOfCrewLabel.TabIndex = 10;
@@ -152,16 +143,26 @@ namespace MovieDatabase
             // crewLayoutPanel
             // 
             crewLayoutPanel.AutoSize = true;
-            crewLayoutPanel.Location = new Point(301, 164);
+            crewLayoutPanel.Location = new Point(444, 156);
             crewLayoutPanel.Name = "crewLayoutPanel";
-            crewLayoutPanel.Size = new Size(449, 408);
+            crewLayoutPanel.Size = new Size(369, 408);
             crewLayoutPanel.TabIndex = 11;
+            // 
+            // synopsisTB
+            // 
+            synopsisTB.Enabled = false;
+            synopsisTB.Location = new Point(12, 109);
+            synopsisTB.Name = "synopsisTB";
+            synopsisTB.Size = new Size(417, 172);
+            synopsisTB.TabIndex = 12;
+            synopsisTB.Text = "";
             // 
             // FormMediaInformation
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(955, 573);
+            ClientSize = new Size(1068, 589);
+            Controls.Add(synopsisTB);
             Controls.Add(crewLayoutPanel);
             Controls.Add(listOfCrewLabel);
             Controls.Add(watchlistCheckBox);
@@ -169,7 +170,6 @@ namespace MovieDatabase
             Controls.Add(giveReviewBtn);
             Controls.Add(ratingLbl);
             Controls.Add(mediaPicture);
-            Controls.Add(sysnopsisLbl);
             Controls.Add(releaseDate);
             Controls.Add(backBtn);
             Controls.Add(langBtn);
@@ -200,7 +200,6 @@ namespace MovieDatabase
         private Button langBtn;
         private Button backBtn;
         private DateTimePicker releaseDate;
-        private Label sysnopsisLbl;
         private PictureBox mediaPicture;
         private Label ratingLbl;
         private Button giveReviewBtn;
@@ -208,5 +207,6 @@ namespace MovieDatabase
         private CheckBox watchlistCheckBox;
         private Label listOfCrewLabel;
         private FlowLayoutPanel crewLayoutPanel;
+        private RichTextBox synopsisTB;
     }
 }

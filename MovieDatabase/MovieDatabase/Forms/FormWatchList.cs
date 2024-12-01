@@ -18,7 +18,8 @@ namespace MovieDatabase
         {
             InitializeComponent();
             Update();
-            this.user = user; 
+            this.user = user;
+            LoadMedias();
 
         }
 
@@ -34,6 +35,34 @@ namespace MovieDatabase
         {
             Util.Language();
             Update();
+        }
+
+        private void LoadMedias()
+        {
+            watchlistLayout.Controls.Clear();
+            foreach (var media in user.WatchList)
+            {
+                PictureBox pictureBox = new PictureBox
+                {
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    ImageLocation = media.ImageLink,
+                    Width = 150,
+                    Height = 200,
+                    Margin = new Padding(10)
+                };
+
+                pictureBox.Click += (s, e) => OpenMediaInfo(this, media);
+
+                watchlistLayout.Controls.Add(pictureBox);
+            }
+        }
+        private void OpenMediaInfo(Form form, Media media)
+        {
+            var currentForm = this;
+            var mediaInformationForm = new FormMediaInformation(currentForm, media, user);
+            this.Hide();
+            mediaInformationForm.Closed += (s, args) => this.Close();
+            mediaInformationForm.ShowDialog();
         }
     }
 }

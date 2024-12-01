@@ -142,7 +142,7 @@ namespace MovieDatabase.Utils
         /// </summary>
         /// <param name="userId">The user ID of the user.</param>
         /// <returns>The watch list of the user.</returns>
-        private List<Media> GetUserWatchList(int userId)
+        public List<Media> GetUserWatchList(int userId)
         {
             const string MOVIE_SQL = """
                                 SELECT m.* FROM movie m JOIN watchlistmovie wl on m.MovieID = wl.MovieID WHERE wl.UserID = @UserID;
