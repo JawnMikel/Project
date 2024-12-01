@@ -439,6 +439,35 @@ VALUES
     (14, 14),
     (15, 15),
     (16, 16),
+    (17, 17),
+    (18, 18),
+    (19, 19),
+    (20, 20),
+    (20, 21),
+    (21, 22),
+    (22, 23),
+    (23, 24),
+    (28, 24),
+    (30, 24),
+    (24, 25),
+    (24, 26),
+    (25, 27),
+    (26, 28),
+    (29, 29),
+    (31, 30);
+
+-- Insert statements for tv show directors
+INSERT INTO tvshowdirector (TVShowID, DirectorID)
+VALUES
+    (1, 31),
+    (1, 32),
+    (1, 33),
+    (2, 34),
+    (2, 35),
+    (3, 36),
+    (3, 37),
+    (4, 38),
+    (4, 39);
 
 -- Insert statements for tv shows
 INSERT INTO tvshow (Title, ReleaseDate, Synopsis, ImageLink) 
