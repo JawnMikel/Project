@@ -408,8 +408,16 @@ VALUES
     ('Hayao', 'Miyazaki', 'https://m.media-amazon.com/images/M/MV5BMjcyNjk2OTkwNF5BMl5BanBnXkFtZTcwOTk0MTQ3Mg@@._V1_QL75_UY207_CR12,0,140,207_.jpg'),
     ('Frank', 'Darabont', 'https://m.media-amazon.com/images/M/MV5BNjk0MTkxNzQwOF5BMl5BanBnXkFtZTcwODM5OTMwNA@@._V1_QL75_UY207_CR14,0,140,207_.jpg'),
     ('Andy', 'Muschietti', 'https://m.media-amazon.com/images/M/MV5BMTkwMDE0NTc0NF5BMl5BanBnXkFtZTcwNTcyMTM5OA@@._V1_QL75_UY207_CR1,0,140,207_.jpg'),
-    ('Shawn', 'Levy', 'https://m.media-amazon.com/images/M/MV5BNTkyNjk4MTM0NF5BMl5BanBnXkFtZTcwNTA4MTQ5Mw@@._V1_QL75_UY207_CR86,0,140,207_.jpg');
-
+    ('Shawn', 'Levy', 'https://m.media-amazon.com/images/M/MV5BNTkyNjk4MTM0NF5BMl5BanBnXkFtZTcwNTA4MTQ5Mw@@._V1_QL75_UY207_CR86,0,140,207_.jpg'),
+    ('Greg', 'Daniels', 'https://m.media-amazon.com/images/M/MV5BMTQzMTY4NjE0Ml5BMl5BanBnXkFtZTcwNTE0MTg2OA@@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Ricky', 'Gervais', 'https://m.media-amazon.com/images/M/MV5BMjQzOTEzMTk1M15BMl5BanBnXkFtZTgwODI1Mzc0MDI@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Stephen', 'Merchant', 'https://m.media-amazon.com/images/M/MV5BMTkyNzIwNjcxNV5BMl5BanBnXkFtZTcwOTQzMDQ1NA@@._V1_QL75_UY207_CR11,0,140,207_.jpg'),
+    ('Matt', 'Duffer', 'https://m.media-amazon.com/images/M/MV5BMTQ4OTk1MjI1N15BMl5BanBnXkFtZTgwODc3NTQ1OTE@._V1_QL75_UY207_CR8,0,140,207_.jpg'),
+    ('Ross', 'Duffer', 'https://m.media-amazon.com/images/M/MV5BMDk1MGQ1YzQtMTg3Yi00MDcxLWJhNzUtZGQzNmU4MDhhMjRhXkEyXkFqcGc@._V1_QL75_UY207_CR21,0,140,207_.jpg'),
+    ('David', 'Crane', 'https://m.media-amazon.com/images/M/MV5BNDAxODQxMTM0OF5BMl5BanBnXkFtZTcwODg2MDg5Nw@@._V1_QL75_UY207_CR4,0,140,207_.jpg'),
+    ('Marta', 'Kauffman', 'https://m.media-amazon.com/images/M/MV5BMTYxODQ2NjUyMF5BMl5BanBnXkFtZTcwNzA2NTExNg@@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Jay', 'Carson', 'https://static.wikia.nocookie.net/themorningshow/images/a/a3/JayCarson.jpg/revision/latest?cb=20191227111419'),
+    ('Kerry', 'Ehrin', 'https://upload.wikimedia.org/wikipedia/commons/a/a7/NMD_The_Morning_Show_foto_Thor_Br%C3%B8dreskift_8_%2852891064596%29_%28cropped%29.jpg');
 
 -- Insert statements for tv shows
 INSERT INTO tvshow (Title, ReleaseDate, Synopsis, ImageLink) 
@@ -430,3 +438,14 @@ VALUES
     (4, 93),
     (4, 70);
 
+-- Insert statements for tv show genres
+INSERT INTO tvshowgenre (TVShowID, GenreID)
+VALUES
+    (1, 1),
+    (2, 8),
+    (2, 15),
+    (2, 4),
+    (2, 3),
+    (2, 5),
+    (3, 6),
+    (3, 2);
