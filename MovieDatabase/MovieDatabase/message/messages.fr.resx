@@ -208,7 +208,7 @@
     <value>Titre</value>
   </data>
   <data name="AddToWatchList" xml:space="preserve">
-    <value>Ajouté au list de vissionage</value>
+    <value>Ajouter à la liste de Vissionage</value>
   </data>
   <data name="Reviews" xml:space="preserve">
     <value>Les Avis:</value>
@@ -231,8 +231,8 @@
   <data name="WatchListTitle" xml:space="preserve">
     <value>List De Vissionage</value>
   </data>
-  <data name="ListOfCrewMembers" xml:space="preserve">
-    <value>Liste des membres d'équipe</value>
+  <data name="Director" xml:space="preserve">
+    <value>Directeur</value>
   </data>
   <data name="CreateAccountTitle" xml:space="preserve">
     <value>Créer un Compte</value>
@@ -242,5 +242,8 @@
   </data>
   <data name="Regular" xml:space="preserve">
     <value>Régulié</value>
+  </data>
+  <data name="Actor" xml:space="preserve">
+    <value>Acteurs</value>
   </data>
 </root>

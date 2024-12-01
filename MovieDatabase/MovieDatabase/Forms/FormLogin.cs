@@ -7,9 +7,6 @@ namespace MovieDatabase
 {
     public partial class FormLogin : Form
     {
-        
-        
-        public static List<User> users = new List<User>(); 
         public FormLogin()
         {
             InitializeComponent();
@@ -17,7 +14,6 @@ namespace MovieDatabase
             passwordTB.PasswordChar = '*';
             passwordBox.CheckedChanged += passwordBox_CheckedChanged;
             errorLbl.Visible = false;
-       
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
