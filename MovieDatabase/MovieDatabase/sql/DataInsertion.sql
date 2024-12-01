@@ -49,7 +49,8 @@ VALUES
     ('Catch Me If You Can', '2002-12-16', 141, 'Barely 17 yet, Frank is a skilled forger who has passed as a doctor, lawyer and pilot. FBI agent Carl becomes obsessed with tracking down the con man, who only revels in the pursuit.', 'https://m.media-amazon.com/images/I/61rkxjG4uiL._AC_UF1000,1000_QL80_.jpg'),
     ('Interstellar', '2014-10-26', 169, 'When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.', 'https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p10543523_p_v8_as.jpg'),
     ('It', '2017-09-08', 135, 'In the summer of 1989, a group of bullied kids band together to destroy a shape-shifting monster, which disguises itself as a clown and preys on the children of Derry, their small Maine town.', 'https://upload.wikimedia.org/wikipedia/en/5/5a/It_(2017)_poster.jpg'),
-    ('The Dark Knight', '2008-07-18', 152, 'When a menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman, James Gordon and Harvey Dent must work together to put an end to the madness.', 'https://i.etsystatic.com/23402008/r/il/024c7e/5568112558/il_fullxfull.5568112558_suid.jpg');
+    ('The Dark Knight', '2008-07-18', 152, 'When a menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman, James Gordon and Harvey Dent must work together to put an end to the madness.', 'https://i.etsystatic.com/23402008/r/il/024c7e/5568112558/il_fullxfull.5568112558_suid.jpg'),
+    ('Free Guy', '2021-08-13', 115, 'When Guy, a bank teller, learns that he is a non-player character in a bloodthirsty, open-world video game, he goes on to become the hero of the story and takes the responsibility of saving the world.', 'https://m.media-amazon.com/images/I/71KhuB7slFS.jpg');
 
 -- Insert statement for the moviegenre
 INSERT INTO moviegenre (MovieID, GenreID)
@@ -133,7 +134,13 @@ VALUES
     (30, 11),
     (30, 14),
     (30, 8),
-    (30, 7);
+    (30, 7),
+    (31, 1),
+    (31, 11),
+    (31, 2),
+    (31, 15),
+    (31, 6),
+    (31, 5);
 
 -- Insert statement for the actors
 INSERT INTO actor (FirstName, LastName, ImageLink)
@@ -253,7 +260,12 @@ VALUES
 
     ('Christian', 'Bale', 'https://m.media-amazon.com/images/M/MV5BMTkxMzk4MjQ4MF5BMl5BanBnXkFtZTcwMzExODQxOA@@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
     ('Heath', 'Ledger', 'https://m.media-amazon.com/images/M/MV5BMTI2NTY0NzA4MF5BMl5BanBnXkFtZTYwMjE1MDE0._V1_QL75_UX140_CR0,1,140,207_.jpg'),
-    ('Aaron', 'Eckhart', 'https://m.media-amazon.com/images/M/MV5BMTc4MTAyNzMzNF5BMl5BanBnXkFtZTcwMzQ5MzQzMg@@._V1_QL75_UY207_CR4,0,140,207_.jpg');
+    ('Aaron', 'Eckhart', 'https://m.media-amazon.com/images/M/MV5BMTc4MTAyNzMzNF5BMl5BanBnXkFtZTcwMzQ5MzQzMg@@._V1_QL75_UY207_CR4,0,140,207_.jpg'),
+
+    ('Joe', 'Keery', 'https://upload.wikimedia.org/wikipedia/commons/2/22/Joe_Keery_by_Gage_Skidmore.jpg'),
+    ('John', 'Krasinski', 'https://www.usmagazine.com/wp-content/uploads/2024/11/GettyImages-504401054.jpg'),
+    ('Jennifer', 'Aniston', 'https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/30905_v9_bc.jpg'),
+    ('Finn', 'Wolfhard', 'https://image.tmdb.org/t/p/original/5OVmquAk0W5BIsRlVKslEP497JD.jpg');
 
 -- Insert statement for movieactor
 INSERT INTO movieactor (MovieID, ActorID)
@@ -284,7 +296,9 @@ VALUES
     (7, 22),
     (7, 23),
     (8, 24),
+    (31, 24),
     (8, 25),
+    (31, 25),
     (13, 25),
     (8, 26),
     (9, 27),
@@ -325,6 +339,7 @@ VALUES
     (19, 57),
     (20, 58),
     (20, 59),
+    (31, 59),
     (20, 60),
     (21, 61),
     (21, 62),
@@ -355,9 +370,11 @@ VALUES
     (29, 87),
     (30, 88),
     (30, 89),
-    (30, 90);
-
-
+    (30, 90),
+    (31, 91),
+    (31, 92),
+    (29, 94),
+    (17, 94);
 
 -- Insert statement for the directors
 INSERT INTO director (FirstName, LastName, ImageLink)
@@ -390,6 +407,26 @@ VALUES
     ('Chris', 'Renaud', 'https://m.media-amazon.com/images/M/MV5BNzMxNjEwNjAwNV5BMl5BanBnXkFtZTgwNTAzMjE2OTE@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
     ('Hayao', 'Miyazaki', 'https://m.media-amazon.com/images/M/MV5BMjcyNjk2OTkwNF5BMl5BanBnXkFtZTcwOTk0MTQ3Mg@@._V1_QL75_UY207_CR12,0,140,207_.jpg'),
     ('Frank', 'Darabont', 'https://m.media-amazon.com/images/M/MV5BNjk0MTkxNzQwOF5BMl5BanBnXkFtZTcwODM5OTMwNA@@._V1_QL75_UY207_CR14,0,140,207_.jpg'),
-    ('Andy', 'Muschietti', 'https://m.media-amazon.com/images/M/MV5BMTkwMDE0NTc0NF5BMl5BanBnXkFtZTcwNTcyMTM5OA@@._V1_QL75_UY207_CR1,0,140,207_.jpg');
+    ('Andy', 'Muschietti', 'https://m.media-amazon.com/images/M/MV5BMTkwMDE0NTc0NF5BMl5BanBnXkFtZTcwNTcyMTM5OA@@._V1_QL75_UY207_CR1,0,140,207_.jpg'),
+    ('Shawn', 'Levy', 'https://m.media-amazon.com/images/M/MV5BNTkyNjk4MTM0NF5BMl5BanBnXkFtZTcwNTA4MTQ5Mw@@._V1_QL75_UY207_CR86,0,140,207_.jpg');
 
-    
+
+-- Insert statements for tv shows
+INSERT INTO tvshow (Title, ReleaseDate, Synopsis, ImageLink) 
+VALUES 
+    ('The Office', '2005-03-24', 'A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, tedium and romance.', 'https://i.ebayimg.com/00/s/MTA4MFg3MjA=/z/6OYAAOSw-CxjDMUp/$_12.JPG'),
+    ('Stranger Things', '2016-07-15', 'In 1980s Indiana, a group of young friends witness supernatural forces and secret government exploits. As they search for answers, the children unravel a series of extraordinary mysteries.', 'https://resizing.flixster.com/0xxuABVVuzJrUT130WFHKE-irEg=/ems.cHJkLWVtcy1hc3NldHMvdHZzZWFzb24vNzUyMTFhOTktZTU4Ni00ODkyLWJlYjQtZTgxYTllZmU2OGM0LmpwZw=='),
+    ('Friends', '1994-09-22', 'Follows the personal and professional lives of six twenty to thirty year-old friends living in the Manhattan borough of New York City.', 'https://static0.srcdn.com/wordpress/wp-content/uploads/2023/03/friends-tv-series-poster.jpg'),
+    ('The Morning Show', '2019-11-01', 'An inside look at the lives of the people who help America wake up in the morning, exploring the unique challenges faced by the team.', 'https://www.tvguide.com/a/img/catalog/provider/1/1/1-10867704877.jpg');
+
+-- Insert statements for tv show actors
+INSERT INTO tvshowactor (TVShowID, ActorID)
+VALUES
+    (1, 70),
+    (1, 92),
+    (2, 94),
+    (2, 91),
+    (3, 93),
+    (4, 93),
+    (4, 70);
+
