@@ -15,8 +15,10 @@ namespace MovieDatabase
 {
     public partial class FormMainMenu : Form
     {
+        Form form;
         private User user;
-        private readonly List<Media> mediaList = new List<Media>(); // going to be a list of medias from the database
+
+        private readonly List<Media> mediaList = DatabaseUtils.GetInstance().GetAllMedia();
         public FormMainMenu(User user)
         {
             InitializeComponent();
@@ -35,7 +37,26 @@ namespace MovieDatabase
             }
 
             LoadMedias(mediaList);
+        }
+        public FormMainMenu(Form form,User user)
+        {
+            InitializeComponent();
+            Update();
+            this.user = user;
+            this.form = form;
+            profileBtn.Text = user.Username;
+            if (user.Membership.Equals("REGULAR"))
+            {
+                recBtn.Enabled = false;
+                top10Btn.Enabled = false;
+            }
+            else
+            {
+                recBtn.Enabled = true;
+                top10Btn.Enabled = true;
+            }
 
+            LoadMedias(mediaList);
         }
         private void profileBtn_Click(object sender, EventArgs e)
         {
@@ -63,16 +84,17 @@ namespace MovieDatabase
                     Margin = new Padding(10)
                 };
 
-                pictureBox.Click += (s, e) => OpenMediaInfo(media);
+                pictureBox.Click += (s, e) => OpenMediaInfo(form,media);
 
                 mediaLayout.Controls.Add(pictureBox);
             }
         }
 
-        private void OpenMediaInfo(Media media)
+        private void OpenMediaInfo(Form form,Media media)
         {
-            Hide();
-            FormMediaInformation mediaInformationForm = new FormMediaInformation(this, media, user);
+            var currentForm = this;
+            var mediaInformationForm = new FormMediaInformation(currentForm, media, user);
+            this.Hide();
             mediaInformationForm.Closed += (s, args) => this.Close();
             mediaInformationForm.ShowDialog();
         }

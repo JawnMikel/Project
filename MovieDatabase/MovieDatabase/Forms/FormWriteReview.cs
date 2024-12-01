@@ -19,22 +19,25 @@ namespace MovieDatabase
         User user;
         Media media;
         CrewMember crew;
-        public FormWriteReview(Media media, User user)
+        Form form;
+        public FormWriteReview(Form form, Media media, User user)
         {
             InitializeComponent();
             Update();
             this.user = user;
             this.media = media;
+            this.form = form;
             titleLbl.Text = media.Title;
 
         }
-        public FormWriteReview(CrewMember crew, User user)
+        public FormWriteReview(Form form, CrewMember crew, User user)
         {
             InitializeComponent();
             Util.Language();
             Update();
             this.user = user;
             this.crew = crew;
+            this.form = form;
             titleLbl.Text = crew.FirstName + " " + crew.LastName;
         }
 

@@ -43,7 +43,7 @@ namespace MovieDatabase
             // 
             titleLbl.AutoSize = true;
             titleLbl.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titleLbl.Location = new Point(353, 9);
+            titleLbl.Location = new Point(168, 9);
             titleLbl.Name = "titleLbl";
             titleLbl.Size = new Size(118, 65);
             titleLbl.TabIndex = 0;
@@ -57,11 +57,11 @@ namespace MovieDatabase
             reviewTB.TabIndex = 1;
             reviewTB.Text = "";
             // 
-            // label1
+            // ratingBtn
             // 
             ratingBtn.AutoSize = true;
             ratingBtn.Location = new Point(324, 111);
-            ratingBtn.Name = "label1";
+            ratingBtn.Name = "ratingBtn";
             ratingBtn.Size = new Size(75, 25);
             ratingBtn.TabIndex = 2;
             ratingBtn.Text = "Ratings:";
@@ -120,6 +120,7 @@ namespace MovieDatabase
             ResumeLayout(false);
             PerformLayout();
         }
+
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);

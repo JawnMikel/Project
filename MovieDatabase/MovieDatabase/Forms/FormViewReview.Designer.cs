@@ -40,7 +40,7 @@ namespace MovieDatabase
             // 
             titleLbl.AutoSize = true;
             titleLbl.Font = new Font("Segoe UI", 22F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titleLbl.Location = new Point(218, 9);
+            titleLbl.Location = new Point(150, 9);
             titleLbl.Name = "titleLbl";
             titleLbl.Size = new Size(189, 60);
             titleLbl.TabIndex = 0;
@@ -75,7 +75,7 @@ namespace MovieDatabase
             langBtn.UseVisualStyleBackColor = true;
             langBtn.Click += langBtn_Click;
             // 
-            // ViewReview
+            // FormViewReview
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -84,11 +84,12 @@ namespace MovieDatabase
             Controls.Add(backBtn);
             Controls.Add(reviewsTB);
             Controls.Add(titleLbl);
-            Name = "ViewReview";
+            Name = "FormViewReview";
             Text = "ViewReview";
             ResumeLayout(false);
             PerformLayout();
         }
+
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
