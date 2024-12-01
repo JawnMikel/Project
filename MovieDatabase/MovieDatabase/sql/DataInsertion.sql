@@ -419,6 +419,27 @@ VALUES
     ('Jay', 'Carson', 'https://static.wikia.nocookie.net/themorningshow/images/a/a3/JayCarson.jpg/revision/latest?cb=20191227111419'),
     ('Kerry', 'Ehrin', 'https://upload.wikimedia.org/wikipedia/commons/a/a7/NMD_The_Morning_Show_foto_Thor_Br%C3%B8dreskift_8_%2852891064596%29_%28cropped%29.jpg');
 
+-- Insert statements for movie directors
+INSERT INTO moviedirector (MovieID, DirectorID)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10),
+    (11, 11),
+    (27, 11),
+    (12, 12),
+    (13, 13),
+    (14, 14),
+    (15, 15),
+    (16, 16),
+
 -- Insert statements for tv shows
 INSERT INTO tvshow (Title, ReleaseDate, Synopsis, ImageLink) 
 VALUES 
