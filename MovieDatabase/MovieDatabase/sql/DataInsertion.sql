@@ -456,19 +456,6 @@ VALUES
     (29, 29),
     (31, 30);
 
--- Insert statements for tv show directors
-INSERT INTO tvshowdirector (TVShowID, DirectorID)
-VALUES
-    (1, 31),
-    (1, 32),
-    (1, 33),
-    (2, 34),
-    (2, 35),
-    (3, 36),
-    (3, 37),
-    (4, 38),
-    (4, 39);
-
 -- Insert statements for tv shows
 INSERT INTO tvshow (Title, ReleaseDate, Synopsis, ImageLink) 
 VALUES 
@@ -487,6 +474,19 @@ VALUES
     (3, 93),
     (4, 93),
     (4, 70);
+
+-- Insert statements for tv show directors
+INSERT INTO tvshowdirector (TVShowID, DirectorID)
+VALUES
+    (1, 31),
+    (1, 32),
+    (1, 33),
+    (2, 34),
+    (2, 35),
+    (3, 36),
+    (3, 37),
+    (4, 38),
+    (4, 39);
 
 -- Insert statements for tv show genres
 INSERT INTO tvshowgenre (TVShowID, GenreID)
