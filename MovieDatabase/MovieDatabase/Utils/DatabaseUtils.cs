@@ -1526,7 +1526,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@Name", payment.CardHolderName);
                 cmd.Parameters.AddWithValue("@Number", payment.CreditCardNum);
                 cmd.Parameters.AddWithValue("@CVV", payment.Cvv);
-                cmd.Parameters.AddWithValue("@ExpDate", payment.ExpiryDate);
+                cmd.Parameters.AddWithValue("@ExpDate", payment.ExpiryDate.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@PayDate", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@UserID", userID);
                 // Execute the SQL
