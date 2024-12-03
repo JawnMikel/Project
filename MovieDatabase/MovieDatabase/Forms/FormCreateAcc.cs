@@ -51,7 +51,6 @@ namespace MovieDatabase
 
                     return;
                 }
-                FormLogin.users.Add(user);
 
                 MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

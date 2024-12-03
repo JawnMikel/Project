@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.Devices;
 using MovieDatabase.Utils;
 namespace MovieDatabase
 {
@@ -24,13 +25,8 @@ namespace MovieDatabase
             this.crewMember = crewMember;
             this.form = form;
             titleLbl.Text += " " + crewMember.FirstName + " " + crewMember.LastName;
-            
-            foreach (var review in crewMember.Reviews)
-            {
-                titleLbl.Text += review.ToString();
-            }
 
-            this.user = user;
+            titleLbl.Text += LoadReview(crewMember);
         }
         public FormViewReview(Form form, Media media, User user)
         {
@@ -41,10 +37,8 @@ namespace MovieDatabase
             InitializeComponent();
             this.media = media;
             titleLbl.Text += " " + media.Title;
-            foreach (var review in media.Reviews)
-            {
-                titleLbl.Text += review.ToString();
-            }
+
+            LoadReview(media);
 
             this.user = user;
         }
@@ -62,5 +56,50 @@ namespace MovieDatabase
             Util.Language();
             Update();
         }
+
+        private string LoadReview(CrewMember crewMember)  
+        {
+            foreach (var review in crewMember.Reviews)
+            {
+                
+            }
+
+            this.user = user;
+
+            return null;
+        }
+
+        private void LoadReview(Media media)
+        {
+            var database = DatabaseUtils.GetInstance();
+
+            if (media is Movie)
+            {
+                Movie selectedMovie = database.GetMovieById(media.MediaId);
+                foreach (var review in selectedMovie.Reviews)
+                {
+                    reviewsTB.Text += review.ToString();
+                }
+            } 
+            else if (media is TVShow)
+            {
+                TVShow selectedTV = database.GetTVShowById(media.MediaId);
+                foreach (var review in selectedTV.Reviews)
+                {
+                    reviewsTB.Text += review.ToString();
+                }
+            }
+            else
+            {
+                Episode selectedEpisode = database.GetEpisodeById(media.MediaId);
+                foreach (var review in selectedEpisode.Reviews)
+                {
+                    reviewsTB.Text += review.ToString();
+                }
+            }
+
+            database.CloseConnection();
+        }
+
     }
 }
