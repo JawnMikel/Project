@@ -855,7 +855,7 @@ namespace MovieDatabase.Utils
         {
             const string SQL = """
                                 SELECT t.* FROM tvshow t 
-                                JOIN tvshowgenre tg ON t.MovieID = tg.MovieID
+                                JOIN tvshowgenre tg ON t.TVShowID = tg.TVShowID
                                 JOIN genre g ON g.GenreID = tg.GenreID
                                 WHERE g.GenreName = @GenreName;
                                 """;
