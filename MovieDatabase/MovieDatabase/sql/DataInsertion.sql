@@ -49,7 +49,98 @@ VALUES
     ('Catch Me If You Can', '2002-12-16', 141, 'Barely 17 yet, Frank is a skilled forger who has passed as a doctor, lawyer and pilot. FBI agent Carl becomes obsessed with tracking down the con man, who only revels in the pursuit.', 'https://m.media-amazon.com/images/I/61rkxjG4uiL._AC_UF1000,1000_QL80_.jpg'),
     ('Interstellar', '2014-10-26', 169, 'When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.', 'https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p10543523_p_v8_as.jpg'),
     ('It', '2017-09-08', 135, 'In the summer of 1989, a group of bullied kids band together to destroy a shape-shifting monster, which disguises itself as a clown and preys on the children of Derry, their small Maine town.', 'https://upload.wikimedia.org/wikipedia/en/5/5a/It_(2017)_poster.jpg'),
-    ('The Dark Knight', '2008-07-18', 152, 'When a menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman, James Gordon and Harvey Dent must work together to put an end to the madness.', 'https://i.etsystatic.com/23402008/r/il/024c7e/5568112558/il_fullxfull.5568112558_suid.jpg');
+    ('The Dark Knight', '2008-07-18', 152, 'When a menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman, James Gordon and Harvey Dent must work together to put an end to the madness.', 'https://i.etsystatic.com/23402008/r/il/024c7e/5568112558/il_fullxfull.5568112558_suid.jpg'),
+    ('Free Guy', '2021-08-13', 115, 'When Guy, a bank teller, learns that he is a non-player character in a bloodthirsty, open-world video game, he goes on to become the hero of the story and takes the responsibility of saving the world.', 'https://m.media-amazon.com/images/I/71KhuB7slFS.jpg');
+
+-- Insert statement for the moviegenre
+INSERT INTO moviegenre (MovieID, GenreID)
+VALUES
+    (1, 15),
+    (1, 3),
+    (2, 15),
+    (2, 1),
+    (2, 8),
+    (3, 2),
+    (3, 14),
+    (3, 9),
+    (3, 7),
+    (4, 8),
+    (4, 14),
+    (4, 3),
+    (5, 13),
+    (6, 13),
+    (7, 14),
+    (7, 13),
+    (8, 2),
+    (8, 11),
+    (8, 1),
+    (8, 5),
+    (9, 11),
+    (9, 1),
+    (9, 5),
+    (10, 1),
+    (10, 8),
+    (10, 10),
+    (11, 8),
+    (11, 10),
+    (12, 1),
+    (12, 8),
+    (12, 10),
+    (13, 9),
+    (13, 8),
+    (14, 9),
+    (14, 6),
+    (14, 2),
+    (15, 2),
+    (15, 6),
+    (16, 4),
+    (16, 2),
+    (16, 8),
+    (17, 8),
+    (17, 2),
+    (18, 8),
+    (18, 6),
+    (19, 1),
+    (19, 15),
+    (19, 5),
+    (20, 1),
+    (20, 8),
+    (20, 5),
+    (20, 11),
+    (21, 1),
+    (21, 5),
+    (21, 7),
+    (22, 6),
+    (22, 8),
+    (23, 1),
+    (23, 7),
+    (23, 5),
+    (24, 12),
+    (24, 2),
+    (24, 14),
+    (24, 5),
+    (25, 12),
+    (25, 15),
+    (26, 8),
+    (26, 14),
+    (26, 15),
+    (26, 3),
+    (27, 8),
+    (27, 14),
+    (28, 5),
+    (28, 8),
+    (29, 4),
+    (30, 1),
+    (30, 11),
+    (30, 14),
+    (30, 8),
+    (30, 7),
+    (31, 1),
+    (31, 11),
+    (31, 2),
+    (31, 15),
+    (31, 6),
+    (31, 5);
 
 -- Insert statement for the actors
 INSERT INTO actor (FirstName, LastName, ImageLink)
@@ -169,7 +260,12 @@ VALUES
 
     ('Christian', 'Bale', 'https://m.media-amazon.com/images/M/MV5BMTkxMzk4MjQ4MF5BMl5BanBnXkFtZTcwMzExODQxOA@@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
     ('Heath', 'Ledger', 'https://m.media-amazon.com/images/M/MV5BMTI2NTY0NzA4MF5BMl5BanBnXkFtZTYwMjE1MDE0._V1_QL75_UX140_CR0,1,140,207_.jpg'),
-    ('Aaron', 'Eckhart', 'https://m.media-amazon.com/images/M/MV5BMTc4MTAyNzMzNF5BMl5BanBnXkFtZTcwMzQ5MzQzMg@@._V1_QL75_UY207_CR4,0,140,207_.jpg');
+    ('Aaron', 'Eckhart', 'https://m.media-amazon.com/images/M/MV5BMTc4MTAyNzMzNF5BMl5BanBnXkFtZTcwMzQ5MzQzMg@@._V1_QL75_UY207_CR4,0,140,207_.jpg'),
+
+    ('Joe', 'Keery', 'https://upload.wikimedia.org/wikipedia/commons/2/22/Joe_Keery_by_Gage_Skidmore.jpg'),
+    ('John', 'Krasinski', 'https://www.usmagazine.com/wp-content/uploads/2024/11/GettyImages-504401054.jpg'),
+    ('Jennifer', 'Aniston', 'https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/30905_v9_bc.jpg'),
+    ('Finn', 'Wolfhard', 'https://image.tmdb.org/t/p/original/5OVmquAk0W5BIsRlVKslEP497JD.jpg');
 
 -- Insert statement for movieactor
 INSERT INTO movieactor (MovieID, ActorID)
@@ -200,7 +296,9 @@ VALUES
     (7, 22),
     (7, 23),
     (8, 24),
+    (31, 24),
     (8, 25),
+    (31, 25),
     (13, 25),
     (8, 26),
     (9, 27),
@@ -241,6 +339,7 @@ VALUES
     (19, 57),
     (20, 58),
     (20, 59),
+    (31, 59),
     (20, 60),
     (21, 61),
     (21, 62),
@@ -271,8 +370,220 @@ VALUES
     (29, 87),
     (30, 88),
     (30, 89),
-    (30, 90);
+    (30, 90),
+    (31, 91),
+    (31, 92),
+    (29, 94),
+    (17, 94);
 
 -- Insert statement for the directors
 INSERT INTO director (FirstName, LastName, ImageLink)
 VALUES
+    ('David', 'Yates', 'https://m.media-amazon.com/images/M/MV5BMTY2NTU4NjY4M15BMl5BanBnXkFtZTYwNjIxOTI1._V1_QL75_UY207_CR7,0,140,207_.jpg'),
+    ('Peter', 'Jackson', 'https://m.media-amazon.com/images/M/MV5BNTk2MzA0ZDAtMTI0Yy00NzU2LTgyYmUtMDRlOGFmYjM3NzJhXkEyXkFqcGc@._V1_QL75_UY207_CR74,0,140,207_.jpg'),
+    ('Jacques', 'Audiard', 'https://m.media-amazon.com/images/M/MV5BMTk0NjU4Njg1OV5BMl5BanBnXkFtZTYwODU5MDY1._V1_QL75_UY207_CR5,0,140,207_.jpg'),
+    ('Anna', 'Kendrick', 'https://m.media-amazon.com/images/M/MV5BMjIzOTA0OTQyN15BMl5BanBnXkFtZTcwMjE1OTIwMw@@._V1_QL75_UY207_CR3,0,140,207_.jpg'),
+    ('Orlando', 'von Einsiedel', 'https://m.media-amazon.com/images/M/MV5BMTY5NzczNzc0NV5BMl5BanBnXkFtZTgwNjIwNDk0MTE@._V1_QL75_UY207_CR4,0,140,207_.jpg'),
+    ('Jason', 'Hehir', 'https://www.goldderby.com/wp-content/uploads/2020/07/jasonhehir.jpg'),
+    ('Charles', 'Ferguson', 'https://m.media-amazon.com/images/M/MV5BMTQ5NTE5NjYyOV5BMl5BanBnXkFtZTcwMDYyMDQ1NA@@._V1_QL75_UY207_CR7,0,140,207_.jpg'),
+    ('Shawn', 'Levy', 'https://m.media-amazon.com/images/M/MV5BNTkyNjk4MTM0NF5BMl5BanBnXkFtZTcwNTA4MTQ5Mw@@._V1_QL75_UY207_CR86,0,140,207_.jpg'),
+    ('Sam', 'Raimi', 'https://m.media-amazon.com/images/M/MV5BODQ0NjI0NzkzMV5BMl5BanBnXkFtZTYwMDc0ODk1._V1_QL75_UY207_CR5,0,140,207_.jpg'),
+    ('Steve', 'McQueen', 'https://m.media-amazon.com/images/M/MV5BMTQzNjQ5NDUxNl5BMl5BanBnXkFtZTcwNjA0MTg1Ng@@._V1_QL75_UX140_CR0,2,140,207_.jpg'),
+    ('Steven', 'Spielberg', 'https://m.media-amazon.com/images/M/MV5BMTY1NjAzNzE1MV5BMl5BanBnXkFtZTYwNTk0ODc0._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Sam', 'Mendes', 'https://m.media-amazon.com/images/M/MV5BNTgzODMyMDUwNF5BMl5BanBnXkFtZTcwNzEyMjAyMg@@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Michael', 'Gracey', 'https://m.media-amazon.com/images/M/MV5BNjkwMDRhZDMtYzliNC00NzA5LTkxYjEtZDc3YzNiZWY1NjY5XkEyXkFqcGc@._V1_QL75_UY207_CR103,0,140,207_.jpg'),
+    ('Phyllida', 'Lloyd', 'https://m.media-amazon.com/images/M/MV5BMTUyNzkyOTY2Ml5BMl5BanBnXkFtZTcwNDg0MjAyNw@@._V1_QL75_UY207_CR86,0,140,207_.jpg'),
+    ('Jason', 'Moore', 'https://m.media-amazon.com/images/M/MV5BNjY4MjUzNjUyM15BMl5BanBnXkFtZTcwMjE0NDI1OA@@._V1_QL75_UY207_CR86,0,140,207_.jpg'),
+    ('Coralie', 'Fargeat', 'https://m.media-amazon.com/images/M/MV5BNDk3OTc3MTYzMF5BMl5BanBnXkFtZTgwMTg2MzI2NDM@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Jason', 'Reitman', 'https://m.media-amazon.com/images/M/MV5BMTQ4NTU0NzM1OF5BMl5BanBnXkFtZTgwNjMzMjcxMDE@._V1_QL75_UY207_CR3,0,140,207_.jpg'),
+    ('Baz', 'Luhrmann', 'https://m.media-amazon.com/images/M/MV5BMTY0MjM4NzkzNV5BMl5BanBnXkFtZTcwNjQwOTQ0OQ@@._V1_QL75_UY207_CR86,0,140,207_.jpg'),
+    ('George', 'Lucas', 'https://m.media-amazon.com/images/M/MV5BMTA0Mjc0NzExNzBeQTJeQWpwZ15BbWU3MDEzMzQ3MDI@._V1_QL75_UY207_CR0,0,140,207_.jpg'),
+    ('Anthony', 'Russo', 'https://m.media-amazon.com/images/M/MV5BMTc2NjM5MTM0Ml5BMl5BanBnXkFtZTgwMTY3ODczNjM@._V1_QL75_UX140_CR0,6,140,207_.jpg'),
+    ('Joe', 'Russo', 'https://m.media-amazon.com/images/M/MV5BMTc2NzY1NTY5OF5BMl5BanBnXkFtZTgwNjY3ODczNjM@._V1_QL75_UY207_CR2,0,140,207_.jpg'),
+    ('Gary', 'Ross', 'https://m.media-amazon.com/images/M/MV5BMTI3NjcxMTA2Nl5BMl5BanBnXkFtZTcwMjkwNDYyMQ@@._V1_QL75_UY207_CR4,0,140,207_.jpg'),
+    ('James', 'Cameron', 'https://m.media-amazon.com/images/M/MV5BMjI0MjMzOTg2MF5BMl5BanBnXkFtZTcwMTM3NjQxMw@@._V1_QL75_UX140_CR0,2,140,207_.jpg'),
+    ('Christopher', 'Nolan', 'https://m.media-amazon.com/images/M/MV5BNjE3NDQyOTYyMV5BMl5BanBnXkFtZTcwODcyODU2Mw@@._V1_QL75_UY207_CR5,0,140,207_.jpg'),
+    ('Pierre', 'Coffin', 'https://m.media-amazon.com/images/M/MV5BMTUzOTQ3OTA3OF5BMl5BanBnXkFtZTcwNzEzNTMyOA@@._V1_QL75_UY207_CR2,0,140,207_.jpg'),
+    ('Chris', 'Renaud', 'https://m.media-amazon.com/images/M/MV5BNzMxNjEwNjAwNV5BMl5BanBnXkFtZTgwNTAzMjE2OTE@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Hayao', 'Miyazaki', 'https://m.media-amazon.com/images/M/MV5BMjcyNjk2OTkwNF5BMl5BanBnXkFtZTcwOTk0MTQ3Mg@@._V1_QL75_UY207_CR12,0,140,207_.jpg'),
+    ('Frank', 'Darabont', 'https://m.media-amazon.com/images/M/MV5BNjk0MTkxNzQwOF5BMl5BanBnXkFtZTcwODM5OTMwNA@@._V1_QL75_UY207_CR14,0,140,207_.jpg'),
+    ('Andy', 'Muschietti', 'https://m.media-amazon.com/images/M/MV5BMTkwMDE0NTc0NF5BMl5BanBnXkFtZTcwNTcyMTM5OA@@._V1_QL75_UY207_CR1,0,140,207_.jpg'),
+    ('Shawn', 'Levy', 'https://m.media-amazon.com/images/M/MV5BNTkyNjk4MTM0NF5BMl5BanBnXkFtZTcwNTA4MTQ5Mw@@._V1_QL75_UY207_CR86,0,140,207_.jpg'),
+    ('Greg', 'Daniels', 'https://m.media-amazon.com/images/M/MV5BMTQzMTY4NjE0Ml5BMl5BanBnXkFtZTcwNTE0MTg2OA@@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Ricky', 'Gervais', 'https://m.media-amazon.com/images/M/MV5BMjQzOTEzMTk1M15BMl5BanBnXkFtZTgwODI1Mzc0MDI@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Stephen', 'Merchant', 'https://m.media-amazon.com/images/M/MV5BMTkyNzIwNjcxNV5BMl5BanBnXkFtZTcwOTQzMDQ1NA@@._V1_QL75_UY207_CR11,0,140,207_.jpg'),
+    ('Matt', 'Duffer', 'https://m.media-amazon.com/images/M/MV5BMTQ4OTk1MjI1N15BMl5BanBnXkFtZTgwODc3NTQ1OTE@._V1_QL75_UY207_CR8,0,140,207_.jpg'),
+    ('Ross', 'Duffer', 'https://m.media-amazon.com/images/M/MV5BMDk1MGQ1YzQtMTg3Yi00MDcxLWJhNzUtZGQzNmU4MDhhMjRhXkEyXkFqcGc@._V1_QL75_UY207_CR21,0,140,207_.jpg'),
+    ('David', 'Crane', 'https://m.media-amazon.com/images/M/MV5BNDAxODQxMTM0OF5BMl5BanBnXkFtZTcwODg2MDg5Nw@@._V1_QL75_UY207_CR4,0,140,207_.jpg'),
+    ('Marta', 'Kauffman', 'https://m.media-amazon.com/images/M/MV5BMTYxODQ2NjUyMF5BMl5BanBnXkFtZTcwNzA2NTExNg@@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Jay', 'Carson', 'https://static.wikia.nocookie.net/themorningshow/images/a/a3/JayCarson.jpg/revision/latest?cb=20191227111419'),
+    ('Kerry', 'Ehrin', 'https://upload.wikimedia.org/wikipedia/commons/a/a7/NMD_The_Morning_Show_foto_Thor_Br%C3%B8dreskift_8_%2852891064596%29_%28cropped%29.jpg');
+
+-- Insert statements for movie directors
+INSERT INTO moviedirector (MovieID, DirectorID)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10),
+    (11, 11),
+    (27, 11),
+    (12, 12),
+    (13, 13),
+    (14, 14),
+    (15, 15),
+    (16, 16),
+    (17, 17),
+    (18, 18),
+    (19, 19),
+    (20, 20),
+    (20, 21),
+    (21, 22),
+    (22, 23),
+    (23, 24),
+    (28, 24),
+    (30, 24),
+    (24, 25),
+    (24, 26),
+    (25, 27),
+    (26, 28),
+    (29, 29),
+    (31, 30);
+
+-- Insert statements for tv shows
+INSERT INTO tvshow (Title, ReleaseDate, Synopsis, ImageLink) 
+VALUES 
+    ('The Office', '2005-03-24', 'A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, tedium and romance.', 'https://i.ebayimg.com/00/s/MTA4MFg3MjA=/z/6OYAAOSw-CxjDMUp/$_12.JPG'),
+    ('Stranger Things', '2016-07-15', 'In 1980s Indiana, a group of young friends witness supernatural forces and secret government exploits. As they search for answers, the children unravel a series of extraordinary mysteries.', 'https://resizing.flixster.com/0xxuABVVuzJrUT130WFHKE-irEg=/ems.cHJkLWVtcy1hc3NldHMvdHZzZWFzb24vNzUyMTFhOTktZTU4Ni00ODkyLWJlYjQtZTgxYTllZmU2OGM0LmpwZw=='),
+    ('Friends', '1994-09-22', 'Follows the personal and professional lives of six twenty to thirty year-old friends living in the Manhattan borough of New York City.', 'https://static0.srcdn.com/wordpress/wp-content/uploads/2023/03/friends-tv-series-poster.jpg'),
+    ('The Morning Show', '2019-11-01', 'An inside look at the lives of the people who help America wake up in the morning, exploring the unique challenges faced by the team.', 'https://www.tvguide.com/a/img/catalog/provider/1/1/1-10867704877.jpg');
+
+-- Insert statements for tv show actors
+INSERT INTO tvshowactor (TVShowID, ActorID)
+VALUES
+    (1, 70),
+    (1, 92),
+    (2, 94),
+    (2, 91),
+    (3, 93),
+    (4, 93),
+    (4, 70);
+
+-- Insert statements for tv show directors
+INSERT INTO tvshowdirector (TVShowID, DirectorID)
+VALUES
+    (1, 31),
+    (1, 32),
+    (1, 33),
+    (2, 34),
+    (2, 35),
+    (3, 36),
+    (3, 37),
+    (4, 38),
+    (4, 39);
+
+-- Insert statements for tv show genres
+INSERT INTO tvshowgenre (TVShowID, GenreID)
+VALUES
+    (1, 1),
+    (2, 8),
+    (2, 15),
+    (2, 4),
+    (2, 3),
+    (2, 5),
+    (3, 6),
+    (3, 2);
+
+-- Insert statements for episodes
+INSERT INTO episode (Title, ReleaseDate, Synopsis, Duration, SeasonNumber, EpisodeNumber, ImageLink, TVShowID)
+VALUES
+    ('Pilot', '2005-03-24', 'The premiere episode introduces the boss and staff of the Dunder-Mifflin Paper Company in Scranton, Pennsylvania in a documentary about the workplace.', 23, 1, 1, 'https://m.media-amazon.com/images/M/MV5BMzljZGU5ODgtYzFlNi00MTIwLTlkYjAtYjgxODIwZGZmMjdkXkEyXkFqcGc@._V1_QL75_UY281_CR155,0,190,281_.jpg', 1),
+    ('Diversity Day', '2005-03-29', 'Michael''s off color remark puts a sensitivity trainer in the office for a presentation, which prompts Michael to create his own.', 23, 1, 2, 'https://m.media-amazon.com/images/M/MV5BMTQ3OTE0MDE3MF5BMl5BanBnXkFtZTgwOTk4MjU1MjE@._V1_QL75_UY281_CR93,0,190,281_.jpg', 1),
+    ('Health Care', '2005-04-05', 'Michael leaves Dwight in charge of picking the new healthcare plan for the staff, with disastrous results ahead.', 22, 1, 3, 'https://m.media-amazon.com/images/M/MV5BMTUxNDMxMjg1MV5BMl5BanBnXkFtZTgwNTk4MjU1MjE@._V1_QL75_UY281_CR93,0,190,281_.jpg', 1),
+    ('Chapter One: The Vanishing of Will Byers', '2016-07-15', 'On his way home from a friend''s house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab.', 47, 1, 1, 'https://m.media-amazon.com/images/M/MV5BMTUwNTE0ODYzOF5BMl5BanBnXkFtZTgwOTc0ODE0OTE@._V1_QL75_UY281_CR116,0,190,281_.jpg', 2),
+    ('Chapter Two: The Weirdo on Maple Street', '2016-07-15', 'Lucas, Mike and Dustin try to talk to the girl they found in the woods. Meanwhile, Hopper questions an anxious Joyce about an unsettling phone call.', 55, 1, 2, 'https://m.media-amazon.com/images/M/MV5BNzNmZGI4ZGItODUzNi00NmE3LWJjOWYtZTQwOTQzMGE3YjA2XkEyXkFqcGc@._V1_QL75_UY281_CR186,0,190,281_.jpg', 2),
+    ('Chapter Three: Holly, Jolly', '2016-07-15', 'An increasingly concerned Nancy looks for Barb and finds out what Jonathan''s been up to. Joyce is convinced Will is trying to talk to her.', 51, 1, 3, 'https://m.media-amazon.com/images/M/MV5BMTY4MDUxOTIwMV5BMl5BanBnXkFtZTgwNDg0ODE0OTE@._V1_QL75_UY281_CR155,0,190,281_.jpg', 2),
+    ('The One Where Monica Gets a Roommate', '1994-09-22', 'Monica and the gang introduce Rachel to the "real world" after she leaves her fiancé at the altar.', 22, 1, 1, 'https://m.media-amazon.com/images/M/MV5BMTZhMjIzMTUtYjgwYy00ZWZmLTg4MzQtOWM1NzNhNGQ1MzZjXkEyXkFqcGc@._V1_QL75_UY281_CR151,0,190,281_.jpg', 3),
+    ('The One with the Sonogram at the End', '1994-09-29', 'Ross finds out his ex-wife is pregnant. Rachel returns her engagement ring to Barry. Monica becomes stressed when her and Ross''s parents come to visit', 22, 1, 2, 'https://m.media-amazon.com/images/M/MV5BMjE3NDg2ODc3MV5BMl5BanBnXkFtZTgwODAyODM0MDE@._V1_QL75_UX190_CR0,5,190,281_.jpg', 3),
+    ('The One with the Thumb', '1994-10-06', 'Monica becomes irritated when everyone likes her new boyfriend more than she does. Chandler resumes his smoking habit. Phoebe is given $7000 when she finds a thumb in a can of soda.', 22, 1, 3, 'https://m.media-amazon.com/images/M/MV5BMzNjNTU5NGMtNWQxMy00MDk2LWI4NDEtZWQwMWI3NmYzZmFhXkEyXkFqcGc@._V1_QL75_UY281_CR155,0,190,281_.jpg', 3),
+    ('In the Dark Night of the Soul It''s Always 3:30 in the Morning', '2019-11-01', 'America''s favorite morning news show is thrown into crisis when it becomes the news.', 63, 1, 1, 'https://m.media-amazon.com/images/M/MV5BMzkyOGMxNmUtNDMxMy00NDViLWFmY2UtN2ExMWIxMDJlOWZmXkEyXkFqcGc@._V1_QL75_UY281_CR116,0,190,281_.jpg', 4),
+    ('A Seat at the Table', '2019-11-01', 'Alex engages in contract negotiations as she prepares to accepts an award. Bradley is courted for a new opportunity.', 55, 1, 2, 'https://m.media-amazon.com/images/M/MV5BY2M3MzU0MWItYTcyYi00ZWNlLTlhYTgtNTJmNWY3ZmY1NTEzXkEyXkFqcGc@._V1_QL75_UY281_CR116,0,190,281_.jpg', 4),
+    ('Chaos Is the New Cocaine', '2019-11-01', 'In a weekend of turmoil, TMS scrambles to prepare for its new future.', 53, 1, 3, 'https://m.media-amazon.com/images/M/MV5BM2E1NmYwYzAtNTJlNi00N2RmLThjOWItOTNlYWZlM2RkOTA5XkEyXkFqcGc@._V1_QL75_UY281_CR116,0,190,281_.jpg', 4);
+
+-- Insert statements for episode genres
+INSERT INTO episodegenre (EpisodeID, GenreID)
+VALUES
+    (1, 2),
+    (2, 2),
+    (3, 2),
+    (4, 4),
+    (5, 7),
+    (6, 3),
+    (7, 2),
+    (8, 2),
+    (9, 2),
+    (10, 8),
+    (10, 8),
+    (10, 8);
+
+-- Insert for episode actors
+INSERT INTO episodeactor (EpisodeID, ActorID)
+VALUES
+    (1, 70),
+    (1, 92),
+    (2, 70),
+    (2, 92),
+    (3, 70),
+    (3, 92),
+    (4, 91),
+    (4, 94),
+    (5, 91),
+    (5, 94),
+    (6, 91),
+    (6, 94),
+    (7, 93),
+    (8, 93),
+    (9, 93),
+    (10, 70),
+    (10, 93),
+    (11, 70),
+    (11, 93),
+    (12, 70),
+    (12, 93);
+
+-- Insert for episode directors
+INSERT INTO episodedirector (EpisodeID, DirectorID)
+VALUES
+    (1, 31),
+    (1, 32),
+    (1, 33),
+    (2, 31),
+    (2, 32),
+    (2, 33),
+    (3, 31),
+    (3, 32),
+    (3, 33),
+    (4, 34),
+    (4, 35),
+    (5, 34),
+    (5, 35),
+    (6, 34),
+    (6, 35),
+    (7, 36),
+    (7, 37),
+    (8, 36),
+    (8, 37),
+    (9, 36),
+    (9, 37),
+    (10, 38),
+    (10, 39),
+    (11, 38),
+    (11, 39),
+    (12, 38),
+    (12, 39),
