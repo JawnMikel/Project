@@ -530,8 +530,8 @@ VALUES
     (8, 2),
     (9, 2),
     (10, 8),
-    (10, 8),
-    (10, 8);
+    (11, 8),
+    (12, 8);
 
 -- Insert for episode actors
 INSERT INTO episodeactor (EpisodeID, ActorID)
