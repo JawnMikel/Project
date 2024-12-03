@@ -516,7 +516,7 @@ namespace MovieDatabase.Utils
         private List<Actor> GetTVShowActors(int tvShowId)
         {
             const string SQL = """
-                                SELECT a.* FROM actor a JOIN tvshowactor ta ON a.ActorID = ta.ActorID WHERE ta.TVShowID = @tvShowId;
+                                SELECT a.* FROM actor a JOIN tvshowactor ta ON a.ActorID = ta.ActorID WHERE ta.TVShowID = @TVShowID;
                                 """;
             List<Actor> actors = new List<Actor>();
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
