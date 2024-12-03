@@ -18,11 +18,16 @@ namespace MovieDatabase
         Form form;
         private User user;
 
-        private readonly List<Media> mediaList = DatabaseUtils.GetInstance().GetAllMedia();
+        private readonly List<Media> mediaList;
         public FormMainMenu(User user)
         {
             InitializeComponent();
             Update();
+
+            DatabaseUtils database = DatabaseUtils.GetInstance();
+            mediaList = database.GetAllMedia();
+            database.CloseConnection();
+
             this.user = user;
             profileBtn.Text = user.Username;
             if (user.Membership == User.Memberships.REGULAR)
@@ -110,6 +115,8 @@ namespace MovieDatabase
         {
             var database = DatabaseUtils.GetInstance();
             List<Media> allMedias = database.GetAllMedia();
+            database.CloseConnection();
+
             List<Media> top10 = allMedias
                 .OrderByDescending(m => m.GetMediaRating())
                 .Take(10)
@@ -123,6 +130,7 @@ namespace MovieDatabase
 
             var database = DatabaseUtils.GetInstance();
             List<Movie> movies = database.GetAllMovies(); 
+            database.CloseConnection();
             List<Media> mediaList = movies.Cast<Media>().ToList();
             LoadMedias(mediaList);
             database.CloseConnection();
@@ -133,6 +141,7 @@ namespace MovieDatabase
         {
             var database = DatabaseUtils.GetInstance();
             List<TVShow> tvshows = database.GetAllTVShows();
+            database.CloseConnection();
             List<Media> mediaList = tvshows.Cast<Media>().ToList();
             LoadMedias(mediaList);
             database.CloseConnection();
@@ -165,8 +174,8 @@ namespace MovieDatabase
             {
                 var database = DatabaseUtils.GetInstance();
                 List<Media> searches = database.SearchMediaByTitle(searchText);
-                LoadMedias(searches);
                 database.CloseConnection();
+                LoadMedias(searches);
             }
             else
             {
