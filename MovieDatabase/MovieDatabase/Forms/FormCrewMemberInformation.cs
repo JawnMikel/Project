@@ -16,11 +16,9 @@ namespace MovieDatabase
         Form form;
         CrewMember crewMember;
         User user;
-
-        //private readonly List<Media> medias = DatabaseUtils.GetInstance().GetM
-        public FormCrewMemberInformation(Form form, CrewMember crewMember, User user)
+        Media media;
+        public FormCrewMemberInformation(Form form, CrewMember crewMember, User user, Media media)
         {
-            
             this.form = form;
             this.crewMember = crewMember;
             InitializeComponent();
@@ -28,17 +26,70 @@ namespace MovieDatabase
             nameLbl.Text = crewMember.FirstName + " " + crewMember.LastName;
             ratingLbl.Text += crewMember.GetPopularity() + "/5";
             this.user = user;
-            if (user.Membership.Equals("REGULAR"))
+            this.media = media;
+            if (user.Membership == User.Memberships.REGULAR)
             {
                 writeReviewBtn.Enabled = false;
             }
         }
 
+        private List<Media> GetCrewMemberMedia(CrewMember crewMember)
+        {
+            var database = DatabaseUtils.GetInstance();
+            List<Media> medias = new List<Media>();
+            if (crewMember is Actor)
+            {
+                foreach (int id in ((Actor) crewMember).StarredMovies)
+                {
+
+                    medias.Add(database.GetMovieById(id));
+                }
+
+                foreach (int id in ((Actor)crewMember).StarredTVShows)
+                {
+
+                    medias.Add(database.GetTVShowById(id));
+                }
+
+                foreach (int id in ((Actor)crewMember).StarredEpisodes)
+                {
+
+                    medias.Add(database.GetEpisodeById(id));
+                }
+
+            } 
+            else
+            {
+                foreach (int id in ((Director)crewMember).DirectedMovies)
+                {
+
+                    medias.Add(database.GetMovieById(id));
+                }
+
+                foreach (int id in ((Director)crewMember).DirectedTVShows)
+                {
+
+                    medias.Add(database.GetTVShowById(id));
+                }
+
+                foreach (int id in ((Director)crewMember).DirectedEpisodes)
+                {
+
+                    medias.Add(database.GetEpisodeById(id));
+                }
+            }
+            database.CloseConnection();
+            return medias;
+        }
+
         private void backBtn_Click(object sender, EventArgs e)
         {
+            
+            
             this.Hide();
-            form.Closed += (s, args) => this.Close();
-            form.ShowDialog();
+            var mediaInfo = new FormMediaInformation(form,media,user);
+            mediaInfo.Closed += (s, args) => this.Close();
+            mediaInfo.ShowDialog();
         }
 
         private void langBtn_Click(object sender, EventArgs e)
@@ -67,10 +118,10 @@ namespace MovieDatabase
         /// Loads all the medias from the database
         /// </summary>
         /// <param name="medias">list of medias</param>
-        private void LoadMedia(List<Media> medias)
+        private void LoadMedia(CrewMember crewMember)
         {
             mediaFlowPanel.Controls.Clear();
-            foreach (var media in medias)
+            foreach (var media in GetCrewMemberMedia(crewMember) )
             {
                 PictureBox pictureBox = new PictureBox
                 {

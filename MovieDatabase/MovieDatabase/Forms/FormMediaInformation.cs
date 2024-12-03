@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Runtime.Loader;
 using System.Text;
@@ -59,8 +60,9 @@ namespace MovieDatabase
         private void backBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            form.Closed += (s, args) => this.Close();
-            form.Show();
+            var mainMenu = new FormMainMenu(user);
+            mainMenu.Closed += (s, args) => this.Close();
+            mainMenu.Show();
         }
 
         private void giveReviewBtn_Click(object sender, EventArgs e)
@@ -96,7 +98,7 @@ namespace MovieDatabase
                 PictureBox pictureBox = new PictureBox
                 {
                     SizeMode = PictureBoxSizeMode.StretchImage,
-                    ImageLocation = media.ImageLink,
+                    ImageLocation = actor.ImageLink,
                     Width = 150,
                     Height = 200,
                     Margin = new Padding(10)
@@ -114,13 +116,16 @@ namespace MovieDatabase
         /// <param name="media">media</param>
         private void LoadDirector(Media media)
         {
+            var database = DatabaseUtils.GetInstance();
+            List<Director> directors = database.GetMovieDirectors(media.MediaId);
+
             actorPanel.Controls.Clear();
-            foreach (var director in media.Directors)
+            foreach (var director in directors)
             {
                 PictureBox pictureBox = new PictureBox
                 {
                     SizeMode = PictureBoxSizeMode.StretchImage,
-                    ImageLocation = media.ImageLink,
+                    ImageLocation = director.ImageLink,
                     Width = 150,
                     Height = 200,
                     Margin = new Padding(10)
@@ -130,6 +135,7 @@ namespace MovieDatabase
 
                 directorPanel.Controls.Add(pictureBox);
             }
+            database.CloseConnection();
         }
 
         /// <summary>
@@ -159,7 +165,7 @@ namespace MovieDatabase
         private void OpenCrewInfo(CrewMember crewMember)
         {
             var currentForm = this;
-            var mediaInformationForm = new FormCrewMemberInformation(currentForm, crewMember, user);
+            var mediaInformationForm = new FormCrewMemberInformation(currentForm, crewMember, user, media);
             this.Hide();
             mediaInformationForm.Closed += (s, args) => this.Close();
             mediaInformationForm.ShowDialog();

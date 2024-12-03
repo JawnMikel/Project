@@ -38,26 +38,7 @@ namespace MovieDatabase
 
             LoadMedias(mediaList);
         }
-        public FormMainMenu(Form form,User user)
-        {
-            InitializeComponent();
-            Update();
-            this.user = user;
-            this.form = form;
-            profileBtn.Text = user.Username;
-            if (user.Membership == User.Memberships.REGULAR)
-            {
-                recBtn.Enabled = false;
-                top10Btn.Enabled = false;
-            }
-            else
-            {
-                recBtn.Enabled = true;
-                top10Btn.Enabled = true;
-            }
 
-            LoadMedias(mediaList);
-        }
         private void profileBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -105,7 +86,24 @@ namespace MovieDatabase
 
         private void recBtn_Click(object sender, EventArgs e)
         {
-            //takes from the watchlist and search history??
+            var database = DatabaseUtils.GetInstance();
+
+            List<Media> allMedia = database.GetAllMedia();
+
+            List<Media.Genre> watchlist = user.WatchList.SelectMany(media => media.Genres).Distinct().ToList();
+
+            List<Media> recommendation = allMedia.Where(media => media.Genres.Any(genre => watchlist.Contains((Media.Genre)genre))).ToList();
+
+            if (recommendation.Any())
+            {
+                LoadMedias(recommendation); 
+            }
+            else
+            {
+                MessageBox.Show("No recommendations found based on your watchlist.", "Recommendations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            database.CloseConnection();
         }
 
         private void top10Btn_Click(object sender, EventArgs e)
