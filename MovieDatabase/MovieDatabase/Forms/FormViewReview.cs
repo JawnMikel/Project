@@ -30,8 +30,7 @@ namespace MovieDatabase
         }
         public FormViewReview(Form form, Media media, User user)
         {
-            Thread.CurrentThread.CurrentCulture = Util.cultureEn;
-            Thread.CurrentThread.CurrentUICulture = Util.cultureEn;
+            
             this.crewMember = null;
 
             InitializeComponent();

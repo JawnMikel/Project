@@ -59,7 +59,7 @@ namespace MovieDatabase
             // 
             // langBtn
             // 
-            langBtn.Location = new Point(1107, 9);
+            langBtn.Location = new Point(1258, 50);
             langBtn.Name = "langBtn";
             langBtn.Size = new Size(112, 34);
             langBtn.TabIndex = 1;
@@ -69,7 +69,7 @@ namespace MovieDatabase
             // 
             // backBtn
             // 
-            backBtn.Location = new Point(975, 9);
+            backBtn.Location = new Point(1126, 50);
             backBtn.Name = "backBtn";
             backBtn.Size = new Size(112, 34);
             backBtn.TabIndex = 2;

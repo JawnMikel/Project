@@ -292,7 +292,7 @@ namespace MovieDatabase.Utils
         /// </summary>
         /// <param name="movieId">The movie Id of the movie.</param>
         /// <returns>The list of directors directing the movie specified by movieId.</returns>
-        private List<Director> GetMovieDirectors(int movieId)
+        public List<Director> GetMovieDirectors(int movieId)
         {
             const string SQL = """
                                 SELECT d.* FROM director d JOIN moviedirector md ON d.DirectorID = md.DirectorID WHERE md.MovieID = @MovieID;
