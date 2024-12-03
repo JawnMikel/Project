@@ -499,3 +499,91 @@ VALUES
     (2, 5),
     (3, 6),
     (3, 2);
+
+-- Insert statements for episodes
+INSERT INTO episode (Title, ReleaseDate, Synopsis, Duration, SeasonNumber, EpisodeNumber, ImageLink, TVShowID)
+VALUES
+    ('Pilot', '2005-03-24', 'The premiere episode introduces the boss and staff of the Dunder-Mifflin Paper Company in Scranton, Pennsylvania in a documentary about the workplace.', 23, 1, 1, 'https://m.media-amazon.com/images/M/MV5BMzljZGU5ODgtYzFlNi00MTIwLTlkYjAtYjgxODIwZGZmMjdkXkEyXkFqcGc@._V1_QL75_UY281_CR155,0,190,281_.jpg', 1),
+    ('Diversity Day', '2005-03-29', 'Michael''s off color remark puts a sensitivity trainer in the office for a presentation, which prompts Michael to create his own.', 23, 1, 2, 'https://m.media-amazon.com/images/M/MV5BMTQ3OTE0MDE3MF5BMl5BanBnXkFtZTgwOTk4MjU1MjE@._V1_QL75_UY281_CR93,0,190,281_.jpg', 1),
+    ('Health Care', '2005-04-05', 'Michael leaves Dwight in charge of picking the new healthcare plan for the staff, with disastrous results ahead.', 22, 1, 3, 'https://m.media-amazon.com/images/M/MV5BMTUxNDMxMjg1MV5BMl5BanBnXkFtZTgwNTk4MjU1MjE@._V1_QL75_UY281_CR93,0,190,281_.jpg', 1),
+    ('Chapter One: The Vanishing of Will Byers', '2016-07-15', 'On his way home from a friend''s house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab.', 47, 1, 1, 'https://m.media-amazon.com/images/M/MV5BMTUwNTE0ODYzOF5BMl5BanBnXkFtZTgwOTc0ODE0OTE@._V1_QL75_UY281_CR116,0,190,281_.jpg', 2),
+    ('Chapter Two: The Weirdo on Maple Street', '2016-07-15', 'Lucas, Mike and Dustin try to talk to the girl they found in the woods. Meanwhile, Hopper questions an anxious Joyce about an unsettling phone call.', 55, 1, 2, 'https://m.media-amazon.com/images/M/MV5BNzNmZGI4ZGItODUzNi00NmE3LWJjOWYtZTQwOTQzMGE3YjA2XkEyXkFqcGc@._V1_QL75_UY281_CR186,0,190,281_.jpg', 2),
+    ('Chapter Three: Holly, Jolly', '2016-07-15', 'An increasingly concerned Nancy looks for Barb and finds out what Jonathan''s been up to. Joyce is convinced Will is trying to talk to her.', 51, 1, 3, 'https://m.media-amazon.com/images/M/MV5BMTY4MDUxOTIwMV5BMl5BanBnXkFtZTgwNDg0ODE0OTE@._V1_QL75_UY281_CR155,0,190,281_.jpg', 2),
+    ('The One Where Monica Gets a Roommate', '1994-09-22', 'Monica and the gang introduce Rachel to the "real world" after she leaves her fiancé at the altar.', 22, 1, 1, 'https://m.media-amazon.com/images/M/MV5BMTZhMjIzMTUtYjgwYy00ZWZmLTg4MzQtOWM1NzNhNGQ1MzZjXkEyXkFqcGc@._V1_QL75_UY281_CR151,0,190,281_.jpg', 3),
+    ('The One with the Sonogram at the End', '1994-09-29', 'Ross finds out his ex-wife is pregnant. Rachel returns her engagement ring to Barry. Monica becomes stressed when her and Ross''s parents come to visit', 22, 1, 2, 'https://m.media-amazon.com/images/M/MV5BMjE3NDg2ODc3MV5BMl5BanBnXkFtZTgwODAyODM0MDE@._V1_QL75_UX190_CR0,5,190,281_.jpg', 3),
+    ('The One with the Thumb', '1994-10-06', 'Monica becomes irritated when everyone likes her new boyfriend more than she does. Chandler resumes his smoking habit. Phoebe is given $7000 when she finds a thumb in a can of soda.', 22, 1, 3, 'https://m.media-amazon.com/images/M/MV5BMzNjNTU5NGMtNWQxMy00MDk2LWI4NDEtZWQwMWI3NmYzZmFhXkEyXkFqcGc@._V1_QL75_UY281_CR155,0,190,281_.jpg', 3),
+    ('In the Dark Night of the Soul It''s Always 3:30 in the Morning', '2019-11-01', 'America''s favorite morning news show is thrown into crisis when it becomes the news.', 63, 1, 1, 'https://m.media-amazon.com/images/M/MV5BMzkyOGMxNmUtNDMxMy00NDViLWFmY2UtN2ExMWIxMDJlOWZmXkEyXkFqcGc@._V1_QL75_UY281_CR116,0,190,281_.jpg', 4),
+    ('A Seat at the Table', '2019-11-01', 'Alex engages in contract negotiations as she prepares to accepts an award. Bradley is courted for a new opportunity.', 55, 1, 2, 'https://m.media-amazon.com/images/M/MV5BY2M3MzU0MWItYTcyYi00ZWNlLTlhYTgtNTJmNWY3ZmY1NTEzXkEyXkFqcGc@._V1_QL75_UY281_CR116,0,190,281_.jpg', 4),
+    ('Chaos Is the New Cocaine', '2019-11-01', 'In a weekend of turmoil, TMS scrambles to prepare for its new future.', 53, 1, 3, 'https://m.media-amazon.com/images/M/MV5BM2E1NmYwYzAtNTJlNi00N2RmLThjOWItOTNlYWZlM2RkOTA5XkEyXkFqcGc@._V1_QL75_UY281_CR116,0,190,281_.jpg', 4);
+
+-- Insert statements for episode genres
+INSERT INTO episodegenre (EpisodeID, GenreID)
+VALUES
+    (1, 2),
+    (2, 2),
+    (3, 2),
+    (4, 4),
+    (5, 7),
+    (6, 3),
+    (7, 2),
+    (8, 2),
+    (9, 2),
+    (10, 8),
+    (10, 8),
+    (10, 8);
+
+-- Insert for episode actors
+INSERT INTO episodeactor (EpisodeID, ActorID)
+VALUES
+    (1, 70),
+    (1, 92),
+    (2, 70),
+    (2, 92),
+    (3, 70),
+    (3, 92),
+    (4, 91),
+    (4, 94),
+    (5, 91),
+    (5, 94),
+    (6, 91),
+    (6, 94),
+    (7, 93),
+    (8, 93),
+    (9, 93),
+    (10, 70),
+    (10, 93),
+    (11, 70),
+    (11, 93),
+    (12, 70),
+    (12, 93);
+
+-- Insert for episode directors
+INSERT INTO episodedirector (EpisodeID, DirectorID)
+VALUES
+    (1, 31),
+    (1, 32),
+    (1, 33),
+    (2, 31),
+    (2, 32),
+    (2, 33),
+    (3, 31),
+    (3, 32),
+    (3, 33),
+    (4, 34),
+    (4, 35),
+    (5, 34),
+    (5, 35),
+    (6, 34),
+    (6, 35),
+    (7, 36),
+    (7, 37),
+    (8, 36),
+    (8, 37),
+    (9, 36),
+    (9, 37),
+    (10, 38),
+    (10, 39),
+    (11, 38),
+    (11, 39),
+    (12, 38),
+    (12, 39),
