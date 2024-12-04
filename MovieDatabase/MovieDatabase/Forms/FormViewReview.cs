@@ -17,37 +17,43 @@ namespace MovieDatabase
         CrewMember crewMember;
         User user;
         Form form;
-        public FormViewReview(Form form, CrewMember crewMember, User user)
+        public FormViewReview(Form form, CrewMember crewMember, User user, Media media)
         {
-            this.media = null;
             InitializeComponent();
             Update();
             this.crewMember = crewMember;
             this.form = form;
+            this.user = user;
+            this.media = media;
             titleLbl.Text += " " + crewMember.FirstName + " " + crewMember.LastName;
 
             titleLbl.Text += LoadReview(crewMember);
         }
         public FormViewReview(Form form, Media media, User user)
         {
-            
-            this.crewMember = null;
-
             InitializeComponent();
             this.media = media;
             titleLbl.Text += " " + media.Title;
-
+            this.form = form;
             LoadReview(media);
-
             this.user = user;
         }
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            Hide();
-            var formMediaLoad = new FormMediaInformation(form, media, user);
-            formMediaLoad.Closed += (s, args) => this.Close();
-            formMediaLoad.Show();
+            this.Hide();
+            if (form is FormCrewMemberInformation)
+            {
+                var formCrewMemberInfo = new FormCrewMemberInformation(form, crewMember, user, media);
+                formCrewMemberInfo.Closed += (s, args) => this.Close();
+                formCrewMemberInfo.ShowDialog();
+            }
+            else if (form is FormMediaInformation)
+            {
+                var formMediaInfo = new FormMediaInformation(form, media, user);
+                formMediaInfo.Closed += (s, args) => this.Close();
+                formMediaInfo.ShowDialog();
+            }
         }
 
         private void langBtn_Click(object sender, EventArgs e)

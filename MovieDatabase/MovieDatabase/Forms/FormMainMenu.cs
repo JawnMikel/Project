@@ -169,18 +169,18 @@ namespace MovieDatabase
         private void searchTB_TextChanged(object sender, EventArgs e)
         {
             string searchText = searchTB.Text.Trim();
-
+            var database = DatabaseUtils.GetInstance();
             if (!string.IsNullOrWhiteSpace(searchText))
             {
-                var database = DatabaseUtils.GetInstance();
                 List<Media> searches = database.SearchMediaByTitle(searchText);
-                database.CloseConnection();
                 LoadMedias(searches);
             }
             else
             {
-                mediaLayout.Controls.Clear();
+                List<Media> allMedias = database.GetAllMedia();
+                LoadMedias(allMedias);
             }
+            database.CloseConnection();
         }
 
         private void langBtn_Click(object sender, EventArgs e)

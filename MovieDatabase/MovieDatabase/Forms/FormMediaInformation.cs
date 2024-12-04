@@ -4,12 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Runtime.Loader;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using MovieDatabase.message;
 using MovieDatabase.Utils;
 
 namespace MovieDatabase
@@ -19,9 +21,6 @@ namespace MovieDatabase
         Form form;
         Media media;
         User user;
-
-        // private readonly List<Media> mediaList = DatabaseUtils.GetInstance().GetAllMedia();
-        //private readonly List<Actor> actors = DatabaseUtils.GetInstance().GetAllActors();
 
         public FormMediaInformation(Form form, Media media, User user)
         {
@@ -33,8 +32,8 @@ namespace MovieDatabase
             titleLbl.Text = media.Title;
             releaseDate.Value = media.ReleaseDate;
             synopsisTB.Text = media.Synopsis;
-            ratingLbl.Text += media.GetMediaRating() + "/5";
 
+            UpdateRatingLabel();
             if (media is Episode)
             {
                 watchlistCheckBox.Enabled = false;
@@ -49,12 +48,19 @@ namespace MovieDatabase
             LoadPhoto(media);
             LoadActors(media);
             LoadDirector(media);
+            LoadGenres(media);
+            if (media is TVShow)
+            {
+                episodeLbl.Visible = true;
+                LoadEpisodes((TVShow)media);
+            }
 
         }
         private void langBtn_Click(object sender, EventArgs e)
         {
             Util.Language();
             Update();
+            UpdateRatingLabel();
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -68,7 +74,7 @@ namespace MovieDatabase
         private void giveReviewBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formViewReview = new FormWriteReview(form, media, user);
+            var formViewReview = new FormWriteReview(this, media, user);
             formViewReview.Closed += (s, args) => this.Close();
             formViewReview.ShowDialog();
         }
@@ -76,7 +82,7 @@ namespace MovieDatabase
         private void viewReviewBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formViewReview = new FormViewReview(form, media, user);
+            var formViewReview = new FormViewReview(this, media, user);
             formViewReview.Closed += (s, args) => this.Close();
             formViewReview.ShowDialog();
         }
@@ -86,6 +92,37 @@ namespace MovieDatabase
             WatchListControl();
         }
 
+        private void UpdateRatingLabel()
+        {
+            string baseText = messages.Rating;
+            ratingLbl.Text = $"{baseText} {media.GetMediaRating()}/5";
+        }
+
+        private void LoadGenres(Media media)
+        {
+            genrePanel.Controls.Clear();
+            foreach(var genre in media.Genres) 
+            {
+                Label label = new Label
+                {
+                    Text = genre.ToString(),
+                    Width = 120,
+                    Margin = new Padding(5)
+                };
+
+                label.Click += (s,args) => OpenMediaLoad(genre);
+                genrePanel.Controls.Add(label);
+            }
+        }
+
+        private void OpenMediaLoad(Media.Genre genre)
+        {
+            this.Hide();
+            var mediaLoad = new FormMediaLoad(genre, this, user);
+            mediaLoad.Closed += (s, args) => this.Close();
+            mediaLoad.ShowDialog();
+        }
+            
         /// <summary>
         /// Loads all the actors from the database
         /// </summary>
@@ -116,11 +153,8 @@ namespace MovieDatabase
         /// <param name="media">media</param>
         private void LoadDirector(Media media)
         {
-            var database = DatabaseUtils.GetInstance();
-            List<Director> directors = database.GetMovieDirectors(media.MediaId);
-
-            actorPanel.Controls.Clear();
-            foreach (var director in directors)
+            directorPanel.Controls.Clear();
+            foreach (var director in media.Directors)
             {
                 PictureBox pictureBox = new PictureBox
                 {
@@ -135,7 +169,36 @@ namespace MovieDatabase
 
                 directorPanel.Controls.Add(pictureBox);
             }
-            database.CloseConnection();
+        }
+
+        private void LoadEpisodes(TVShow tvshow)
+        {
+            episodePanel.Controls.Clear();
+            
+            foreach (Episode episode in tvshow.Episodes)
+            {
+                PictureBox pictureBox = new PictureBox
+                {
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    ImageLocation = episode.ImageLink,
+                    Width = 150,
+                    Height = 200,
+                    Margin = new Padding(10)
+                };
+
+                pictureBox.Click += (s, e) => OpenMediaForm(episode);
+
+                episodePanel.Controls.Add(pictureBox);
+            }
+        }
+
+        private void OpenMediaForm(Episode episode)
+        {
+            
+            this.Hide();
+            var mediaInformationForm = new FormMediaInformation(this, episode, user);
+            mediaInformationForm.Closed += (s, args) => this.Close();
+            mediaInformationForm.ShowDialog();
         }
 
         /// <summary>

@@ -18,7 +18,7 @@ namespace MovieDatabase
     {
         User user;
         Media media;
-        CrewMember crew;
+        CrewMember crewMember;
         Form form;
         public FormWriteReview(Form form, Media media, User user)
         {
@@ -30,15 +30,15 @@ namespace MovieDatabase
             titleLbl.Text = media.Title;
 
         }
-        public FormWriteReview(Form form, CrewMember crew, User user)
+        public FormWriteReview(Form form, CrewMember crewMember, User user, Media media)
         {
             InitializeComponent();
-            Util.Language();
             Update();
             this.user = user;
-            this.crew = crew;
+            this.crewMember = crewMember;
             this.form = form;
-            titleLbl.Text = crew.FirstName + " " + crew.LastName;
+            this.media = media;
+            titleLbl.Text = crewMember.FirstName + " " + crewMember.LastName;
         }
 
         private void postBtn_Click(object sender, EventArgs e)
@@ -66,15 +66,15 @@ namespace MovieDatabase
                     database.InsertReview(review, (Episode)media);
                 }
             }
-            if (crew != null)
+            if (crewMember != null)
             {
-                if (crew is Actor)
+                if (crewMember is Actor)
                 {
-                    database.InsertReview(review, (Actor)crew);
+                    database.InsertReview(review, (Actor)crewMember);
                 }
                 else
                 {
-                    database.InsertReview(review, (Director)crew);
+                    database.InsertReview(review, (Director)crewMember);
                 }
             }
             database.CloseConnection();
@@ -83,9 +83,18 @@ namespace MovieDatabase
         private void backBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formMediaLoad = new FormMediaInformation(this, media, user);
-            formMediaLoad.Closed += (s, args) => this.Close();
-            formMediaLoad.ShowDialog();
+            if (form is FormCrewMemberInformation)
+            {
+                var formCrewMemberInfo = new FormCrewMemberInformation(form, crewMember, user, media);
+                formCrewMemberInfo.Closed += (s, args) => this.Close();
+                formCrewMemberInfo.ShowDialog();
+            }
+            else if (form is FormMediaInformation)
+            {
+                var formMediaInfo = new FormMediaInformation(form, media, user);
+                formMediaInfo.Closed += (s, args) => this.Close();
+                formMediaInfo.ShowDialog();
+            }
         }
 
         private void langBtn_Click(object sender, EventArgs e)

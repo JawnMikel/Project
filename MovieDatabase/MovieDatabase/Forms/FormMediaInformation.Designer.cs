@@ -44,6 +44,9 @@ namespace MovieDatabase
             synopsisTB = new RichTextBox();
             actorsLbl = new Label();
             actorPanel = new FlowLayoutPanel();
+            genrePanel = new FlowLayoutPanel();
+            episodePanel = new FlowLayoutPanel();
+            episodeLbl = new Label();
             ((System.ComponentModel.ISupportInitialize)mediaPicture).BeginInit();
             SuspendLayout();
             // 
@@ -96,7 +99,7 @@ namespace MovieDatabase
             // ratingLbl
             // 
             ratingLbl.AutoSize = true;
-            ratingLbl.Location = new Point(25, 558);
+            ratingLbl.Location = new Point(12, 544);
             ratingLbl.Name = "ratingLbl";
             ratingLbl.Size = new Size(67, 25);
             ratingLbl.TabIndex = 6;
@@ -104,7 +107,7 @@ namespace MovieDatabase
             // 
             // giveReviewBtn
             // 
-            giveReviewBtn.Location = new Point(1074, 156);
+            giveReviewBtn.Location = new Point(1209, 137);
             giveReviewBtn.Name = "giveReviewBtn";
             giveReviewBtn.Size = new Size(161, 34);
             giveReviewBtn.TabIndex = 7;
@@ -114,7 +117,7 @@ namespace MovieDatabase
             // 
             // viewReviewBtn
             // 
-            viewReviewBtn.Location = new Point(1074, 269);
+            viewReviewBtn.Location = new Point(1209, 216);
             viewReviewBtn.Name = "viewReviewBtn";
             viewReviewBtn.Size = new Size(161, 34);
             viewReviewBtn.TabIndex = 8;
@@ -125,7 +128,7 @@ namespace MovieDatabase
             // watchlistCheckBox
             // 
             watchlistCheckBox.AutoSize = true;
-            watchlistCheckBox.Location = new Point(1066, 422);
+            watchlistCheckBox.Location = new Point(1209, 283);
             watchlistCheckBox.Name = "watchlistCheckBox";
             watchlistCheckBox.Size = new Size(167, 29);
             watchlistCheckBox.TabIndex = 9;
@@ -144,10 +147,12 @@ namespace MovieDatabase
             // 
             // directorPanel
             // 
+            directorPanel.AutoScroll = true;
             directorPanel.AutoSize = true;
+            directorPanel.FlowDirection = FlowDirection.TopDown;
             directorPanel.Location = new Point(435, 156);
             directorPanel.Name = "directorPanel";
-            directorPanel.Size = new Size(265, 269);
+            directorPanel.Size = new Size(248, 764);
             directorPanel.TabIndex = 11;
             // 
             // synopsisTB
@@ -172,14 +177,41 @@ namespace MovieDatabase
             // 
             actorPanel.Location = new Point(706, 154);
             actorPanel.Name = "actorPanel";
-            actorPanel.Size = new Size(354, 499);
+            actorPanel.Size = new Size(404, 778);
             actorPanel.TabIndex = 14;
+            // 
+            // genrePanel
+            // 
+            genrePanel.Location = new Point(12, 595);
+            genrePanel.Name = "genrePanel";
+            genrePanel.Size = new Size(417, 126);
+            genrePanel.TabIndex = 15;
+            // 
+            // episodePanel
+            // 
+            episodePanel.Location = new Point(1116, 419);
+            episodePanel.Name = "episodePanel";
+            episodePanel.Size = new Size(360, 513);
+            episodePanel.TabIndex = 16;
+            // 
+            // episodeLbl
+            // 
+            episodeLbl.AutoSize = true;
+            episodeLbl.Location = new Point(1232, 378);
+            episodeLbl.Name = "episodeLbl";
+            episodeLbl.Size = new Size(83, 25);
+            episodeLbl.TabIndex = 17;
+            episodeLbl.Text = "Episodes";
+            episodeLbl.Visible = false;
             // 
             // FormMediaInformation
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1382, 694);
+            ClientSize = new Size(1472, 932);
+            Controls.Add(episodeLbl);
+            Controls.Add(episodePanel);
+            Controls.Add(genrePanel);
             Controls.Add(actorPanel);
             Controls.Add(actorsLbl);
             Controls.Add(synopsisTB);
@@ -230,5 +262,8 @@ namespace MovieDatabase
         private RichTextBox synopsisTB;
         private Label actorsLbl;
         private FlowLayoutPanel actorPanel;
+        private FlowLayoutPanel genrePanel;
+        private FlowLayoutPanel episodePanel;
+        private Label episodeLbl;
     }
 }
