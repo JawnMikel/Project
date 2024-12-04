@@ -107,7 +107,7 @@ namespace MovieDatabase
             // 
             // giveReviewBtn
             // 
-            giveReviewBtn.Location = new Point(1209, 137);
+            giveReviewBtn.Location = new Point(1174, 141);
             giveReviewBtn.Name = "giveReviewBtn";
             giveReviewBtn.Size = new Size(161, 34);
             giveReviewBtn.TabIndex = 7;
@@ -117,7 +117,7 @@ namespace MovieDatabase
             // 
             // viewReviewBtn
             // 
-            viewReviewBtn.Location = new Point(1209, 216);
+            viewReviewBtn.Location = new Point(1174, 210);
             viewReviewBtn.Name = "viewReviewBtn";
             viewReviewBtn.Size = new Size(161, 34);
             viewReviewBtn.TabIndex = 8;
@@ -128,7 +128,7 @@ namespace MovieDatabase
             // watchlistCheckBox
             // 
             watchlistCheckBox.AutoSize = true;
-            watchlistCheckBox.Location = new Point(1209, 283);
+            watchlistCheckBox.Location = new Point(1174, 287);
             watchlistCheckBox.Name = "watchlistCheckBox";
             watchlistCheckBox.Size = new Size(167, 29);
             watchlistCheckBox.TabIndex = 9;
