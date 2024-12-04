@@ -93,7 +93,7 @@ namespace MovieDatabase
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
-            titleLbl.Text = rm.GetString("Reviews") + " " + media.Title;
+            titleLbl.Text = rm.GetString("Reviews");
             backBtn.Text = rm.GetString("BackButton");
             langBtn.Text = rm.GetString("Lanbutton");
         }

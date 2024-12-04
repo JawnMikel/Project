@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MovieDatabase.message;
 using MovieDatabase.Utils;
 
 namespace MovieDatabase
@@ -24,13 +26,15 @@ namespace MovieDatabase
             InitializeComponent();
             Update();
             nameLbl.Text = crewMember.FirstName + " " + crewMember.LastName;
-            ratingLbl.Text += crewMember.GetPopularity() + "/5";
+            UpdateRatingLabel();
             this.user = user;
             this.media = media;
             if (user.Membership == User.Memberships.REGULAR)
             {
                 writeReviewBtn.Enabled = false;
             }
+            LoadPhoto(crewMember);
+            LoadMedia(crewMember);
         }
 
         private List<Media> GetCrewMemberMedia(CrewMember crewMember)
@@ -84,8 +88,6 @@ namespace MovieDatabase
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            
-            
             this.Hide();
             var mediaInfo = new FormMediaInformation(form,media,user);
             mediaInfo.Closed += (s, args) => this.Close();
@@ -96,12 +98,13 @@ namespace MovieDatabase
         {
             Util.Language();
             Update();
+            UpdateRatingLabel();
         }
 
         private void wirteReviewBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formWriteReview = new FormWriteReview(form, crewMember, user);
+            var formWriteReview = new FormWriteReview(this, crewMember, user, media);
             formWriteReview.Closed += (s, args) => this.Close();
             formWriteReview.ShowDialog();
         }
@@ -109,15 +112,21 @@ namespace MovieDatabase
         private void viewReviewBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formViewReview = new FormViewReview(form, crewMember, user);
+            var formViewReview = new FormViewReview(this, crewMember, user, media);
             formViewReview.Closed += (s, args) => this.Close();
             formViewReview.ShowDialog();
         }
 
+        private void UpdateRatingLabel()
+        {
+            string baseText = messages.Rating;
+            ratingLbl.Text = $"{baseText} {crewMember.GetPopularity()}/5";
+        }
+
         /// <summary>
-        /// Loads all the medias from the database
+        /// Loads all the medias from the database by the crewmember
         /// </summary>
-        /// <param name="medias">list of medias</param>
+        /// <param name="crewMember">Crew Member</param>
         private void LoadMedia(CrewMember crewMember)
         {
             mediaFlowPanel.Controls.Clear();

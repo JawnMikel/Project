@@ -63,7 +63,7 @@ namespace MovieDatabase
             // 
             // backBtn
             // 
-            backBtn.Location = new Point(672, 12);
+            backBtn.Location = new Point(878, 21);
             backBtn.Name = "backBtn";
             backBtn.Size = new Size(112, 34);
             backBtn.TabIndex = 2;
@@ -73,7 +73,7 @@ namespace MovieDatabase
             // 
             // langBtn
             // 
-            langBtn.Location = new Point(841, 12);
+            langBtn.Location = new Point(1047, 21);
             langBtn.Name = "langBtn";
             langBtn.Size = new Size(112, 34);
             langBtn.TabIndex = 3;
@@ -83,7 +83,7 @@ namespace MovieDatabase
             // 
             // writeReviewBtn
             // 
-            writeReviewBtn.Location = new Point(797, 106);
+            writeReviewBtn.Location = new Point(929, 109);
             writeReviewBtn.Name = "writeReviewBtn";
             writeReviewBtn.Size = new Size(156, 34);
             writeReviewBtn.TabIndex = 4;
@@ -93,7 +93,7 @@ namespace MovieDatabase
             // 
             // viewReviewBtn
             // 
-            viewReviewBtn.Location = new Point(797, 212);
+            viewReviewBtn.Location = new Point(929, 215);
             viewReviewBtn.Name = "viewReviewBtn";
             viewReviewBtn.Size = new Size(156, 34);
             viewReviewBtn.TabIndex = 5;
@@ -106,14 +106,15 @@ namespace MovieDatabase
             portraitFlowPanel.AutoScroll = true;
             portraitFlowPanel.Location = new Point(12, 184);
             portraitFlowPanel.Name = "portraitFlowPanel";
-            portraitFlowPanel.Size = new Size(227, 209);
+            portraitFlowPanel.Size = new Size(239, 318);
             portraitFlowPanel.TabIndex = 6;
             // 
             // mediaFlowPanel
             // 
+            mediaFlowPanel.AutoScroll = true;
             mediaFlowPanel.Location = new Point(257, 147);
             mediaFlowPanel.Name = "mediaFlowPanel";
-            mediaFlowPanel.Size = new Size(527, 433);
+            mediaFlowPanel.Size = new Size(605, 654);
             mediaFlowPanel.TabIndex = 7;
             // 
             // listMediaLbl
@@ -129,7 +130,7 @@ namespace MovieDatabase
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(995, 592);
+            ClientSize = new Size(1187, 834);
             Controls.Add(listMediaLbl);
             Controls.Add(mediaFlowPanel);
             Controls.Add(portraitFlowPanel);
@@ -148,10 +149,9 @@ namespace MovieDatabase
         public void Update()
         {
            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
-           nameLbl.Text = rm.GetString("Name");
            backBtn.Text = rm.GetString("BackButton");
            ratingLbl.Text = rm.GetString("Rating");
-           langBtn.Text = rm.GetString("LanButton");
+           langBtn.Text = rm.GetString("Lanbutton");
            writeReviewBtn.Text = rm.GetString("WriteReview");
            viewReviewBtn.Text = rm.GetString("ViewReviews"); 
             
