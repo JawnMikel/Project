@@ -22,7 +22,7 @@ INSERT INTO movie (Title, ReleaseDate, Duration, Synopsis, ImageLink)
 VALUES 
     ('Harry Potter and the Deathly Hallows: Part 2', '2011-07-15', 130, 'As the battle between the forces of good and evil in the wizarding world escalates, Harry Potter draws ever closer to his final confrontation with Voldemort.', 'https://m.media-amazon.com/images/M/MV5BOTA1Mzc2N2ItZWRiNS00MjQzLTlmZDQtMjU0NmY1YWRkMGQ4XkEyXkFqcGc@._V1_.jpg'),
     ('The Lord of the Rings: The Two Towers', '2002-12-18', 179, 'While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron''s new ally, Saruman, and his hordes of Isengard.', 'https://m.media-amazon.com/images/M/MV5BMGQxMDdiOWUtYjc1Ni00YzM1LWE2NjMtZTg3Y2JkMjEzMTJjXkEyXkFqcGc@._V1_.jpg'),
-    ('Emilia Pérez', '2024-08-21', 132, 'Emilia Pérez follows four remarkable women in Mexico, each pursuing their own happiness. Cartel leader Emilia enlists Rita, an unappreciated lawyer, to help fake her death so that she can finally live authentically as her true self.', 'https://m.media-amazon.com/images/M/MV5BMGM0OGNhMzktZGFlNC00NDRmLWJmOTgtYmQ0N2JlZGJhMzQyXkEyXkFqcGc@._V1_QL75_UY281_CR9,0,190,281_.jpg'),
+    ('Emilia PÃ©rez', '2024-08-21', 132, 'Emilia PÃ©rez follows four remarkable women in Mexico, each pursuing their own happiness. Cartel leader Emilia enlists Rita, an unappreciated lawyer, to help fake her death so that she can finally live authentically as her true self.', 'https://m.media-amazon.com/images/M/MV5BMGM0OGNhMzktZGFlNC00NDRmLWJmOTgtYmQ0N2JlZGJhMzQyXkEyXkFqcGc@._V1_QL75_UY281_CR9,0,190,281_.jpg'),
     ('Women of the Hour', '2024-10-18', 95, 'Sheryl Bradshaw, a single woman looking for a suitor on a hit 1970s TV show, chooses charming bachelor Rodney Alcala, unaware that, behind the man''s gentle facade, he hides a deadly secret.', 'https://m.media-amazon.com/images/M/MV5BYzliNzRjNDMtYTFmOS00NDQxLWJlOWMtZTViNjcyMzc0NzQwXkEyXkFqcGc@._V1_QL75_UX190_CR0,0,190,281_.jpg'),
     ('The Lost Children', '2024-11-24', 96, 'Four Indigenous children stranded in Colombian Amazon after plane crash. Guided by ancestral knowledge, they survive while awaiting rescue operation amid the jungle''s challenges.', 'https://m.media-amazon.com/images/M/MV5BZjcxZjFhMWItN2Y2MC00MmZhLWExNzEtOTBiNmYyODgyYWRkXkEyXkFqcGc@._V1_QL75_UY281_CR4,0,190,281_.jpg'),
     ('Return of the King: The Fall and Rise of Elvis Presley', '2024-11-13', 90, 'He had one chance to show the world he was still the King of Rock ''n'' Roll. Discover the story behind Elvis Presley''s triumphant ''68 comeback special.', 'https://m.media-amazon.com/images/M/MV5BNjRiNWU0MjYtYzk0OS00ZTExLTkyZGYtZDUxNDM4ZjJjNmQ4XkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg'),
@@ -38,7 +38,7 @@ VALUES
     ('The Substance', '2024-09-20', 141, 'A fading celebrity takes a black-market drug: a cell-replicating substance that temporarily creates a younger, better version of herself.', 'https://m.media-amazon.com/images/M/MV5BZDQ1NGE5MGMtYzdlZC00ODExLWJlMDMtNWU4NjA5OWYwMDEwXkEyXkFqcGc@._V1_QL75_UY281_CR1,0,190,281_.jpg'),
     ('Saturday Night', '2024-09-27', 109, 'At 11:30pm on October 11th, 1975, a ferocious troupe of young comedians and writers changed television forever. Find out what happened behind the scenes in the 90 minutes leading up to the first broadcast of Saturday Night Live (1975).', 'https://m.media-amazon.com/images/M/MV5BNWI0N2VlMTAtZGFhYS00YzdhLWEzM2EtMWUwMzBkYWQ5NTMwXkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg'),
     ('The Great Gatsby', '2013-05-10', 143, 'A writer and wall street trader, Nick Carraway, finds himself drawn to the past and lifestyle of his mysterious millionaire neighbor, Jay Gatsby, amid the riotous parties of the Jazz Age.', 'https://static.wikia.nocookie.net/cinemorgue/images/1/1e/Cvr9781451689433_9781451689433_hr.jpg'),
-    ('Star Wars: Episode II - Attack of the Clones', '2002-05-12', 142, 'Ten years after initially meeting, Anakin Skywalker shares a forbidden romance with Padmé Amidala, while Obi-Wan Kenobi discovers a secret clone army crafted for the Jedi.', 'https://upload.wikimedia.org/wikipedia/en/3/32/Star_Wars_-_Episode_II_Attack_of_the_Clones_(movie_poster).jpg'),
+    ('Star Wars: Episode II - Attack of the Clones', '2002-05-12', 142, 'Ten years after initially meeting, Anakin Skywalker shares a forbidden romance with PadmÃ© Amidala, while Obi-Wan Kenobi discovers a secret clone army crafted for the Jedi.', 'https://upload.wikimedia.org/wikipedia/en/3/32/Star_Wars_-_Episode_II_Attack_of_the_Clones_(movie_poster).jpg'),
     ('Avengers: Endgame', '2019-04-26', 181, 'After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos'' actions and restore balance to the universe.', 'https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_QL75_UX190_CR0,0,190,281_.jpg')
     ('The Hunger Games', '2012-03-12', 142, 'Katniss Everdeen voluntarily takes her younger sister''s place in the Hunger Games: a televised competition in which two teenagers from each of the twelve Districts of Panem are chosen at random to fight to the death.', 'https://lionsgate.brightspotcdn.com/38/0e/775e592e43be939f63c5f7e528a3/hungergames-movie-bg01-portrait1.jpg'),
     ('Titanic', '1997-11-18', 194, 'A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.', 'https://miro.medium.com/v2/resize:fit:1200/0*5MFFtR8MBLOv1q_Z.jpg'),
@@ -156,7 +156,7 @@ VALUES
     ('John', 'Bach', 'https://m.media-amazon.com/images/M/MV5BMTg1Mjg2MzM0OV5BMl5BanBnXkFtZTcwMDQ2NzMwOA@@._V1_QL75_UY207_CR4,0,140,207_.jpg'),
 
     ('Zoe', 'Saldana', 'https://m.media-amazon.com/images/M/MV5BMDFkMWQ5ZDItNGUzNS00YzI4LWIyOTctMDk0Mjc3MGQyZTYxXkEyXkFqcGc@._V1_QL75_UY207_CR22,0,140,207_.jpg'),
-    ('Karla', 'Sofía Gascón', 'https://m.media-amazon.com/images/M/MV5BNzAzY2FiNTQtNzEyYS00YmZjLWJjM2MtNjQxZGQ3NGY3NGVlXkEyXkFqcGc@._V1_QL75_UY207_CR85,0,140,207_.jpg'),
+    ('Karla', 'SofÃ­a GascÃ³n', 'https://m.media-amazon.com/images/M/MV5BNzAzY2FiNTQtNzEyYS00YmZjLWJjM2MtNjQxZGQ3NGY3NGVlXkEyXkFqcGc@._V1_QL75_UY207_CR85,0,140,207_.jpg'),
     ('Selena', 'Gomez', 'https://m.media-amazon.com/images/M/MV5BMjAwNTE2MDMyMl5BMl5BanBnXkFtZTgwMjAyODM3MTI@._V1_QL75_UY207_CR8,0,140,207_.jpg'),
 
     ('Anna', 'Kendrick', 'https://m.media-amazon.com/images/M/MV5BMjIzOTA0OTQyN15BMl5BanBnXkFtZTcwMjE1OTIwMw@@._V1_QL75_UY207_CR3,0,140,207_.jpg'),
@@ -172,7 +172,7 @@ VALUES
 
     ('Matt', 'Damon', 'https://m.media-amazon.com/images/M/MV5BMTM0NzYzNDgxMl5BMl5BanBnXkFtZTcwMDg2MTMyMw@@._V1_QL75_UY207_CR7,0,140,207_.jpg'),
     ('Gylfi', 'Zoega', 'https://m.media-amazon.com/images/M/MV5BMTkwMzA1MjM0Nl5BMl5BanBnXkFtZTcwMDEzODc1Mw@@._V1_QL75_UY207_CR114,0,140,207_.jpg'),
-    ('Andri', 'Snær Magnason', 'https://m.media-amazon.com/images/M/MV5BMjE0NzAwOTQwM15BMl5BanBnXkFtZTcwNDgyODc1Mw@@._V1_QL75_UY207_CR114,0,140,207_.jpg'),
+    ('Andri', 'SnÃ¦r Magnason', 'https://m.media-amazon.com/images/M/MV5BMjE0NzAwOTQwM15BMl5BanBnXkFtZTcwNDgyODc1Mw@@._V1_QL75_UY207_CR114,0,140,207_.jpg'),
 
     ('Ryan', 'Reynolds', 'https://m.media-amazon.com/images/M/MV5BMzRiNDhiMDQtYWZkMS00ZjU5LTg5NzUtOTc4NzE2Yzc0ZWUwXkEyXkFqcGc@._V1_QL75_UY207_CR0,0,140,207_.jpg'),
     ('Hugh', 'Jackman', 'https://m.media-amazon.com/images/M/MV5BNDExMzIzNjk3Nl5BMl5BanBnXkFtZTcwOTE4NDU5OA@@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
@@ -184,7 +184,7 @@ VALUES
 
     ('Saoirse', 'Ronan', 'https://m.media-amazon.com/images/M/MV5BMjExNTM5NDE4NV5BMl5BanBnXkFtZTcwNzczMzEzOQ@@._V1_QL75_UX140_CR0,2,140,207_.jpg'),
     ('Harris', 'Dickinson', 'https://m.media-amazon.com/images/M/MV5BOGU1MGQ5NDAtMTVlNy00MmY3LWIxYzQtMzhhY2VjNmU4ODhhXkEyXkFqcGc@._V1_QL75_UY207_CR41,0,140,207_.jpg'),
-    ('Benjamin', 'Clémentine', 'https://m.media-amazon.com/images/M/MV5BZjE5NDFmZGYtNzJmZi00ZjFlLWIyYWMtZmVjOWZhZDc3M2UxXkEyXkFqcGc@._V1_CR745,8,549,823_QL75_UX140_CR0,1,140,207_.jpg'),
+    ('Benjamin', 'ClÃ©mentine', 'https://m.media-amazon.com/images/M/MV5BZjE5NDFmZGYtNzJmZi00ZjFlLWIyYWMtZmVjOWZhZDc3M2UxXkEyXkFqcGc@._V1_CR745,8,549,823_QL75_UX140_CR0,1,140,207_.jpg'),
 
     ('Tom', 'Hanks', 'https://m.media-amazon.com/images/M/MV5BMTQ2MjMwNDA3Nl5BMl5BanBnXkFtZTcwMTA2NDY3NQ@@._V1_QL75_UY207_CR2,0,140,207_.jpg'),
     ('Vin', 'Diesel', 'https://m.media-amazon.com/images/M/MV5BMjExNzA4MDYxN15BMl5BanBnXkFtZTcwOTI1MDAxOQ@@._V1_QL75_UY207_CR5,0,140,207_.jpg'),
@@ -196,7 +196,7 @@ VALUES
     ('Michelle', 'Williams', 'https://m.media-amazon.com/images/M/MV5BMjExNjY5NDY0MV5BMl5BanBnXkFtZTgwNjQ1Mjg1MTI@._V1_QL75_UX140_CR0,2,140,207_.jpg'),
 
     ('Amanda', 'Seyfried', 'https://m.media-amazon.com/images/M/MV5BYTM0ZDcxNzctMzIwNi00NjliLTg5YzEtZDc4MDk0MDFiNzA4XkEyXkFqcGc@._V1_QL75_UY207_CR6,0,140,207_.jpg'),
-    ('Stellan', 'Skarsgård', 'https://m.media-amazon.com/images/M/MV5BNTA5MmNiNzMtOTQ1MC00ZDc5LTg3NzItNTZjNWY1MjI2MGM3XkEyXkFqcGc@._V1_QL75_UY207_CR58,0,140,207_.jpg'),
+    ('Stellan', 'SkarsgÃ¥rd', 'https://m.media-amazon.com/images/M/MV5BNTA5MmNiNzMtOTQ1MC00ZDc5LTg3NzItNTZjNWY1MjI2MGM3XkEyXkFqcGc@._V1_QL75_UY207_CR58,0,140,207_.jpg'),
     ('Pierce', 'Brosnan', 'https://m.media-amazon.com/images/M/MV5BMTMwMjMxNzM4OV5BMl5BanBnXkFtZTcwNDM5NzkxMw@@._V1_QL75_UY207_CR6,0,140,207_.jpg'),
 
     ('Skylar', 'Astin', 'https://m.media-amazon.com/images/M/MV5BOTRhYmE4MzAtY2I4ZS00YTMwLWI2MmUtYzkyODc1YjdiYjgyXkEyXkFqcGc@._V1_QL75_UX140_CR0,2,140,207_.jpg'),
@@ -240,7 +240,7 @@ VALUES
 
     ('Rumi', 'Hiiragi', 'https://m.media-amazon.com/images/M/MV5BOTE2ZTYxNjgtNGM0MC00ZmUxLTkwOGMtNTY4ZTFjNTg3MWE5XkEyXkFqcGc@._V1_QL75_UY207_CR6,0,140,207_.jpg'),
     ('Miyu', 'Irino', 'https://m.media-amazon.com/images/M/MV5BOTVmNDU2MjYtMjhmNS00NjQ0LWJkZGItZjdlYjZlN2YzYWRhXkEyXkFqcGc@._V1_QL75_UY207_CR11,0,140,207_.jpg'),
-    ('Tatsuya', 'Gashûin', 'https://m.media-amazon.com/images/M/MV5BYTQ5ZjY5NmUtZjczZS00OWQxLWE4NjktZjU2MmZjMzlmNThlXkEyXkFqcGc@._V1_QL75_UY207_CR1,0,140,207_.jpg'),
+    ('Tatsuya', 'GashÃ»in', 'https://m.media-amazon.com/images/M/MV5BYTQ5ZjY5NmUtZjczZS00OWQxLWE4NjktZjU2MmZjMzlmNThlXkEyXkFqcGc@._V1_QL75_UY207_CR1,0,140,207_.jpg'),
 
     ('David', 'Morse', 'https://m.media-amazon.com/images/M/MV5BMTgwNjUzOTE1N15BMl5BanBnXkFtZTYwNTU4NDQ0._V1_QL75_UY207_CR1,0,140,207_.jpg'),
     ('Bonnie', 'Hunt', 'https://m.media-amazon.com/images/M/MV5BY2Q4ZDFkZjUtNzBlZC00ODgzLTkzMDUtNzQyNzQ0NDBkYTg4XkEyXkFqcGc@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
@@ -254,7 +254,7 @@ VALUES
     ('Matthew', 'McConaughey', 'https://m.media-amazon.com/images/M/MV5BMTg0MDc3ODUwOV5BMl5BanBnXkFtZTcwMTk2NjY4Nw@@._V1_QL75_UX140_CR0,10,140,207_.jpg'),
     ('Mackenzie', 'Foy', 'https://m.media-amazon.com/images/M/MV5BZTczM2FhOTEtOTE4OS00OWM2LTgwMjktNGRlN2NkODI0M2YwXkEyXkFqcGc@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
 
-    ('Bill', 'Skarsgård', 'https://m.media-amazon.com/images/M/MV5BMmNhMDQ1YjktYTg1Ny00Mjg0LWFmZTgtMmE0OTkxYmQzYzVlXkEyXkFqcGc@._V1_QL75_UY207_CR79,0,140,207_.jpg'),
+    ('Bill', 'SkarsgÃ¥rd', 'https://m.media-amazon.com/images/M/MV5BMmNhMDQ1YjktYTg1Ny00Mjg0LWFmZTgtMmE0OTkxYmQzYzVlXkEyXkFqcGc@._V1_QL75_UY207_CR79,0,140,207_.jpg'),
     ('Jaeden', 'Martell', 'https://m.media-amazon.com/images/M/MV5BNWRiYjk4MTItNWMzMC00ZjE1LWFlNDItNDI2MmI4MDZlZjlkXkEyXkFqcGc@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
     ('Jeremy', 'Ray Taylor', 'https://m.media-amazon.com/images/M/MV5BZjM0NDdiZDQtOTJjMS00Njk1LTllM2ItODQzYWU4ZDVjZDViXkEyXkFqcGc@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
 
@@ -417,7 +417,7 @@ VALUES
     ('David', 'Crane', 'https://m.media-amazon.com/images/M/MV5BNDAxODQxMTM0OF5BMl5BanBnXkFtZTcwODg2MDg5Nw@@._V1_QL75_UY207_CR4,0,140,207_.jpg'),
     ('Marta', 'Kauffman', 'https://m.media-amazon.com/images/M/MV5BMTYxODQ2NjUyMF5BMl5BanBnXkFtZTcwNzA2NTExNg@@._V1_QL75_UX140_CR0,1,140,207_.jpg'),
     ('Jay', 'Carson', 'https://static.wikia.nocookie.net/themorningshow/images/a/a3/JayCarson.jpg/revision/latest?cb=20191227111419'),
-    ('Kerry', 'Ehrin', 'https://upload.wikimedia.org/wikipedia/commons/a/a7/NMD_The_Morning_Show_foto_Thor_Br%C3%B8dreskift_8_%2852891064596%29_%28cropped%29.jpg');
+    ('Kerry', 'Ehrin', 'https://media.baselineresearch.com/images/1924188/1924188_full.jpg');
 
 -- Insert statements for movie directors
 INSERT INTO moviedirector (MovieID, DirectorID)
@@ -510,7 +510,7 @@ VALUES
     ('Chapter One: The Vanishing of Will Byers', '2016-07-15', 'On his way home from a friend''s house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab.', 47, 1, 1, 'https://m.media-amazon.com/images/M/MV5BMTUwNTE0ODYzOF5BMl5BanBnXkFtZTgwOTc0ODE0OTE@._V1_QL75_UY281_CR116,0,190,281_.jpg', 2),
     ('Chapter Two: The Weirdo on Maple Street', '2016-07-15', 'Lucas, Mike and Dustin try to talk to the girl they found in the woods. Meanwhile, Hopper questions an anxious Joyce about an unsettling phone call.', 55, 1, 2, 'https://m.media-amazon.com/images/M/MV5BNzNmZGI4ZGItODUzNi00NmE3LWJjOWYtZTQwOTQzMGE3YjA2XkEyXkFqcGc@._V1_QL75_UY281_CR186,0,190,281_.jpg', 2),
     ('Chapter Three: Holly, Jolly', '2016-07-15', 'An increasingly concerned Nancy looks for Barb and finds out what Jonathan''s been up to. Joyce is convinced Will is trying to talk to her.', 51, 1, 3, 'https://m.media-amazon.com/images/M/MV5BMTY4MDUxOTIwMV5BMl5BanBnXkFtZTgwNDg0ODE0OTE@._V1_QL75_UY281_CR155,0,190,281_.jpg', 2),
-    ('The One Where Monica Gets a Roommate', '1994-09-22', 'Monica and the gang introduce Rachel to the "real world" after she leaves her fiancé at the altar.', 22, 1, 1, 'https://m.media-amazon.com/images/M/MV5BMTZhMjIzMTUtYjgwYy00ZWZmLTg4MzQtOWM1NzNhNGQ1MzZjXkEyXkFqcGc@._V1_QL75_UY281_CR151,0,190,281_.jpg', 3),
+    ('The One Where Monica Gets a Roommate', '1994-09-22', 'Monica and the gang introduce Rachel to the "real world" after she leaves her fiancÃ© at the altar.', 22, 1, 1, 'https://m.media-amazon.com/images/M/MV5BMTZhMjIzMTUtYjgwYy00ZWZmLTg4MzQtOWM1NzNhNGQ1MzZjXkEyXkFqcGc@._V1_QL75_UY281_CR151,0,190,281_.jpg', 3),
     ('The One with the Sonogram at the End', '1994-09-29', 'Ross finds out his ex-wife is pregnant. Rachel returns her engagement ring to Barry. Monica becomes stressed when her and Ross''s parents come to visit', 22, 1, 2, 'https://m.media-amazon.com/images/M/MV5BMjE3NDg2ODc3MV5BMl5BanBnXkFtZTgwODAyODM0MDE@._V1_QL75_UX190_CR0,5,190,281_.jpg', 3),
     ('The One with the Thumb', '1994-10-06', 'Monica becomes irritated when everyone likes her new boyfriend more than she does. Chandler resumes his smoking habit. Phoebe is given $7000 when she finds a thumb in a can of soda.', 22, 1, 3, 'https://m.media-amazon.com/images/M/MV5BMzNjNTU5NGMtNWQxMy00MDk2LWI4NDEtZWQwMWI3NmYzZmFhXkEyXkFqcGc@._V1_QL75_UY281_CR155,0,190,281_.jpg', 3),
     ('In the Dark Night of the Soul It''s Always 3:30 in the Morning', '2019-11-01', 'America''s favorite morning news show is thrown into crisis when it becomes the news.', 63, 1, 1, 'https://m.media-amazon.com/images/M/MV5BMzkyOGMxNmUtNDMxMy00NDViLWFmY2UtN2ExMWIxMDJlOWZmXkEyXkFqcGc@._V1_QL75_UY281_CR116,0,190,281_.jpg', 4),
