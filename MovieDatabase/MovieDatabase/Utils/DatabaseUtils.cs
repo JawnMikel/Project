@@ -82,29 +82,31 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@Password", password);
 
                 // Execute the SQL and read the next result
-                SQLiteDataReader reader = cmd.ExecuteReader();
-                if (!reader.Read())
-                {
-                    return null;
-                }
+                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                { 
+                    if (!reader.Read())
+                    {
+                        return null;
+                    }
 
-                // If the PaymentID field is present, the user has a premium membership
-                User.Memberships membership = User.Memberships.REGULAR;
-                if (reader["PaymentID"] != DBNull.Value)
-                {
-                    membership = User.Memberships.PREMIUM;
-                }
+                    // If the PaymentID field is present, the user has a premium membership
+                    User.Memberships membership = User.Memberships.REGULAR;
+                    if (reader["PaymentID"] != DBNull.Value)
+                    {
+                        membership = User.Memberships.PREMIUM;
+                    }
 
-                // Parse the date of birth
-                DateTime dob = DateTime.Parse((string)reader["DateOfBirth"]);        
-                // Create the user object
-                user = new User((string)reader["UserName"], (string)reader["Password"],
-                    (string)reader["FirstName"], (string)reader["LastName"], dob, membership);
-                // Set the user ID
-                user.Id = Convert.ToInt32(reader["UserID"]);
-                // Set the watchlist and reviews
-                user.WatchList = GetUserWatchList(user.Id);
-                user.WrittenReviews = GetUserReviews(user.Id);
+                    // Parse the date of birth
+                    DateTime dob = DateTime.Parse((string)reader["DateOfBirth"]);        
+                    // Create the user object
+                    user = new User((string)reader["UserName"], (string)reader["Password"],
+                        (string)reader["FirstName"], (string)reader["LastName"], dob, membership);
+                    // Set the user ID
+                    user.Id = Convert.ToInt32(reader["UserID"]);
+                    // Set the watchlist and reviews
+                    user.WatchList = GetUserWatchList(user.Id);
+                    user.WrittenReviews = GetUserReviews(user.Id);
+                }
             }
             return user;
         }
@@ -124,14 +126,15 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@UserID", userId);
-                SQLiteDataReader reviewReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all reviews
-                while (reviewReader.Read())
+                using (SQLiteDataReader reviewReader = cmd.ExecuteReader())
                 {
-                    Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
-                    review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
-                    reviews.Add(review);
+                    // Loop through the results and fetch all reviews
+                    while (reviewReader.Read())
+                    {
+                        Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                        review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
+                        reviews.Add(review);
+                    }
                 }
             }
             return reviews;
@@ -157,40 +160,40 @@ namespace MovieDatabase.Utils
                 // Form the SQL and execute the queries
                 movieCmd.Parameters.AddWithValue("@UserID", userId);
                 tvShowCmd.Parameters.AddWithValue("@UserID", userId);
-                SQLiteDataReader movieReader = movieCmd.ExecuteReader();
-                SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader();
-
-                // Add Movies to the watchlist
-                while (movieReader.Read())
+                using (SQLiteDataReader movieReader = movieCmd.ExecuteReader())
+                using (SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader())
                 {
-                    Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
-                        (string)movieReader["Synopsis"], Convert.ToInt32(movieReader["Duration"]), (string)movieReader["ImageLink"]);
-                    // Set the movie id
-                    movie.MediaId = Convert.ToInt32(movieReader["MovieID"]);
-                    // Set the movie reviews, directors, actors, and genres
-                    movie.Reviews = GetMovieReviews(movie.MediaId);
-                    movie.Directors = GetMovieDirectors(movie.MediaId);
-                    movie.Actors = GetMovieActors(movie.MediaId);
-                    movie.Genres = GetMovieGenres(movie.MediaId);
-                    watchList.Add(movie);
-                }
+                    // Add Movies to the watchlist
+                    while (movieReader.Read())
+                    {
+                        Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
+                            (string)movieReader["Synopsis"], Convert.ToInt32(movieReader["Duration"]), (string)movieReader["ImageLink"]);
+                        // Set the movie id
+                        movie.MediaId = Convert.ToInt32(movieReader["MovieID"]);
+                        // Set the movie reviews, directors, actors, and genres
+                        movie.Reviews = GetMovieReviews(movie.MediaId);
+                        movie.Directors = GetMovieDirectors(movie.MediaId);
+                        movie.Actors = GetMovieActors(movie.MediaId);
+                        movie.Genres = GetMovieGenres(movie.MediaId);
+                        watchList.Add(movie);
+                    }
 
-                // Add TV Shows to the watchlist
-                while (tvShowReader.Read())
-                {
-                    TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
-                        (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
-                    // Set the tv show id
-                    tvShow.MediaId = Convert.ToInt32(tvShowReader["TVShowID"]);
-                    // Set the tv show revies, directors, actors, genres, and episodes
-                    tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
-                    tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
-                    tvShow.Actors = GetTVShowActors(tvShow.MediaId);
-                    tvShow.Reviews = GetTVShowReviews(tvShow.MediaId);
-                    tvShow.Genres = GetTVShowGenres(tvShow.MediaId);
-                    watchList.Add(tvShow);
+                    // Add TV Shows to the watchlist
+                    while (tvShowReader.Read())
+                    {
+                        TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
+                            (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
+                        // Set the tv show id
+                        tvShow.MediaId = Convert.ToInt32(tvShowReader["TVShowID"]);
+                        // Set the tv show revies, directors, actors, genres, and episodes
+                        tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
+                        tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
+                        tvShow.Actors = GetTVShowActors(tvShow.MediaId);
+                        tvShow.Reviews = GetTVShowReviews(tvShow.MediaId);
+                        tvShow.Genres = GetTVShowGenres(tvShow.MediaId);
+                        watchList.Add(tvShow);
+                    }
                 }
-
             }
             return watchList;
         }
@@ -210,14 +213,15 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@MovieID", movieId);
-                SQLiteDataReader reviewReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all reviews
-                while (reviewReader.Read())
+                using (SQLiteDataReader reviewReader = cmd.ExecuteReader())
                 {
-                    Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
-                    review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
-                    reviews.Add(review);
+                    // Loop through the results and fetch all reviews
+                    while (reviewReader.Read())
+                    {
+                        Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                        review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
+                        reviews.Add(review);
+                    }
                 }
             }
             return reviews;
@@ -238,14 +242,15 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@MovieID", movieId);
-                SQLiteDataReader genreReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all reviews
-                while (genreReader.Read())
+                using (SQLiteDataReader genreReader = cmd.ExecuteReader())
                 {
-                    // Create the Genre and add it to the genres list
-                    Media.Genre genre = (Media.Genre)Enum.Parse(typeof(Media.Genre), (string)genreReader["GenreName"]);
-                    genres.Add(genre);
+                    // Loop through the results and fetch all reviews
+                    while (genreReader.Read())
+                    {
+                        // Create the Genre and add it to the genres list
+                        Media.Genre genre = (Media.Genre)Enum.Parse(typeof(Media.Genre), (string)genreReader["GenreName"]);
+                        genres.Add(genre);
+                    }
                 }
             }
             return genres;
@@ -266,22 +271,23 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@MovieID", movieId);
-                SQLiteDataReader actorReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all actors
-                while (actorReader.Read())
+                using (SQLiteDataReader actorReader = cmd.ExecuteReader())
                 {
-                    // Create an actor
-                    Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
-                    // Set the actor id
-                    actor.Id = Convert.ToInt32(actorReader["ActorID"]);
-                    // Set the lists of starred media
-                    Dictionary<string, List<int>> starredIds = GetActorStarred(actor.Id);
-                    actor.StarredMovies = starredIds["MovieIds"];
-                    actor.StarredTVShows = starredIds["TVShowIds"];
-                    actor.StarredEpisodes = starredIds["EpisodeIds"];
-                    // Add the actor
-                    actors.Add(actor);
+                    // Loop through the results and fetch all actors
+                    while (actorReader.Read())
+                    {
+                        // Create an actor
+                        Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
+                        // Set the actor id
+                        actor.Id = Convert.ToInt32(actorReader["ActorID"]);
+                        // Set the lists of starred media
+                        Dictionary<string, List<int>> starredIds = GetActorStarred(actor.Id);
+                        actor.StarredMovies = starredIds["MovieIds"];
+                        actor.StarredTVShows = starredIds["TVShowIds"];
+                        actor.StarredEpisodes = starredIds["EpisodeIds"];
+                        // Add the actor
+                        actors.Add(actor);
+                    }
                 }
             }
             return actors;
@@ -302,22 +308,23 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@MovieID", movieId);
-                SQLiteDataReader directorReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all directors
-                while (directorReader.Read())
+                using (SQLiteDataReader directorReader = cmd.ExecuteReader())
                 {
-                    // Create a director
-                    Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
-                    // Set the director id
-                    director.Id = Convert.ToInt32(directorReader["DirectorID"]);
-                    // Set the lists of directed media
-                    Dictionary<string, List<int>> directedIds = GetDirectorDirected(director.Id);
-                    director.DirectedMovies = directedIds["MovieIds"];
-                    director.DirectedTVShows = directedIds["TVShowIds"];
-                    director.DirectedEpisodes = directedIds["EpisodeIds"];
-                    // Add the director
-                    directors.Add(director);
+                    // Loop through the results and fetch all directors
+                    while (directorReader.Read())
+                    {
+                        // Create a director
+                        Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
+                        // Set the director id
+                        director.Id = Convert.ToInt32(directorReader["DirectorID"]);
+                        // Set the lists of directed media
+                        Dictionary<string, List<int>> directedIds = GetDirectorDirected(director.Id);
+                        director.DirectedMovies = directedIds["MovieIds"];
+                        director.DirectedTVShows = directedIds["TVShowIds"];
+                        director.DirectedEpisodes = directedIds["EpisodeIds"];
+                        // Add the director
+                        directors.Add(director);
+                    }
                 }
             }
             return directors;
@@ -338,15 +345,16 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@EpisodeID", episodeId);
-                SQLiteDataReader reviewReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all reviews
-                while (reviewReader.Read())
+                using (SQLiteDataReader reviewReader = cmd.ExecuteReader())
                 {
-                    // Create a review and all it to the reviews list
-                    Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
-                    review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
-                    reviews.Add(review);
+                    // Loop through the results and fetch all reviews
+                    while (reviewReader.Read())
+                    {
+                        // Create a review and all it to the reviews list
+                        Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                        review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
+                        reviews.Add(review);
+                    }
                 }
             }
             return reviews;
@@ -367,14 +375,15 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@EpisodeID", episodeId);
-                SQLiteDataReader genreReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all genres
-                while (genreReader.Read())
+                using (SQLiteDataReader genreReader = cmd.ExecuteReader())
                 {
-                    // Create the Genre and add it to the genres list
-                    Media.Genre genre = (Media.Genre)Enum.Parse(typeof(Media.Genre), (string)genreReader["GenreName"]);
-                    genres.Add(genre);
+                    // Loop through the results and fetch all genres
+                    while (genreReader.Read())
+                    {
+                        // Create the Genre and add it to the genres list
+                        Media.Genre genre = (Media.Genre)Enum.Parse(typeof(Media.Genre), (string)genreReader["GenreName"]);
+                        genres.Add(genre);
+                    }
                 }
             }
             return genres;
@@ -395,22 +404,23 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@EpisodeID", episodeId);
-                SQLiteDataReader actorReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all actors
-                while (actorReader.Read())
+                using (SQLiteDataReader actorReader = cmd.ExecuteReader())
                 {
-                    // Create an actor
-                    Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
-                    // Set the actor id
-                    actor.Id = Convert.ToInt32(actorReader["ActorID"]);
-                    // Set the lists of starred media
-                    Dictionary<string, List<int>> starredIds = GetActorStarred(actor.Id);
-                    actor.StarredMovies = starredIds["MovieIds"];
-                    actor.StarredTVShows = starredIds["TVShowIds"];
-                    actor.StarredEpisodes = starredIds["EpisodeIds"];
-                    // Add the actor
-                    actors.Add(actor);
+                    // Loop through the results and fetch all actors
+                    while (actorReader.Read())
+                    {
+                        // Create an actor
+                        Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
+                        // Set the actor id
+                        actor.Id = Convert.ToInt32(actorReader["ActorID"]);
+                        // Set the lists of starred media
+                        Dictionary<string, List<int>> starredIds = GetActorStarred(actor.Id);
+                        actor.StarredMovies = starredIds["MovieIds"];
+                        actor.StarredTVShows = starredIds["TVShowIds"];
+                        actor.StarredEpisodes = starredIds["EpisodeIds"];
+                        // Add the actor
+                        actors.Add(actor);
+                    }
                 }
             }
             return actors;
@@ -431,22 +441,23 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@EpisodeID", episodeId);
-                SQLiteDataReader directorReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all directors
-                while (directorReader.Read())
+                using (SQLiteDataReader directorReader = cmd.ExecuteReader())
                 {
-                    // Create a director
-                    Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
-                    // Set the director id
-                    director.Id = Convert.ToInt32(directorReader["DirectorID"]);
-                    // Set the lists of directed media
-                    Dictionary<string, List<int>> directedIds = GetDirectorDirected(director.Id);
-                    director.DirectedMovies = directedIds["MovieIds"];
-                    director.DirectedTVShows = directedIds["TVShowIds"];
-                    director.DirectedEpisodes = directedIds["EpisodeIds"];
-                    // Add the director 
-                    directors.Add(director);
+                    // Loop through the results and fetch all directors
+                    while (directorReader.Read())
+                    {
+                        // Create a director
+                        Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
+                        // Set the director id
+                        director.Id = Convert.ToInt32(directorReader["DirectorID"]);
+                        // Set the lists of directed media
+                        Dictionary<string, List<int>> directedIds = GetDirectorDirected(director.Id);
+                        director.DirectedMovies = directedIds["MovieIds"];
+                        director.DirectedTVShows = directedIds["TVShowIds"];
+                        director.DirectedEpisodes = directedIds["EpisodeIds"];
+                        // Add the director 
+                        directors.Add(director);
+                    }
                 }
             }
             return directors;
@@ -467,14 +478,15 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
-                SQLiteDataReader reviewReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all reviews
-                while (reviewReader.Read())
+                using (SQLiteDataReader reviewReader = cmd.ExecuteReader())
                 {
-                    Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
-                    review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
-                    reviews.Add(review);
+                    // Loop through the results and fetch all reviews
+                    while (reviewReader.Read())
+                    {
+                        Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                        review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
+                        reviews.Add(review);
+                    }
                 }
             }
             return reviews;
@@ -495,14 +507,15 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
-                SQLiteDataReader genreReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all genres
-                while (genreReader.Read())
+                using (SQLiteDataReader genreReader = cmd.ExecuteReader())
                 {
-                    // Create the Genre and add it to the genres list
-                    Media.Genre genre = (Media.Genre)Enum.Parse(typeof(Media.Genre), (string)genreReader["GenreName"]);
-                    genres.Add(genre);
+                    // Loop through the results and fetch all genres
+                    while (genreReader.Read())
+                    {
+                        // Create the Genre and add it to the genres list
+                        Media.Genre genre = (Media.Genre)Enum.Parse(typeof(Media.Genre), (string)genreReader["GenreName"]);
+                        genres.Add(genre);
+                    }
                 }
             }
             return genres;
@@ -516,29 +529,30 @@ namespace MovieDatabase.Utils
         private List<Actor> GetTVShowActors(int tvShowId)
         {
             const string SQL = """
-                                SELECT a.* FROM actor a JOIN tvshowactor ta ON a.ActorID = ta.ActorID WHERE ta.TVShowID = @tvShowId;
+                                SELECT a.* FROM actor a JOIN tvshowactor ta ON a.ActorID = ta.ActorID WHERE ta.TVShowID = @TVShowID;
                                 """;
             List<Actor> actors = new List<Actor>();
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
-                SQLiteDataReader actorReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all actors
-                while (actorReader.Read())
+                using (SQLiteDataReader actorReader = cmd.ExecuteReader())
                 {
-                    // Create an actor
-                    Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
-                    // Set the actor id
-                    actor.Id = Convert.ToInt32(actorReader["ActorID"]);
-                    // Set the lists of starred media
-                    Dictionary<string, List<int>> starredIds = GetActorStarred(actor.Id);
-                    actor.StarredMovies = starredIds["MovieIds"];
-                    actor.StarredTVShows = starredIds["TVShowIds"];
-                    actor.StarredEpisodes = starredIds["EpisodeIds"];
-                    // Add the actor
-                    actors.Add(actor);
+                    // Loop through the results and fetch all actors
+                    while (actorReader.Read())
+                    {
+                        // Create an actor
+                        Actor actor = new Actor((string)actorReader["FirstName"], (string)actorReader["LastName"], (string)actorReader["ImageLink"]);
+                        // Set the actor id
+                        actor.Id = Convert.ToInt32(actorReader["ActorID"]);
+                        // Set the lists of starred media
+                        Dictionary<string, List<int>> starredIds = GetActorStarred(actor.Id);
+                        actor.StarredMovies = starredIds["MovieIds"];
+                        actor.StarredTVShows = starredIds["TVShowIds"];
+                        actor.StarredEpisodes = starredIds["EpisodeIds"];
+                        // Add the actor
+                        actors.Add(actor);
+                    }
                 }
             }
             return actors;
@@ -559,22 +573,23 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
-                SQLiteDataReader directorReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all directors
-                while (directorReader.Read())
+                using (SQLiteDataReader directorReader = cmd.ExecuteReader())
                 {
-                    // Create a director
-                    Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
-                    // Set the director id
-                    director.Id = Convert.ToInt32(directorReader["DirectorID"]);
-                    // Set the lists of directed media
-                    Dictionary<string, List<int>> directedIds = GetDirectorDirected(director.Id);
-                    director.DirectedMovies = directedIds["MovieIds"];
-                    director.DirectedTVShows = directedIds["TVShowIds"];
-                    director.DirectedEpisodes = directedIds["EpisodeIds"];
-                    // Add the director
-                    directors.Add(director);
+                    // Loop through the results and fetch all directors
+                    while (directorReader.Read())
+                    {
+                        // Create a director
+                        Director director = new Director((string)directorReader["FirstName"], (string)directorReader["LastName"], (string)directorReader["ImageLink"]);
+                        // Set the director id
+                        director.Id = Convert.ToInt32(directorReader["DirectorID"]);
+                        // Set the lists of directed media
+                        Dictionary<string, List<int>> directedIds = GetDirectorDirected(director.Id);
+                        director.DirectedMovies = directedIds["MovieIds"];
+                        director.DirectedTVShows = directedIds["TVShowIds"];
+                        director.DirectedEpisodes = directedIds["EpisodeIds"];
+                        // Add the director
+                        directors.Add(director);
+                    }
                 }
             }
             return directors;
@@ -595,24 +610,25 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL statement and execute the query
                 cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
-                SQLiteDataReader episodeReader = cmd.ExecuteReader();
-
-                // Loop through the results and fetch all episodes
-                while (episodeReader.Read())
+                using (SQLiteDataReader episodeReader = cmd.ExecuteReader())
                 {
-                    // Create an episode
-                    Episode episode = new Episode((string)episodeReader["Title"], DateTime.Parse((string)episodeReader["ReleaseDate"]),
-                        (string)episodeReader["Synopsis"], (string)episodeReader["ImageLink"], Convert.ToInt32(episodeReader["Duration"]),
-                        Convert.ToInt32(episodeReader["SeasonNumber"]), Convert.ToInt32(episodeReader["EpisodeNumber"]));
-                    // Set the episode
-                    episode.MediaId = Convert.ToInt32(episodeReader["EpisodeID"]);
-                    // Set the movie reviews, directors, actors, genres, and episodes
-                    episode.Reviews = GetEpisodeReviews(episode.MediaId);
-                    episode.Directors = GetEpisodeDirectors(episode.MediaId);
-                    episode.Actors = GetEpisodeActors(episode.MediaId);
-                    episode.Genres = GetEpisodeGenres(episode.MediaId);
-                    // Add the episodes
-                    episodes.Add(episode);
+                    // Loop through the results and fetch all episodes
+                    while (episodeReader.Read())
+                    {
+                        // Create an episode
+                        Episode episode = new Episode((string)episodeReader["Title"], DateTime.Parse((string)episodeReader["ReleaseDate"]),
+                            (string)episodeReader["Synopsis"], (string)episodeReader["ImageLink"], Convert.ToInt32(episodeReader["Duration"]),
+                            Convert.ToInt32(episodeReader["SeasonNumber"]), Convert.ToInt32(episodeReader["EpisodeNumber"]));
+                        // Set the episode
+                        episode.MediaId = Convert.ToInt32(episodeReader["EpisodeID"]);
+                        // Set the movie reviews, directors, actors, genres, and episodes
+                        episode.Reviews = GetEpisodeReviews(episode.MediaId);
+                        episode.Directors = GetEpisodeDirectors(episode.MediaId);
+                        episode.Actors = GetEpisodeActors(episode.MediaId);
+                        episode.Genres = GetEpisodeGenres(episode.MediaId);
+                        // Add the episodes
+                        episodes.Add(episode);
+                    }
                 }
             }
             return episodes;
@@ -649,26 +665,28 @@ namespace MovieDatabase.Utils
                 movieCmd.Parameters.AddWithValue("@ActorID", actorId);
                 tvShowCmd.Parameters.AddWithValue("@ActorID", actorId);
                 episodeCmd.Parameters.AddWithValue("@ActorID", actorId);
-                SQLiteDataReader movieReader = movieCmd.ExecuteReader();
-                SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader();
-                SQLiteDataReader episodeReader = episodeCmd.ExecuteReader();
 
-                // Loop through the movie results
-                while (movieReader.Read())
+                using (SQLiteDataReader movieReader = movieCmd.ExecuteReader())
+                using (SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader())
+                using (SQLiteDataReader episodeReader = episodeCmd.ExecuteReader())
                 {
-                    starredIds["MovieIds"].Add(Convert.ToInt32(movieReader["MovieID"]));
-                }
+                    // Loop through the movie results
+                    while (movieReader.Read())
+                    {
+                        starredIds["MovieIds"].Add(Convert.ToInt32(movieReader["MovieID"]));
+                    }
 
-                // Loop through the tv show results
-                while (tvShowReader.Read())
-                {
-                    starredIds["TVShowIds"].Add(Convert.ToInt32(tvShowReader["TVShowID"]));
-                }
+                    // Loop through the tv show results
+                    while (tvShowReader.Read())
+                    {
+                        starredIds["TVShowIds"].Add(Convert.ToInt32(tvShowReader["TVShowID"]));
+                    }
 
-                // Loop through the episode results
-                while (episodeReader.Read())
-                {
-                    starredIds["EpisodeIds"].Add(Convert.ToInt32(episodeReader["EpisodeID"]));
+                    // Loop through the episode results
+                    while (episodeReader.Read())
+                    {
+                        starredIds["EpisodeIds"].Add(Convert.ToInt32(episodeReader["EpisodeID"]));
+                    }
                 }
             }
             return starredIds;
@@ -705,26 +723,27 @@ namespace MovieDatabase.Utils
                 movieCmd.Parameters.AddWithValue("@DirectorID", directorId);
                 tvShowCmd.Parameters.AddWithValue("@DirectorID", directorId);
                 episodeCmd.Parameters.AddWithValue("@DirectorID", directorId);
-                SQLiteDataReader movieReader = movieCmd.ExecuteReader();
-                SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader();
-                SQLiteDataReader episodeReader = episodeCmd.ExecuteReader();
-
-                // Loop through the movie results
-                while (movieReader.Read())
+                using (SQLiteDataReader movieReader = movieCmd.ExecuteReader())
+                using (SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader())
+                using (SQLiteDataReader episodeReader = episodeCmd.ExecuteReader())
                 {
-                    directedIds["MovieIds"].Add(Convert.ToInt32(movieReader["MovieID"]));
-                }
+                    // Loop through the movie results
+                    while (movieReader.Read())
+                    {
+                        directedIds["MovieIds"].Add(Convert.ToInt32(movieReader["MovieID"]));
+                    }
 
-                // Loop through the tv show results
-                while (tvShowReader.Read())
-                {
-                    directedIds["TVShowIds"].Add(Convert.ToInt32(tvShowReader["TVShowID"]));
-                }
+                    // Loop through the tv show results
+                    while (tvShowReader.Read())
+                    {
+                        directedIds["TVShowIds"].Add(Convert.ToInt32(tvShowReader["TVShowID"]));
+                    }
 
-                // Loop through the episode results
-                while (episodeReader.Read())
-                {
-                    directedIds["EpisodeIds"].Add(Convert.ToInt32(episodeReader["EpisodeID"]));
+                    // Loop through the episode results
+                    while (episodeReader.Read())
+                    {
+                        directedIds["EpisodeIds"].Add(Convert.ToInt32(episodeReader["EpisodeID"]));
+                    }
                 }
             }
             return directedIds;
@@ -741,8 +760,8 @@ namespace MovieDatabase.Utils
                                 """;
             List<Movie> movies = new List<Movie>();
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
-            {
-                SQLiteDataReader movieReader = cmd.ExecuteReader();
+            using (SQLiteDataReader movieReader = cmd.ExecuteReader())
+            { 
                 while (movieReader.Read())
                 {
                     // Create a movie
@@ -772,8 +791,8 @@ namespace MovieDatabase.Utils
                                 """;
             List<TVShow> tvShows = new List<TVShow>();
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            using (SQLiteDataReader tvShowReader = cmd.ExecuteReader())
             {
-                SQLiteDataReader tvShowReader = cmd.ExecuteReader();
                 while (tvShowReader.Read())
                 {
                     // Create a tv show
@@ -825,22 +844,23 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL and execute the query
                 cmd.Parameters.AddWithValue("@GenreName", genre.ToString().ToUpper());
-                SQLiteDataReader movieReader = cmd.ExecuteReader();
-
-                // Get all of the movie results
-                while (movieReader.Read())
+                using (SQLiteDataReader movieReader = cmd.ExecuteReader())
                 {
-                    // Create a movie
-                    Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
-                        (string)movieReader["Synopsis"], Convert.ToInt32(movieReader["Duration"]), (string)movieReader["ImageLink"]);
-                    // Set the movie id
-                    movie.MediaId = Convert.ToInt32(movieReader["MovieID"]);
-                    // Set the movie reviews, directors, actors, and genres
-                    movie.Reviews = GetMovieReviews(movie.MediaId);
-                    movie.Directors = GetMovieDirectors(movie.MediaId);
-                    movie.Actors = GetMovieActors(movie.MediaId);
-                    movie.Genres = GetMovieGenres(movie.MediaId);
-                    movies.Add(movie);
+                    // Get all of the movie results
+                    while (movieReader.Read())
+                    {
+                        // Create a movie
+                        Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
+                            (string)movieReader["Synopsis"], Convert.ToInt32(movieReader["Duration"]), (string)movieReader["ImageLink"]);
+                        // Set the movie id
+                        movie.MediaId = Convert.ToInt32(movieReader["MovieID"]);
+                        // Set the movie reviews, directors, actors, and genres
+                        movie.Reviews = GetMovieReviews(movie.MediaId);
+                        movie.Directors = GetMovieDirectors(movie.MediaId);
+                        movie.Actors = GetMovieActors(movie.MediaId);
+                        movie.Genres = GetMovieGenres(movie.MediaId);
+                        movies.Add(movie);
+                    }
                 }
             }
             return movies;
@@ -855,7 +875,7 @@ namespace MovieDatabase.Utils
         {
             const string SQL = """
                                 SELECT t.* FROM tvshow t 
-                                JOIN tvshowgenre tg ON t.MovieID = tg.MovieID
+                                JOIN tvshowgenre tg ON t.TVShowID = tg.TVShowID
                                 JOIN genre g ON g.GenreID = tg.GenreID
                                 WHERE g.GenreName = @GenreName;
                                 """;
@@ -864,22 +884,23 @@ namespace MovieDatabase.Utils
             {
                 // Form the SQL and execute the query
                 cmd.Parameters.AddWithValue("GenreName", genre.ToString().ToUpper());
-                SQLiteDataReader tvShowReader = cmd.ExecuteReader();
-
-                // Get all of the tv show results
-                while (tvShowReader.Read())
+                using (SQLiteDataReader tvShowReader = cmd.ExecuteReader())
                 {
-                    TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
-                        (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
-                    // Set the tv show id
-                    tvShow.MediaId = Convert.ToInt32(tvShowReader["TVShowID"]);
-                    // Set the tv show revies, directors, actors, genres, and episodes
-                    tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
-                    tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
-                    tvShow.Actors = GetTVShowActors(tvShow.MediaId);
-                    tvShow.Reviews = GetTVShowReviews(tvShow.MediaId);
-                    tvShow.Genres = GetTVShowGenres(tvShow.MediaId);
-                    tvShows.Add(tvShow);
+                    // Get all of the tv show results
+                    while (tvShowReader.Read())
+                    {
+                        TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
+                            (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
+                        // Set the tv show id
+                        tvShow.MediaId = Convert.ToInt32(tvShowReader["TVShowID"]);
+                        // Set the tv show revies, directors, actors, genres, and episodes
+                        tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
+                        tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
+                        tvShow.Actors = GetTVShowActors(tvShow.MediaId);
+                        tvShow.Reviews = GetTVShowReviews(tvShow.MediaId);
+                        tvShow.Genres = GetTVShowGenres(tvShow.MediaId);
+                        tvShows.Add(tvShow);
+                    }
                 }
             }
             return tvShows;
@@ -912,25 +933,26 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 cmd.Parameters.AddWithValue("@TVShowID", tvShowId);
-                SQLiteDataReader tvShowReader = cmd.ExecuteReader();
-
-                // If no result, return
-                if (!tvShowReader.Read())
+                using (SQLiteDataReader tvShowReader = cmd.ExecuteReader())
                 {
-                    return null;
-                }
+                    // If no result, return
+                    if (!tvShowReader.Read())
+                    {
+                        return null;
+                    }
 
-                // Create the tv show
-                tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
-                    (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
-                // Set the tv show id
-                tvShow.MediaId = Convert.ToInt32(tvShowReader["TVShowID"]);
-                // Set the tv show revies, directors, actors, genres, and episodes
-                tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
-                tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
-                tvShow.Actors = GetTVShowActors(tvShow.MediaId);
-                tvShow.Reviews = GetTVShowReviews(tvShow.MediaId);
-                tvShow.Genres = GetTVShowGenres(tvShow.MediaId);
+                    // Create the tv show
+                    tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
+                        (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
+                    // Set the tv show id
+                    tvShow.MediaId = Convert.ToInt32(tvShowReader["TVShowID"]);
+                    // Set the tv show revies, directors, actors, genres, and episodes
+                    tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
+                    tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
+                    tvShow.Actors = GetTVShowActors(tvShow.MediaId);
+                    tvShow.Reviews = GetTVShowReviews(tvShow.MediaId);
+                    tvShow.Genres = GetTVShowGenres(tvShow.MediaId);
+                }
             }
             return tvShow;
         }
@@ -949,25 +971,26 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 cmd.Parameters.AddWithValue("@EpisodeID", episodeId);
-                SQLiteDataReader episodeReader = cmd.ExecuteReader();
-
-                // If no result, return
-                if (!episodeReader.Read())
+                using (SQLiteDataReader episodeReader = cmd.ExecuteReader())
                 {
-                    return null;
-                }
+                    // If no result, return
+                    if (!episodeReader.Read())
+                    {
+                        return null;
+                    }
 
-                // Create an episode
-                episode = new Episode((string)episodeReader["Title"], DateTime.Parse((string)episodeReader["ReleaseDate"]),
-                    (string)episodeReader["Synopsis"], (string)episodeReader["ImageLink"], Convert.ToInt32(episodeReader["Duration"]),
-                    Convert.ToInt32(episodeReader["SeasonNumber"]), Convert.ToInt32(episodeReader["EpisodeNumber"]));
-                // Set the episode
-                episode.MediaId = Convert.ToInt32(episodeReader["EpisodeID"]);
-                // Set the movie reviews, directors, actors, genres, and episodes
-                episode.Reviews = GetEpisodeReviews(episode.MediaId);
-                episode.Directors = GetEpisodeDirectors(episode.MediaId);
-                episode.Actors = GetEpisodeActors(episode.MediaId);
-                episode.Genres = GetEpisodeGenres(episode.MediaId);
+                    // Create an episode
+                    episode = new Episode((string)episodeReader["Title"], DateTime.Parse((string)episodeReader["ReleaseDate"]),
+                        (string)episodeReader["Synopsis"], (string)episodeReader["ImageLink"], Convert.ToInt32(episodeReader["Duration"]),
+                        Convert.ToInt32(episodeReader["SeasonNumber"]), Convert.ToInt32(episodeReader["EpisodeNumber"]));
+                    // Set the episode
+                    episode.MediaId = Convert.ToInt32(episodeReader["EpisodeID"]);
+                    // Set the movie reviews, directors, actors, genres, and episodes
+                    episode.Reviews = GetEpisodeReviews(episode.MediaId);
+                    episode.Directors = GetEpisodeDirectors(episode.MediaId);
+                    episode.Actors = GetEpisodeActors(episode.MediaId);
+                    episode.Genres = GetEpisodeGenres(episode.MediaId);
+                }
             }
             return episode;
         }
@@ -986,24 +1009,25 @@ namespace MovieDatabase.Utils
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
                 cmd.Parameters.AddWithValue("@MovieID", movieId);
-                SQLiteDataReader movieReader = cmd.ExecuteReader();
-
-                // If no result, return
-                if (!movieReader.Read())
+                using (SQLiteDataReader movieReader = cmd.ExecuteReader())
                 {
-                    return null;
-                }
+                    // If no result, return
+                    if (!movieReader.Read())
+                    {
+                        return null;
+                    }
 
-                // Create the movie
-                movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
-                        (string)movieReader["Synopsis"], Convert.ToInt32(movieReader["Duration"]), (string)movieReader["ImageLink"]);
-                // Set the movie id
-                movie.MediaId = Convert.ToInt32(movieReader["MovieID"]);
-                // Set the movie reviews, directors, actors, and genres
-                movie.Reviews = GetMovieReviews(movie.MediaId);
-                movie.Directors = GetMovieDirectors(movie.MediaId);
-                movie.Actors = GetMovieActors(movie.MediaId);
-                movie.Genres = GetMovieGenres(movie.MediaId);
+                    // Create the movie
+                    movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
+                            (string)movieReader["Synopsis"], Convert.ToInt32(movieReader["Duration"]), (string)movieReader["ImageLink"]);
+                    // Set the movie id
+                    movie.MediaId = Convert.ToInt32(movieReader["MovieID"]);
+                    // Set the movie reviews, directors, actors, and genres
+                    movie.Reviews = GetMovieReviews(movie.MediaId);
+                    movie.Directors = GetMovieDirectors(movie.MediaId);
+                    movie.Actors = GetMovieActors(movie.MediaId);
+                    movie.Genres = GetMovieGenres(movie.MediaId);
+                }
             }
             return movie;
         }
@@ -1026,29 +1050,31 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@UserName", userId);
 
                 // Execute the SQL and read the next result
-                SQLiteDataReader reader = cmd.ExecuteReader();
-                if (!reader.Read())
+                using (SQLiteDataReader reader = cmd.ExecuteReader())
                 {
-                    return null;
-                }
+                    if (!reader.Read())
+                    {
+                        return null;
+                    }
 
-                // If the PaymentID field is present, the user has a premium membership
-                User.Memberships membership = User.Memberships.REGULAR;
-                if (reader["PaymentID"] == DBNull.Value)
-                {
-                    membership = User.Memberships.PREMIUM;
-                }
+                    // If the PaymentID field is present, the user has a premium membership
+                    User.Memberships membership = User.Memberships.REGULAR;
+                    if (reader["PaymentID"] == DBNull.Value)
+                    {
+                        membership = User.Memberships.PREMIUM;
+                    }
 
-                // Parse the date of birth
-                DateTime dob = DateTime.Parse((string)reader["DateOfBirth"]);
-                // Create the user object
-                user = new User((string)reader["UserName"], (string)reader["Password"],
-                    (string)reader["FirstName"], (string)reader["LastName"], dob, membership);
-                // Set the user ID
-                user.Id = Convert.ToInt32(reader["UserID"]);
-                // Set the watchlist and reviews
-                user.WatchList = GetUserWatchList(user.Id);
-                user.WrittenReviews = GetUserReviews(user.Id);
+                    // Parse the date of birth
+                    DateTime dob = DateTime.Parse((string)reader["DateOfBirth"]);
+                    // Create the user object
+                    user = new User((string)reader["UserName"], (string)reader["Password"],
+                        (string)reader["FirstName"], (string)reader["LastName"], dob, membership);
+                    // Set the user ID
+                    user.Id = Convert.ToInt32(reader["UserID"]);
+                    // Set the watchlist and reviews
+                    user.WatchList = GetUserWatchList(user.Id);
+                    user.WrittenReviews = GetUserReviews(user.Id);
+                }
             }
             return user;
         }
@@ -1064,9 +1090,8 @@ namespace MovieDatabase.Utils
                                 """;
             List<Actor> actors = new List<Actor>();
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            using (SQLiteDataReader actorReader = cmd.ExecuteReader())
             {
-                SQLiteDataReader actorReader = cmd.ExecuteReader();
-
                 while (actorReader.Read())
                 {
                     // Create an actor
@@ -1096,9 +1121,8 @@ namespace MovieDatabase.Utils
                                 """;
             List<Director> directors = new List<Director>();
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
-            {
-                SQLiteDataReader directorReader = cmd.ExecuteReader();
-
+            using (SQLiteDataReader directorReader = cmd.ExecuteReader())
+            { 
                 while (directorReader.Read())
                 {
                     // Create a director
@@ -1155,39 +1179,40 @@ namespace MovieDatabase.Utils
                 // Form the SQL and execute the query
                 movieCmd.Parameters.AddWithValue("@Search", "%" + title + "%");
                 tvShowCmd.Parameters.AddWithValue("@Search", "%" + title + "%");
-                SQLiteDataReader movieReader = movieCmd.ExecuteReader();
-                SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader();
-
-                // Read all movie results.
-                while (movieReader.Read())
+                using (SQLiteDataReader movieReader = movieCmd.ExecuteReader())
+                using (SQLiteDataReader tvShowReader = tvShowCmd.ExecuteReader())
                 {
-                    // Create a movie
-                    Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
-                        (string)movieReader["Synopsis"], Convert.ToInt32(movieReader["Duration"]), (string)movieReader["ImageLink"]);
-                    // Set the movie id
-                    movie.MediaId = Convert.ToInt32(movieReader["MovieID"]);
-                    // Set the movie reviews, directors, actors, and genres
-                    movie.Reviews = GetMovieReviews(movie.MediaId);
-                    movie.Directors = GetMovieDirectors(movie.MediaId);
-                    movie.Actors = GetMovieActors(movie.MediaId);
-                    movie.Genres = GetMovieGenres(movie.MediaId);
-                    media.Add(movie);
-                }
+                    // Read all movie results.
+                    while (movieReader.Read())
+                    {
+                        // Create a movie
+                        Movie movie = new Movie((string)movieReader["Title"], DateTime.Parse((string)movieReader["ReleaseDate"]),
+                            (string)movieReader["Synopsis"], Convert.ToInt32(movieReader["Duration"]), (string)movieReader["ImageLink"]);
+                        // Set the movie id
+                        movie.MediaId = Convert.ToInt32(movieReader["MovieID"]);
+                        // Set the movie reviews, directors, actors, and genres
+                        movie.Reviews = GetMovieReviews(movie.MediaId);
+                        movie.Directors = GetMovieDirectors(movie.MediaId);
+                        movie.Actors = GetMovieActors(movie.MediaId);
+                        movie.Genres = GetMovieGenres(movie.MediaId);
+                        media.Add(movie);
+                    }
 
-                // Read all tv show results
-                while (tvShowReader.Read())
-                {
-                    TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
-                        (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
-                    // Set the tv show id
-                    tvShow.MediaId = Convert.ToInt32(tvShowReader["TVShowID"]);
-                    // Set the tv show revies, directors, actors, genres, and episodes
-                    tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
-                    tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
-                    tvShow.Actors = GetTVShowActors(tvShow.MediaId);
-                    tvShow.Reviews = GetTVShowReviews(tvShow.MediaId);
-                    tvShow.Genres = GetTVShowGenres(tvShow.MediaId);
-                    media.Add(tvShow);
+                    // Read all tv show results
+                    while (tvShowReader.Read())
+                    {
+                        TVShow tvShow = new TVShow((string)tvShowReader["Title"], DateTime.Parse((string)tvShowReader["ReleaseDate"]),
+                            (string)tvShowReader["Synopsis"], (string)tvShowReader["ImageLink"]);
+                        // Set the tv show id
+                        tvShow.MediaId = Convert.ToInt32(tvShowReader["TVShowID"]);
+                        // Set the tv show revies, directors, actors, genres, and episodes
+                        tvShow.Episodes = GetTVShowEpisodes(tvShow.MediaId);
+                        tvShow.Directors = GetTVShowDirectors(tvShow.MediaId);
+                        tvShow.Actors = GetTVShowActors(tvShow.MediaId);
+                        tvShow.Reviews = GetTVShowReviews(tvShow.MediaId);
+                        tvShow.Genres = GetTVShowGenres(tvShow.MediaId);
+                        media.Add(tvShow);
+                    }
                 }
             }
             return media;
@@ -1526,7 +1551,7 @@ namespace MovieDatabase.Utils
                 cmd.Parameters.AddWithValue("@Name", payment.CardHolderName);
                 cmd.Parameters.AddWithValue("@Number", payment.CreditCardNum);
                 cmd.Parameters.AddWithValue("@CVV", payment.Cvv);
-                cmd.Parameters.AddWithValue("@ExpDate", payment.ExpiryDate);
+                cmd.Parameters.AddWithValue("@ExpDate", payment.ExpiryDate.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@PayDate", DateTime.Now.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@UserID", userID);
                 // Execute the SQL

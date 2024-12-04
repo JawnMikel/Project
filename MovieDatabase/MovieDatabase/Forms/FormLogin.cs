@@ -20,7 +20,7 @@ namespace MovieDatabase
         {
             // User user = users.FirstOrDefault(u => u.Login(usernameTB.Text, passwordTB.Text));
             var database = DatabaseUtils.GetInstance();
-            User user = database.GetUserByCredentials(usernameTB.Text, passwordTB.Text);
+            User? user = database.GetUserByCredentials(usernameTB.Text, passwordTB.Text);
             database.CloseConnection();
             if (user != null)
             {

@@ -491,14 +491,15 @@ VALUES
 -- Insert statements for tv show genres
 INSERT INTO tvshowgenre (TVShowID, GenreID)
 VALUES
-    (1, 1),
+    (1, 2),
     (2, 8),
     (2, 15),
     (2, 4),
     (2, 3),
     (2, 5),
     (3, 6),
-    (3, 2);
+    (3, 2),
+    (4, 8);
 
 -- Insert statements for episodes
 INSERT INTO episode (Title, ReleaseDate, Synopsis, Duration, SeasonNumber, EpisodeNumber, ImageLink, TVShowID)
@@ -529,8 +530,8 @@ VALUES
     (8, 2),
     (9, 2),
     (10, 8),
-    (10, 8),
-    (10, 8);
+    (11, 8),
+    (12, 8);
 
 -- Insert for episode actors
 INSERT INTO episodeactor (EpisodeID, ActorID)
@@ -586,4 +587,4 @@ VALUES
     (11, 38),
     (11, 39),
     (12, 38),
-    (12, 39),
+    (12, 39);

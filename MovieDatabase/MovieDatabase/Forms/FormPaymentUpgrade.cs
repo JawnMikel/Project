@@ -53,7 +53,11 @@ namespace MovieDatabase
 
             try
             {
-                user.UpgradeMembership(cardHolderName, creditCardNumber, cvv, expiryDate);
+                Payment userPayment = user.UpgradeMembership(cardHolderName, creditCardNumber, cvv, expiryDate);
+                DatabaseUtils.GetInstance().CloseConnection();
+                DatabaseUtils database = DatabaseUtils.GetInstance();
+                database.InsertPayment(userPayment, user.Id);
+                database.CloseConnection();
 
                 MessageBox.Show("Payment approved! Account successfully upgraded.", "Approved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -67,11 +71,12 @@ namespace MovieDatabase
                 MessageBox.Show(ex.Message, "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //    MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
         }
     }
 }
