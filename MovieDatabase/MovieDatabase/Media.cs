@@ -189,7 +189,7 @@ namespace MovieDatabase
                 total += review.Rating;
             }
 
-            return total / Reviews.Count;
+            return Math.Round(total / Reviews.Count, 1);
         }
 
         /// <summary>

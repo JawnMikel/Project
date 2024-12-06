@@ -175,7 +175,8 @@ namespace MovieDatabase.Utils
         /// <returns>A boolean indicating whether the rating is valid.</returns>
         public static bool ValidateRatingRange(double rating)
         {
-            return rating >= LOWEST_RATING && rating <= HIGHEST_RATING;
+            double roundedRating = Math.Round(rating, 1);
+            return roundedRating >= LOWEST_RATING && roundedRating <= HIGHEST_RATING;
         }
 
         /// <summary>
