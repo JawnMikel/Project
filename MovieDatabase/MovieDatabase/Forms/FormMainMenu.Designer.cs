@@ -1,4 +1,6 @@
-﻿using System.Resources;
+﻿using System.Globalization;
+using System.Resources;
+using System.Text.RegularExpressions;
 
 namespace MovieDatabase
 {
@@ -163,6 +165,16 @@ namespace MovieDatabase
             moviesBtn.Text = rm.GetString("Movies");
             tvshowBtn.Text = rm.GetString("TvShows");
             langBtn.Text = rm.GetString("Lanbutton");
+
+
+            var genreTranslations = Utils.Util.GenerateGenreTranslations();
+
+            genreBox.Items.Clear();
+            foreach (var genre in genreTranslations.Keys)
+            {
+                genreBox.Items.Add(genre);
+            }
+
         }
 
         #endregion

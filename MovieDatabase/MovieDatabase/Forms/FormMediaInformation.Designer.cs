@@ -1,4 +1,7 @@
-﻿using System.Resources;
+﻿using MovieDatabase.Utils;
+using System.Globalization;
+using System.Resources;
+using System.Windows.Forms;
 
 namespace MovieDatabase
 {
@@ -107,7 +110,7 @@ namespace MovieDatabase
             // 
             // giveReviewBtn
             // 
-            giveReviewBtn.Location = new Point(1209, 137);
+            giveReviewBtn.Location = new Point(1174, 141);
             giveReviewBtn.Name = "giveReviewBtn";
             giveReviewBtn.Size = new Size(161, 34);
             giveReviewBtn.TabIndex = 7;
@@ -117,7 +120,7 @@ namespace MovieDatabase
             // 
             // viewReviewBtn
             // 
-            viewReviewBtn.Location = new Point(1209, 216);
+            viewReviewBtn.Location = new Point(1174, 210);
             viewReviewBtn.Name = "viewReviewBtn";
             viewReviewBtn.Size = new Size(161, 34);
             viewReviewBtn.TabIndex = 8;
@@ -128,7 +131,7 @@ namespace MovieDatabase
             // watchlistCheckBox
             // 
             watchlistCheckBox.AutoSize = true;
-            watchlistCheckBox.Location = new Point(1209, 283);
+            watchlistCheckBox.Location = new Point(1174, 287);
             watchlistCheckBox.Name = "watchlistCheckBox";
             watchlistCheckBox.Size = new Size(167, 29);
             watchlistCheckBox.TabIndex = 9;
@@ -235,6 +238,7 @@ namespace MovieDatabase
 
         public void Update()
         {
+
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
             langBtn.Text = rm.GetString("Lanbutton");
             backBtn.Text = rm.GetString("BackButton");
@@ -244,6 +248,9 @@ namespace MovieDatabase
             watchlistCheckBox.Text = rm.GetString("AddToWatchList");
             directorsLbl.Text = rm.GetString("Director");
             actorsLbl.Text = rm.GetString("Actor");
+            episodeLbl.Text = rm.GetString("Episode");
+
+            LoadGenres(media);
         }
 
         #endregion

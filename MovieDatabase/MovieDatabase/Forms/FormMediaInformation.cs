@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Runtime.Loader;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,13 +27,14 @@ namespace MovieDatabase
         public FormMediaInformation(Form form, Media media, User user)
         {
             InitializeComponent();
-            Update();
+            
             this.media = media;
             this.form = form;
             this.user = user;
             titleLbl.Text = media.Title;
             releaseDate.Value = media.ReleaseDate;
             synopsisTB.Text = media.Synopsis;
+            
 
             UpdateRatingLabel();
             if (media is Episode)
@@ -54,6 +57,8 @@ namespace MovieDatabase
                 episodeLbl.Visible = true;
                 LoadEpisodes((TVShow)media);
             }
+            Update();
+            UpdateRatingLabel();
 
         }
         private void langBtn_Click(object sender, EventArgs e)
@@ -101,19 +106,65 @@ namespace MovieDatabase
         private void LoadGenres(Media media)
         {
             genrePanel.Controls.Clear();
-            foreach(var genre in media.Genres) 
+
+            // Get the genre translations dictionary (translated genre name => Media.Genre)
+            var genreTranslations = Util.GenerateGenreTranslation();
+
+            foreach (Media.Genre genre in media.Genres)
             {
-                Label label = new Label
+                // Create a label for each genre
+                Label genreLabel = new Label
                 {
-                    Text = genre.ToString(),
-                    Width = 120,
-                    Margin = new Padding(5)
+                    Text = genre.ToString(),  // Initially use the default genre name
+                    Tag = genre,  // Store the enum in the Tag
+                    AutoSize = true,
+                    Margin = new Padding(5),
+                    Cursor = Cursors.Hand
                 };
 
-                label.Click += (s,args) => OpenMediaLoad(genre);
-                genrePanel.Controls.Add(label);
+                // Try to get the translation for the genre in the current language
+                if (genreTranslations.TryGetValue(genre.ToString(), out var translatedGenre))
+                {
+                    // Set the translated genre name
+                    genreLabel.Text = translatedGenre;  // Set the label to the translated genre string
+                }
+
+                // Add a click event handler to open the media load form (you can modify this as needed)
+                genreLabel.Click += (s, args) => OpenMediaLoad((Media.Genre)genreLabel.Tag);
+
+                // Add the label to the panel
+                genrePanel.Controls.Add(genreLabel);
             }
         }
+
+        private void UpdateGenresLanguage()
+        {
+            // Get the genre translations (this should return a dictionary with genre name as key and translation as value)
+            var genreTranslations = Util.GenerateGenreTranslation();
+
+            // Iterate through the controls in the genrePanel (which are labels for each genre)
+            foreach (Control control in genrePanel.Controls)
+            {
+                if (control is Label genreLabel)
+                {
+                    Media.Genre genre = (Media.Genre)genreLabel.Tag; // Retrieve the genre from the Tag property
+
+                    // Try to get the translation for the genre in the current language
+                    if (genreTranslations.TryGetValue(genre.ToString(), out var translatedGenre))
+                    {
+                        // Update label with the translated genre name
+                        genreLabel.Text = translatedGenre;  // Update the label with the translated genre name (string)
+                    }
+                    else
+                    {
+                        // If no translation exists, keep the original genre name
+                        genreLabel.Text = genre.ToString();  // Default to the original genre name
+                    }
+                }
+            }
+        }
+
+
 
         private void OpenMediaLoad(Media.Genre genre)
         {

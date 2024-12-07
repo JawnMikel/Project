@@ -153,7 +153,8 @@ namespace MovieDatabase
            ratingLbl.Text = rm.GetString("Rating");
            langBtn.Text = rm.GetString("Lanbutton");
            writeReviewBtn.Text = rm.GetString("WriteReview");
-           viewReviewBtn.Text = rm.GetString("ViewReviews"); 
+           viewReviewBtn.Text = rm.GetString("ViewReviews");
+           listMediaLbl.Text = rm.GetString("listMedia");
             
         }
 

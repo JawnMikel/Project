@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,7 +28,7 @@ namespace MovieDatabase
             this.media = media;
             titleLbl.Text += " " + crewMember.FirstName + " " + crewMember.LastName;
 
-            titleLbl.Text += LoadReview(crewMember);
+            LoadReview(crewMember);
         }
         public FormViewReview(Form form, Media media, User user)
         {
@@ -62,16 +63,36 @@ namespace MovieDatabase
             Update();
         }
 
-        private string LoadReview(CrewMember crewMember)  
+        private void LoadReview(CrewMember crewMember)  
         {
-            foreach (var review in crewMember.Reviews)
+           
+            var database = DatabaseUtils.GetInstance();
+            List<CrewMember> crewmembers = database.GetAllCrewMembers();
+
+            foreach (CrewMember member in crewmembers)
             {
-                
+                if (member.Equals(crewMember))
+                {
+                    if (member is Actor)
+                    {
+                        foreach (var review in member.Reviews)
+                        {
+                            reviewsTB.Text += review.ToString();
+                        }
+                    }
+                    else
+                    {
+                        foreach (var review in member.Reviews)
+                        {
+                            reviewsTB.Text += review.ToString();
+                        }
+                    }
+                    break;
+                }
             }
 
-            this.user = user;
+            database.CloseConnection();
 
-            return null;
         }
 
         private void LoadReview(Media media)

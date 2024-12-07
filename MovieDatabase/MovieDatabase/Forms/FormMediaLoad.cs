@@ -23,7 +23,12 @@ namespace MovieDatabase
             this.user = user;
             this.form = form;
             this.genre = genre;
-            genreLbl.Text = genre.ToString();
+
+            var genreTranslations = Util.GenerateGenreTranslation();
+
+            string translatedGenre = genreTranslations.ContainsKey(genre.ToString()) ? genreTranslations[genre.ToString()] : genre.ToString();
+
+            genreLbl.Text = translatedGenre;
 
             LoadMedia(genre);
           
@@ -50,7 +55,6 @@ namespace MovieDatabase
 
                 mediaLayout.Controls.Add(pictureBox);
             }
-
         }
 
         private void OpenMediaInfo(Media media)
