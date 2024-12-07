@@ -20,23 +20,21 @@ namespace MovieDatabase
         public FormViewReview(Form form, CrewMember crewMember, User user, Media media)
         {
             InitializeComponent();
-            Update();
             this.crewMember = crewMember;
             this.form = form;
             this.user = user;
             this.media = media;
-            titleLbl.Text += " " + crewMember.FirstName + " " + crewMember.LastName;
-
-            titleLbl.Text += LoadReview(crewMember);
+            LoadReview(crewMember);
+            Update();
         }
         public FormViewReview(Form form, Media media, User user)
         {
             InitializeComponent();
             this.media = media;
-            titleLbl.Text += " " + media.Title;
             this.form = form;
-            LoadReview(media);
             this.user = user;
+            LoadReview(media);
+            Update();
         }
 
         private void backBtn_Click(object sender, EventArgs e)

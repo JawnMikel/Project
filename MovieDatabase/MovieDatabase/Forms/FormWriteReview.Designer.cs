@@ -43,41 +43,49 @@ namespace MovieDatabase
             // 
             titleLbl.AutoSize = true;
             titleLbl.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titleLbl.Location = new Point(168, 9);
+            titleLbl.Location = new Point(118, 5);
+            titleLbl.Margin = new Padding(2, 0, 2, 0);
+            titleLbl.MaximumSize = new Size(300, 0);
+            titleLbl.MinimumSize = new Size(300, 0);
             titleLbl.Name = "titleLbl";
-            titleLbl.Size = new Size(118, 65);
+            titleLbl.Size = new Size(300, 45);
             titleLbl.TabIndex = 0;
             titleLbl.Text = "Title";
+            titleLbl.TextAlign = ContentAlignment.TopCenter;
             // 
             // reviewTB
             // 
-            reviewTB.Location = new Point(108, 167);
+            reviewTB.Location = new Point(75, 164);
+            reviewTB.Margin = new Padding(2);
             reviewTB.Name = "reviewTB";
-            reviewTB.Size = new Size(573, 227);
+            reviewTB.Size = new Size(402, 138);
             reviewTB.TabIndex = 1;
             reviewTB.Text = "";
             // 
             // ratingBtn
             // 
             ratingBtn.AutoSize = true;
-            ratingBtn.Location = new Point(305, 111);
+            ratingBtn.Location = new Point(213, 131);
+            ratingBtn.Margin = new Padding(2, 0, 2, 0);
             ratingBtn.Name = "ratingBtn";
-            ratingBtn.Size = new Size(75, 25);
+            ratingBtn.Size = new Size(49, 15);
             ratingBtn.TabIndex = 2;
             ratingBtn.Text = "Ratings:";
             // 
             // ratingTB
             // 
-            ratingTB.Location = new Point(397, 108);
+            ratingTB.Location = new Point(277, 129);
+            ratingTB.Margin = new Padding(2);
             ratingTB.Name = "ratingTB";
-            ratingTB.Size = new Size(68, 31);
+            ratingTB.Size = new Size(49, 23);
             ratingTB.TabIndex = 3;
             // 
             // postBtn
             // 
-            postBtn.Location = new Point(359, 404);
+            postBtn.Location = new Point(250, 306);
+            postBtn.Margin = new Padding(2);
             postBtn.Name = "postBtn";
-            postBtn.Size = new Size(112, 34);
+            postBtn.Size = new Size(78, 20);
             postBtn.TabIndex = 4;
             postBtn.Text = "Post";
             postBtn.UseVisualStyleBackColor = true;
@@ -85,9 +93,10 @@ namespace MovieDatabase
             // 
             // backBtn
             // 
-            backBtn.Location = new Point(38, 24);
+            backBtn.Location = new Point(27, 14);
+            backBtn.Margin = new Padding(2);
             backBtn.Name = "backBtn";
-            backBtn.Size = new Size(124, 34);
+            backBtn.Size = new Size(87, 20);
             backBtn.TabIndex = 5;
             backBtn.Text = "Back";
             backBtn.UseVisualStyleBackColor = true;
@@ -95,9 +104,10 @@ namespace MovieDatabase
             // 
             // langBtn
             // 
-            langBtn.Location = new Point(630, 24);
+            langBtn.Location = new Point(441, 14);
+            langBtn.Margin = new Padding(2);
             langBtn.Name = "langBtn";
-            langBtn.Size = new Size(112, 34);
+            langBtn.Size = new Size(78, 20);
             langBtn.TabIndex = 6;
             langBtn.Text = "French";
             langBtn.UseVisualStyleBackColor = true;
@@ -105,9 +115,9 @@ namespace MovieDatabase
             // 
             // FormWriteReview
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(560, 374);
             Controls.Add(langBtn);
             Controls.Add(backBtn);
             Controls.Add(postBtn);
@@ -115,6 +125,7 @@ namespace MovieDatabase
             Controls.Add(ratingBtn);
             Controls.Add(reviewTB);
             Controls.Add(titleLbl);
+            Margin = new Padding(2);
             Name = "FormWriteReview";
             Text = "FormWriteReview";
             ResumeLayout(false);
