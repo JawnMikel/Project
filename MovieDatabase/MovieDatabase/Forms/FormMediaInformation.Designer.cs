@@ -1,4 +1,7 @@
-﻿using System.Resources;
+﻿using MovieDatabase.Utils;
+using System.Globalization;
+using System.Resources;
+using System.Windows.Forms;
 
 namespace MovieDatabase
 {
@@ -235,6 +238,7 @@ namespace MovieDatabase
 
         public void Update()
         {
+
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
             langBtn.Text = rm.GetString("Lanbutton");
             backBtn.Text = rm.GetString("BackButton");
@@ -244,6 +248,9 @@ namespace MovieDatabase
             watchlistCheckBox.Text = rm.GetString("AddToWatchList");
             directorsLbl.Text = rm.GetString("Director");
             actorsLbl.Text = rm.GetString("Actor");
+            episodeLbl.Text = rm.GetString("Episode");
+
+            LoadGenres(media);
         }
 
         #endregion

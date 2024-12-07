@@ -1,4 +1,5 @@
-﻿using System.Resources;
+﻿using MovieDatabase.Utils;
+using System.Resources;
 
 namespace MovieDatabase
 {

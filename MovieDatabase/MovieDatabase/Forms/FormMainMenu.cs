@@ -151,17 +151,22 @@ namespace MovieDatabase
         private void genreBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var database = DatabaseUtils.GetInstance();
+
             if (genreBox.SelectedItem == null || string.IsNullOrEmpty(genreBox.SelectedItem.ToString()))
             {
-               
                 List<Media> allMedias = database.GetAllMedia();
                 LoadMedias(allMedias);
             }
             else
             {
-                Media.Genre selectedGenre = (Media.Genre)Enum.Parse(typeof(Media.Genre), genreBox.SelectedItem.ToString()); 
-                List<Media> genres = database.GetMediaByGenre(selectedGenre);
-                LoadMedias(genres);
+                string selectedTranslatedGenre = genreBox.SelectedItem.ToString();
+
+                var genreTranslations = Utils.Util.GenerateGenreTranslations();
+                if (genreTranslations.TryGetValue(selectedTranslatedGenre, out Media.Genre selectedGenre))
+                {
+                    List<Media> genres = database.GetMediaByGenre(selectedGenre);
+                    LoadMedias(genres);
+                }
             }
             database.CloseConnection();
         }
