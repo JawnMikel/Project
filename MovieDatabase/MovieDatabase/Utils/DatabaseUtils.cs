@@ -2023,6 +2023,58 @@ namespace MovieDatabase.Utils
         }
 
         /// <summary>
+        /// Removes a movie from the user's watchlist.
+        /// </summary>
+        /// <param name="user">The user whose watchlist is to be updated.</param>
+        /// <param name="movie">The movie to remove from the watchlist.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown when the user or movie arguments are null</exception>
+        public void DeleteFromUserWatchlist(User user, Movie movie)
+        {
+            if (user == null || movie == null)
+            {
+                throw new ArgumentNullException("The user or movie arguments cannot be null");
+            }
+            const string SQL = """
+                                DELETE FROM watchlistmovie
+                                WHERE UserID = @UserID AND MovieID = @MovieID;
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL
+                cmd.Parameters.AddWithValue("@UserID", user.Id);
+                cmd.Parameters.AddWithValue("@MovieID", movie.MediaId);
+                // Execute the delete operation
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Remove a tv show from a user's watchlist.
+        /// </summary>
+        /// <param name="user">The user whose watchlist is to be updated.</param>
+        /// <param name="tvShow">The tv show to remove.</param>
+        /// <exception cref="ArgumentNullException">Exception thrown when the user or tvShow arguments are null.</exception>
+        public void DeleteFromUserWatchlist(User user, TVShow tvShow)
+        {
+            if (user == null || tvShow == null)
+            {
+                throw new ArgumentNullException("The user or tvShow arguments cannot be null");
+            }
+            const string SQL = """
+                                DELETE FROM watchlisttvshow
+                                WHERE UserID = @UserID AND TVShowID = @TVShowID;
+                                """;
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL
+                cmd.Parameters.AddWithValue("@UserID", user.Id);
+                cmd.Parameters.AddWithValue("@TVShowID", tvShow.MediaId);
+                // Execute the delete operation
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
         /// Check whether the database file exists.
         /// </summary>
         /// <returns>A boolean indicating whether the database file exists.</returns>
