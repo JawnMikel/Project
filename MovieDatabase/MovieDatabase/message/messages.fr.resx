@@ -151,7 +151,7 @@
     <value>Connexion</value>
   </data>
   <data name="LoginButton" xml:space="preserve">
-    <value>Connexion</value>
+    <value>Se connecter</value>
   </data>
   <data name="MembershipType" xml:space="preserve">
     <value>Type d'Abonnement</value>
@@ -178,10 +178,10 @@
     <value>Améliorer l'Abonnement</value>
   </data>
   <data name="LogOut" xml:space="preserve">
-    <value>Déconnecter</value>
+    <value>Se déconnecter</value>
   </data>
   <data name="WatchList" xml:space="preserve">
-    <value>List de vissionage</value>
+    <value>Liste de Visionnage</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
@@ -190,58 +190,52 @@
     <value>Évaluation:</value>
   </data>
   <data name="WriteReview" xml:space="preserve">
-    <value>Écrire un avis</value>
+    <value>Rédiger un avis</value>
   </data>
   <data name="ViewReviews" xml:space="preserve">
-    <value>Vois les avis</value>
+    <value>Voir les avis</value>
   </data>
   <data name="Recommendation" xml:space="preserve">
-    <value>Recommandation</value>
+    <value>Recommandations</value>
   </data>
   <data name="Movies" xml:space="preserve">
     <value>Films</value>
   </data>
   <data name="TvShows" xml:space="preserve">
-    <value>Des Séries Télévisé</value>
+    <value>Séries</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Titre</value>
   </data>
   <data name="AddToWatchList" xml:space="preserve">
-    <value>Ajouter à la liste de Vissionage</value>
+    <value>Ajouter à la liste de Visionnage</value>
   </data>
   <data name="Reviews" xml:space="preserve">
-    <value>Les Avis:</value>
+    <value>Avis:</value>
   </data>
   <data name="Post" xml:space="preserve">
-    <value>Publié</value>
+    <value>Publier</value>
   </data>
   <data name="ShowPassword" xml:space="preserve">
-    <value>Montré le mot de passe</value>
+    <value>Montrer le mot de passe</value>
   </data>
   <data name="Membership" xml:space="preserve">
     <value>Abonnement</value>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
-    <value>Le nom d’utilisateur ou le mot de passe ne correspondent pas ! Veuillez réessayer</value>
+    <value>Le nom d’utilisateur ou le mot de passe est invalide! Veuillez réessayer</value>
   </data>
   <data name="Memebership" xml:space="preserve">
     <value>Abonnement</value>
   </data>
   <data name="WatchListTitle" xml:space="preserve">
-    <value>List De Vissionage</value>
+    <value>Liste de Visionnage</value>
   </data>
   <data name="Director" xml:space="preserve">
     <value>Directeur</value>
   </data>
   <data name="CreateAccountTitle" xml:space="preserve">
     <value>Créer un Compte</value>
-  </data>
-  <data name="Premium" xml:space="preserve">
-    <value>Prime</value>
-  </data>
-  <data name="Regular" xml:space="preserve">
-    <value>Régulié</value>
   </data>
   <data name="Actor" xml:space="preserve">
     <value>Acteurs</value>
