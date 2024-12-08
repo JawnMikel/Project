@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Resources;
+using System.Data.Entity.Core.Mapping;
+using MovieDatabase.Model;
 
 namespace MovieDatabase.Utils
 {
@@ -13,8 +16,8 @@ namespace MovieDatabase.Utils
     /// </summary>
     public class Util
     {
-        public static CultureInfo cultureEn = new CultureInfo("en-Us");
-        public static CultureInfo cultureFr = new CultureInfo("fr-FR");
+        public static CultureInfo cultureEn = new CultureInfo("en-CA");
+        public static CultureInfo cultureFr = new CultureInfo("fr-CA");
         public const int LOWEST_RATING = 0;
         public const int HIGHEST_RATING = 5;
         public const int MAX_NAME_LENGTH = 100;
@@ -175,7 +178,8 @@ namespace MovieDatabase.Utils
         /// <returns>A boolean indicating whether the rating is valid.</returns>
         public static bool ValidateRatingRange(double rating)
         {
-            return rating >= LOWEST_RATING && rating <= HIGHEST_RATING;
+            double roundedRating = Math.Round(rating, 1);
+            return roundedRating >= LOWEST_RATING && roundedRating <= HIGHEST_RATING;
         }
 
         /// <summary>
@@ -205,6 +209,46 @@ namespace MovieDatabase.Utils
                 return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Generates the translated genres from the resource bundle by using the genre enum
+        /// </summary>
+        /// <returns>The new translated genres</returns>
+        public static Dictionary<string, Media.Genre> GenerateGenreTranslations()
+        {
+            var genres = Enum.GetValues(typeof(Media.Genre)).Cast<Media.Genre>();
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+
+            var genreTranslations = new Dictionary<string, Media.Genre>();
+            foreach (var genre in genres)
+            {
+                string translatedGenre = rm.GetString(genre.ToString(), CultureInfo.CurrentCulture);
+
+                genreTranslations[translatedGenre ?? genre.ToString()] = genre;
+            }
+            return genreTranslations;
+        }
+
+        /// <summary>
+        /// Translated the genres by using the genre's ToString and can translate them easier
+        /// </summary>
+        /// <returns>returns the translated dictionary of genres</returns>
+        public static Dictionary<string, string> GenerateGenreTranslation()
+        {
+            var genres = Enum.GetValues(typeof(Media.Genre)).Cast<Media.Genre>();
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+
+            var genreTranslations = new Dictionary<string, string>();
+            foreach (var genre in genres)
+            {
+                // Get the translated genre name from the resource manager
+                string translatedGenre = rm.GetString(genre.ToString(), CultureInfo.CurrentCulture);
+
+                // Use the translated genre if found, else fallback to the genre name
+                genreTranslations[genre.ToString()] = translatedGenre ?? genre.ToString();
+            }
+            return genreTranslations;
         }
     }
 }

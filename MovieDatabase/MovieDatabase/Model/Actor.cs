@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieDatabase
+namespace MovieDatabase.Model
 {
     /// <summary>
     /// Actor class is used to represent an Actor.
@@ -108,7 +108,7 @@ namespace MovieDatabase
         public override string? ToString()
         {
             return $"Actor{{Id: {Id}, FirstName: {FirstName}, LastName: {LastName}, ImageLink: {ImageLink}, " +
-                $"Reviews: {String.Join(",", Reviews)}}}";
+                $"Reviews: {string.Join(",", Reviews)}}}";
         }
     }
 }

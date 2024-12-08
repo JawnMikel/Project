@@ -1,4 +1,6 @@
-﻿using System.Resources;
+﻿using System.Globalization;
+using System.Resources;
+using System.Text.RegularExpressions;
 
 namespace MovieDatabase
 {
@@ -156,6 +158,9 @@ namespace MovieDatabase
             PerformLayout();
         }
 
+        /// <summary>
+        /// Updates the language using ResourceManger and the genres in the combo box
+        /// </summary>
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
@@ -163,6 +168,14 @@ namespace MovieDatabase
             moviesBtn.Text = rm.GetString("Movies");
             tvshowBtn.Text = rm.GetString("TvShows");
             langBtn.Text = rm.GetString("Lanbutton");
+
+            var genreTranslations = Utils.Util.GenerateGenreTranslations();
+
+            genreBox.Items.Clear();
+            foreach (var genre in genreTranslations.Keys)
+            {
+                genreBox.Items.Add(genre);
+            }
         }
 
         #endregion

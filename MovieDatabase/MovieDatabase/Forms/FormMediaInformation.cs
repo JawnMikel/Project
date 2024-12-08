@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Resources;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using MovieDatabase.message;
+using MovieDatabase.Model;
 using MovieDatabase.Utils;
 
 namespace MovieDatabase
@@ -26,13 +28,14 @@ namespace MovieDatabase
         public FormMediaInformation(Form form, Media media, User user)
         {
             InitializeComponent();
-            Update();
+            
             this.media = media;
             this.form = form;
             this.user = user;
             titleLbl.Text = media.Title;
             releaseDate.Value = media.ReleaseDate;
             synopsisTB.Text = media.Synopsis;
+            
 
             UpdateRatingLabel();
             if (media is Episode)
@@ -55,6 +58,8 @@ namespace MovieDatabase
                 episodeLbl.Visible = true;
                 LoadEpisodes((TVShow)media);
             }
+            Update();
+            UpdateRatingLabel();
 
         }
         private void langBtn_Click(object sender, EventArgs e)
@@ -93,29 +98,77 @@ namespace MovieDatabase
             WatchListControl();
         }
 
+        /// <summary>
+        /// Updates the language and keeps the rating grade
+        /// </summary>
         private void UpdateRatingLabel()
         {
             string baseText = messages.Rating;
             ratingLbl.Text = $"{baseText} {media.GetMediaRating()}/5";
         }
 
+        /// <summary>
+        /// Loads its genres by the media
+        /// </summary>
+        /// <param name="media">Media</param>
         private void LoadGenres(Media media)
         {
             genrePanel.Controls.Clear();
-            foreach(var genre in media.Genres) 
+
+            var genreTranslations = Util.GenerateGenreTranslation();
+
+            foreach (Media.Genre genre in media.Genres)
             {
-                Label label = new Label
+                Label genreLabel = new Label
                 {
                     Text = genre.ToString(),
-                    Width = 120,
-                    Margin = new Padding(5)
+                    Tag = genre,
+                    AutoSize = true,
+                    Margin = new Padding(5),
+                    Cursor = Cursors.Hand
                 };
 
-                label.Click += (s,args) => OpenMediaLoad(genre);
-                genrePanel.Controls.Add(label);
+                if (genreTranslations.TryGetValue(genre.ToString(), out var translatedGenre))
+                {
+                    genreLabel.Text = translatedGenre;
+                }
+
+                genreLabel.Click += (s, args) => OpenMediaLoad((Media.Genre)genreLabel.Tag);
+
+                
+                genrePanel.Controls.Add(genreLabel);
             }
         }
 
+        /// <summary>
+        /// Updates the genre's language by using a dictionnary
+        /// </summary>
+        private void UpdateGenresLanguage()
+        {
+            var genreTranslations = Util.GenerateGenreTranslation();
+
+            foreach (Control control in genrePanel.Controls)
+            {
+                if (control is Label genreLabel)
+                {
+                    Media.Genre genre = (Media.Genre)genreLabel.Tag;
+
+                    if (genreTranslations.TryGetValue(genre.ToString(), out var translatedGenre))
+                    {
+                        genreLabel.Text = translatedGenre;  
+                    }
+                    else
+                    {
+                        genreLabel.Text = genre.ToString();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Opens the Media Load frame by taking a genre
+        /// </summary>
+        /// <param name="genre"></param>
         private void OpenMediaLoad(Media.Genre genre)
         {
             this.Hide();
@@ -172,6 +225,10 @@ namespace MovieDatabase
             }
         }
 
+        /// <summary>
+        /// Loads the episodes of the tvshow
+        /// </summary>
+        /// <param name="tvshow">Tv show</param>
         private void LoadEpisodes(TVShow tvshow)
         {
             episodePanel.Controls.Clear();
@@ -193,6 +250,10 @@ namespace MovieDatabase
             }
         }
 
+        /// <summary>
+        /// Opens the media form for the episodes
+        /// </summary>
+        /// <param name="episode">Episode</param>
         private void OpenMediaForm(Episode episode)
         {
             
@@ -246,7 +307,7 @@ namespace MovieDatabase
             {
                 if (!user.WatchList.Any(m => m.MediaId == media.MediaId))
                 {
-                    user.WatchList.Add(media);
+                    user.AddMediaToWatchList(media);
 
                     if (media is Movie)
                     {
@@ -267,7 +328,16 @@ namespace MovieDatabase
                 var mediaToRemove = user.WatchList.FirstOrDefault(m => m.MediaId == media.MediaId);
                 if (mediaToRemove != null)
                 {
-                    user.WatchList.Remove(mediaToRemove);
+                    user.RemoveMediaFromWatchList(mediaToRemove);
+                    if (media is Movie)
+                    {
+                        database.DeleteFromUserWatchlist(user, (Movie)media);
+                    }
+                    else if (media is TVShow)
+                    {
+                        database.DeleteFromUserWatchlist(user, (TVShow)media);
+                    }
+
                     string message = rm.GetString("RemoveFromWatchListMessage");
                     string title = rm.GetString("RemoveFromWatchListTitle");
                     MessageBox.Show($"{media.Title} {message}",

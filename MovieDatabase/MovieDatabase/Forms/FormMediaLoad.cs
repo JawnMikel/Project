@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MovieDatabase.Model;
 using MovieDatabase.Utils;
 
 namespace MovieDatabase
@@ -23,12 +24,20 @@ namespace MovieDatabase
             this.user = user;
             this.form = form;
             this.genre = genre;
-            genreLbl.Text = genre.ToString();
+
+            var genreTranslations = Util.GenerateGenreTranslation();
+
+            string translatedGenre = genreTranslations.ContainsKey(genre.ToString()) ? genreTranslations[genre.ToString()] : genre.ToString();
+
+            genreLbl.Text = translatedGenre;
 
             LoadMedia(genre);
-          
         }
 
+        /// <summary>
+        /// Loads all the media by their genres
+        /// </summary>
+        /// <param name="genre"></param>
         private void LoadMedia(Media.Genre genre)
         {
             var database = DatabaseUtils.GetInstance();
@@ -50,9 +59,12 @@ namespace MovieDatabase
 
                 mediaLayout.Controls.Add(pictureBox);
             }
-
         }
 
+        /// <summary>
+        /// Opens the media information frame when you click on a media
+        /// </summary>
+        /// <param name="media"></param>
         private void OpenMediaInfo(Media media)
         {
             var mediaInformationForm = new FormMediaInformation(this, media, user);

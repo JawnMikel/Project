@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MovieDatabase.Model;
 
 namespace MovieDatabase
 {
@@ -71,7 +72,7 @@ namespace MovieDatabase
                 total += review.Rating;
             }
 
-            return total / Reviews.Count;
+            return Math.Round(total / Reviews.Count, 1);
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MovieDatabase.Utils;
 
-namespace MovieDatabase
+namespace MovieDatabase.Model
 {
     /// <summary>
     /// User class is used to represent a user of the application.
@@ -75,7 +75,7 @@ namespace MovieDatabase
             {
                 if (!Util.ValidateUserAge(value))
                 {
-                    throw new ArgumentException("The lastname's format is invalid."); 
+                    throw new ArgumentException("The lastname's format is invalid.");
                 }
                 _dob = value;
             }
@@ -115,18 +115,6 @@ namespace MovieDatabase
             Membership = membership;
             WrittenReviews = new List<Review>();
             WatchList = new List<Media>();
-        }
-
-        // TODO: REMOVE -----------
-        /// <summary>
-        /// Passes a username and password and checks if they match with the fields of the user
-        /// </summary>
-        /// <param name="username">username</param>
-        /// <param name="password">password</param>
-        /// <returns>True if the credentials match or returns false if the credentials do not match</returns
-        public bool Login(string username, string password)
-        {
-            return Username == username && Password == password;
         }
 
         /// <summary>

@@ -10,13 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MovieDatabase.Utils;
 using System.Resources;
+using MovieDatabase.Model;
 
 namespace MovieDatabase
 {
     public partial class FormProfile : Form
     {
-        User user;
-        public FormProfile(User user)
+        Model.User user;
+        public FormProfile(Model.User user)
         { 
             InitializeComponent();
             Update();
@@ -27,7 +28,7 @@ namespace MovieDatabase
             dobPicker.Value = user.Dob;
             membershipTB.Text = user.Membership.ToString();
 
-            if (user.Membership == User.Memberships.PREMIUM)
+            if (user.Membership == Model.User.Memberships.PREMIUM)
             {
                 upgradeBtn.Enabled = false;
             }

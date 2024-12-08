@@ -119,5 +119,7 @@
   </resheader>
   <data name="AccountCreationSuccessTitleMessageBox" xml:space="preserve">
     <value>Successfully Created Account</value>
+  <data name="Episode" xml:space="preserve">
+    <value>Episode</value>
   </data>
 </root>

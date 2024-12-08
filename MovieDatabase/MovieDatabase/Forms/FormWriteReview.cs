@@ -10,8 +10,9 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MovieDatabase.Model;
 using MovieDatabase.Utils;
-using static MovieDatabase.User;
+using static MovieDatabase.Model.User;
 
 namespace MovieDatabase
 {
@@ -46,6 +47,14 @@ namespace MovieDatabase
 
         private void postBtn_Click(object sender, EventArgs e)
         {
+            Post();
+        }
+
+        /// <summary>
+        /// Post controlls for when you write a post for a media or crew member
+        /// </summary>
+        private void Post()
+        {
             var database = DatabaseUtils.GetInstance();
 
             if (!CheckReview())
@@ -65,9 +74,10 @@ namespace MovieDatabase
 
                 }
                 else if (media is Episode)
-                { 
+                {
                     database.InsertReview(review, (Episode)media);
                 }
+                media.AddReview(review);
             }
             if (crewMember != null)
             {
@@ -79,6 +89,7 @@ namespace MovieDatabase
                 {
                     database.InsertReview(review, (Director)crewMember);
                 }
+                crewMember.AddReview(review);
             }
             database.CloseConnection();
         }
@@ -106,6 +117,10 @@ namespace MovieDatabase
             Update();
         }
 
+        /// <summary>
+        /// Creates the review
+        /// </summary>
+        /// <returns>The full review</returns>
         private Review? CreateReview()
         {
             string comment = reviewTB.Text;

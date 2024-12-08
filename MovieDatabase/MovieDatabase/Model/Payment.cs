@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MovieDatabase.Utils;
 
-namespace MovieDatabase
+namespace MovieDatabase.Model
 {
     /// <summary>
     /// Payment class is used to represent payments made by users for their memberships.
@@ -18,7 +18,7 @@ namespace MovieDatabase
         public string CreditCardNum { get; }
         public DateTime ExpiryDate { get; }
         public DateTime PaymentDate { get; set; }
-        
+
         /// <summary>
         /// All argument constructor for a new payment.
         /// </summary>
@@ -27,7 +27,7 @@ namespace MovieDatabase
         /// <param name="expiryDate">The card's expiry date</param>
         /// <param name="cvv"></param>
         /// <exception cref="ArgumentException">Exception thrown when the arguments passed are of invalid format.</exception>
-		public Payment(string cardHolderName, string cardNum, string cvv, string expiryDate)
+        public Payment(string cardHolderName, string cardNum, string cvv, string expiryDate)
         {
             if (!Util.ValidateNameFormat(cardHolderName))
             {

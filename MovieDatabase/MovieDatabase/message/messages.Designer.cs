@@ -160,6 +160,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to COMEDY.
+        /// </summary>
+        internal static string COMEDY {
+            get {
+                return ResourceManager.GetString("COMEDY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Account.
         /// </summary>
         internal static string CreateAccountButton {
@@ -205,6 +214,33 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DOCUMENTARY.
+        /// </summary>
+        internal static string DOCUMENTARY {
+            get {
+                return ResourceManager.GetString("DOCUMENTARY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DRAMA.
+        /// </summary>
+        internal static string DRAMA {
+            get {
+                return ResourceManager.GetString("DRAMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Episodes.
+        /// </summary>
+        internal static string Episode {
+            get {
+                return ResourceManager.GetString("Episode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username or password do not match! Please try again.
         /// </summary>
         internal static string ErrorMessage {
@@ -219,6 +255,15 @@ namespace MovieDatabase.message {
         internal static string ExpiryDate {
             get {
                 return ResourceManager.GetString("ExpiryDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FANTASY.
+        /// </summary>
+        internal static string FANTASY {
+            get {
+                return ResourceManager.GetString("FANTASY", resourceCulture);
             }
         }
         
@@ -365,6 +410,15 @@ namespace MovieDatabase.message {
                 return ResourceManager.GetString("InvalidUserNameTitle", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to HORROR.
+        /// </summary>
+        internal static string HORROR {
+            get {
+                return ResourceManager.GetString("HORROR", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to French.
@@ -381,6 +435,15 @@ namespace MovieDatabase.message {
         internal static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of Medias.
+        /// </summary>
+        internal static string listMedia {
+            get {
+                return ResourceManager.GetString("listMedia", resourceCulture);
             }
         }
         
@@ -462,6 +525,15 @@ namespace MovieDatabase.message {
         internal static string Movies {
             get {
                 return ResourceManager.GetString("Movies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MYSTERY.
+        /// </summary>
+        internal static string MYSTERY {
+            get {
+                return ResourceManager.GetString("MYSTERY", resourceCulture);
             }
         }
         
@@ -700,6 +772,16 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SUPERHERO.
+        /// </summary>
+        internal static string SUPERHERO {
+            get {
+                return ResourceManager.GetString("SUPERHERO", resourceCulture);
+
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
         internal static string Title {
@@ -768,6 +850,15 @@ namespace MovieDatabase.message {
         internal static string ViewReviews {
             get {
                 return ResourceManager.GetString("ViewReviews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WAR.
+        /// </summary>
+        internal static string WAR {
+            get {
+                return ResourceManager.GetString("WAR", resourceCulture);
             }
         }
         
