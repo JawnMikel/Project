@@ -57,17 +57,19 @@ namespace MovieDatabase
             // 
             titleLbl.AutoSize = true;
             titleLbl.Font = new Font("Segoe UI", 22F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            titleLbl.Location = new Point(12, 9);
+            titleLbl.Location = new Point(8, 5);
+            titleLbl.Margin = new Padding(2, 0, 2, 0);
             titleLbl.Name = "titleLbl";
-            titleLbl.Size = new Size(108, 60);
+            titleLbl.Size = new Size(74, 41);
             titleLbl.TabIndex = 0;
             titleLbl.Text = "Title";
             // 
             // langBtn
             // 
-            langBtn.Location = new Point(1258, 50);
+            langBtn.Location = new Point(881, 30);
+            langBtn.Margin = new Padding(2, 2, 2, 2);
             langBtn.Name = "langBtn";
-            langBtn.Size = new Size(112, 34);
+            langBtn.Size = new Size(78, 20);
             langBtn.TabIndex = 1;
             langBtn.Text = "French";
             langBtn.UseVisualStyleBackColor = true;
@@ -75,9 +77,10 @@ namespace MovieDatabase
             // 
             // backBtn
             // 
-            backBtn.Location = new Point(1126, 50);
+            backBtn.Location = new Point(788, 30);
+            backBtn.Margin = new Padding(2, 2, 2, 2);
             backBtn.Name = "backBtn";
-            backBtn.Size = new Size(112, 34);
+            backBtn.Size = new Size(78, 20);
             backBtn.TabIndex = 2;
             backBtn.Text = "Back";
             backBtn.UseVisualStyleBackColor = true;
@@ -86,33 +89,37 @@ namespace MovieDatabase
             // releaseDate
             // 
             releaseDate.Enabled = false;
-            releaseDate.Location = new Point(12, 72);
+            releaseDate.Location = new Point(8, 43);
+            releaseDate.Margin = new Padding(2, 2, 2, 2);
             releaseDate.Name = "releaseDate";
-            releaseDate.Size = new Size(300, 31);
+            releaseDate.Size = new Size(211, 23);
             releaseDate.TabIndex = 3;
             // 
             // mediaPicture
             // 
-            mediaPicture.Location = new Point(81, 287);
+            mediaPicture.Location = new Point(57, 172);
+            mediaPicture.Margin = new Padding(2, 2, 2, 2);
             mediaPicture.Name = "mediaPicture";
-            mediaPicture.Size = new Size(242, 251);
+            mediaPicture.Size = new Size(169, 151);
             mediaPicture.TabIndex = 5;
             mediaPicture.TabStop = false;
             // 
             // ratingLbl
             // 
             ratingLbl.AutoSize = true;
-            ratingLbl.Location = new Point(12, 544);
+            ratingLbl.Location = new Point(8, 326);
+            ratingLbl.Margin = new Padding(2, 0, 2, 0);
             ratingLbl.Name = "ratingLbl";
-            ratingLbl.Size = new Size(67, 25);
+            ratingLbl.Size = new Size(44, 15);
             ratingLbl.TabIndex = 6;
             ratingLbl.Text = "Rating:";
             // 
             // giveReviewBtn
             // 
-            giveReviewBtn.Location = new Point(1174, 141);
+            giveReviewBtn.Location = new Point(822, 85);
+            giveReviewBtn.Margin = new Padding(2, 2, 2, 2);
             giveReviewBtn.Name = "giveReviewBtn";
-            giveReviewBtn.Size = new Size(161, 34);
+            giveReviewBtn.Size = new Size(113, 20);
             giveReviewBtn.TabIndex = 7;
             giveReviewBtn.Text = "Write a review";
             giveReviewBtn.UseVisualStyleBackColor = true;
@@ -120,9 +127,10 @@ namespace MovieDatabase
             // 
             // viewReviewBtn
             // 
-            viewReviewBtn.Location = new Point(1174, 210);
+            viewReviewBtn.Location = new Point(822, 126);
+            viewReviewBtn.Margin = new Padding(2, 2, 2, 2);
             viewReviewBtn.Name = "viewReviewBtn";
-            viewReviewBtn.Size = new Size(161, 34);
+            viewReviewBtn.Size = new Size(113, 20);
             viewReviewBtn.TabIndex = 8;
             viewReviewBtn.Text = "View reviews";
             viewReviewBtn.UseVisualStyleBackColor = true;
@@ -131,9 +139,10 @@ namespace MovieDatabase
             // watchlistCheckBox
             // 
             watchlistCheckBox.AutoSize = true;
-            watchlistCheckBox.Location = new Point(1174, 287);
+            watchlistCheckBox.Location = new Point(822, 172);
+            watchlistCheckBox.Margin = new Padding(2, 2, 2, 2);
             watchlistCheckBox.Name = "watchlistCheckBox";
-            watchlistCheckBox.Size = new Size(167, 29);
+            watchlistCheckBox.Size = new Size(112, 19);
             watchlistCheckBox.TabIndex = 9;
             watchlistCheckBox.Text = "Add to watchlist";
             watchlistCheckBox.UseVisualStyleBackColor = true;
@@ -142,9 +151,10 @@ namespace MovieDatabase
             // directorsLbl
             // 
             directorsLbl.AutoSize = true;
-            directorsLbl.Location = new Point(532, 112);
+            directorsLbl.Location = new Point(372, 67);
+            directorsLbl.Margin = new Padding(2, 0, 2, 0);
             directorsLbl.Name = "directorsLbl";
-            directorsLbl.Size = new Size(83, 25);
+            directorsLbl.Size = new Size(54, 15);
             directorsLbl.TabIndex = 10;
             directorsLbl.Text = "Directors";
             // 
@@ -153,65 +163,74 @@ namespace MovieDatabase
             directorPanel.AutoScroll = true;
             directorPanel.AutoSize = true;
             directorPanel.FlowDirection = FlowDirection.TopDown;
-            directorPanel.Location = new Point(435, 156);
+            directorPanel.Location = new Point(304, 94);
+            directorPanel.Margin = new Padding(2, 2, 2, 2);
             directorPanel.Name = "directorPanel";
-            directorPanel.Size = new Size(248, 764);
+            directorPanel.Size = new Size(174, 458);
             directorPanel.TabIndex = 11;
             // 
             // synopsisTB
             // 
             synopsisTB.Enabled = false;
-            synopsisTB.Location = new Point(12, 109);
+            synopsisTB.Location = new Point(8, 65);
+            synopsisTB.Margin = new Padding(2, 2, 2, 2);
             synopsisTB.Name = "synopsisTB";
-            synopsisTB.Size = new Size(417, 172);
+            synopsisTB.Size = new Size(293, 105);
             synopsisTB.TabIndex = 12;
             synopsisTB.Text = "";
             // 
             // actorsLbl
             // 
             actorsLbl.AutoSize = true;
-            actorsLbl.Location = new Point(844, 112);
+            actorsLbl.Location = new Point(591, 67);
+            actorsLbl.Margin = new Padding(2, 0, 2, 0);
             actorsLbl.Name = "actorsLbl";
-            actorsLbl.Size = new Size(63, 25);
+            actorsLbl.Size = new Size(41, 15);
             actorsLbl.TabIndex = 13;
             actorsLbl.Text = "Actors";
             // 
             // actorPanel
             // 
-            actorPanel.Location = new Point(706, 154);
+            actorPanel.AutoScroll = true;
+            actorPanel.Location = new Point(494, 92);
+            actorPanel.Margin = new Padding(2, 2, 2, 2);
             actorPanel.Name = "actorPanel";
-            actorPanel.Size = new Size(404, 778);
+            actorPanel.Size = new Size(283, 467);
             actorPanel.TabIndex = 14;
             // 
             // genrePanel
             // 
-            genrePanel.Location = new Point(12, 595);
+            genrePanel.Location = new Point(8, 357);
+            genrePanel.Margin = new Padding(2, 2, 2, 2);
             genrePanel.Name = "genrePanel";
-            genrePanel.Size = new Size(417, 126);
+            genrePanel.Size = new Size(292, 76);
             genrePanel.TabIndex = 15;
             // 
             // episodePanel
             // 
-            episodePanel.Location = new Point(1116, 419);
+            episodePanel.AutoScroll = true;
+            episodePanel.Location = new Point(781, 251);
+            episodePanel.Margin = new Padding(2, 2, 2, 2);
             episodePanel.Name = "episodePanel";
-            episodePanel.Size = new Size(360, 513);
+            episodePanel.Size = new Size(252, 308);
             episodePanel.TabIndex = 16;
             // 
             // episodeLbl
             // 
             episodeLbl.AutoSize = true;
-            episodeLbl.Location = new Point(1232, 378);
+            episodeLbl.Location = new Point(862, 227);
+            episodeLbl.Margin = new Padding(2, 0, 2, 0);
             episodeLbl.Name = "episodeLbl";
-            episodeLbl.Size = new Size(83, 25);
+            episodeLbl.Size = new Size(53, 15);
             episodeLbl.TabIndex = 17;
             episodeLbl.Text = "Episodes";
             episodeLbl.Visible = false;
             // 
             // FormMediaInformation
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1472, 932);
+            ClientSize = new Size(1030, 559);
             Controls.Add(episodeLbl);
             Controls.Add(episodePanel);
             Controls.Add(genrePanel);
@@ -229,6 +248,7 @@ namespace MovieDatabase
             Controls.Add(backBtn);
             Controls.Add(langBtn);
             Controls.Add(titleLbl);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormMediaInformation";
             Text = "FormMediaLoad";
             ((System.ComponentModel.ISupportInitialize)mediaPicture).EndInit();
