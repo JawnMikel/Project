@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LogoutTitle" xml:space="preserve">
-    <value>Confirmation de déconnexion</value>
+  <data name="InvalidCommentMessage" xml:space="preserve">
+    <value>L'utilisateur doit avoir un commentaire valide.</value>
+  </data>
+  <data name="InvalidCommentTitle" xml:space="preserve">
+    <value>Commentaire Invalid</value>
   </data>
 </root>

@@ -345,4 +345,22 @@
   <data name="LogoutTitle" xml:space="preserve">
     <value>Confirmation de déconnexion</value>
   </data>
+  <data name="PostedReviewMessage" xml:space="preserve">
+    <value>Avis publié avec succès.</value>
+  </data>
+  <data name="PostedReviewTitle" xml:space="preserve">
+    <value>Avis publié</value>
+  </data>
+  <data name="InvalidRatingMessage" xml:space="preserve">
+    <value>La valeur de l'évaluation doit être entre 0 et 5.</value>
+  </data>
+  <data name="InvalidRatingTitle" xml:space="preserve">
+    <value>Valeur invalide de l'évaluation</value>
+  </data>
+  <data name="InvalidCommentMessage" xml:space="preserve">
+    <value>L'utilisateur doit avoir un commentaire valide.</value>
+  </data>
+  <data name="InvalidCommentTitle" xml:space="preserve">
+    <value>Commentaire Invalid</value>
+  </data>
 </root>

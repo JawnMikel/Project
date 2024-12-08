@@ -259,6 +259,24 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User must have a proper comment..
+        /// </summary>
+        internal static string InvalidCommentMessage {
+            get {
+                return ResourceManager.GetString("InvalidCommentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Comment.
+        /// </summary>
+        internal static string InvalidCommentTitle {
+            get {
+                return ResourceManager.GetString("InvalidCommentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User must have a proper first name..
         /// </summary>
         internal static string InvalidFirstNameMessage {
@@ -309,6 +327,24 @@ namespace MovieDatabase.message {
         internal static string InvalidPasswordTitle {
             get {
                 return ResourceManager.GetString("InvalidPasswordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The rating&apos;s value must be a number between 0 and 5..
+        /// </summary>
+        internal static string InvalidRatingMessage {
+            get {
+                return ResourceManager.GetString("InvalidRatingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Rating Value.
+        /// </summary>
+        internal static string InvalidRatingTitle {
+            get {
+                return ResourceManager.GetString("InvalidRatingTitle", resourceCulture);
             }
         }
         
@@ -534,6 +570,24 @@ namespace MovieDatabase.message {
         internal static string Post {
             get {
                 return ResourceManager.GetString("Post", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully posted review..
+        /// </summary>
+        internal static string PostedReviewMessage {
+            get {
+                return ResourceManager.GetString("PostedReviewMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Posted Review.
+        /// </summary>
+        internal static string PostedReviewTitle {
+            get {
+                return ResourceManager.GetString("PostedReviewTitle", resourceCulture);
             }
         }
         

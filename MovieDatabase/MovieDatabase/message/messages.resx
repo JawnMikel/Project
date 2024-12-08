@@ -345,4 +345,22 @@
   <data name="LogoutTitle" xml:space="preserve">
     <value>Logout Confirmation</value>
   </data>
+  <data name="PostedReviewMessage" xml:space="preserve">
+    <value>Successfully posted review.</value>
+  </data>
+  <data name="PostedReviewTitle" xml:space="preserve">
+    <value>Posted Review</value>
+  </data>
+  <data name="InvalidRatingMessage" xml:space="preserve">
+    <value>The rating's value must be a number between 0 and 5.</value>
+  </data>
+  <data name="InvalidRatingTitle" xml:space="preserve">
+    <value>Invalid Rating Value</value>
+  </data>
+  <data name="InvalidCommentMessage" xml:space="preserve">
+    <value>User must have a proper comment.</value>
+  </data>
+  <data name="InvalidCommentTitle" xml:space="preserve">
+    <value>Invalid Comment</value>
+  </data>
 </root>

@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -108,16 +109,21 @@ namespace MovieDatabase
         private Review? CreateReview()
         {
             string comment = reviewTB.Text;
-            double rating = double.Parse(ratingTB.Text);
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
             try
             {
+                double rating = double.Parse(ratingTB.Text);
                 Review review = user.WriteReview(comment, rating);
-                MessageBox.Show("Successfully posted review", "Posted review", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string message = rm.GetString("PostedReviewMessage");
+                string title = rm.GetString("PostedReviewTitle");
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return review;
             }
             catch (ArithmeticException ex)
             {
-                MessageBox.Show(ex.Message, "Invalid review", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string message = rm.GetString("InvalidRatingMessage");
+                string title = rm.GetString("InvalidRatingTitle");
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             return null;
         }
@@ -129,18 +135,33 @@ namespace MovieDatabase
         private bool CheckReview()
         {
             string comment = reviewTB.Text;
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
 
             if (!Util.ValidateNameFormat(comment))
             {
-                MessageBox.Show("User must have a proper comment", "Invalid Comment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string message = rm.GetString("InvalidCommentMessage");
+                string title = rm.GetString("InvalidCommentTitle");
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            double rating = 0;
+            try
+            {
+                rating = double.Parse(ratingTB.Text);
+            }
+            catch (FormatException ex)
+            {
+                string message = rm.GetString("InvalidRatingMessage");
+                string title = rm.GetString("InvalidRatingTitle");
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            double rating = double.Parse(ratingTB.Text);
-
             if (!Util.ValidateRatingRange(rating))
             {
-                MessageBox.Show("User must input a proper rating number (0-5)", "Invalid Number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string message = rm.GetString("InvalidRatingMessage");
+                string title = rm.GetString("InvalidRatingTitle");
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
