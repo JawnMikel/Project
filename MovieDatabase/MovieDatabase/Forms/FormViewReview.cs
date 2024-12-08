@@ -11,34 +11,37 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic.Devices;
 using MovieDatabase.Model;
 using MovieDatabase.Utils;
+
 namespace MovieDatabase
 {
     public partial class FormViewReview : Form
     {
         Media media;
+        Media previousMedia;
         CrewMember crewMember;
         User user;
         Form form;
-        public FormViewReview(Form form, CrewMember crewMember, User user, Media media)
+
+        public FormViewReview(Form form, CrewMember crewMember, User user, Media media, Media previousMedia)
         {
             InitializeComponent();
-            Update();
             this.crewMember = crewMember;
             this.form = form;
             this.user = user;
             this.media = media;
-            titleLbl.Text += " " + crewMember.FirstName + " " + crewMember.LastName;
-
+            this.previousMedia = previousMedia;
             LoadReview(crewMember);
+            Update();
         }
+
         public FormViewReview(Form form, Media media, User user)
         {
             InitializeComponent();
             this.media = media;
-            titleLbl.Text += " " + media.Title;
             this.form = form;
-            LoadReview(media);
             this.user = user;
+            LoadReview(media);
+            Update();
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -46,7 +49,15 @@ namespace MovieDatabase
             this.Hide();
             if (form is FormCrewMemberInformation)
             {
-                var formCrewMemberInfo = new FormCrewMemberInformation(form, crewMember, user, media);
+                FormCrewMemberInformation formCrewMemberInfo = null;
+                if (previousMedia != null)
+                {
+                    formCrewMemberInfo = new FormCrewMemberInformation(form, crewMember, user, previousMedia);
+                }
+                else
+                {
+                    formCrewMemberInfo = new FormCrewMemberInformation(form, crewMember, user, media);
+                }
                 formCrewMemberInfo.Closed += (s, args) => this.Close();
                 formCrewMemberInfo.ShowDialog();
             }
@@ -70,29 +81,13 @@ namespace MovieDatabase
         /// <param name="crewMember">Crew member</param>
         private void LoadReview(CrewMember crewMember)  
         {
-            var database = DatabaseUtils.GetInstance();
-            List<CrewMember> crewmembers = database.GetAllCrewMembers();
-
-            foreach (CrewMember member in crewmembers)
+            DatabaseUtils database = DatabaseUtils.GetInstance();
+            foreach (Review review in crewMember.Reviews)
             {
-                if (member.Equals(crewMember))
-                {
-                    if (member is Actor)
-                    {
-                        foreach (var review in member.Reviews)
-                        {
-                            reviewsTB.Text += review.ToString();
-                        }
-                    }
-                    else
-                    {
-                        foreach (var review in member.Reviews)
-                        {
-                            reviewsTB.Text += review.ToString();
-                        }
-                    }
-                    break;
-                }
+                // Get the reviewer
+                User reviewer = database.GetUserById(review.AuthorId);
+                reviewsTB.Text += "Author: " + reviewer.FirstName + " " + reviewer.LastName + "\n";
+                reviewsTB.Text += review.Comment + "\n\n";
             }
             database.CloseConnection();
         }
@@ -105,29 +100,12 @@ namespace MovieDatabase
         {
             var database = DatabaseUtils.GetInstance();
 
-            if (media is Movie)
+            foreach (Review review in media.Reviews)
             {
-                Movie selectedMovie = database.GetMovieById(media.MediaId);
-                foreach (var review in selectedMovie.Reviews)
-                {
-                    reviewsTB.Text += review.ToString();
-                }
-            } 
-            else if (media is TVShow)
-            {
-                TVShow selectedTV = database.GetTVShowById(media.MediaId);
-                foreach (var review in selectedTV.Reviews)
-                {
-                    reviewsTB.Text += review.ToString();
-                }
-            }
-            else
-            {
-                Episode selectedEpisode = database.GetEpisodeById(media.MediaId);
-                foreach (var review in selectedEpisode.Reviews)
-                {
-                    reviewsTB.Text += review.ToString();
-                }
+                // Get the reviewer
+                User reviewer = database.GetUserById(review.AuthorId);
+                reviewsTB.Text += "Author: " + reviewer.FirstName + " " + reviewer.LastName + "\n";
+                reviewsTB.Text += review.Comment + "\n\n";
             }
             database.CloseConnection();
         }

@@ -142,6 +142,68 @@ namespace MovieDatabase.Utils
         }
 
         /// <summary>
+        /// Fetch all reviews for a given director.
+        /// </summary>
+        /// <param name="directorId">The director ID of the director whose reviews are to be fetched.</param>
+        /// <returns>A list of all of the reviews of the director.</returns>
+        private List<Review> GetDirectorReviews(int directorId)
+        {
+            const string SQL = """
+                                SELECT r.* FROM review r 
+                                JOIN directorreview dr on r.ReviewID = dr.ReviewID
+                                WHERE DirectorID = @DirectorID;
+                                """;
+            List<Review> reviews = new List<Review>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@DirectorID", directorId);
+                using (SQLiteDataReader reviewReader = cmd.ExecuteReader())
+                {
+                    // Loop through the results and fetch all reviews
+                    while (reviewReader.Read())
+                    {
+                        Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                        review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
+                        reviews.Add(review);
+                    }
+                }
+            }
+            return reviews;
+        }
+
+        /// <summary>
+        /// Fetch all reviews for a given actor.
+        /// </summary>
+        /// <param name="actorID">The actor ID of the actor whose reviews are to be fetched.</param>
+        /// <returns>A list of all of the reviews of the actor.</returns>
+        private List<Review> GetActorReviews(int actorID)
+        {
+            const string SQL = """
+                                SELECT r.* FROM review r 
+                                JOIN actorreview ar on r.ReviewID = ar.ReviewID
+                                WHERE ActorID = @ActorID;
+                                """;
+            List<Review> reviews = new List<Review>();
+            using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
+            {
+                // Form the SQL statement and execute the query
+                cmd.Parameters.AddWithValue("@ActorID", actorID);
+                using (SQLiteDataReader reviewReader = cmd.ExecuteReader())
+                {
+                    // Loop through the results and fetch all reviews
+                    while (reviewReader.Read())
+                    {
+                        Review review = new Review(Convert.ToInt32(reviewReader["UserID"]), (string)reviewReader["Comment"], (double)reviewReader["Rating"]);
+                        review.ReviewId = Convert.ToInt32(reviewReader["ReviewID"]);
+                        reviews.Add(review);
+                    }
+                }
+            }
+            return reviews;
+        }
+
+        /// <summary>
         /// Get the watch list of the user.
         /// </summary>
         /// <param name="userId">The user ID of the user.</param>
@@ -286,6 +348,8 @@ namespace MovieDatabase.Utils
                         actor.StarredMovies = starredIds["MovieIds"];
                         actor.StarredTVShows = starredIds["TVShowIds"];
                         actor.StarredEpisodes = starredIds["EpisodeIds"];
+                        // Set the actor reviews
+                        actor.Reviews = GetActorReviews(actor.Id);
                         // Add the actor
                         actors.Add(actor);
                     }
@@ -323,6 +387,8 @@ namespace MovieDatabase.Utils
                         director.DirectedMovies = directedIds["MovieIds"];
                         director.DirectedTVShows = directedIds["TVShowIds"];
                         director.DirectedEpisodes = directedIds["EpisodeIds"];
+                        // Set the director reviews
+                        director.Reviews = GetDirectorReviews(director.Id);
                         // Add the director
                         directors.Add(director);
                     }
@@ -419,6 +485,8 @@ namespace MovieDatabase.Utils
                         actor.StarredMovies = starredIds["MovieIds"];
                         actor.StarredTVShows = starredIds["TVShowIds"];
                         actor.StarredEpisodes = starredIds["EpisodeIds"];
+                        // Set the actor reviews
+                        actor.Reviews = GetActorReviews(actor.Id);
                         // Add the actor
                         actors.Add(actor);
                     }
@@ -456,6 +524,8 @@ namespace MovieDatabase.Utils
                         director.DirectedMovies = directedIds["MovieIds"];
                         director.DirectedTVShows = directedIds["TVShowIds"];
                         director.DirectedEpisodes = directedIds["EpisodeIds"];
+                        // Set the director reviews
+                        director.Reviews = GetDirectorReviews(director.Id);
                         // Add the director 
                         directors.Add(director);
                     }
@@ -551,6 +621,8 @@ namespace MovieDatabase.Utils
                         actor.StarredMovies = starredIds["MovieIds"];
                         actor.StarredTVShows = starredIds["TVShowIds"];
                         actor.StarredEpisodes = starredIds["EpisodeIds"];
+                        // Set the actor reviews
+                        actor.Reviews = GetActorReviews(actor.Id);
                         // Add the actor
                         actors.Add(actor);
                     }
@@ -588,6 +660,8 @@ namespace MovieDatabase.Utils
                         director.DirectedMovies = directedIds["MovieIds"];
                         director.DirectedTVShows = directedIds["TVShowIds"];
                         director.DirectedEpisodes = directedIds["EpisodeIds"];
+                        // Set the director reviews
+                        director.Reviews = GetDirectorReviews(director.Id);
                         // Add the director
                         directors.Add(director);
                     }
@@ -1048,7 +1122,7 @@ namespace MovieDatabase.Utils
             User? user = null;
             using (SQLiteCommand cmd = new SQLiteCommand(SQL, _connection))
             {
-                cmd.Parameters.AddWithValue("@UserName", userId);
+                cmd.Parameters.AddWithValue("@UserID", userId);
 
                 // Execute the SQL and read the next result
                 using (SQLiteDataReader reader = cmd.ExecuteReader())
@@ -1104,6 +1178,8 @@ namespace MovieDatabase.Utils
                     actor.StarredMovies = starredIds["MovieIds"];
                     actor.StarredTVShows = starredIds["TVShowIds"];
                     actor.StarredEpisodes = starredIds["EpisodeIds"];
+                    // Set actor reviews
+                    actor.Reviews = GetActorReviews(actor.Id);
                     // Add to the list of actors
                     actors.Add(actor);
                 }
@@ -1135,6 +1211,8 @@ namespace MovieDatabase.Utils
                     director.DirectedMovies = directedIds["MovieIds"];
                     director.DirectedTVShows = directedIds["TVShowIds"];
                     director.DirectedEpisodes = directedIds["EpisodeIds"];
+                    // Set director reviews
+                    director.Reviews = GetDirectorReviews(director.Id);
                     // Add the director
                     directors.Add(director);
                 }

@@ -7,7 +7,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -98,7 +100,10 @@ namespace MovieDatabase
             }
             else
             {
-                MessageBox.Show("No recommendations found based on your watchlist.", "Recommendations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+                string errorMessage = rm.GetString("NoRecommendationFound");
+                string title = rm.GetString("RecommendationMessageBox");
+                MessageBox.Show(errorMessage, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -115,7 +120,7 @@ namespace MovieDatabase
             List<Media.Genre> watchlist = user.WatchList.SelectMany(media => media.Genres).Distinct().ToList();
 
             List<Media> recommendation = allMedia.Where(media => media.Genres.Any(genre => watchlist.Contains((Media.Genre)genre))).ToList();
-
+            
             database.CloseConnection();
 
             return recommendation;

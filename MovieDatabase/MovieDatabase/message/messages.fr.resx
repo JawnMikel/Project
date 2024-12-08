@@ -151,7 +151,7 @@
     <value>Connexion</value>
   </data>
   <data name="LoginButton" xml:space="preserve">
-    <value>Connexion</value>
+    <value>Se connecter</value>
   </data>
   <data name="MembershipType" xml:space="preserve">
     <value>Type d'Abonnement</value>
@@ -178,10 +178,10 @@
     <value>Améliorer l'Abonnement</value>
   </data>
   <data name="LogOut" xml:space="preserve">
-    <value>Déconnecter</value>
+    <value>Se déconnecter</value>
   </data>
   <data name="WatchList" xml:space="preserve">
-    <value>List de vissionage</value>
+    <value>Liste de Visionnage</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
@@ -190,46 +190,46 @@
     <value>Évaluation:</value>
   </data>
   <data name="WriteReview" xml:space="preserve">
-    <value>Écrire un avis</value>
+    <value>Rédiger un avis</value>
   </data>
   <data name="ViewReviews" xml:space="preserve">
-    <value>Vois les avis</value>
+    <value>Voir les avis</value>
   </data>
   <data name="Recommendation" xml:space="preserve">
-    <value>Recommandation</value>
+    <value>Recommandations</value>
   </data>
   <data name="Movies" xml:space="preserve">
     <value>Films</value>
   </data>
   <data name="TvShows" xml:space="preserve">
-    <value>Des Séries Télévisé</value>
+    <value>Séries</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Titre</value>
   </data>
   <data name="AddToWatchList" xml:space="preserve">
-    <value>Ajouter à la liste de Vissionage</value>
+    <value>Ajouter à la liste de Visionnage</value>
   </data>
   <data name="Reviews" xml:space="preserve">
-    <value>Les Avis:</value>
+    <value>Avis:</value>
   </data>
   <data name="Post" xml:space="preserve">
-    <value>Publié</value>
+    <value>Publier</value>
   </data>
   <data name="ShowPassword" xml:space="preserve">
-    <value>Montré le mot de passe</value>
+    <value>Montrer le mot de passe</value>
   </data>
   <data name="Membership" xml:space="preserve">
     <value>Abonnement</value>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
-    <value>Le nom d’utilisateur ou le mot de passe ne correspondent pas ! Veuillez réessayer</value>
+    <value>Le nom d’utilisateur ou le mot de passe est invalide! Veuillez réessayer</value>
   </data>
   <data name="Memebership" xml:space="preserve">
     <value>Abonnement</value>
   </data>
   <data name="WatchListTitle" xml:space="preserve">
-    <value>List De Vissionage</value>
+    <value>Liste de Visionnage</value>
   </data>
   <data name="Director" xml:space="preserve">
     <value>Directeur</value>
@@ -237,14 +237,131 @@
   <data name="CreateAccountTitle" xml:space="preserve">
     <value>Créer un Compte</value>
   </data>
-  <data name="Premium" xml:space="preserve">
-    <value>Prime</value>
-  </data>
-  <data name="Regular" xml:space="preserve">
-    <value>Régulié</value>
-  </data>
   <data name="Actor" xml:space="preserve">
     <value>Acteurs</value>
+  </data>
+  <data name="AccountCreationFail" xml:space="preserve">
+    <value>Une erreur est survenue lors de la création de votre compte!</value>
+  </data>
+  <data name="AccountCreationSuccess" xml:space="preserve">
+    <value>Votre compte a été créé avec succès!</value>
+  </data>
+  <data name="Regular" xml:space="preserve">
+    <value>Régulier</value>
+  </data>
+  <data name="Premium" xml:space="preserve">
+    <value>Premium</value>
+  </data>
+  <data name="NoRecommendationFound" xml:space="preserve">
+    <value>Aucune recommandation trouvée pour votre liste de visionnage.</value>
+  </data>
+  <data name="RecommendationMessageBox" xml:space="preserve">
+    <value>Recommandations</value>
+  </data>
+  <data name="AccountCreationFailTitleMessageBox" xml:space="preserve">
+    <value>Échec de la création du compte</value>
+  </data>
+  <data name="AccountCreationSuccessTitleMessageBox" xml:space="preserve">
+    <value>Succès de la création du compte</value>
+  </data>
+  <data name="UserCreationFailTitleMessageBox" xml:space="preserve">
+    <value>Utilisateur invalide</value>
+  </data>
+  <data name="InvalidFirstNameMessage" xml:space="preserve">
+    <value>L'utilisateur doit avoir un prénom valide.</value>
+  </data>
+  <data name="InvalidFirstNameTitle" xml:space="preserve">
+    <value>Prénom invalide</value>
+  </data>
+  <data name="InvalidLastNameMessage" xml:space="preserve">
+    <value>L'utilisateur doit avoir un nom de famille valide.</value>
+  </data>
+  <data name="InvalidLastNameTitle" xml:space="preserve">
+    <value>Nom de famille invalide</value>
+  </data>
+  <data name="InvalidAgeMessage" xml:space="preserve">
+    <value>L'utilisateur doit avoir au moins 18 ans.</value>
+  </data>
+  <data name="InvalidAgeTitle" xml:space="preserve">
+    <value>Restriction d'âge</value>
+  </data>
+  <data name="InvalidPasswordMessage" xml:space="preserve">
+    <value>L'utilisateur doit avoir un mot de passe valide.</value>
+  </data>
+  <data name="InvalidPasswordTitle" xml:space="preserve">
+    <value>Mot de passe invalide</value>
+  </data>
+  <data name="InvalidUserNameMessage" xml:space="preserve">
+    <value>L'utilisateur doit avoir un nom d'utilisateur invalide.</value>
+  </data>
+  <data name="InvalidUserNameTitle" xml:space="preserve">
+    <value>Nom d'utilisateur valide</value>
+  </data>
+  <data name="AddToWatchListMessage" xml:space="preserve">
+    <value>a été ajouté à votre liste de visionnage.</value>
+  </data>
+  <data name="AddToWatchListTitle" xml:space="preserve">
+    <value>Liste de visionnage modifiée</value>
+  </data>
+  <data name="RemoveFromWatchListMessage" xml:space="preserve">
+    <value>a été enlevé de votre liste de visionnage.</value>
+  </data>
+  <data name="RemoveFromWatchListTitle" xml:space="preserve">
+    <value>Liste de visionnage modifiée</value>
+  </data>
+  <data name="PaymentApprovedMessage" xml:space="preserve">
+    <value>Paiement approuvé! Compte créé avec succès!</value>
+  </data>
+  <data name="PaymentApprovedTitle" xml:space="preserve">
+    <value>Paiment approuvé</value>
+  </data>
+  <data name="PaymentFailedMessage" xml:space="preserve">
+    <value>Le paiment a échoué.</value>
+  </data>
+  <data name="PaymentFailedTitle" xml:space="preserve">
+    <value>Erreur de paiment</value>
+  </data>
+  <data name="SQLErrorTitle" xml:space="preserve">
+    <value>Erreur SQL</value>
+  </data>
+  <data name="SQLErrorMessage" xml:space="preserve">
+    <value>SQL: </value>
+  </data>
+  <data name="UnexpectedErrorMessage" xml:space="preserve">
+    <value>Une erreur inattendue est survenue:  </value>
+  </data>
+  <data name="UnexpectedErrorTitle" xml:space="preserve">
+    <value>Erreur inattendue</value>
+  </data>
+  <data name="PaymentUpgradeApprovedTitle" xml:space="preserve">
+    <value>Sucès lors de l'amélioration du compte </value>
+  </data>
+  <data name="PaymentUpgradeApprovedMessage" xml:space="preserve">
+    <value>Paiement approuvé! Compte amélioré avec succès!</value>
+  </data>
+  <data name="LogoutMessage" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir vous déconnecter?</value>
+  </data>
+  <data name="LogoutTitle" xml:space="preserve">
+    <value>Confirmation de déconnexion</value>
+  </data>
+  <data name="PostedReviewMessage" xml:space="preserve">
+    <value>Avis publié avec succès.</value>
+  </data>
+  <data name="PostedReviewTitle" xml:space="preserve">
+    <value>Avis publié</value>
+  </data>
+  <data name="InvalidRatingMessage" xml:space="preserve">
+    <value>La valeur de l'évaluation doit être entre 0 et 5.</value>
+  </data>
+  <data name="InvalidRatingTitle" xml:space="preserve">
+    <value>Valeur invalide de l'évaluation</value>
+  </data>
+  <data name="InvalidCommentMessage" xml:space="preserve">
+    <value>L'utilisateur doit avoir un commentaire valide.</value>
+  </data>
+  <data name="InvalidCommentTitle" xml:space="preserve">
+    <value>Commentaire Invalid</value>
   </data>
   <data name="COMEDY" xml:space="preserve">
     <value>COMÉDIE</value>
@@ -253,16 +370,13 @@
     <value>DOCUMENTAIRE</value>
   </data>
   <data name="FANTASY" xml:space="preserve">
-    <value>FANTASY</value>
+    <value>FANTAISIE</value>
   </data>
   <data name="DRAMA" xml:space="preserve">
     <value>DRAME</value>
   </data>
   <data name="HORROR" xml:space="preserve">
     <value>HORREUR</value>
-  </data>
-  <data name="MYSTERY" xml:space="preserve">
-    <value>MYSTÈRE</value>
   </data>
   <data name="SUPERHERO" xml:space="preserve">
     <value>SUPER-HÉROS</value>
@@ -275,5 +389,8 @@
   </data>
   <data name="listMedia" xml:space="preserve">
     <value>Liste des médias</value>
+  </data>
+  <data name="MYSTERY" xml:space="preserve">
+    <value>MYSTÈRE</value>
   </data>
 </root>

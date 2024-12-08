@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Drawing;
@@ -43,15 +44,20 @@ namespace MovieDatabase
                 {
                     return;
                 }
+                ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+                string title = "";
+                string errorMessage = "";
                 User user = CreateUser(User.Memberships.REGULAR);
                 if (user == null)
                 {
-                    MessageBox.Show("Failed to create account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    errorMessage = rm.GetString("AccountCreationFail");
+                    title = rm.GetString("AccountCreationFailTitleMessageBox");
+                    MessageBox.Show(errorMessage, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                errorMessage = rm.GetString("AccountCreationSuccess");
+                title = rm.GetString("AccountCreationSuccessTitleMessageBox");
+                MessageBox.Show(errorMessage, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Hide();
                 var formMainMenu = new FormMainMenu(user);
@@ -117,7 +123,9 @@ namespace MovieDatabase
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show(ex.Message, "Invalid User", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+                string title = rm.GetString("UserCreationFailTitleMessageBox");
+                MessageBox.Show(ex.Message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             return null;
         }
@@ -128,11 +136,14 @@ namespace MovieDatabase
         /// <returns>returns false if the user's information is invalid and returns true if all of the information is valid</returns>
         private bool CheckUser()
         {
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
             string firstName = firstNameTB.Text;
 
             if (!Util.ValidateNameFormat(firstName))
             {
-                MessageBox.Show("User must have a proper first name", "Invalid First Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string message = rm.GetString("InvalidFirstNameMessage");
+                string title = rm.GetString("InvalidFirstNameTitle");
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -140,7 +151,9 @@ namespace MovieDatabase
 
             if (!Util.ValidateNameFormat(lastName))
             {
-                MessageBox.Show("User must have a proper last name", "Invalid Last Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string message = rm.GetString("InvalidLastNameMessage");
+                string title = rm.GetString("InvalidLastNameTitle");
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -148,7 +161,9 @@ namespace MovieDatabase
 
             if (!Util.ValidateUserAge(dob))
             {
-                MessageBox.Show("User must be at least 18 years old.", "Age Restriction", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string message = rm.GetString("InvalidAgeMessage");
+                string title = rm.GetString("InvalidAgeTitle");
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -159,19 +174,21 @@ namespace MovieDatabase
 
             if (!Util.ValidateUsernameFormat(username))
             {
-                MessageBox.Show("User must have a valid username.", "Invalid Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string message = rm.GetString("InvalidUserNameMessage");
+                string title = rm.GetString("InvalidUserNameTitle");
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-
 
             string password = passwordTB.Text;
 
             if (!Util.ValidatePasswordFormat(password))
             {
-                MessageBox.Show("User must have a valid password.", "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string message = rm.GetString("InvalidPasswordMessage");
+                string title = rm.GetString("InvalidPasswordTitle");
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-
             return true;
         }
 

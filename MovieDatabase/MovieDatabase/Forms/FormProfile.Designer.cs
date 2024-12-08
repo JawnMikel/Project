@@ -50,17 +50,19 @@ namespace MovieDatabase
             // 
             profileLbl.AutoSize = true;
             profileLbl.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            profileLbl.Location = new Point(353, 9);
+            profileLbl.Location = new Point(247, 5);
+            profileLbl.Margin = new Padding(2, 0, 2, 0);
             profileLbl.Name = "profileLbl";
-            profileLbl.Size = new Size(176, 65);
+            profileLbl.Size = new Size(120, 45);
             profileLbl.TabIndex = 0;
             profileLbl.Text = "Profile";
             // 
             // logoutBtn
             // 
-            logoutBtn.Location = new Point(716, 12);
+            logoutBtn.Location = new Point(501, 7);
+            logoutBtn.Margin = new Padding(2, 2, 2, 2);
             logoutBtn.Name = "logoutBtn";
-            logoutBtn.Size = new Size(145, 34);
+            logoutBtn.Size = new Size(102, 20);
             logoutBtn.TabIndex = 1;
             logoutBtn.Text = "Log out";
             logoutBtn.UseVisualStyleBackColor = true;
@@ -68,9 +70,10 @@ namespace MovieDatabase
             // 
             // watchlistBtn
             // 
-            watchlistBtn.Location = new Point(689, 449);
+            watchlistBtn.Location = new Point(373, 269);
+            watchlistBtn.Margin = new Padding(2, 2, 2, 2);
             watchlistBtn.Name = "watchlistBtn";
-            watchlistBtn.Size = new Size(161, 34);
+            watchlistBtn.Size = new Size(222, 20);
             watchlistBtn.TabIndex = 2;
             watchlistBtn.Text = "Watch list";
             watchlistBtn.UseVisualStyleBackColor = true;
@@ -79,76 +82,85 @@ namespace MovieDatabase
             // fullNameLbl
             // 
             fullNameLbl.AutoSize = true;
-            fullNameLbl.Location = new Point(247, 122);
+            fullNameLbl.Location = new Point(173, 73);
+            fullNameLbl.Margin = new Padding(2, 0, 2, 0);
             fullNameLbl.Name = "fullNameLbl";
-            fullNameLbl.Size = new Size(100, 25);
+            fullNameLbl.Size = new Size(67, 15);
             fullNameLbl.TabIndex = 3;
             fullNameLbl.Text = "Full Name: ";
             // 
             // fullNameTB
             // 
             fullNameTB.Enabled = false;
-            fullNameTB.Location = new Point(386, 122);
+            fullNameTB.Location = new Point(270, 73);
+            fullNameTB.Margin = new Padding(2, 2, 2, 2);
             fullNameTB.Name = "fullNameTB";
-            fullNameTB.Size = new Size(208, 31);
+            fullNameTB.Size = new Size(147, 23);
             fullNameTB.TabIndex = 4;
             // 
             // usernameLbl
             // 
             usernameLbl.AutoSize = true;
-            usernameLbl.Location = new Point(244, 176);
+            usernameLbl.Location = new Point(171, 106);
+            usernameLbl.Margin = new Padding(2, 0, 2, 0);
             usernameLbl.Name = "usernameLbl";
-            usernameLbl.Size = new Size(91, 25);
+            usernameLbl.Size = new Size(60, 15);
             usernameLbl.TabIndex = 5;
             usernameLbl.Text = "Username";
             // 
             // usernameTB
             // 
             usernameTB.Enabled = false;
-            usernameTB.Location = new Point(386, 176);
+            usernameTB.Location = new Point(270, 106);
+            usernameTB.Margin = new Padding(2, 2, 2, 2);
             usernameTB.Name = "usernameTB";
-            usernameTB.Size = new Size(208, 31);
+            usernameTB.Size = new Size(147, 23);
             usernameTB.TabIndex = 6;
             // 
             // dobLbl
             // 
             dobLbl.AutoSize = true;
-            dobLbl.Location = new Point(235, 228);
+            dobLbl.Location = new Point(164, 137);
+            dobLbl.Margin = new Padding(2, 0, 2, 0);
             dobLbl.Name = "dobLbl";
-            dobLbl.Size = new Size(112, 25);
+            dobLbl.Size = new Size(73, 15);
             dobLbl.TabIndex = 7;
             dobLbl.Text = "Date of Birth";
             // 
             // membershipTB
             // 
             membershipTB.Enabled = false;
-            membershipTB.Location = new Point(386, 288);
+            membershipTB.Location = new Point(270, 173);
+            membershipTB.Margin = new Padding(2, 2, 2, 2);
             membershipTB.Name = "membershipTB";
-            membershipTB.Size = new Size(177, 31);
+            membershipTB.Size = new Size(125, 23);
             membershipTB.TabIndex = 8;
             // 
             // dobPicker
             // 
             dobPicker.Enabled = false;
-            dobPicker.Location = new Point(386, 228);
+            dobPicker.Location = new Point(270, 137);
+            dobPicker.Margin = new Padding(2, 2, 2, 2);
             dobPicker.Name = "dobPicker";
-            dobPicker.Size = new Size(256, 31);
+            dobPicker.Size = new Size(180, 23);
             dobPicker.TabIndex = 9;
             // 
             // membershipLbl
             // 
             membershipLbl.AutoSize = true;
-            membershipLbl.Location = new Point(244, 291);
+            membershipLbl.Location = new Point(171, 175);
+            membershipLbl.Margin = new Padding(2, 0, 2, 0);
             membershipLbl.Name = "membershipLbl";
-            membershipLbl.Size = new Size(112, 25);
+            membershipLbl.Size = new Size(74, 15);
             membershipLbl.TabIndex = 10;
             membershipLbl.Text = "Membership";
             // 
             // upgradeBtn
             // 
-            upgradeBtn.Location = new Point(340, 357);
+            upgradeBtn.Location = new Point(238, 214);
+            upgradeBtn.Margin = new Padding(2, 2, 2, 2);
             upgradeBtn.Name = "upgradeBtn";
-            upgradeBtn.Size = new Size(254, 34);
+            upgradeBtn.Size = new Size(178, 20);
             upgradeBtn.TabIndex = 11;
             upgradeBtn.Text = "Upgrade Membership";
             upgradeBtn.UseVisualStyleBackColor = true;
@@ -156,9 +168,10 @@ namespace MovieDatabase
             // 
             // backBtn
             // 
-            backBtn.Location = new Point(28, 449);
+            backBtn.Location = new Point(20, 269);
+            backBtn.Margin = new Padding(2, 2, 2, 2);
             backBtn.Name = "backBtn";
-            backBtn.Size = new Size(149, 34);
+            backBtn.Size = new Size(104, 20);
             backBtn.TabIndex = 12;
             backBtn.Text = "Back";
             backBtn.UseVisualStyleBackColor = true;
@@ -166,9 +179,10 @@ namespace MovieDatabase
             // 
             // langBtn
             // 
-            langBtn.Location = new Point(12, 12);
+            langBtn.Location = new Point(8, 7);
+            langBtn.Margin = new Padding(2, 2, 2, 2);
             langBtn.Name = "langBtn";
-            langBtn.Size = new Size(112, 34);
+            langBtn.Size = new Size(78, 20);
             langBtn.TabIndex = 13;
             langBtn.Text = "French";
             langBtn.UseVisualStyleBackColor = true;
@@ -176,9 +190,9 @@ namespace MovieDatabase
             // 
             // FormProfile
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(873, 506);
+            ClientSize = new Size(611, 304);
             Controls.Add(langBtn);
             Controls.Add(backBtn);
             Controls.Add(upgradeBtn);
@@ -193,6 +207,7 @@ namespace MovieDatabase
             Controls.Add(watchlistBtn);
             Controls.Add(logoutBtn);
             Controls.Add(profileLbl);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormProfile";
             Text = "FormProfile";
             ResumeLayout(false);

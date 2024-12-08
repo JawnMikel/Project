@@ -244,6 +244,7 @@ namespace MovieDatabase
             membershipLbl.Text = rm.GetString("MembershipType");
             passwordBox.Text = rm.GetString("ShowPassword");
             backBtn.Text = rm.GetString("BackButton");
+            nextBtn.Text = "";
             membershipCB.Text = "";
             membershipCB.Items.Clear();
             membershipCB.Items.AddRange(new object[] {rm.GetString("Regular"), rm.GetString("Premium")});
@@ -258,7 +259,6 @@ namespace MovieDatabase
                 nextBtn.Text = rm.GetString("PayButton");
                 nextBtn.Enabled = true;
             }
-
         }
 
         #endregion
