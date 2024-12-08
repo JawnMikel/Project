@@ -493,6 +493,24 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have reached the maximum number of reviews for regular membership!.
+        /// </summary>
+        internal static string MaxReviewsMessage {
+            get {
+                return ResourceManager.GetString("MaxReviewsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Review Limit Reached.
+        /// </summary>
+        internal static string MaxReviewsTitle {
+            get {
+                return ResourceManager.GetString("MaxReviewsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Membership.
         /// </summary>
         internal static string Membership {

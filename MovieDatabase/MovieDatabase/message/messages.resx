@@ -393,4 +393,10 @@
   <data name="MYSTERY" xml:space="preserve">
     <value>MYSTERY</value>
   </data>
+  <data name="MaxReviewsMessage" xml:space="preserve">
+    <value>You have reached the maximum number of reviews for regular membership!</value>
+  </data>
+  <data name="MaxReviewsTitle" xml:space="preserve">
+    <value>Review Limit Reached</value>
+  </data>
 </root>
