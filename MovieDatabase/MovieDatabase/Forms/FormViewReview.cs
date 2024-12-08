@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.Devices;
+using MovieDatabase.Model;
 using MovieDatabase.Utils;
 namespace MovieDatabase
 {
@@ -63,9 +64,12 @@ namespace MovieDatabase
             Update();
         }
 
+        /// <summary>
+        /// Loads the reviews of the crew member
+        /// </summary>
+        /// <param name="crewMember">Crew member</param>
         private void LoadReview(CrewMember crewMember)  
         {
-           
             var database = DatabaseUtils.GetInstance();
             List<CrewMember> crewmembers = database.GetAllCrewMembers();
 
@@ -90,11 +94,13 @@ namespace MovieDatabase
                     break;
                 }
             }
-
             database.CloseConnection();
-
         }
 
+        /// <summary>
+        /// Loads the review of the media
+        /// </summary>
+        /// <param name="media">Media</param>
         private void LoadReview(Media media)
         {
             var database = DatabaseUtils.GetInstance();
@@ -123,7 +129,6 @@ namespace MovieDatabase
                     reviewsTB.Text += review.ToString();
                 }
             }
-
             database.CloseConnection();
         }
 

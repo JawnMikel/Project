@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
+using MovieDatabase.Model;
 using MovieDatabase.Utils;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,10 @@ namespace MovieDatabase
     public partial class FormMainMenu : Form
     {
         Form form;
-        private User user;
+        private Model.User user;
 
         private readonly List<Media> mediaList;
-        public FormMainMenu(User user)
+        public FormMainMenu(Model.User user)
         {
             InitializeComponent();
             Update();
@@ -30,7 +31,7 @@ namespace MovieDatabase
 
             this.user = user;
             profileBtn.Text = user.Username;
-            if (user.Membership == User.Memberships.REGULAR)
+            if (user.Membership == Model.User.Memberships.REGULAR)
             {
                 recBtn.Enabled = false;
                 top10Btn.Enabled = false;
@@ -91,6 +92,22 @@ namespace MovieDatabase
 
         private void recBtn_Click(object sender, EventArgs e)
         {
+            if (Recommendation().Any())
+            {
+                LoadMedias(Recommendation());
+            }
+            else
+            {
+                MessageBox.Show("No recommendations found based on your watchlist.", "Recommendations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// Filters the recommnedation by the user's watchlist is distict media genre.
+        /// </summary>
+        /// <returns></returns>
+        private List<Media> Recommendation()
+        {
             var database = DatabaseUtils.GetInstance();
 
             List<Media> allMedia = database.GetAllMedia();
@@ -99,19 +116,21 @@ namespace MovieDatabase
 
             List<Media> recommendation = allMedia.Where(media => media.Genres.Any(genre => watchlist.Contains((Media.Genre)genre))).ToList();
 
-            if (recommendation.Any())
-            {
-                LoadMedias(recommendation); 
-            }
-            else
-            {
-                MessageBox.Show("No recommendations found based on your watchlist.", "Recommendations", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
             database.CloseConnection();
+
+            return recommendation;
         }
 
         private void top10Btn_Click(object sender, EventArgs e)
+        {
+            LoadMedias(Top10());
+        }
+
+        /// <summary>
+        /// Filters by the medias rating and takes the first ten.
+        /// </summary>
+        /// <returns>Returns the top 10 list</returns>
+        private List<Media> Top10()
         {
             var database = DatabaseUtils.GetInstance();
             List<Media> allMedias = database.GetAllMedia();
@@ -120,32 +139,45 @@ namespace MovieDatabase
             List<Media> top10 = allMedias
                 .OrderByDescending(m => m.GetMediaRating())
                 .Take(10)
-                .ToList(); 
-         
-            LoadMedias(top10);
+                .ToList();
+
+            return top10;
         }
 
         private void moviesBtn_Click(object sender, EventArgs e)
         {
+            LoadMedias(Movies());
+        }
 
+        /// <summary>
+        /// Filters the database by movies
+        /// </summary>
+        /// <returns>Movie List</returns>
+        private List<Media> Movies()
+        {
             var database = DatabaseUtils.GetInstance();
-            List<Movie> movies = database.GetAllMovies(); 
+            List<Movie> movies = database.GetAllMovies();
+            List<Media> movieList = movies.Cast<Media>().ToList();
             database.CloseConnection();
-            List<Media> mediaList = movies.Cast<Media>().ToList();
-            LoadMedias(mediaList);
-            database.CloseConnection();
-
+            return movieList;
         }
 
         private void tvshowBtn_Click(object sender, EventArgs e)
         {
+            LoadMedias(TVShows());
+        }
+
+        /// <summary>
+        /// Filters by the TvShows
+        /// </summary>
+        /// <returns>TvShow List</returns>
+        private List<Media> TVShows()
+        {
             var database = DatabaseUtils.GetInstance();
             List<TVShow> tvshows = database.GetAllTVShows();
+            List<Media> tvshowList = tvshows.Cast<Media>().ToList();
             database.CloseConnection();
-            List<Media> mediaList = tvshows.Cast<Media>().ToList();
-            LoadMedias(mediaList);
-            database.CloseConnection();
-
+            return tvshowList;
         }
 
         private void genreBox_SelectedIndexChanged(object sender, EventArgs e)

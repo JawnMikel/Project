@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using MovieDatabase.message;
+using MovieDatabase.Model;
 using MovieDatabase.Utils;
 
 namespace MovieDatabase
@@ -97,75 +98,77 @@ namespace MovieDatabase
             WatchListControl();
         }
 
+        /// <summary>
+        /// Updates the language and keeps the rating grade
+        /// </summary>
         private void UpdateRatingLabel()
         {
             string baseText = messages.Rating;
             ratingLbl.Text = $"{baseText} {media.GetMediaRating()}/5";
         }
 
+        /// <summary>
+        /// Loads its genres by the media
+        /// </summary>
+        /// <param name="media">Media</param>
         private void LoadGenres(Media media)
         {
             genrePanel.Controls.Clear();
 
-            // Get the genre translations dictionary (translated genre name => Media.Genre)
             var genreTranslations = Util.GenerateGenreTranslation();
 
             foreach (Media.Genre genre in media.Genres)
             {
-                // Create a label for each genre
                 Label genreLabel = new Label
                 {
-                    Text = genre.ToString(),  // Initially use the default genre name
-                    Tag = genre,  // Store the enum in the Tag
+                    Text = genre.ToString(),
+                    Tag = genre,
                     AutoSize = true,
                     Margin = new Padding(5),
                     Cursor = Cursors.Hand
                 };
 
-                // Try to get the translation for the genre in the current language
                 if (genreTranslations.TryGetValue(genre.ToString(), out var translatedGenre))
                 {
-                    // Set the translated genre name
-                    genreLabel.Text = translatedGenre;  // Set the label to the translated genre string
+                    genreLabel.Text = translatedGenre;
                 }
 
-                // Add a click event handler to open the media load form (you can modify this as needed)
                 genreLabel.Click += (s, args) => OpenMediaLoad((Media.Genre)genreLabel.Tag);
 
-                // Add the label to the panel
+                
                 genrePanel.Controls.Add(genreLabel);
             }
         }
 
+        /// <summary>
+        /// Updates the genre's language by using a dictionnary
+        /// </summary>
         private void UpdateGenresLanguage()
         {
-            // Get the genre translations (this should return a dictionary with genre name as key and translation as value)
             var genreTranslations = Util.GenerateGenreTranslation();
 
-            // Iterate through the controls in the genrePanel (which are labels for each genre)
             foreach (Control control in genrePanel.Controls)
             {
                 if (control is Label genreLabel)
                 {
-                    Media.Genre genre = (Media.Genre)genreLabel.Tag; // Retrieve the genre from the Tag property
+                    Media.Genre genre = (Media.Genre)genreLabel.Tag;
 
-                    // Try to get the translation for the genre in the current language
                     if (genreTranslations.TryGetValue(genre.ToString(), out var translatedGenre))
                     {
-                        // Update label with the translated genre name
-                        genreLabel.Text = translatedGenre;  // Update the label with the translated genre name (string)
+                        genreLabel.Text = translatedGenre;  
                     }
                     else
                     {
-                        // If no translation exists, keep the original genre name
-                        genreLabel.Text = genre.ToString();  // Default to the original genre name
+                        genreLabel.Text = genre.ToString();
                     }
                 }
             }
         }
 
-
-
+        /// <summary>
+        /// Opens the Media Load frame by taking a genre
+        /// </summary>
+        /// <param name="genre"></param>
         private void OpenMediaLoad(Media.Genre genre)
         {
             this.Hide();
@@ -222,6 +225,10 @@ namespace MovieDatabase
             }
         }
 
+        /// <summary>
+        /// Loads the episodes of the tvshow
+        /// </summary>
+        /// <param name="tvshow">Tv show</param>
         private void LoadEpisodes(TVShow tvshow)
         {
             episodePanel.Controls.Clear();
@@ -243,6 +250,10 @@ namespace MovieDatabase
             }
         }
 
+        /// <summary>
+        /// Opens the media form for the episodes
+        /// </summary>
+        /// <param name="episode">Episode</param>
         private void OpenMediaForm(Episode episode)
         {
             
@@ -296,7 +307,7 @@ namespace MovieDatabase
             {
                 if (!user.WatchList.Any(m => m.MediaId == media.MediaId))
                 {
-                    user.WatchList.Add(media);
+                    user.AddMediaToWatchList(media);
 
                     if (media is Movie)
                     {
@@ -316,7 +327,15 @@ namespace MovieDatabase
                 var mediaToRemove = user.WatchList.FirstOrDefault(m => m.MediaId == media.MediaId);
                 if (mediaToRemove != null)
                 {
-                    user.WatchList.Remove(mediaToRemove);
+                    user.RemoveMediaFromWatchList(mediaToRemove);
+                    if (media is Movie)
+                    {
+                        database.DeleteFromUserWatchlist(user, (Movie)media);
+                    }
+                    else if (media is TVShow)
+                    {
+                        database.DeleteFromUserWatchlist(user, (TVShow)media);
+                    }
 
                     MessageBox.Show($"{media.Title} has been removed from your watchlist.",
                                     "Watchlist Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);

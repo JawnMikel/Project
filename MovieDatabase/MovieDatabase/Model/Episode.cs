@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MovieDatabase.Utils;
 
-namespace MovieDatabase
+namespace MovieDatabase.Model
 {
     /// <summary>
     /// Episode class is used to represent an episode.

@@ -78,6 +78,9 @@ namespace MovieDatabase
             PerformLayout();
         }
 
+        /// <summary>
+        /// Updates the back button by using a ResourceManager
+        /// </summary>
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);

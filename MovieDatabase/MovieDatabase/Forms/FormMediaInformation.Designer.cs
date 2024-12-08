@@ -93,7 +93,7 @@ namespace MovieDatabase
             // 
             // mediaPicture
             // 
-            mediaPicture.Location = new Point(96, 287);
+            mediaPicture.Location = new Point(81, 287);
             mediaPicture.Name = "mediaPicture";
             mediaPicture.Size = new Size(242, 251);
             mediaPicture.TabIndex = 5;
@@ -236,9 +236,11 @@ namespace MovieDatabase
             PerformLayout();
         }
 
+        /// <summary>
+        /// Updates the language by using the ResourceManager and reloads the genres for their translation if they have one
+        /// </summary>
         public void Update()
         {
-
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
             langBtn.Text = rm.GetString("Lanbutton");
             backBtn.Text = rm.GetString("BackButton");

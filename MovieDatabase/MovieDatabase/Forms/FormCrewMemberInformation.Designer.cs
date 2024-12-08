@@ -145,7 +145,9 @@ namespace MovieDatabase
             ResumeLayout(false);
             PerformLayout();
         }
-
+        /// <summary>
+        /// Updates the language using ResourceManager
+        /// </summary>
         public void Update()
         {
            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);
@@ -155,7 +157,6 @@ namespace MovieDatabase
            writeReviewBtn.Text = rm.GetString("WriteReview");
            viewReviewBtn.Text = rm.GetString("ViewReviews");
            listMediaLbl.Text = rm.GetString("listMedia");
-            
         }
 
         #endregion

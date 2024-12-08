@@ -1,4 +1,5 @@
-﻿using MovieDatabase.Utils;
+﻿using MovieDatabase.Model;
+using MovieDatabase.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +23,6 @@ namespace MovieDatabase
             LoadMedias();
 
         }
-
         private void backBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -37,6 +37,9 @@ namespace MovieDatabase
             Update();
         }
 
+        /// <summary>
+        /// Loads all the medias in the user's watchlist
+        /// </summary>
         private void LoadMedias()
         {
             watchlistLayout.Controls.Clear();
@@ -56,10 +59,15 @@ namespace MovieDatabase
                 watchlistLayout.Controls.Add(pictureBox);
             }
         }
+
+        /// <summary>
+        /// Opens the media inforamtion frame by giving the form and media
+        /// </summary>
+        /// <param name="form">The current form</param>
+        /// <param name="media">Media</param>
         private void OpenMediaInfo(Form form, Media media)
         {
-            var currentForm = this;
-            var mediaInformationForm = new FormMediaInformation(currentForm, media, user);
+            var mediaInformationForm = new FormMediaInformation(this, media, user);
             this.Hide();
             mediaInformationForm.Closed += (s, args) => this.Close();
             mediaInformationForm.ShowDialog();

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MovieDatabase.Utils;
 
-namespace MovieDatabase
+namespace MovieDatabase.Model
 {
     /// <summary>
     /// Movie class is used to represent a movie.

@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using MovieDatabase.Utils;
 
-namespace MovieDatabase
+namespace MovieDatabase.Model
 {
     /// <summary>
     /// Person is used as a base class for representing people.
     /// </summary>
-    public abstract class Person 
+    public abstract class Person
     {
         private string _firstName;
         private string _lastName;
@@ -46,7 +46,7 @@ namespace MovieDatabase
         /// <param name="firstName">The first name of the person.</param>
         /// <param name="lastName">The last name of the person.</param>
         public Person(string firstName, string lastName)
-        { 
+        {
             FirstName = Util.ToPascalCase(firstName);
             LastName = Util.ToPascalCase(lastName);
         }

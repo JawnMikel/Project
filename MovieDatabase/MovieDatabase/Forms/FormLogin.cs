@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Resources;
+using MovieDatabase.Model;
 using MovieDatabase.Utils;
 
 
@@ -15,7 +16,6 @@ namespace MovieDatabase
             passwordBox.CheckedChanged += passwordBox_CheckedChanged;
             errorLbl.Visible = false;
         }
-
         private void loginBtn_Click(object sender, EventArgs e)
         {
             var database = DatabaseUtils.GetInstance();

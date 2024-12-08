@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Resources;
 using System.Data.Entity.Core.Mapping;
+using MovieDatabase.Model;
 
 namespace MovieDatabase.Utils
 {
@@ -211,9 +212,9 @@ namespace MovieDatabase.Utils
         }
 
         /// <summary>
-        /// 
+        /// Generates the translated genres from the resource bundle by using the genre enum
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The new translated genres</returns>
         public static Dictionary<string, Media.Genre> GenerateGenreTranslations()
         {
             var genres = Enum.GetValues(typeof(Media.Genre)).Cast<Media.Genre>();
@@ -229,6 +230,10 @@ namespace MovieDatabase.Utils
             return genreTranslations;
         }
 
+        /// <summary>
+        /// Translated the genres by using the genre's ToString and can translate them easier
+        /// </summary>
+        /// <returns>returns the translated dictionary of genres</returns>
         public static Dictionary<string, string> GenerateGenreTranslation()
         {
             var genres = Enum.GetValues(typeof(Media.Genre)).Cast<Media.Genre>();
