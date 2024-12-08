@@ -455,7 +455,7 @@ VALUES
     (25, 27),
     (26, 28),
     (29, 29),
-    (31, 30);
+    (31, 8);
 
 -- Insert statements for tv shows
 INSERT INTO tvshow (Title, ReleaseDate, Synopsis, ImageLink) 
@@ -479,15 +479,15 @@ VALUES
 -- Insert statements for tv show directors
 INSERT INTO tvshowdirector (TVShowID, DirectorID)
 VALUES
+    (1, 30),
     (1, 31),
     (1, 32),
-    (1, 33),
+    (2, 33),
     (2, 34),
-    (2, 35),
+    (3, 35),
     (3, 36),
-    (3, 37),
-    (4, 38),
-    (4, 39);
+    (4, 37),
+    (4, 38);
 
 -- Insert statements for tv show genres
 INSERT INTO tvshowgenre (TVShowID, GenreID)
@@ -562,30 +562,30 @@ VALUES
 -- Insert for episode directors
 INSERT INTO episodedirector (EpisodeID, DirectorID)
 VALUES
+    (1, 30),
     (1, 31),
     (1, 32),
-    (1, 33),
+    (2, 30),
     (2, 31),
     (2, 32),
-    (2, 33),
+    (3, 30),
     (3, 31),
     (3, 32),
-    (3, 33),
+    (4, 33),
     (4, 34),
-    (4, 35),
+    (5, 33),
     (5, 34),
-    (5, 35),
+    (6, 33),
     (6, 34),
-    (6, 35),
+    (7, 35),
     (7, 36),
-    (7, 37),
+    (8, 35),
     (8, 36),
-    (8, 37),
+    (9, 35),
     (9, 36),
-    (9, 37),
+    (10, 37),
     (10, 38),
-    (10, 39),
+    (11, 37),
     (11, 38),
-    (11, 39),
-    (12, 38),
-    (12, 39);
+    (12, 37),
+    (12, 38);
