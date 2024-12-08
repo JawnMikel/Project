@@ -339,4 +339,10 @@
   <data name="PaymentUpgradeApprovedMessage" xml:space="preserve">
     <value>Payment approved! Account successfully upgraded!</value>
   </data>
+  <data name="LogoutMessage" xml:space="preserve">
+    <value>Are you sure you want to log out?</value>
+  </data>
+  <data name="LogoutTitle" xml:space="preserve">
+    <value>Logout Confirmation</value>
+  </data>
 </root>

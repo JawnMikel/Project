@@ -339,4 +339,10 @@
   <data name="PaymentUpgradeApprovedMessage" xml:space="preserve">
     <value>Paiement approuvé! Compte amélioré avec succès!</value>
   </data>
+  <data name="LogoutMessage" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir vous déconnecter?</value>
+  </data>
+  <data name="LogoutTitle" xml:space="preserve">
+    <value>Confirmation de déconnexion</value>
+  </data>
 </root>
