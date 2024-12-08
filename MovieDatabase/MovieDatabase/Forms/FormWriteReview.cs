@@ -20,6 +20,7 @@ namespace MovieDatabase
         Media media;
         CrewMember crewMember;
         Form form;
+
         public FormWriteReview(Form form, Media media, User user)
         {
             InitializeComponent();
@@ -30,6 +31,7 @@ namespace MovieDatabase
             titleLbl.Text = media.Title;
 
         }
+
         public FormWriteReview(Form form, CrewMember crewMember, User user, Media media)
         {
             InitializeComponent();
@@ -109,7 +111,7 @@ namespace MovieDatabase
             double rating = double.Parse(ratingTB.Text);
             try
             {
-                Review review = new Review(user.Id,comment,rating);
+                Review review = user.WriteReview(comment, rating);
                 MessageBox.Show("Successfully posted review", "Posted review", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return review;
             }

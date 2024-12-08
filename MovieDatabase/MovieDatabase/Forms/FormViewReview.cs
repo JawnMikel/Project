@@ -17,6 +17,7 @@ namespace MovieDatabase
         CrewMember crewMember;
         User user;
         Form form;
+
         public FormViewReview(Form form, CrewMember crewMember, User user, Media media)
         {
             InitializeComponent();
@@ -27,6 +28,7 @@ namespace MovieDatabase
             LoadReview(crewMember);
             Update();
         }
+
         public FormViewReview(Form form, Media media, User user)
         {
             InitializeComponent();
@@ -60,16 +62,17 @@ namespace MovieDatabase
             Update();
         }
 
-        private string LoadReview(CrewMember crewMember)  
+        private void LoadReview(CrewMember crewMember)  
         {
-            foreach (var review in crewMember.Reviews)
+            DatabaseUtils database = DatabaseUtils.GetInstance();
+            foreach (Review review in crewMember.Reviews)
             {
-                
+                // Get the reviewer
+                User reviewer = database.GetUserById(review.AuthorId);
+                reviewsTB.Text += "Author: " + reviewer.FirstName + " " + reviewer.LastName + "\n";
+                reviewsTB.Text += review.Comment + "\n";
             }
-
-            this.user = user;
-
-            return null;
+            database.CloseConnection();
         }
 
         private void LoadReview(Media media)

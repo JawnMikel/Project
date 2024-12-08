@@ -19,6 +19,7 @@ namespace MovieDatabase
         CrewMember crewMember;
         User user;
         Media media;
+
         public FormCrewMemberInformation(Form form, CrewMember crewMember, User user, Media media)
         {
             this.form = form;
@@ -104,7 +105,7 @@ namespace MovieDatabase
         private void wirteReviewBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formWriteReview = new FormWriteReview(this, crewMember, user, media);
+            var formWriteReview = new FormWriteReview(this, crewMember, user, null);
             formWriteReview.Closed += (s, args) => this.Close();
             formWriteReview.ShowDialog();
         }
@@ -112,7 +113,7 @@ namespace MovieDatabase
         private void viewReviewBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formViewReview = new FormViewReview(this, crewMember, user, media);
+            var formViewReview = new FormViewReview(this, crewMember, user, null);
             formViewReview.Closed += (s, args) => this.Close();
             formViewReview.ShowDialog();
         }
