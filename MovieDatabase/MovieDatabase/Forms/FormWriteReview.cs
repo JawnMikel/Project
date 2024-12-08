@@ -65,6 +65,11 @@ namespace MovieDatabase
                 return;
             }
             Review review = CreateReview();
+            if (review == null)
+            {
+                return;
+            }
+
             if (media != null)
             {
                 if (media is Movie)
