@@ -493,6 +493,24 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payment approved! Account successfully upgraded!.
+        /// </summary>
+        internal static string PaymentUpgradeApprovedMessage {
+            get {
+                return ResourceManager.GetString("PaymentUpgradeApprovedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Upgrade Success.
+        /// </summary>
+        internal static string PaymentUpgradeApprovedTitle {
+            get {
+                return ResourceManager.GetString("PaymentUpgradeApprovedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post.
         /// </summary>
         internal static string Post {

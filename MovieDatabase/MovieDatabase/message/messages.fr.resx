@@ -333,4 +333,10 @@
   <data name="UnexpectedErrorTitle" xml:space="preserve">
     <value>Erreur inattendue</value>
   </data>
+  <data name="PaymentUpgradeApprovedTitle" xml:space="preserve">
+    <value>Sucès lors de l'amélioration du compte </value>
+  </data>
+  <data name="PaymentUpgradeApprovedMessage" xml:space="preserve">
+    <value>Paiement approuvé! Compte amélioré avec succès!</value>
+  </data>
 </root>
