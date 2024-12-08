@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MovieDatabase.Utils;
+using System.Resources;
 using MovieDatabase.Model;
 
 namespace MovieDatabase
@@ -38,12 +39,14 @@ namespace MovieDatabase
         }
         private void logoutBtn_Click(object sender, EventArgs e)
         {
-
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+            string message = rm.GetString("LogoutMessage");
+            string title = rm.GetString("LogoutTitle");
             var result = MessageBox.Show(
-            "Are you sure you want to log out?",
-            "Logout Confirmation",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question
+                message,
+                title,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
             );
 
             if (result == DialogResult.Yes)

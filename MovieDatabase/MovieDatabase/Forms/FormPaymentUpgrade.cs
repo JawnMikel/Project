@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -52,6 +53,7 @@ namespace MovieDatabase
             string cvv = cvvTB.Text;
             string expiryDate = expiryDateTB.Text;
 
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
             try
             {
                 Payment userPayment = user.UpgradeMembership(cardHolderName, creditCardNumber, cvv, expiryDate);
@@ -60,7 +62,9 @@ namespace MovieDatabase
                 database.InsertPayment(userPayment, user.Id);
                 database.CloseConnection();
 
-                MessageBox.Show("Payment approved! Account successfully upgraded.", "Approved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string message = rm.GetString("PaymentUpgradeApprovedMessage");
+                string title = rm.GetString("PaymentUpgradeApprovedTitle");
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Hide();
                 var formProfile = new FormProfile(user);
@@ -69,7 +73,16 @@ namespace MovieDatabase
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message, "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string message = rm.GetString("PaymentFailedMessage");
+                string title = rm.GetString("PaymentFailedTitle");
+                MessageBox.Show($"{message}: {ex.Message}", title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            catch (Exception ex)
+            {
+                string message = rm.GetString("UnexpectedErrorMessage");
+                string title = rm.GetString("UnexpectedErrorTitle");
+                MessageBox.Show(message + ex.Message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }

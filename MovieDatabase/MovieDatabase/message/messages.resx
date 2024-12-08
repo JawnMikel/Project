@@ -237,14 +237,131 @@
   <data name="CreateAccountTitle" xml:space="preserve">
     <value>Create Account</value>
   </data>
-  <data name="Premium" xml:space="preserve">
-    <value>Premium</value>
+  <data name="Actor" xml:space="preserve">
+    <value>Actor</value>
+  </data>
+  <data name="AccountCreationFail" xml:space="preserve">
+    <value>Failed to create account!</value>
+  </data>
+  <data name="AccountCreationSuccess" xml:space="preserve">
+    <value>Account successfully created!</value>
   </data>
   <data name="Regular" xml:space="preserve">
     <value>Regular</value>
   </data>
-  <data name="Actor" xml:space="preserve">
-    <value>Actor</value>
+  <data name="Premium" xml:space="preserve">
+    <value>Premium</value>
+  </data>
+  <data name="NoRecommendationFound" xml:space="preserve">
+    <value>No recommendations found based on your watchlist.</value>
+  </data>
+  <data name="RecommendationMessageBox" xml:space="preserve">
+    <value>Recommendations</value>
+  </data>
+  <data name="AccountCreationFailTitleMessageBox" xml:space="preserve">
+    <value>Error Creating Account</value>
+  </data>
+  <data name="AccountCreationSuccessTitleMessageBox" xml:space="preserve">
+    <value>Successfully Created Account</value>
+  </data>
+  <data name="UserCreationFailTitleMessageBox" xml:space="preserve">
+    <value>Invalid User</value>
+  </data>
+  <data name="InvalidFirstNameMessage" xml:space="preserve">
+    <value>User must have a proper first name.</value>
+  </data>
+  <data name="InvalidFirstNameTitle" xml:space="preserve">
+    <value>Invalid First Name</value>
+  </data>
+  <data name="InvalidLastNameMessage" xml:space="preserve">
+    <value>User must have a proper last name.</value>
+  </data>
+  <data name="InvalidLastNameTitle" xml:space="preserve">
+    <value>Invalid Last Name</value>
+  </data>
+  <data name="InvalidAgeMessage" xml:space="preserve">
+    <value>User must be at least 18 years old.</value>
+  </data>
+  <data name="InvalidAgeTitle" xml:space="preserve">
+    <value>Age Restriction</value>
+  </data>
+  <data name="InvalidPasswordMessage" xml:space="preserve">
+    <value>User must have a valid password.</value>
+  </data>
+  <data name="InvalidPasswordTitle" xml:space="preserve">
+    <value>Invalid Password</value>
+  </data>
+  <data name="InvalidUserNameMessage" xml:space="preserve">
+    <value>User must have a valid username.</value>
+  </data>
+  <data name="InvalidUserNameTitle" xml:space="preserve">
+    <value>Invalid Username</value>
+  </data>
+  <data name="AddToWatchListMessage" xml:space="preserve">
+    <value>has been added to your watchlist.</value>
+  </data>
+  <data name="AddToWatchListTitle" xml:space="preserve">
+    <value>Watchlist Updated</value>
+  </data>
+  <data name="RemoveFromWatchListMessage" xml:space="preserve">
+    <value>has been removed from your watchlist.</value>
+  </data>
+  <data name="RemoveFromWatchListTitle" xml:space="preserve">
+    <value>Watchlist Updated</value>
+  </data>
+  <data name="PaymentApprovedMessage" xml:space="preserve">
+    <value>Payment approved! Account successfully created.</value>
+  </data>
+  <data name="PaymentApprovedTitle" xml:space="preserve">
+    <value>Payment Approved</value>
+  </data>
+  <data name="PaymentFailedMessage" xml:space="preserve">
+    <value>Payment failed.</value>
+  </data>
+  <data name="PaymentFailedTitle" xml:space="preserve">
+    <value>Payment Error</value>
+  </data>
+  <data name="SQLErrorTitle" xml:space="preserve">
+    <value>SQL Error</value>
+  </data>
+  <data name="SQLErrorMessage" xml:space="preserve">
+    <value>SQL: </value>
+  </data>
+  <data name="UnexpectedErrorMessage" xml:space="preserve">
+    <value>Unexpected error occured: </value>
+  </data>
+  <data name="UnexpectedErrorTitle" xml:space="preserve">
+    <value>Unexpected Error</value>
+  </data>
+  <data name="PaymentUpgradeApprovedTitle" xml:space="preserve">
+    <value>Account Upgrade Success</value>
+  </data>
+  <data name="PaymentUpgradeApprovedMessage" xml:space="preserve">
+    <value>Payment approved! Account successfully upgraded!</value>
+  </data>
+  <data name="LogoutMessage" xml:space="preserve">
+    <value>Are you sure you want to log out?</value>
+  </data>
+  <data name="LogoutTitle" xml:space="preserve">
+    <value>Logout Confirmation</value>
+  </data>
+  <data name="PostedReviewMessage" xml:space="preserve">
+    <value>Successfully posted review.</value>
+  </data>
+  <data name="PostedReviewTitle" xml:space="preserve">
+    <value>Posted Review</value>
+  </data>
+  <data name="InvalidRatingMessage" xml:space="preserve">
+    <value>The rating's value must be a number between 0 and 5.</value>
+  </data>
+  <data name="InvalidRatingTitle" xml:space="preserve">
+    <value>Invalid Rating Value</value>
+  </data>
+  <data name="InvalidCommentMessage" xml:space="preserve">
+    <value>User must have a proper comment.</value>
+  </data>
+  <data name="InvalidCommentTitle" xml:space="preserve">
+    <value>Invalid Comment</value>
   </data>
   <data name="COMEDY" xml:space="preserve">
     <value>COMEDY</value>
