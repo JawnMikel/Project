@@ -240,4 +240,16 @@
   <data name="Actor" xml:space="preserve">
     <value>Actor</value>
   </data>
+  <data name="AccountCreationFail" xml:space="preserve">
+    <value>Failed to create account!</value>
+  </data>
+  <data name="AccountCreationSuccess" xml:space="preserve">
+    <value>Account successfully created!</value>
+  </data>
+  <data name="Regular" xml:space="preserve">
+    <value>Regular</value>
+  </data>
+  <data name="Premium" xml:space="preserve">
+    <value>Premium</value>
+  </data>
 </root>

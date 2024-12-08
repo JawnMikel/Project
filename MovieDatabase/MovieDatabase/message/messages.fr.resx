@@ -240,4 +240,16 @@
   <data name="Actor" xml:space="preserve">
     <value>Acteurs</value>
   </data>
+  <data name="AccountCreationFail" xml:space="preserve">
+    <value>Une erreur est survenue lors de la création de votre compte!</value>
+  </data>
+  <data name="AccountCreationSuccess" xml:space="preserve">
+    <value>Votre compte a été créé avec succès!</value>
+  </data>
+  <data name="Regular" xml:space="preserve">
+    <value>Régulier</value>
+  </data>
+  <data name="Premium" xml:space="preserve">
+    <value>Premium</value>
+  </data>
 </root>

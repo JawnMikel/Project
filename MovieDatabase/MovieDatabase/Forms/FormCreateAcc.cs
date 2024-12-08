@@ -17,8 +17,6 @@ namespace MovieDatabase
 {
     public partial class FormCreateAcc : Form
     {
-
-
         public FormCreateAcc()
         {
             InitializeComponent();
@@ -44,15 +42,17 @@ namespace MovieDatabase
                 {
                     return;
                 }
+                ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+                string errorMessage = "";
                 User user = CreateUser(User.Memberships.REGULAR);
                 if (user == null)
                 {
-                    MessageBox.Show("Failed to create account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    errorMessage = rm.GetString("AccountCreationFail");
+                    MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                MessageBox.Show("Account successfully created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                errorMessage = rm.GetString("AccountCreationSuccess");
+                MessageBox.Show(errorMessage, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Hide();
                 var formMainMenu = new FormMainMenu(user);

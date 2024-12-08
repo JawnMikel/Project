@@ -105,14 +105,14 @@ namespace MovieDatabase
             Update();
         }
 
-        private Review CreateReview()
+        private Review? CreateReview()
         {
             string comment = reviewTB.Text;
             double rating = double.Parse(ratingTB.Text);
             try
             {
                 Review review = user.WriteReview(comment, rating);
-                MessageBox.Show("Successfully posted review", "Posted review", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Successfully posted review", "Posted review", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return review;
             }
             catch (ArithmeticException ex)
