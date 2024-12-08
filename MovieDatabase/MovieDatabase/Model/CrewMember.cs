@@ -42,20 +42,6 @@ namespace MovieDatabase
         }
 
         /// <summary>
-        /// Remove a review from the list of reviews.
-        /// </summary>
-        /// <param name="review">The review to remove.</param>
-        /// <exception cref="ArgumentNullException">Exception thrown when the review argument is null.</exception>
-        public void RemoveReview(Review review)
-        {
-            if (review == null)
-            {
-                throw new ArgumentNullException("The review argument cannot be null.");
-            }
-            Reviews.Remove(review);
-        }
-
-        /// <summary>
         /// Calculates the media rating by taking the average of all the reviews
         /// </summary>
         /// <returns>the average rating</returns>

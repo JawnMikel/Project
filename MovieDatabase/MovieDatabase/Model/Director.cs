@@ -29,56 +29,6 @@ namespace MovieDatabase.Model
         }
 
         /// <summary>
-        /// Add a media to the appropriate directed list of this director.
-        /// </summary>
-        /// <param name="media">The media to add.</param>
-        /// <exception cref="ArgumentNullException">Exception thrown when the media argument is null.</exception>
-        public void AddMediaToDirected(Media media)
-        {
-            if (media == null)
-            {
-                throw new ArgumentNullException("The media argument cannot be null.");
-            }
-            if (media is Movie)
-            {
-                DirectedMovies.Add(media.MediaId);
-            }
-            else if (media is TVShow)
-            {
-                DirectedTVShows.Add(media.MediaId);
-            }
-            else
-            {
-                DirectedEpisodes.Add(media.MediaId);
-            }
-        }
-
-        /// <summary>
-        /// Remove a media from the appropriate directed list of this director.
-        /// </summary>
-        /// <param name="media">The media to remove.</param>
-        /// <exception cref="ArgumentNullException">Exception thrown when the media argument is null.</exception>
-        public void RemoveMediaFromDirected(Media media)
-        {
-            if (media == null)
-            {
-                throw new ArgumentNullException("The media argument cannot be null.");
-            }
-            if (media is Movie)
-            {
-                DirectedEpisodes.Remove(media.MediaId);
-            }
-            else if (media is TVShow)
-            {
-                DirectedTVShows.Remove(media.MediaId);
-            }
-            else
-            {
-                DirectedEpisodes.Remove(media.MediaId);
-            }
-        }
-
-        /// <summary>
         /// Checks whether an object is equal to this director.
         /// </summary>
         /// <param name="obj">The object to compare.</param>
