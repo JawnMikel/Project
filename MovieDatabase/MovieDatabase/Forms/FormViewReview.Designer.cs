@@ -112,10 +112,14 @@ namespace MovieDatabase
             if (media != null)
             {
                 titleLbl.Text += media.Title;
+                reviewsTB.Text = "";
+                LoadReview(media);
             }
             else
             {
                 titleLbl.Text += crewMember.FirstName + " " + crewMember.LastName;
+                reviewsTB.Text = "";
+                LoadReview(crewMember);
             }
         }
 

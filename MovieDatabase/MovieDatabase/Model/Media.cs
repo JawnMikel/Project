@@ -180,7 +180,7 @@ namespace MovieDatabase.Model
         {
             if (Reviews == null || Reviews.Count == 0)
             {
-                return 0.0;
+                return -1;
             }
 
             double total = 0.0;

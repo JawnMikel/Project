@@ -106,7 +106,17 @@ namespace MovieDatabase
         private void UpdateRatingLabel()
         {
             string baseText = messages.Rating;
-            ratingLbl.Text = $"{baseText} {media.GetMediaRating()}/5";
+            double rating = media.GetMediaRating();
+            if (rating > 0)
+            {
+                ratingLbl.Text = $"{baseText} {media.GetMediaRating()}/5";
+            }
+            else
+            {
+                ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+                string ratingUnavailableText = rm.GetString("RatingUnavailable");
+                ratingLbl.Text = $"{baseText} {ratingUnavailableText}";
+            }
         }
 
         /// <summary>

@@ -399,4 +399,10 @@
   <data name="MaxReviewsTitle" xml:space="preserve">
     <value>Limite d'avis atteinte</value>
   </data>
+  <data name="RatingUnavailable" xml:space="preserve">
+    <value>Aucune évalutation pour le moment</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Auteur:</value>
+  </data>
 </root>

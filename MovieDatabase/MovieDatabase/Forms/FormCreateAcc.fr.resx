@@ -123,4 +123,7 @@
   <data name="InvalidCommentTitle" xml:space="preserve">
     <value>Commentaire Invalid</value>
   </data>
+  <data name="Author" xml:space="preserve">
+    <value>Auteur</value>
+  </data>
 </root>

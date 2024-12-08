@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Numerics;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -82,11 +83,16 @@ namespace MovieDatabase
         private void LoadReview(CrewMember crewMember)  
         {
             DatabaseUtils database = DatabaseUtils.GetInstance();
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
             foreach (Review review in crewMember.Reviews)
             {
+                // Get the rating and author text
+                string ratingText = rm.GetString("Rating");
+                string authorText = rm.GetString("Author");
                 // Get the reviewer
                 User reviewer = database.GetUserById(review.AuthorId);
-                reviewsTB.Text += "Author: " + reviewer.FirstName + " " + reviewer.LastName + "\n";
+                reviewsTB.Text += authorText + " " + reviewer.FirstName + " " + reviewer.LastName + "\n";
+                reviewsTB.Text += ratingText + " " + review.Rating + "\n";
                 reviewsTB.Text += review.Comment + "\n\n";
             }
             database.CloseConnection();
@@ -99,12 +105,16 @@ namespace MovieDatabase
         private void LoadReview(Media media)
         {
             var database = DatabaseUtils.GetInstance();
-
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
             foreach (Review review in media.Reviews)
             {
+                // Get the rating and author text
+                string ratingText = rm.GetString("Rating");
+                string authorText = rm.GetString("Author");
                 // Get the reviewer
                 User reviewer = database.GetUserById(review.AuthorId);
-                reviewsTB.Text += "Author: " + reviewer.FirstName + " " + reviewer.LastName + "\n";
+                reviewsTB.Text += authorText + " " + reviewer.FirstName + " " + reviewer.LastName + "\n";
+                reviewsTB.Text += ratingText + " " + review.Rating + "\n";
                 reviewsTB.Text += review.Comment + "\n\n";
             }
             database.CloseConnection();

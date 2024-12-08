@@ -69,7 +69,6 @@ namespace MovieDatabase
             {
                 return;
             }
-
             if (media != null)
             {
                 if (media is Movie)

@@ -133,6 +133,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Author:.
+        /// </summary>
+        internal static string Author {
+            get {
+                return ResourceManager.GetString("Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         internal static string BackButton {
@@ -705,6 +714,15 @@ namespace MovieDatabase.message {
         internal static string Rating {
             get {
                 return ResourceManager.GetString("Rating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No rating for the moment.
+        /// </summary>
+        internal static string RatingUnavailable {
+            get {
+                return ResourceManager.GetString("RatingUnavailable", resourceCulture);
             }
         }
         
