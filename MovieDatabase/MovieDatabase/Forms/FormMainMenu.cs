@@ -6,7 +6,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -105,7 +107,10 @@ namespace MovieDatabase
             }
             else
             {
-                MessageBox.Show("No recommendations found based on your watchlist.", "Recommendations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+                string errorMessage = rm.GetString("NoRecommendationFound");
+                string title = rm.GetString("RecommendationMessageBox");
+                MessageBox.Show(errorMessage, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             database.CloseConnection();
@@ -127,7 +132,6 @@ namespace MovieDatabase
 
         private void moviesBtn_Click(object sender, EventArgs e)
         {
-
             var database = DatabaseUtils.GetInstance();
             List<Movie> movies = database.GetAllMovies(); 
             database.CloseConnection();

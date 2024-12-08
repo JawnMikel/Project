@@ -256,7 +256,6 @@ namespace MovieDatabase
                 nextBtn.Text = rm.GetString("PayButton");
                 nextBtn.Enabled = true;
             }
-
         }
 
         #endregion

@@ -61,6 +61,42 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to create account!.
+        /// </summary>
+        internal static string AccountCreationFail {
+            get {
+                return ResourceManager.GetString("AccountCreationFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Creating Account.
+        /// </summary>
+        internal static string AccountCreationFailTitleMessageBox {
+            get {
+                return ResourceManager.GetString("AccountCreationFailTitleMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account successfully created!.
+        /// </summary>
+        internal static string AccountCreationSuccess {
+            get {
+                return ResourceManager.GetString("AccountCreationSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully Created Account.
+        /// </summary>
+        internal static string AccountCreationSuccessTitleMessageBox {
+            get {
+                return ResourceManager.GetString("AccountCreationSuccessTitleMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Actor.
         /// </summary>
         internal static string Actor {
@@ -187,6 +223,96 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User must be at least 18 years old..
+        /// </summary>
+        internal static string InvalidAgeMessage {
+            get {
+                return ResourceManager.GetString("InvalidAgeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Age Restriction.
+        /// </summary>
+        internal static string InvalidAgeTitle {
+            get {
+                return ResourceManager.GetString("InvalidAgeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User must have a proper first name..
+        /// </summary>
+        internal static string InvalidFirstNameMessage {
+            get {
+                return ResourceManager.GetString("InvalidFirstNameMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid First Name.
+        /// </summary>
+        internal static string InvalidFirstNameTitle {
+            get {
+                return ResourceManager.GetString("InvalidFirstNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User must have a proper last name..
+        /// </summary>
+        internal static string InvalidLastNameMessage {
+            get {
+                return ResourceManager.GetString("InvalidLastNameMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Last Name.
+        /// </summary>
+        internal static string InvalidLastNameTitle {
+            get {
+                return ResourceManager.GetString("InvalidLastNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User must have a valid password..
+        /// </summary>
+        internal static string InvalidPasswordMessage {
+            get {
+                return ResourceManager.GetString("InvalidPasswordMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Password.
+        /// </summary>
+        internal static string InvalidPasswordTitle {
+            get {
+                return ResourceManager.GetString("InvalidPasswordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User must have a valid username..
+        /// </summary>
+        internal static string InvalidUserNameMessage {
+            get {
+                return ResourceManager.GetString("InvalidUserNameMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Username.
+        /// </summary>
+        internal static string InvalidUserNameTitle {
+            get {
+                return ResourceManager.GetString("InvalidUserNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to French.
         /// </summary>
         internal static string Lanbutton {
@@ -277,6 +403,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No recommendations found based on your watchlist..
+        /// </summary>
+        internal static string NoRecommendationFound {
+            get {
+                return ResourceManager.GetString("NoRecommendationFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string Password {
@@ -349,6 +484,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recommendations.
+        /// </summary>
+        internal static string RecommendationMessageBox {
+            get {
+                return ResourceManager.GetString("RecommendationMessageBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Regular.
         /// </summary>
         internal static string Regular {
@@ -399,6 +543,15 @@ namespace MovieDatabase.message {
         internal static string UpgradeMembership {
             get {
                 return ResourceManager.GetString("UpgradeMembership", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid User.
+        /// </summary>
+        internal static string UserCreationFailTitleMessageBox {
+            get {
+                return ResourceManager.GetString("UserCreationFailTitleMessageBox", resourceCulture);
             }
         }
         

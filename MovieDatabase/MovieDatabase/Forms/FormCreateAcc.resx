@@ -117,4 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="InvalidUserNameMessage" xml:space="preserve">
+    <value>User must have a valid username.</value>
+  </data>
+  <data name="InvalidUserNameTitle" xml:space="preserve">
+    <value>Invalid Username</value>
+  </data>
 </root>

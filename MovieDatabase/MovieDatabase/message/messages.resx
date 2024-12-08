@@ -252,4 +252,49 @@
   <data name="Premium" xml:space="preserve">
     <value>Premium</value>
   </data>
+  <data name="NoRecommendationFound" xml:space="preserve">
+    <value>No recommendations found based on your watchlist.</value>
+  </data>
+  <data name="RecommendationMessageBox" xml:space="preserve">
+    <value>Recommendations</value>
+  </data>
+  <data name="AccountCreationFailTitleMessageBox" xml:space="preserve">
+    <value>Error Creating Account</value>
+  </data>
+  <data name="AccountCreationSuccessTitleMessageBox" xml:space="preserve">
+    <value>Successfully Created Account</value>
+  </data>
+  <data name="UserCreationFailTitleMessageBox" xml:space="preserve">
+    <value>Invalid User</value>
+  </data>
+  <data name="InvalidFirstNameMessage" xml:space="preserve">
+    <value>User must have a proper first name.</value>
+  </data>
+  <data name="InvalidFirstNameTitle" xml:space="preserve">
+    <value>Invalid First Name</value>
+  </data>
+  <data name="InvalidLastNameMessage" xml:space="preserve">
+    <value>User must have a proper last name.</value>
+  </data>
+  <data name="InvalidLastNameTitle" xml:space="preserve">
+    <value>Invalid Last Name</value>
+  </data>
+  <data name="InvalidAgeMessage" xml:space="preserve">
+    <value>User must be at least 18 years old.</value>
+  </data>
+  <data name="InvalidAgeTitle" xml:space="preserve">
+    <value>Age Restriction</value>
+  </data>
+  <data name="InvalidPasswordMessage" xml:space="preserve">
+    <value>User must have a valid password.</value>
+  </data>
+  <data name="InvalidPasswordTitle" xml:space="preserve">
+    <value>Invalid Password</value>
+  </data>
+  <data name="InvalidUserNameMessage" xml:space="preserve">
+    <value>User must have a valid username.</value>
+  </data>
+  <data name="InvalidUserNameTitle" xml:space="preserve">
+    <value>Invalid Username</value>
+  </data>
 </root>
