@@ -63,7 +63,7 @@ namespace MovieDatabase
         {
             if (Reviews == null || Reviews.Count == 0)
             {
-                return 0.0;
+                return -1;
             }
 
             double total = 0.0;
@@ -72,7 +72,7 @@ namespace MovieDatabase
                 total += review.Rating;
             }
 
-            return Math.Round(total / Reviews.Count, 1);
+            return Math.Round(total / Reviews.Count, 1, MidpointRounding.AwayFromZero);
         }
 
         /// <summary>

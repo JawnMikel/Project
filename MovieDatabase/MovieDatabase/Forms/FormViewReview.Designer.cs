@@ -53,10 +53,10 @@ namespace MovieDatabase
             // 
             // reviewsTB
             // 
-            reviewsTB.Enabled = false;
             reviewsTB.Location = new Point(78, 154);
-            reviewsTB.Margin = new Padding(2, 2, 2, 2);
+            reviewsTB.Margin = new Padding(2);
             reviewsTB.Name = "reviewsTB";
+            reviewsTB.ReadOnly = true;
             reviewsTB.Size = new Size(434, 226);
             reviewsTB.TabIndex = 1;
             reviewsTB.Text = "";
@@ -64,7 +64,7 @@ namespace MovieDatabase
             // backBtn
             // 
             backBtn.Location = new Point(29, 13);
-            backBtn.Margin = new Padding(2, 2, 2, 2);
+            backBtn.Margin = new Padding(2);
             backBtn.Name = "backBtn";
             backBtn.Size = new Size(78, 20);
             backBtn.TabIndex = 2;
@@ -75,7 +75,7 @@ namespace MovieDatabase
             // langBtn
             // 
             langBtn.Location = new Point(434, 11);
-            langBtn.Margin = new Padding(2, 2, 2, 2);
+            langBtn.Margin = new Padding(2);
             langBtn.Name = "langBtn";
             langBtn.Size = new Size(78, 20);
             langBtn.TabIndex = 3;
@@ -92,7 +92,7 @@ namespace MovieDatabase
             Controls.Add(backBtn);
             Controls.Add(reviewsTB);
             Controls.Add(titleLbl);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "FormViewReview";
             Text = "ViewReview";
             ResumeLayout(false);

@@ -130,7 +130,18 @@ namespace MovieDatabase
         private void UpdateRatingLabel()
         {
             string baseText = messages.Rating;
-            ratingLbl.Text = $"{baseText} {crewMember.GetPopularity()}/5";
+            double rating = crewMember.GetPopularity();
+            if (rating > 0)
+            {
+                ratingLbl.Text = $"{baseText} {crewMember.GetPopularity()}/5";
+            }
+            else
+            {
+                ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
+                string ratingUnavailableText = rm.GetString("RatingUnavailable");
+                ratingLbl.Text = $"{baseText} {ratingUnavailableText}";
+            }
+            //ratingLbl.Text = $"{baseText} {crewMember.GetPopularity()}/5";
         }
 
         /// <summary>
