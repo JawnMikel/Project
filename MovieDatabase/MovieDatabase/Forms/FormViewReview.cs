@@ -70,7 +70,7 @@ namespace MovieDatabase
                 // Get the reviewer
                 User reviewer = database.GetUserById(review.AuthorId);
                 reviewsTB.Text += "Author: " + reviewer.FirstName + " " + reviewer.LastName + "\n";
-                reviewsTB.Text += review.Comment + "\n";
+                reviewsTB.Text += review.Comment + "\n\n";
             }
             database.CloseConnection();
         }
@@ -79,31 +79,13 @@ namespace MovieDatabase
         {
             var database = DatabaseUtils.GetInstance();
 
-            if (media is Movie)
+            foreach (Review review in media.Reviews)
             {
-                Movie selectedMovie = database.GetMovieById(media.MediaId);
-                foreach (var review in selectedMovie.Reviews)
-                {
-                    reviewsTB.Text += review.ToString();
-                }
-            } 
-            else if (media is TVShow)
-            {
-                TVShow selectedTV = database.GetTVShowById(media.MediaId);
-                foreach (var review in selectedTV.Reviews)
-                {
-                    reviewsTB.Text += review.ToString();
-                }
+                // Get the reviewer
+                User reviewer = database.GetUserById(review.AuthorId);
+                reviewsTB.Text += "Author: " + reviewer.FirstName + " " + reviewer.LastName + "\n";
+                reviewsTB.Text += review.Comment + "\n\n";
             }
-            else
-            {
-                Episode selectedEpisode = database.GetEpisodeById(media.MediaId);
-                foreach (var review in selectedEpisode.Reviews)
-                {
-                    reviewsTB.Text += review.ToString();
-                }
-            }
-
             database.CloseConnection();
         }
 
