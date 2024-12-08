@@ -42,6 +42,7 @@ namespace MovieDatabase
         {
             var database = DatabaseUtils.GetInstance();
             List<Media> medias = database.GetMediaByGenre(genre);
+            database.CloseConnection();
             mediaLayout.Controls.Clear();
 
             foreach(var media in medias)

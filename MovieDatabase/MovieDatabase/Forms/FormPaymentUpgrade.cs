@@ -57,7 +57,6 @@ namespace MovieDatabase
             try
             {
                 Payment userPayment = user.UpgradeMembership(cardHolderName, creditCardNumber, cvv, expiryDate);
-                DatabaseUtils.GetInstance().CloseConnection();
                 DatabaseUtils database = DatabaseUtils.GetInstance();
                 database.InsertPayment(userPayment, user.Id);
                 database.CloseConnection();

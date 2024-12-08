@@ -44,7 +44,9 @@ namespace MovieDatabase
             }
             else
             {
-                user.WatchList = DatabaseUtils.GetInstance().GetUserWatchList(user.Id);
+                DatabaseUtils database = DatabaseUtils.GetInstance();
+                user.WatchList = database.GetUserWatchList(user.Id);
+                database.CloseConnection();
                 watchlistCheckBox.Checked = user.WatchList.Any(m => m.MediaId == media.MediaId);
                 watchlistCheckBox.CheckedChanged += watchlistCheckBox_CheckedChanged;
             }
@@ -344,6 +346,7 @@ namespace MovieDatabase
                                     title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+            database.CloseConnection();
         }
     }
 }
