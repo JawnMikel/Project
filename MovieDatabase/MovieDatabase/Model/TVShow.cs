@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieDatabase
+namespace MovieDatabase.Model
 {
     /// <summary>
     /// TVShow class is used to represent a tv show.
@@ -63,7 +63,7 @@ namespace MovieDatabase
         /// <param name="seasonNumber">The season number.</param>
         /// <param name="episodeNumber">The episode number.</param>
         /// <returns>The episode designated by seasonNumber and episodeNumber.</returns>
-        public Episode GetEpisode(int seasonNumber,int episodeNumber)
+        public Episode GetEpisode(int seasonNumber, int episodeNumber)
         {
             if (seasonNumber < 1 || seasonNumber > GetNumberOfSeasons())
             {
@@ -136,7 +136,7 @@ namespace MovieDatabase
         /// <returns>A string representation of this tv show.</returns>
         public override string? ToString()
         {
-            return $"TVShow{{{base.ToString()}, Episodes: {String.Join(", ", Episodes)}}}";
+            return $"TVShow{{{base.ToString()}, Episodes: {string.Join(", ", Episodes)}}}";
         }
     }
 }

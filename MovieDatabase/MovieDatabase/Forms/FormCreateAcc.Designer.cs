@@ -228,6 +228,9 @@ namespace MovieDatabase
             PerformLayout();
         }
 
+        /// <summary>
+        /// Updates the language using ResourceManger
+        /// </summary>
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages",typeof(Program).Assembly);

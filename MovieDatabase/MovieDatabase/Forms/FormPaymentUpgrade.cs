@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MovieDatabase.Model;
 using MovieDatabase.Utils;
 
 namespace MovieDatabase
@@ -71,12 +72,6 @@ namespace MovieDatabase
                 MessageBox.Show(ex.Message, "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //    MessageBox.Show("An unexpected error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
         }
     }
 }

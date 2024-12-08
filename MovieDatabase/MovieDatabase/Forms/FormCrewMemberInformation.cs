@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MovieDatabase.message;
+using MovieDatabase.Model;
 using MovieDatabase.Utils;
 
 namespace MovieDatabase
@@ -37,6 +38,11 @@ namespace MovieDatabase
             LoadMedia(crewMember);
         }
 
+        /// <summary>
+        /// Fetches all the medias by the crew member
+        /// </summary>
+        /// <param name="crewMember">Crew Member</param>
+        /// <returns>List of medias</returns>
         private List<Media> GetCrewMemberMedia(CrewMember crewMember)
         {
             var database = DatabaseUtils.GetInstance();
@@ -117,6 +123,9 @@ namespace MovieDatabase
             formViewReview.ShowDialog();
         }
 
+        /// <summary>
+        /// Makes sure the label changes language and also keep the rating grade
+        /// </summary>
         private void UpdateRatingLabel()
         {
             string baseText = messages.Rating;

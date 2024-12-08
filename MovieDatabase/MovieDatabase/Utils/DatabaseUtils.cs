@@ -1,5 +1,6 @@
 using Microsoft.VisualBasic.Devices;
 using MovieDatabase.Exceptions;
+using MovieDatabase.Model;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.DirectoryServices;

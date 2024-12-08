@@ -158,6 +158,9 @@ namespace MovieDatabase
             PerformLayout();
         }
 
+        /// <summary>
+        /// Updates the language using ResourceManger and the genres in the combo box
+        /// </summary>
         public void Update()
         {
             ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
@@ -166,7 +169,6 @@ namespace MovieDatabase
             tvshowBtn.Text = rm.GetString("TvShows");
             langBtn.Text = rm.GetString("Lanbutton");
 
-
             var genreTranslations = Utils.Util.GenerateGenreTranslations();
 
             genreBox.Items.Clear();
@@ -174,7 +176,6 @@ namespace MovieDatabase
             {
                 genreBox.Items.Add(genre);
             }
-
         }
 
         #endregion

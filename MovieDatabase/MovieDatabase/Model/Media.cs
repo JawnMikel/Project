@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace MovieDatabase
+namespace MovieDatabase.Model
 {
     /// <summary>
     /// Media class is used to represent all forms of media: TVShow, Episode, or Movie.
@@ -16,7 +16,7 @@ namespace MovieDatabase
         public string Title { get; }
         public DateTime ReleaseDate { get; }
         public List<Director> Directors { get; set; }
-        public List<Actor> Actors { get; set;  }
+        public List<Actor> Actors { get; set; }
         public List<Genre> Genres { get; set; }
         public List<Review> Reviews { get; set; }
         public string Synopsis { get; }
@@ -56,7 +56,7 @@ namespace MovieDatabase
         /// </exception>
         public Media(string title, DateTime releaseDate, string synopsis, string imageLink)
         {
-            if (String.IsNullOrWhiteSpace(title) || String.IsNullOrWhiteSpace(synopsis))
+            if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(synopsis))
             {
                 throw new ArgumentException("The title and synopsis arguments cannot be null nor contain only whitespaces.");
             }
@@ -178,7 +178,7 @@ namespace MovieDatabase
         /// <returns>The average rating of the media.</returns>
         public double GetMediaRating()
         {
-            if ( Reviews == null || Reviews.Count == 0)
+            if (Reviews == null || Reviews.Count == 0)
             {
                 return 0.0;
             }
@@ -237,8 +237,8 @@ namespace MovieDatabase
         public override string? ToString()
         {
             return $"MediaId: {MediaId}, Title: {Title}, ReleaseDate: {ReleaseDate}, " +
-                $"Directors: {String.Join(", ", Directors)}, Actors: {String.Join(", ", Actors)}, " +
-                $"Genres: {String.Join(", ", Genres)}, Reviews: {String.Join(", ", Reviews)}, " +
+                $"Directors: {string.Join(", ", Directors)}, Actors: {string.Join(", ", Actors)}, " +
+                $"Genres: {string.Join(", ", Genres)}, Reviews: {string.Join(", ", Reviews)}, " +
                 $"Synopsis: {Synopsis}, ImageLink: {ImageLink}";
         }
     }

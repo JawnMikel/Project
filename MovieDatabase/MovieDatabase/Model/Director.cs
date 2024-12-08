@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieDatabase
+namespace MovieDatabase.Model
 {
     /// <summary>
     /// Director class is used to represent a director.
@@ -108,7 +108,7 @@ namespace MovieDatabase
         public override string? ToString()
         {
             return $"Director{{Id: {Id}, FirstName: {FirstName}, LastName: {LastName}, ImageLink: {ImageLink}, " +
-               $"Reviews: {String.Join(",", Reviews)}}}";
+               $"Reviews: {string.Join(",", Reviews)}}}";
         }
     }
 }
