@@ -35,15 +35,6 @@ namespace MovieDatabase.Model
         }
 
         /// <summary>
-        /// Get the total number of episodes.
-        /// </summary>
-        /// <returns></returns>
-        public int GetNumberOfEpisodes()
-        {
-            return Episodes.Count;
-        }
-
-        /// <summary>
         /// Get the number of episodes in a season.
         /// </summary>
         /// <param name="seasonNumber">The season to filter by.</param>
@@ -93,20 +84,6 @@ namespace MovieDatabase.Model
                 episode.TVShowId = MediaId; // Link the episode to this tv show
                 Episodes.Add(episode);
             }
-        }
-
-        /// <summary>
-        /// Remove an episode from the list of episodes.
-        /// </summary>
-        /// <param name="episode">The episode to remove.</param>
-        /// <exception cref="ArgumentNullException">Exception thrown when the episode argument is null.</exception>
-        public void RemoveEpisode(Episode episode)
-        {
-            if (episode == null)
-            {
-                throw new ArgumentNullException("The episode argument cannot be null.");
-            }
-            Episodes.Remove(episode);
         }
 
         /// <summary>

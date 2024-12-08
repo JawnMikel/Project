@@ -28,56 +28,6 @@ namespace MovieDatabase.Model
         }
 
         /// <summary>
-        /// Add a media to the appropriate starred list of this actor.
-        /// </summary>
-        /// <param name="media">The media to add.</param>
-        /// <exception cref="ArgumentNullException">Exception thrown when the media argument is null.</exception>
-        public void AddMediaToStarred(Media media)
-        {
-            if (media == null)
-            {
-                throw new ArgumentNullException("The media argument cannot be null.");
-            }
-            if (media is Movie)
-            {
-                StarredMovies.Add(media.MediaId);
-            }
-            else if (media is TVShow)
-            {
-                StarredTVShows.Add(media.MediaId);
-            }
-            else
-            {
-                StarredEpisodes.Add(media.MediaId);
-            }
-        }
-
-        /// <summary>
-        /// Remove a media from the appropriate starred list of this actor.
-        /// </summary>
-        /// <param name="media">The media to remove.</param>
-        /// <exception cref="ArgumentNullException">Exception thrown when the media argument is null.</exception>
-        public void RemoveMediaFromStarred(Media media)
-        {
-            if (media == null)
-            {
-                throw new ArgumentNullException("The media argument cannot be null.");
-            }
-            if (media is Movie)
-            {
-                StarredEpisodes.Remove(media.MediaId);
-            }
-            else if (media is TVShow)
-            {
-                StarredTVShows.Remove(media.MediaId);
-            }
-            else
-            {
-                StarredEpisodes.Remove(media.MediaId);
-            }
-        }
-
-        /// <summary>
         /// Checks whether an object is equal to this actor.
         /// </summary>
         /// <param name="obj">The object to compare.</param>

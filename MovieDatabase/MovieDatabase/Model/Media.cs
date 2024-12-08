@@ -85,20 +85,6 @@ namespace MovieDatabase.Model
         }
 
         /// <summary>
-        /// Remove a review from the list of reviews.
-        /// </summary>
-        /// <param name="review">The review to remove.</param>
-        /// <exception cref="ArgumentNullException">Exception thrown when the review argument is null.</exception>
-        public void RemoveReview(Review review)
-        {
-            if (review == null)
-            {
-                throw new ArgumentNullException("The review argument cannot be null.");
-            }
-            Reviews.Remove(review);
-        }
-
-        /// <summary>
         /// Adds a director to the list of directors.
         /// </summary>
         /// <param name="director">The director to add.</param>
@@ -152,24 +138,6 @@ namespace MovieDatabase.Model
                 throw new ArgumentNullException("The actor argument cannot be null.");
             }
             Actors.Remove(actor);
-        }
-
-        /// <summary>
-        /// Adds a genre to the list of genres.
-        /// </summary>
-        /// <param name="genre">The genre to add.</param>
-        public void AddGenre(Genre genre)
-        {
-            Genres.Add(genre);
-        }
-
-        /// <summary>
-        /// Removes a genre from the list of genres.
-        /// </summary>
-        /// <param name="genre">The genre to remove.</param>
-        public void RemoveGenre(Genre genre)
-        {
-            Genres.Remove(genre);
         }
 
         /// <summary>
