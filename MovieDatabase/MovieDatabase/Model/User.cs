@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MovieDatabase.Exceptions;
 using MovieDatabase.Utils;
 
 namespace MovieDatabase.Model
@@ -158,7 +159,7 @@ namespace MovieDatabase.Model
         {
             if (Membership == Memberships.REGULAR && WrittenReviews.Count >= MAX_REVIEWS_REGULAR)
             {
-                throw new InvalidOperationException("The user already reached the maximum number of reviews for his regular membership.");
+                throw new MaxReviewReachedException("The user already reached the maximum number of reviews for his regular membership.");
             }
             Review review = new Review(Id, comment, rating);
             WrittenReviews.Add(review);

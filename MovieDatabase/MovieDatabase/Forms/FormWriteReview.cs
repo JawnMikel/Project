@@ -10,9 +10,10 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MovieDatabase;
+using MovieDatabase.Exceptions;
 using MovieDatabase.Model;
 using MovieDatabase.Utils;
-using static MovieDatabase.Model.User;
 
 namespace MovieDatabase
 {
@@ -148,6 +149,12 @@ namespace MovieDatabase
             {
                 string message = rm.GetString("InvalidRatingMessage");
                 string title = rm.GetString("InvalidRatingTitle");
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (MaxReviewReachedException ex)
+            {
+                string message = rm.GetString("MaxReviewsMessage");
+                string title = rm.GetString("MaxReviewsTitle");
                 MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             return null;

@@ -393,4 +393,10 @@
   <data name="MYSTERY" xml:space="preserve">
     <value>MYSTÈRE</value>
   </data>
+  <data name="MaxReviewsMessage" xml:space="preserve">
+    <value>Vous avez atteint le nombre maximum d'avis pour l'abonnement régulier!</value>
+  </data>
+  <data name="MaxReviewsTitle" xml:space="preserve">
+    <value>Limite d'avis atteinte</value>
+  </data>
 </root>
