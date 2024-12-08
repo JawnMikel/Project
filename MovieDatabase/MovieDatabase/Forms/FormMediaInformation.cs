@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Runtime.Loader;
 using System.Text;
 using System.Threading.Tasks;
@@ -240,7 +241,7 @@ namespace MovieDatabase
         private void WatchListControl()
         {
             var database = DatabaseUtils.GetInstance();
-
+            ResourceManager rm = new ResourceManager("MovieDatabase.message.messages", typeof(Program).Assembly);
             if (watchlistCheckBox.Checked)
             {
                 if (!user.WatchList.Any(m => m.MediaId == media.MediaId))
@@ -255,9 +256,10 @@ namespace MovieDatabase
                     {
                         database.InsertWatchListTVShow(user.Id, media.MediaId);
                     }
-
-                    MessageBox.Show($"{media.Title} has been added to your watchlist.",
-                                    "Watchlist Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string message = rm.GetString("AddToWatchListMessage");
+                    string title = rm.GetString("AddToWatchListTitle");
+                    MessageBox.Show($"{media.Title} {message}",
+                                    title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
@@ -266,9 +268,10 @@ namespace MovieDatabase
                 if (mediaToRemove != null)
                 {
                     user.WatchList.Remove(mediaToRemove);
-
-                    MessageBox.Show($"{media.Title} has been removed from your watchlist.",
-                                    "Watchlist Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string message = rm.GetString("RemoveFromWatchListMessage");
+                    string title = rm.GetString("RemoveFromWatchListTitle");
+                    MessageBox.Show($"{media.Title} {message}",
+                                    title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

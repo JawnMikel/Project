@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InvalidUserNameMessage" xml:space="preserve">
-    <value>L'utilisateur doit avoir un nom d'utilisateur valide.</value>
+  <data name="UnexpectedErrorMessage" xml:space="preserve">
+    <value>Une erreur inattendue est survenue:  </value>
   </data>
-  <data name="InvalidUserNameTitle" xml:space="preserve">
-    <value>Nom d'utilisateur valide</value>
+  <data name="UnexpectedErrorTitle" xml:space="preserve">
+    <value>Erreur inattendue</value>
   </data>
 </root>

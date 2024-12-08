@@ -115,6 +115,24 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to has been added to your watchlist..
+        /// </summary>
+        internal static string AddToWatchListMessage {
+            get {
+                return ResourceManager.GetString("AddToWatchListMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Watchlist Updated.
+        /// </summary>
+        internal static string AddToWatchListTitle {
+            get {
+                return ResourceManager.GetString("AddToWatchListTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         internal static string BackButton {
@@ -439,6 +457,42 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payment approved! Account successfully created..
+        /// </summary>
+        internal static string PaymentApprovedMessage {
+            get {
+                return ResourceManager.GetString("PaymentApprovedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Approved.
+        /// </summary>
+        internal static string PaymentApprovedTitle {
+            get {
+                return ResourceManager.GetString("PaymentApprovedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment failed..
+        /// </summary>
+        internal static string PaymentFailedMessage {
+            get {
+                return ResourceManager.GetString("PaymentFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Error.
+        /// </summary>
+        internal static string PaymentFailedTitle {
+            get {
+                return ResourceManager.GetString("PaymentFailedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post.
         /// </summary>
         internal static string Post {
@@ -502,6 +556,24 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to has been removed from your watchlist..
+        /// </summary>
+        internal static string RemoveFromWatchListMessage {
+            get {
+                return ResourceManager.GetString("RemoveFromWatchListMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Watchlist Updated.
+        /// </summary>
+        internal static string RemoveFromWatchListTitle {
+            get {
+                return ResourceManager.GetString("RemoveFromWatchListTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reviews:.
         /// </summary>
         internal static string Reviews {
@@ -520,6 +592,24 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SQL: .
+        /// </summary>
+        internal static string SQLErrorMessage {
+            get {
+                return ResourceManager.GetString("SQLErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SQL Error.
+        /// </summary>
+        internal static string SQLErrorTitle {
+            get {
+                return ResourceManager.GetString("SQLErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
         internal static string Title {
@@ -534,6 +624,24 @@ namespace MovieDatabase.message {
         internal static string TvShows {
             get {
                 return ResourceManager.GetString("TvShows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected error occured: .
+        /// </summary>
+        internal static string UnexpectedErrorMessage {
+            get {
+                return ResourceManager.GetString("UnexpectedErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected Error.
+        /// </summary>
+        internal static string UnexpectedErrorTitle {
+            get {
+                return ResourceManager.GetString("UnexpectedErrorTitle", resourceCulture);
             }
         }
         

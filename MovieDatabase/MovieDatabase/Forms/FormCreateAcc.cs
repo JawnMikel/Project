@@ -188,7 +188,6 @@ namespace MovieDatabase
                 MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-
             return true;
         }
 
