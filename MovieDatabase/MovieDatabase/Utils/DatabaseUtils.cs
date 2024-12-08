@@ -1,4 +1,3 @@
-using Microsoft.VisualBasic.ApplicationServices;
 using Microsoft.VisualBasic.Devices;
 using MovieDatabase.Exceptions;
 using MovieDatabase.Model;

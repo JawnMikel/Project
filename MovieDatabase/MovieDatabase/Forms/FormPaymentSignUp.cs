@@ -104,7 +104,7 @@ namespace MovieDatabase
             {
                 string message = rm.GetString("PaymentFailedMessage");
                 string title = rm.GetString("PaymentFailedTitle");
-                MessageBox.Show(ex.Message, "Payment Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             catch (Exception ex)

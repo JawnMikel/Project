@@ -20,6 +20,7 @@ namespace MovieDatabase
     {
         User user;
         Media media;
+        Media previousMedia;
         CrewMember crewMember;
         Form form;
 
@@ -34,7 +35,7 @@ namespace MovieDatabase
 
         }
 
-        public FormWriteReview(Form form, CrewMember crewMember, User user, Media media)
+        public FormWriteReview(Form form, CrewMember crewMember, User user, Media media, Media previousMedia)
         {
             InitializeComponent();
             Update();
@@ -42,6 +43,7 @@ namespace MovieDatabase
             this.crewMember = crewMember;
             this.form = form;
             this.media = media;
+            this.previousMedia = previousMedia;
             titleLbl.Text = crewMember.FirstName + " " + crewMember.LastName;
         }
 
@@ -99,7 +101,15 @@ namespace MovieDatabase
             this.Hide();
             if (form is FormCrewMemberInformation)
             {
-                var formCrewMemberInfo = new FormCrewMemberInformation(form, crewMember, user, media);
+                FormCrewMemberInformation formCrewMemberInfo = null;
+                if (previousMedia != null)
+                {
+                    formCrewMemberInfo = new FormCrewMemberInformation(form, crewMember, user, previousMedia);
+                }
+                else
+                {
+                    formCrewMemberInfo = new FormCrewMemberInformation(form, crewMember, user, media);
+                }
                 formCrewMemberInfo.Closed += (s, args) => this.Close();
                 formCrewMemberInfo.ShowDialog();
             }

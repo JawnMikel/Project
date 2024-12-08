@@ -370,16 +370,13 @@
     <value>DOCUMENTAIRE</value>
   </data>
   <data name="FANTASY" xml:space="preserve">
-    <value>FANTASY</value>
+    <value>FANTAISIE</value>
   </data>
   <data name="DRAMA" xml:space="preserve">
     <value>DRAME</value>
   </data>
   <data name="HORROR" xml:space="preserve">
     <value>HORREUR</value>
-  </data>
-  <data name="MYSTERY" xml:space="preserve">
-    <value>MYSTÈRE</value>
   </data>
   <data name="SUPERHERO" xml:space="preserve">
     <value>SUPER-HÉROS</value>
@@ -392,5 +389,8 @@
   </data>
   <data name="listMedia" xml:space="preserve">
     <value>Liste des médias</value>
+  </data>
+  <data name="MYSTERY" xml:space="preserve">
+    <value>MYSTÈRE</value>
   </data>
 </root>

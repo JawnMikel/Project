@@ -378,9 +378,6 @@
   <data name="HORROR" xml:space="preserve">
     <value>HORROR</value>
   </data>
-  <data name="MYSTERY" xml:space="preserve">
-    <value>MYSTERY</value>
-  </data>
   <data name="SUPERHERO" xml:space="preserve">
     <value>SUPERHERO</value>
   </data>
@@ -392,5 +389,8 @@
   </data>
   <data name="listMedia" xml:space="preserve">
     <value>List of Medias</value>
+  </data>
+  <data name="MYSTERY" xml:space="preserve">
+    <value>MYSTERY</value>
   </data>
 </root>

@@ -17,17 +17,19 @@ namespace MovieDatabase
     public partial class FormViewReview : Form
     {
         Media media;
+        Media previousMedia;
         CrewMember crewMember;
         User user;
         Form form;
 
-        public FormViewReview(Form form, CrewMember crewMember, User user, Media media)
+        public FormViewReview(Form form, CrewMember crewMember, User user, Media media, Media previousMedia)
         {
             InitializeComponent();
             this.crewMember = crewMember;
             this.form = form;
             this.user = user;
             this.media = media;
+            this.previousMedia = previousMedia;
             LoadReview(crewMember);
             Update();
         }
@@ -47,7 +49,15 @@ namespace MovieDatabase
             this.Hide();
             if (form is FormCrewMemberInformation)
             {
-                var formCrewMemberInfo = new FormCrewMemberInformation(form, crewMember, user, media);
+                FormCrewMemberInformation formCrewMemberInfo = null;
+                if (previousMedia != null)
+                {
+                    formCrewMemberInfo = new FormCrewMemberInformation(form, crewMember, user, previousMedia);
+                }
+                else
+                {
+                    formCrewMemberInfo = new FormCrewMemberInformation(form, crewMember, user, media);
+                }
                 formCrewMemberInfo.Closed += (s, args) => this.Close();
                 formCrewMemberInfo.ShowDialog();
             }

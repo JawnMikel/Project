@@ -16,6 +16,20 @@ namespace MovieDatabase
             passwordBox.CheckedChanged += passwordBox_CheckedChanged;
             errorLbl.Visible = false;
         }
+
+        public FormLogin(bool firstLogin)
+        {
+            InitializeComponent();
+            UpdateComponents();
+            if (firstLogin)
+            {
+                Util.Language();
+            }
+            passwordTB.PasswordChar = '*';
+            passwordBox.CheckedChanged += passwordBox_CheckedChanged;
+            errorLbl.Visible = false;
+        }
+
         private void loginBtn_Click(object sender, EventArgs e)
         {
             var database = DatabaseUtils.GetInstance();

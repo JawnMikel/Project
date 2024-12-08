@@ -286,6 +286,15 @@ namespace MovieDatabase.message {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HORROR.
+        /// </summary>
+        internal static string HORROR {
+            get {
+                return ResourceManager.GetString("HORROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User must be at least 18 years old..
         /// </summary>
         internal static string InvalidAgeMessage {
@@ -408,15 +417,6 @@ namespace MovieDatabase.message {
         internal static string InvalidUserNameTitle {
             get {
                 return ResourceManager.GetString("InvalidUserNameTitle", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to HORROR.
-        /// </summary>
-        internal static string HORROR {
-            get {
-                return ResourceManager.GetString("HORROR", resourceCulture);
             }
         }
         
@@ -777,7 +777,6 @@ namespace MovieDatabase.message {
         internal static string SUPERHERO {
             get {
                 return ResourceManager.GetString("SUPERHERO", resourceCulture);
-
             }
         }
         

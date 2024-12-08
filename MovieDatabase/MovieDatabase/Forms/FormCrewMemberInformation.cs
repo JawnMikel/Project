@@ -111,7 +111,7 @@ namespace MovieDatabase
         private void wirteReviewBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formWriteReview = new FormWriteReview(this, crewMember, user, null);
+            var formWriteReview = new FormWriteReview(this, crewMember, user, null, media);
             formWriteReview.Closed += (s, args) => this.Close();
             formWriteReview.ShowDialog();
         }
@@ -119,7 +119,7 @@ namespace MovieDatabase
         private void viewReviewBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var formViewReview = new FormViewReview(this, crewMember, user, null);
+            var formViewReview = new FormViewReview(this, crewMember, user, null, media);
             formViewReview.Closed += (s, args) => this.Close();
             formViewReview.ShowDialog();
         }
